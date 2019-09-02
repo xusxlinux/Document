@@ -6,7 +6,6 @@ MASTER_ADDRESS=$1
 ETCD_SERVERS=$2
 
 cat <<EOF >/opt/kubernetes/cfg/kube-apiserver
-
 KUBE_APISERVER_OPTS="--logtostderr=true \\
 --v=4 \\
 --etcd-servers=${ETCD_SERVERS} \\
@@ -31,7 +30,6 @@ KUBE_APISERVER_OPTS="--logtostderr=true \\
 EOF
 
 cat <<EOF >/usr/lib/systemd/system/kube-apiserver.service
-
 [Unit]
 Description=Kubernetes API Server
 Documentation=https://github.com/kubernetes/kubernetes
@@ -43,7 +41,6 @@ Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
-
 EOF
 
 
