@@ -1,12 +1,12 @@
-
+```
+cd /usr/local/src/
 wget https://github.com/coreos/flannel/releases/download/v0.10.0/flannel-v0.10.0-linux-amd64.tar.gz
-
 tar xf flannel-v0.10.0-linux-amd64.tar.gz
 
 scp flanneld mk-docker-opts.sh k8s-node-01:/opt/kubernetes/bin/                                                              
 scp flanneld mk-docker-opts.sh k8s-node-02:/opt/kubernetes/bin/                                                                
 scp flanneld mk-docker-opts.sh k8s-node-03:/opt/kubernetes/bin/
-
+```
 
 ```
 vim .flannel.sh
