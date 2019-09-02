@@ -1,5 +1,5 @@
+```
 vim /opt/kubernetes/bin/kubelet.sh
-
 
 #!/bin/bash
 
@@ -57,3 +57,4 @@ systemctl restart kubelet
 
 
 ./kubelet.sh 192.168.12.11 10.0.0.2
+```
