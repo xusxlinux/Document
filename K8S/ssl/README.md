@@ -144,3 +144,7 @@ EOF
 
 cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kubernetes kube-proxy-csr.json | cfssljson -bare kube-proxy
 ```
+```
+mkdir -pv /opt/kubernetes/{bin,ssl,cfg,log}
+mv *.pem /opt/kubernetes/ssl/
+```
