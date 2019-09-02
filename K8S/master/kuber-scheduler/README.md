@@ -1,3 +1,4 @@
+```
 vim /opt/kubernetes/bin/scheduler.sh
 
 #!/bin/bash
@@ -35,3 +36,4 @@ systemctl restart kube-scheduler
 
 
 ./scheduler.sh 127.0.0.1
+```
