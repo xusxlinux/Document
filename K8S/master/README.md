@@ -21,9 +21,7 @@ mv token.csv /opt/kubernetes/cfg/
 
 # -------------------------------------------------------------------------------
 
-
 export KUBE_APISERVER="https://192.168.12.14:6443"
-
 
 
 kubectl config set-cluster kubernetes \
