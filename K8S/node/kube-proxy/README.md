@@ -32,5 +32,5 @@ systemctl enable kube-proxy
 systemctl restart kube-proxy
 
 
-./proxy.sh 192.168.12.11
+./proxy.sh 127.0.0.1
 ```
