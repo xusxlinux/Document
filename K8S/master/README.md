@@ -68,3 +68,9 @@ kubectl create clusterrolebinding kubelet-bootstrap --clusterrole=system:node-bo
 
 kubectl create clusterrolebinding cluster-system-anonymous --clusterrole=cluster-admin --user=system:anonymous
 ```
+
+```
+scp *.kubeconfig k8s-node-01:/opt/kubernetes/ssl/
+scp *.kubeconfig k8s-node-02:/opt/kubernetes/ssl/                                                  
+scp *.kubeconfig k8s-node-03:/opt/kubernetes/ssl/
+```
