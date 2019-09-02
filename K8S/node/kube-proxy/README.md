@@ -1,3 +1,4 @@
+```
 #!/bin/bash
 
 NODE_ADDRESS=$1
@@ -36,3 +37,4 @@ systemctl restart kube-proxy
 
 
 ./proxy.sh 192.168.12.11
+```
