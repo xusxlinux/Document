@@ -1,4 +1,11 @@
 ```
+hostnamectl set-hostname k8s-master-01
+hostnamectl set-hostname k8s-node-01
+hostnamectl set-hostname k8s-node-02
+hostnamectl set-hostname k8s-node-03
+```
+
+```
 echo "* soft noproc 65535" >> /etc/security/limits.conf
 echo "* hard noproc 65535" >> /etc/security/limits.conf
 ```
