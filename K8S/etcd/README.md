@@ -13,7 +13,7 @@ cd /opt/kubernetes/bin/
 ```
 vim .etcd.sh
 #!/bin/bash
-# example: ./etcd.sh etcd01 192.168.1.10 etcd02=https://192.168.1.11:2380,etcd03=https://192.168.1.12:2380
+# example: sh etcd.sh etcd01 192.168.12.11 etcd02=https://192.168.12.12:2380,etcd03=https://192.168.12.13:2380
 
 ETCD_NAME=$1
 ETCD_IP=$2
@@ -77,7 +77,7 @@ systemctl restart etcd
 ```
 etcdctl \
 --ca-file=/opt/kubernetes/ssl/ca.pem -cert-file=/opt/kubernetes/ssl/server.pem --key-file=/opt/kubernetes/ssl/server-key.pem \
---endpoints="https://172.16.199.189:2379,https://172.16.199.190:2379,https://172.16.199.191:2379" \
+--endpoints="https://192.168.12.11:2379,https://192.168.12.12:2379,https://192.168.12.13:2379" \
 cluster-health
 ```
 
@@ -85,6 +85,6 @@ cluster-health
 ```
 etcdctl \
 --ca-file=/opt/kubernetes/ssl/ca.pem -cert-file=/opt/kubernetes/ssl/server.pem --key-file=/opt/kubernetes/ssl/server-key.pem \
---endpoints="https://172.16.199.189:2379,https://172.16.199.190:2379,https://172.16.199.191:2379" \
+--endpoints="https://192.168.12.11:2379,https://192.168.12.12:2379,https://192.168.12.13:2379" \
 set /coreos.com/network/config '{"Network": "10.10.0.0/16","Backend": {"Type": "vxlan"}}'
 ```
