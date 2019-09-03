@@ -88,12 +88,16 @@ etcdctl \
 --endpoints="https://192.168.12.11:2379,https://192.168.12.12:2379,https://192.168.12.13:2379" \
 set /coreos.com/network/config '{"Network": "10.0.0.0/8","Backend": {"Type": "vxlan"}}'
 ```
-#### error
+#### 出现error的原因
 ```
 Sep  4 08:40:48 linux-node3 flanneld: E0904 08:40:48.576291    1989 main.go:349] Couldn't fetch network config: Network is too small. Minimum useful network prefix is /28
 
-[root@linux-node1 bin]# ./etcdctl --ca-file=/opt/kubernetes/ssl/ca.pem -cert-file=/opt/kubernetes/ssl/server.pem --key-file=/opt/kubernetes/ssl/server-key.pem --endpoints="https://192.168.12.11:2379,https://192.168.12.12:2379,https://192.168.12.13:2379" set /coreos.com/network/config '{"Network": "10.0.0.0/8","Backend": {"Type": "vxlan"}}'
-{"Network": "10.0.0.0/8","Backend": {"Type": "vxlan"}}
+
+[root@linux-node1 bin]# ./etcdctl \
+--ca-file=/opt/kubernetes/ssl/ca.pem -cert-file=/opt/kubernetes/ssl/server.pem --key-file=/opt/kubernetes/ssl/server-key.pem \
+--endpoints="https://192.168.12.11:2379,https://192.168.12.12:2379,https://192.168.12.13:2379" \
+set /coreos.com/network/config '{"Network": "10.0.0.0/8","Backend": {"Type": "vxlan"}}'
+
 
 [root@linux-node1 bin]# ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1
