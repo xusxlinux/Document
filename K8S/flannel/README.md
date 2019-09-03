@@ -11,7 +11,7 @@ scp flanneld mk-docker-opts.sh k8s-node-03:/opt/kubernetes/bin/
 ```
 vim .flannel.sh
 #!/bin/bash
-# example sh .flannel.sh https://172.16.199.189:2379,https://172.16.199.190:2379,https://172.16.199.191:2379
+# example sh .flannel.sh https://192.168.12.11:2379,https://192.168.12.12:2379,https://192.168.12.13:2379
 
 ETCD_ENDPOINTS=${1:-"http://127.0.0.1:2379"}
 
