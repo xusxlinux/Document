@@ -80,6 +80,8 @@ etcdctl \
 --endpoints="https://172.16.199.189:2379,https://172.16.199.190:2379,https://172.16.199.191:2379" \
 cluster-health
 ```
+
+#### 这个分配子网仅在etcd01上就行
 ```
 etcdctl \
 --ca-file=/opt/kubernetes/ssl/ca.pem -cert-file=/opt/kubernetes/ssl/server.pem --key-file=/opt/kubernetes/ssl/server-key.pem \
