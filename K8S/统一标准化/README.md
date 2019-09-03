@@ -17,3 +17,9 @@ reboot
 ```
 yum groupinstall -y "base" "Development tools"
 ```
+
+```
+echo 'export HISTTIMEFORMAT="%y-%m-%d %H:%M:%S "' >> /etc/profile
+sed -i "s#HISTSIZE=1000#HISTSIZE=5000#g" /etc/profile
+source /etc/profile
+```
