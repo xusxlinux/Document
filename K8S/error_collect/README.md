@@ -1,5 +1,4 @@
-## 出现error的原因
-#### flannel无法启动一
+#### flannel无法启动原因之一
 ```
 分配的子网数太少
 Sep  4 08:40:48 linux-node3 flanneld: E0904 08:40:48.576291    1989 main.go:349] Couldn't fetch network config: Network is too small. Minimum useful network prefix is /28
