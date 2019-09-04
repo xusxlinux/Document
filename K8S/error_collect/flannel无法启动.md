@@ -1,4 +1,5 @@
-#### flannel无法启动原因之一
+## flannel无法启动
+#### 原因
 ```
 分配的子网数太少
 Sep  4 08:40:48 linux-node3 flanneld: E0904 08:40:48.576291    1989 main.go:349] Couldn't fetch network config: Network is too small. Minimum useful network prefix is /28
@@ -11,7 +12,7 @@ Sep  4 08:40:48 linux-node3 flanneld: E0904 08:40:48.576291    1989 main.go:349]
 --endpoints="https://192.168.12.11:2379,https://192.168.12.12:2379,https://192.168.12.13:2379" \
 set /coreos.com/network/config '{"Network": "10.0.0.0/8","Backend": {"Type": "vxlan"}}
 ```
-#### 解决
+#### 解决结果
 ```
 [root@linux-node1 bin]# ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1
