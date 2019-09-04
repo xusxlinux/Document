@@ -1,12 +1,14 @@
 ## flannel无法启动
 #### 原因
 ```
-分配的子网数太少
+分配的子网数太少 10.10.60.0/32导致如下报错
+
 Sep  4 08:40:48 linux-node3 flanneld: E0904 08:40:48.576291    1989 main.go:349] Couldn't fetch network config: Network is too small. Minimum useful network prefix is /28
 ```
 #### 解决方法
 ```
 仅在etcd01上操作
+
 [root@linux-node1 bin]# ./etcdctl \
 --ca-file=/opt/kubernetes/ssl/ca.pem -cert-file=/opt/kubernetes/ssl/server.pem --key-file=/opt/kubernetes/ssl/server-key.pem \
 --endpoints="https://192.168.12.11:2379,https://192.168.12.12:2379,https://192.168.12.13:2379" \
