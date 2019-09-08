@@ -70,3 +70,11 @@ systemctl enable flanneld
 systemctl restart flanneld
 systemctl restart dockerd
 ```
+
+
+```
+docker.service
+EnvironmentFile=/run/flannel/subnet.env
+ExecStart=/usr/bin/dockerd  $DOCKER_NETWORK_OPTIONS
+ExecReload=/bin/kill -s HUP $MAINPID
+```
