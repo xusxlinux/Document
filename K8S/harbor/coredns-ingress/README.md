@@ -1,6 +1,6 @@
 ## ingress-http
 
-#### 查看ingress的方式kubectl get ingress
+#### 查看ingress的方式  kubectl get ingress
 ```
 kubectl describe ingress http-dockerstart-com
 Name:             http-dockerstart-com
@@ -23,6 +23,15 @@ Events:
 ```
 
 ## ingress-https
+#### 使用阿里云购买的证书无法访问的原因是
+```
+在启动tomcat pod的时候  配置了NotePort  指定了固定的端口
+```
+#### 使用证书的时候，需要创建secret认证
+```
+创建：kubectl create secret tls https.dockerstart.com --cert=www.dockerstart.com.pem --key=www.dockerstart.com.key 
+删除：kubectl delete secrets https-dockerstart-com
+```
 ```
 kubectl describe ingress https-dockerstart-com
 Name:             https-dockerstart-com
