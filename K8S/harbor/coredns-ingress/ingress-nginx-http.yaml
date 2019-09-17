@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: dockerstart.com
+  name: http-dockerstart-com
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -11,5 +11,5 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: tomcat-service
+          serviceName: tomcat-service-http
           servicePort: 80
