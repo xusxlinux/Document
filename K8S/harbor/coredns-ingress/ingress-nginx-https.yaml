@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: https-dockerstart-com
+spec:
+  tls:
+  - hosts:
+    - www.dockerstart.com
+    secretName: https.dockerstart.com
+  rules:
+    - host: www.dockerstart.com
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: tomcat-service-http
+            servicePort: 80
