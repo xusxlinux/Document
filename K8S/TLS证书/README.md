@@ -1,4 +1,5 @@
 ```
+# 创建 TLS Bootstrapping Token
 export BOOTSTRAP_TOKEN=$(head -c 16 /dev/urandom | od -An -t x | tr -d ' ')
 cat > token.csv <<EOF
 ${BOOTSTRAP_TOKEN},kubelet-bootstrap,10001,"system:kubelet-bootstrap"
@@ -8,21 +9,22 @@ mv token.csv /opt/kubernetes/cfg/
 
 # -------------------------------------------------------------------------------
 
+# 创建 kubelet bootstrapping kubeconfig
 export KUBE_APISERVER="https://192.168.12.14:6443"
 
-
+# 设置集群参数
 kubectl config set-cluster kubernetes \
   --certificate-authority=./ca.pem \
   --embed-certs=true \
   --server=${KUBE_APISERVER} \
   --kubeconfig=bootstrap.kubeconfig
 
-
+# 设置客户端认证参数
 kubectl config set-credentials kubelet-bootstrap \
 --token=${BOOTSTRAP_TOKEN} \
 --kubeconfig=bootstrap.kubeconfig
 
-
+# 设置上下文认证参数
 kubectl config set-context default \
   --cluster=kubernetes \
   --user=kubelet-bootstrap \
