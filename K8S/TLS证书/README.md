@@ -30,10 +30,10 @@ kubectl config set-context default \
   --user=kubelet-bootstrap \
   --kubeconfig=bootstrap.kubeconfig
 
-
+# 设置默认上下文
 kubectl config use-context default --kubeconfig=bootstrap.kubeconfig
 
-
+# 创建kube-proxy kubeconfig文件
 kubectl config set-cluster kubernetes \
   --certificate-authority=./ca.pem \
   --embed-certs=true \
@@ -52,9 +52,10 @@ kubectl config set-context default \
 
 kubectl config use-context default --kubeconfig=kube-proxy.kubeconfig
 
-
+# 创建用户角色帮定
 kubectl create clusterrolebinding kubelet-bootstrap --clusterrole=system:node-bootstrapper --user=kubelet-bootstrap
 
+# 创建用户角色帮定
 kubectl create clusterrolebinding cluster-system-anonymous --clusterrole=cluster-admin --user=system:anonymous
 ```
 
