@@ -24,7 +24,7 @@ kubectl config set-credentials kubelet-bootstrap \
 --token=${BOOTSTRAP_TOKEN} \
 --kubeconfig=bootstrap.kubeconfig
 
-# 设置上下文认证参数
+# 设置上下文认证参数  (命名空间的设置)
 kubectl config set-context default \
   --cluster=kubernetes \
   --user=kubelet-bootstrap \
