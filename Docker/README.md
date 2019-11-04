@@ -18,7 +18,7 @@ https://download.docker.com/linux/centos/docker-ce.repo  /   http://mirrors.aliy
 $ yum install docker-ce docker-ce-cli containerd.io
 
 查看docker engine 的历史版本
-$ yum list docker --show-duplicates
+$ yum list docker-ce --showduplicates
 ```
 
 ```
