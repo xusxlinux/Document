@@ -12,7 +12,8 @@ lvm2
 使用以下命令来设置稳定的存储库
 $ yum-config-manager \
 --add-repo \
-https://download.docker.com/linux/centos/docker-ce.repo  /   http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+https://download.docker.com/linux/centos/docker-ce.repo   
+http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 
 安装最新版本的Docker Engine-Community和containerd
 $ yum install docker-ce docker-ce-cli containerd.io
@@ -37,4 +38,15 @@ $ vim /etc/docker/daemon.json
   "insecure-registries": ["47.96.99.37"],
   "graph": "/data/docker"
 }
+```
+
+```
+$ vim /etc/sysctl.d/kubernetes.conf
+net.bridge.bridge-nf-call-iptables=1
+net.bridge.bridge-nf-call-ip6tables=1
+net.ipv4.ip_forward=1
+vm.swappiness=0
+vm.overcommit_memory=1
+vm.panic_on_oom=0
+fs.inotify.max_user_watches=89100
 ```
