@@ -35,5 +35,5 @@ $ docker run -d xusx/alpine:v3.10.3
 $ docker run --rm -it --name alpine xusx/alpine:v3.10.3 echo hello
 
 容器的启动 停止 重启
-
+$ docker start/stop/restart alpine
 ```
