@@ -49,4 +49,7 @@ vm.swappiness=0
 vm.overcommit_memory=1
 vm.panic_on_oom=0
 fs.inotify.max_user_watches=89100
+
+使配置文件生效
+$ sysctl -p /etc/sysctl.d/kubernetes.conf
 ```
