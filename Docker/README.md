@@ -1,1 +1,22 @@
 
+
+
+
+
+```
+$ vim /etc/docker/daemon.json
+{
+  "registry-mirrors": ["http://f1361db2.m.daocloud.io"],
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2",
+  "storage-opts": [
+    "overlay2.override_kernel_check=true"
+  ],
+  "insecure-registries": ["47.96.99.37"],
+  "graph": "/data/docker"
+}
+```
