@@ -24,6 +24,7 @@ $ yum list docker-ce --showduplicates
 ```
 
 ```
+docker的daemon.json配置文件
 $ vim /etc/docker/daemon.json
 {
   "registry-mirrors": ["http://f1361db2.m.daocloud.io"],
@@ -37,7 +38,9 @@ $ vim /etc/docker/daemon.json
     "overlay2.override_kernel_check=true"
   ],
   "insecure-registries": ["47.96.99.37"],
-  "graph": "/data/docker"
+  "graph": "/data/docker",
+  "live-restore": true,
+  "bip": "10.59.0.1/20"
 }
 ```
 
