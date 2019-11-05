@@ -30,6 +30,14 @@ docker load -i alpine.tar
 ```
 #### 二
 ```
+-i:          表示启动一个可交互的容器,并持续打开标准输入
+-t:          表示使用终端关联到容器的标准输入输出上
+-d:          表示将容器放置后台运行
+--rm:        退出后即删除容器
+--name:      表示定义容器唯一名称
+IMAGE:       表示要运行的镜像
+COMMAND:     表示启动容器时要运行的命令
+
 $ docker run -it xusx/alpine:v3.10.3 sh
 $ docker run -d xusx/alpine:v3.10.3
 $ docker run --rm -it --name alpine xusx/alpine:v3.10.3 echo hello
