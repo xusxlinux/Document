@@ -72,4 +72,12 @@ $ docker run -d -p 82:80 --name nginx3 -e ENV_OPSA=123 -e ENV_OPSB=234 nginx:1.1
 $ docker inspect nginx3 | grep -n ENV
 164:                "ENV_OPSA=123",
 165:                "ENV_OPSB=234",
+
+$ docker exec -it nginx3 /bin/bash
+$ tee /etc/apt/sources.list << EOF
+deb http://mirrors.163.com/debian/ jessie main non-free contrib
+deb http://mirrors.163.com/debian/ jessie-updates main non-free contrib
+EOF
+
+
 ```
