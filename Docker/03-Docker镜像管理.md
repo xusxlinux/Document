@@ -36,9 +36,8 @@ $ docker push docker.io/xusx/alpine_with_hello:v3.10.4
 
 日志查看
 $ docker logs -f alpine
-```
-#### 二
-```
+
+容器参数说明
 -i:          表示启动一个可交互的容器,并持续打开标准输入
 -t:          表示使用终端关联到容器的标准输入输出上
 -d:          表示将容器放置后台运行
@@ -53,4 +52,18 @@ $ docker run --rm -it --name alpine xusx/alpine:v3.10.3 echo hello
 
 容器的启动 停止 重启
 $ docker start/stop/restart alpine
+```
+#### 二
+```
+下载nginx指定版本镜像
+docker pull nginx:1.15.2
+
+指定81端口映射到容器nginx的80端口
+docker run -d -p 81:80 --name nginx nginx:1.15.2
+
+挂载文件目录/root/html到容器的指定目录
+docker run -d -p80:80 -v /root/html:/usr/share/nginx/html --name nginx1 nginx:1.15.2
+
+使用随机端口映射大P
+docker run -d -P -v /root/html:/usr/share/nginx/html --name nginx2 nginx:1.15.2
 ```
