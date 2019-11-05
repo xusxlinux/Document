@@ -33,6 +33,9 @@ $ docker exec -it alpine3 sh
 / # echo hello > hello.txt
 $ docker commit -p alpine3 docker.io/xusx/alpine_with_hello:v3.10.4
 $ docker push docker.io/xusx/alpine_with_hello:v3.10.4
+
+日志查看
+$ docker logs -f alpine
 ```
 #### 二
 ```
