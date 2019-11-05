@@ -56,14 +56,20 @@ $ docker start/stop/restart alpine
 #### 二
 ```
 下载nginx指定版本镜像
-docker pull nginx:1.15.2
+$ docker pull nginx:1.15.2
 
 指定81端口映射到容器nginx的80端口
-docker run -d -p 81:80 --name nginx nginx:1.15.2
+$ docker run -d -p 81:80 --name nginx nginx:1.15.2
 
 挂载文件目录/root/html到容器的指定目录
-docker run -d -p80:80 -v /root/html:/usr/share/nginx/html --name nginx1 nginx:1.15.2
+$ docker run -d -p80:80 -v /root/html:/usr/share/nginx/html --name nginx1 nginx:1.15.2
 
-使用随机端口映射大P
-docker run -d -P -v /root/html:/usr/share/nginx/html --name nginx2 nginx:1.15.2
+使用随机端口映射大写的P
+$ docker run -d -P -v /root/html:/usr/share/nginx/html --name nginx2 nginx:1.15.2
+
+容器中添加环境变量
+$ docker run -d -p 82:80 --name nginx3 -e ENV_OPSA=123 -e ENV_OPSB=234 nginx:1.15.2
+$ docker inspect nginx3 | grep -n ENV
+164:                "ENV_OPSA=123",
+165:                "ENV_OPSB=234",
 ```
