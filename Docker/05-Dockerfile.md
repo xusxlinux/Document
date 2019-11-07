@@ -17,7 +17,9 @@ COPY
 ADD
 
 
-CMD
+CMD                 shell格式        CMD <命令>
+                    exec格式         CMD ["可执行文件","参数1","参数2"...]
+		    参数列表格式      CMD ["参数1","参数2"...]  在指定了 ENTRYPOIN指令后,用 CMD 指定具体的参数
 
 
 ENTRYPOINT
@@ -35,10 +37,10 @@ VOLUME
 EXPOSE
 
 
-WORKDIR
+WORKDIR             如果需要改变以后各层的工作目录位置,那么应该使用 WORKDIR 指令
 
 
-USER
+USER                帮助切换到指定用户,这个用户需要事先建立好。切换用户后,会以该用户身份执行 RUN CMD ENTRYPOINT这类命令的身份
 
 
 HEALTHCHECK
