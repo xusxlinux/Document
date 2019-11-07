@@ -2,11 +2,11 @@
 FROM                指定基础镜像本地或者远端仓库拥有的
 RUN                 执行命令行命令,run指令在定制镜像时最常用的.每一个RUN的运行,就会新建立一层,commit这层的修改
                     shell格式   RUN apt-get update && apt-get install curl -y
-					            RUN buildDeps='curl net-toos' \
-								    && apt-get update \
-									&& apt-get install -y $buildDeps \
-									&& mkdir -p /usr/local/xusx
-					exec格式    RUN ["可执行文件","参数1","参数2"]
+				RUN buildDeps='curl net-toos' \
+				&& apt-get update \
+				&& apt-get install -y $buildDeps \
+				&& mkdir -p /usr/local/xusx
+		    exec格式    RUN ["可执行文件","参数1","参数2"]
 COPY
 ADD
 CMD
