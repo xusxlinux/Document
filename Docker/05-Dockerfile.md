@@ -34,7 +34,7 @@ ARG
 VOLUME
 
 
-EXPOSE
+EXPOSE              声明运行时容器提供服务端的口,将容器的对应端口服务,公开给外界访问
 
 
 WORKDIR             如果需要改变以后各层的工作目录位置,那么应该使用 WORKDIR 指令
