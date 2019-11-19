@@ -4,9 +4,9 @@ $ useradd -s /sbin/nologin -M etcd
 ```
 
 ```
-span style =color：green”>一些绿色文字< / span>
+<span style =color：green”>一些绿色文字< / span>
 ```
-span style =color：green”>一些绿色文字< / span>
+<span style="color: green"> Some green text </span
 
 ```
 $ cat /opt/etcd/etcd-server-startup.sh
