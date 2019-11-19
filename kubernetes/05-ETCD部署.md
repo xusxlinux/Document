@@ -1,8 +1,8 @@
 ## ETCD集群部署
 
-$ mkdir -p /opt/etcd/certs /data/etcd /data/logs/etcd-server
-$ chmod +x /opt/etcd/etcd-server-startup.sh
-
+> $ mkdir -p /opt/etcd/certs /data/etcd /data/logs/etcd-server
+> $ chmod +x /opt/etcd/etcd-server-startup.sh
+```
 $ cat /opt/etcd/etcd-server-startup.sh
 #!/bin/sh
 ./etcd --name etcd-server-7-12 \
@@ -24,7 +24,9 @@ $ cat /opt/etcd/etcd-server-startup.sh
        --peer-client-cert-auth \
        --peer-trusted-ca-file ./certs/ca.pem \
        --log-output stdout
-       
+ ```
+ 
+ ```
 cat /etc/supervisord.d/etcd-server.ini
 [program:etcd-server-7-12]
 command=/opt/etcd/etcd-server-startup.sh                        ; the program (relative uses PATH, can take args)
@@ -44,5 +46,5 @@ stdout_logfile_maxbytes=64MB                                    ; max # logfile 
 stdout_logfile_backups=4                                        ; # of stdout logfile backups (default 10)
 stdout_capture_maxbytes=1MB                                     ; number of bytes in 'capturemode' (default 0)
 stdout_events_enabled=false                                     ; emit events on stdout writes (default false)
-
-$ supervisorctl update
+```
+> $ supervisorctl update
