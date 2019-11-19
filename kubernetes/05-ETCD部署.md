@@ -1,6 +1,7 @@
 ## ETCD集群部署
 
 > $ mkdir -p /opt/etcd/certs /data/etcd /data/logs/etcd-server
+
 > $ chmod +x /opt/etcd/etcd-server-startup.sh
 ```
 $ cat /opt/etcd/etcd-server-startup.sh
