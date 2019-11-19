@@ -4,6 +4,11 @@ $ useradd -s /sbin/nologin -M etcd
 ```
 
 ```
+span style =color：green”>一些绿色文字< / span>
+```
+span style =color：green”>一些绿色文字< / span>
+
+```
 $ cat /opt/etcd/etcd-server-startup.sh
 #!/bin/sh
 ./etcd --name etcd-server-7-12 \
