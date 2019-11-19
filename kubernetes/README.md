@@ -27,6 +27,7 @@
         <td><strong></strong>服务暴露</td>
         <td><a href="01-环境准备.md">trafic</a></td>
         <td><a href="01-环境准备.md">ingress</a></td>
+        <td><a href="01-环境准备.md">nginx</a></td>
     </tr>
     <tr>
         <td><strong></strong>控制面板</td>
