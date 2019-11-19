@@ -1,4 +1,7 @@
 ## ETCD集群部署
+```
+$ useradd -s /sbin/nologin -M etcd
+```
 
 ```
 $ cat /opt/etcd/etcd-server-startup.sh
