@@ -2,6 +2,8 @@
     <tr>
         <td><strong></strong>部署前的准备</td>
         <td><a href="01-环境准备.md">环境准备</a></td>
+        <td><a href="01-域名解析.md">主机域</a></td>
+        <td><a href="01-域名解析.md">业务域</a></td>
     </tr>
     <tr>
         <td><strong></strong>证书签发</td>
