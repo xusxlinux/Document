@@ -3,8 +3,6 @@
 $ useradd -s /sbin/nologin -M etcd
 ```
 
-[我的博客](http://blog.csdn.net/guodongxiaren "悬停显示")  
-
 ```
 $ cat /opt/etcd/etcd-server-startup.sh
 #!/bin/sh
