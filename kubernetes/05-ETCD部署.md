@@ -2,11 +2,7 @@
 ```
 $ useradd -s /sbin/nologin -M etcd
 ```
-
-```
-<span style =color：green”>一些绿色文字< / span>
-```
-<span style="color: green"> Some green text </span
+              123
 
 ```
 $ cat /opt/etcd/etcd-server-startup.sh
