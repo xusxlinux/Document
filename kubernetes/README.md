@@ -14,12 +14,12 @@
         <td><a href="01-环境准备.md">kube-controller-manager</a></td>
     </tr>
     <tr>
-        <td><strong></strong>集群节点</td>
+        <td><strong></strong>被控节点</td>
         <td><a href="01-环境准备.md">kubelet</a></td>
         <td><a href="01-环境准备.md">kube-proxy</a></td>
     </tr>
     <tr>
-        <td><strong></strong>CNI网络节</td>
+        <td><strong></strong>网络节点</td>
         <td><a href="01-环境准备.md">flanned</a></td>
         <td><a href="01-环境准备.md">calico</a></td>
     </tr>
