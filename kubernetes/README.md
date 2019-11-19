@@ -4,8 +4,16 @@
         <td><a href="01-环境准备.md">环境准备</a></td>
     </tr>
     <tr>
+        <td><strong></strong>证书签发</td>
+        <td><a href="01-环境准备.md">cfssl</a></td>
+    </tr>
+    <tr>
         <td><strong></strong>存储节点</td>
         <td><a href="01-环境准备.md">etcd</a></td>
+    </tr>
+    <tr>
+        <td><strong></strong>镜像仓库</td>
+        <td><a href="01-环境准备.md">harbor</a></td>
     </tr>
     <tr>
         <td><strong></strong>主控节点</td>
