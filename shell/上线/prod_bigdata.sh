@@ -1,3 +1,4 @@
+```Bash
 #!/usr/bin/env bash
 #作者: xusx
 #时间: 2019/08/05
@@ -62,3 +63,4 @@ case $1 in
 esac
 }
 selectact $1
+```
