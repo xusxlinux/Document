@@ -35,7 +35,7 @@
     </tr>
     <tr>
         <td><strong></strong>服务暴露</td>
-        <td><a href="01-环境准备.md">trafic</a></td>
+        <td><a href="01-环境准备.md">traefik</a></td>
         <td><a href="01-环境准备.md">ingress</a></td>
         <td><a href="01-环境准备.md">nginx</a></td>
     </tr>
