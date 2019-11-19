@@ -23,4 +23,14 @@
         <td><a href="01-环境准备.md">flanned</a></td>
         <td><a href="01-环境准备.md">calico</a></td>
     </tr>
+    <tr>
+        <td><strong></strong>服务暴露</td>
+        <td><a href="01-环境准备.md">trafic</a></td>
+        <td><a href="01-环境准备.md">ingress</a></td>
+    </tr>
+    <tr>
+        <td><strong></strong>控制面板</td>
+        <td><a href="01-环境准备.md">rbac</a></td>
+        <td><a href="01-环境准备.md">dashborad</a></td>
+    </tr>    
 </table>
