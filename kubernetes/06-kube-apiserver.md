@@ -98,8 +98,10 @@ rules:
   --v 2
 ```
 > mkdir -p /data/logs/kubernetes/kube-apiserver
+
 > chmod +x kube-apiserver.sh
 ```ini
+$ cat /etc/supervisord.d/kube-apiserver.ini
 [program:kube-apiserver-7-21]
 command=/opt/kubernetes/server/bin/kube-apiserver.sh            ; the program (relative uses PATH, can take args)
 numprocs=1                                                      ; number of processes copies to start (def 1)
