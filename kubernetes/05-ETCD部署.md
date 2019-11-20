@@ -3,7 +3,7 @@
 $ useradd -s /sbin/nologin -M etcd
 ```
 
-```
+```bash
 $ cat /opt/etcd/etcd-server-startup.sh
 #!/bin/sh
 ./etcd --name etcd-server-7-12 \
@@ -32,7 +32,7 @@ $ mkdir -p /opt/etcd/certs /data/etcd /data/logs/etcd-server
 $ chmod +x /opt/etcd/etcd-server-startup.sh
  ```
  
- ```
+ ```ini
 cat > /etc/supervisord.d/etcd-server.ini << EOF
 [program:etcd-server-7-12]
 command=/opt/etcd/etcd-server-startup.sh                        ; the program (relative uses PATH, can take args)
