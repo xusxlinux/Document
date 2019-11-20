@@ -72,7 +72,7 @@ rules:
 ```
 
 ```bash
-/opt/kubernetes/server/bin/kube-apiserver.sh
+$ cat /opt/kubernetes/server/bin/kube-apiserver.sh
 #!/bin/bash
 ./kube-apiserver \
   --apiserver-count 2 \
@@ -99,7 +99,7 @@ rules:
 ```
 > mkdir -p /data/logs/kubernetes/kube-apiserver
 
-> chmod +x kube-apiserver.sh
+> chmod +x /opt/kubernetes/server/bin/kube-apiserver.sh
 ```ini
 $ cat /etc/supervisord.d/kube-apiserver.ini
 [program:kube-apiserver-7-21]
