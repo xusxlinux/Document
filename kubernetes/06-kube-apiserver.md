@@ -1,5 +1,5 @@
 
-```
+```yaml
 $ cat /opt/kubernetes/server/bin/conf/audit.yaml
 apiVersion: audit.k8s.io/v1beta1 # This is required.
 kind: Policy
