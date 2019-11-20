@@ -23,7 +23,7 @@ $ cat /opt/kubernetes/server/bin/kubelet.sh
 
 > $ mkdir -p /data/logs/kubernetes/kube-kubelet /data/kubelet
 
-> $ chmod +x kubelet.sh
+> $ chmod +x /opt/kubernetes/server/bin/kubelet.sh
 ```ini
 $ cat /etc/supervisord.d/kube-kubelet.ini
 [program:kube-kubelet-7-21]
