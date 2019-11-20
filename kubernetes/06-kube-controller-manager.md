@@ -15,7 +15,7 @@ $ cat /opt/kubernetes/server/bin/kube-controller-manager.sh
 >  chmod +x /opt/kubernetes/server/bin/kube-controller-manager.sh
 
 >  mkdir -p /data/logs/kubernetes/kube-controller-manager
-```  
+```ini
 $ cat /etc/supervisord.d/kube-conntroller-manager.ini  
 [program:kube-controller-manager-7-21]
 command=/opt/kubernetes/server/bin/kube-controller-manager.sh                     ; the program (relative uses PATH, can take args)
