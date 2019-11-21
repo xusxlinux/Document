@@ -7,8 +7,9 @@ Chain FORWARD (policy DROP)
 $ iptables -t filter -P FORWARD ACCEPT
 Chain FORWARD (policy ACCEPT)
 ```
-```
+
 增加filter表一条禁止ping服务器
+```
 $ iptables -t filter -A/I INPUT -p icmp -j DROP
 
 Chain INPUT (policy ACCEPT)
