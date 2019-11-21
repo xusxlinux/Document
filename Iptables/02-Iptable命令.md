@@ -36,4 +36,10 @@ ACCEPT     icmp --  anywhere             anywhere
 ```
 
 清除指定链上的所有规则
-iptables -t filter -F INPUT
+```
+$ iptables -t filter -F INPUT
+
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+```
