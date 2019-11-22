@@ -43,5 +43,20 @@
         <td><strong></strong>控制面板</td>
         <td><a href="01-环境准备.md">rbac</a></td>
         <td><a href="10-控制面板.md">dashborad</a></td>
-    </tr>    
+    </tr>
+    <tr>
+        <td><strong></strong>服务交付</td>
+        <td><a href="01-环境准备.md">rbac</a></td>
+        <td><a href="10-控制面板.md">dashborad</a></td>
+    </tr>
+    <tr>
+        <td><strong></strong>集群监控</td>
+        <td><a href="01-环境准备.md">rbac</a></td>
+        <td><a href="10-控制面板.md">dashborad</a></td>
+    </tr>
+    <tr>
+        <td><strong></strong>日志收集</td>
+        <td><a href="01-环境准备.md">rbac</a></td>
+        <td><a href="10-控制面板.md">dashborad</a></td>
+    </tr>
 </table>
