@@ -88,7 +88,7 @@ $ cat /opt/kubernetes/server/bin/kube-apiserver.sh
   --etcd-servers https://10.4.7.12:2379,https://10.4.7.21:2379,https://10.4.7.22:2379 \
   --service-account-key-file ./cert/ca-key.pem \
   --service-cluster-ip-range 192.168.0.0/16 \
-  --service-node-port-range 3000-29999 \
+  --service-node-port-range 30000-29999 \
   --target-ram-mb=1024 \
   --kubelet-client-certificate ./cert/client.pem \
   --kubelet-client-key ./cert/client-key.pem \
