@@ -47,7 +47,7 @@
     <tr>
         <td><strong></strong>服务交付</td>
         <td><a href="Document/CICD">Jenkins</a></td>
-        <td><a href="10-控制面板.md">dashborad</a></td>
+        <td><a href="10-控制面板.md">spinnaker</a></td>
     </tr>
     <tr>
         <td><strong></strong>集群监控</td>
