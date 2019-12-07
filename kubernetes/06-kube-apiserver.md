@@ -97,9 +97,9 @@ $ cat /opt/kubernetes/server/bin/kube-apiserver.sh
   --tls-private-key-file ./cert/apiserver-key.pem \
   --v 2
 ```
-> $ mkdir -p /data/logs/kubernetes/kube-apiserver  
-> $ chmod +x /opt/kubernetes/server/bin/kube-apiserver.sh  
-> $ mkdir -pv /opt/kubernetes/server/bin/{certs,conf}
+> $ mkdir -pv /data/logs/kubernetes/kube-apiserver  
+> $ mkdir -pv /opt/kubernetes/server/bin/{certs,conf}  
+> $ chmod +x /opt/kubernetes/server/bin/kube-apiserver.sh
 ```ini
 $ cat /etc/supervisord.d/kube-apiserver.ini
 [program:kube-apiserver-7-21]
