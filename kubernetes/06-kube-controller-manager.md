@@ -8,7 +8,7 @@ $ cat /opt/kubernetes/server/bin/kube-controller-manager.sh
   --master http://127.0.0.1:8080 \
   --service-account-private-key-file ./certs/ca-key.pem \
   --service-cluster-ip-range 192.168.0.0/16 \
-  --root-ca-file ./cert/ca.pem \
+  --root-ca-file ./certs/ca.pem \
   --v 2
 ```
 
