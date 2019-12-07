@@ -9,9 +9,9 @@ $ cat /opt/kubernetes/server/bin/kubelet.sh
   --runtime-cgroups=/systemd/system.slice \
   --kubelet-cgroups=/systemd/system.slice \
   --fail-swap-on="false" \
-  --client-ca-file ./cert/ca.pem \
-  --tls-cert-file ./cert/kubelet.pem \
-  --tls-private-key-file ./cert/kubelet-key.pem \
+  --client-ca-file ./certs/ca.pem \
+  --tls-cert-file ./certs/kubelet.pem \
+  --tls-private-key-file ./certs/kubelet-key.pem \
   --hostname-override hdss7-21.host.com \
   --image-gc-high-threshold 20 \
   --image-gc-low-threshold 10 \
