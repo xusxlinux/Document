@@ -8,7 +8,7 @@ $ cat /opt/kubernetes/server/bin/kube-proxy.sh
   --ipvs-scheduler=nq \
   --kubeconfig ./conf/kube-proxy.kubeconfig
   ```
-> $ chmod +x kube-proxy.sh
+> $ chmod +x /opt/kubernetes/server/bin/kube-proxy.sh
 
 > $ mkdir -p /data/logs/kubernetes/kube-proxy
 ```ini
