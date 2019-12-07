@@ -28,7 +28,7 @@ $ cat /opt/etcd/etcd-server-startup.sh
  ```
  
  ```
-$ mkdir -p /opt/etcd/certs /data/etcd /data/logs/etcd-server
+$ mkdir -pv /opt/etcd/certs /data/logs/etcd-server /data/etcd/etcd-server
 $ chmod +x /opt/etcd/etcd-server-startup.sh
 $ chown -R etcd:etcd /opt/etcd/
  ```
