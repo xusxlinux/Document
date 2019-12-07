@@ -36,3 +36,8 @@ stdout_logfile_backups=4                                                        
 stdout_capture_maxbytes=1MB                                                       ; number of bytes in 'capturemode' (default 0)
 stdout_events_enabled=false                                                       ; emit events on stdout writes (default false)
 ```
+
+## 给节点打上名称标记
+```
+$ kubectl label node hdss7-21.host.com node-role.kubernetes.io/node=
+```
