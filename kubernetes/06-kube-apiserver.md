@@ -79,22 +79,22 @@ $ cat /opt/kubernetes/server/bin/kube-apiserver.sh
   --audit-log-path /data/logs/kubernetes/kube-apiserver/audit-log \
   --audit-policy-file ./conf/audit.yaml \
   --authorization-mode RBAC \
-  --client-ca-file ./cert/ca.pem \
-  --requestheader-client-ca-file ./cert/ca.pem \
+  --client-ca-file ./certs/ca.pem \
+  --requestheader-client-ca-file ./certs/ca.pem \
   --enable-admission-plugins NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,DefaultTolerationSeconds,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,ResourceQuota \
-  --etcd-cafile ./cert/ca.pem \
-  --etcd-certfile ./cert/client.pem \
-  --etcd-keyfile ./cert/client-key.pem \
+  --etcd-cafile ./certs/ca.pem \
+  --etcd-certfile ./certs/client.pem \
+  --etcd-keyfile ./certs/client-key.pem \
   --etcd-servers https://10.4.7.12:2379,https://10.4.7.21:2379,https://10.4.7.22:2379 \
-  --service-account-key-file ./cert/ca-key.pem \
+  --service-account-key-file ./certs/ca-key.pem \
   --service-cluster-ip-range 192.168.0.0/16 \
   --service-node-port-range 30000-49999 \
   --target-ram-mb=1024 \
-  --kubelet-client-certificate ./cert/client.pem \
-  --kubelet-client-key ./cert/client-key.pem \
+  --kubelet-client-certificate ./certs/client.pem \
+  --kubelet-client-key ./certs/client-key.pem \
   --log-dir  /data/logs/kubernetes/kube-apiserver \
-  --tls-cert-file ./cert/apiserver.pem \
-  --tls-private-key-file ./cert/apiserver-key.pem \
+  --tls-cert-file ./certs/apiserver.pem \
+  --tls-private-key-file ./certs/apiserver-key.pem \
   --v 2
 ```
 > $ mkdir -pv /data/logs/kubernetes/kube-apiserver  
