@@ -13,6 +13,20 @@ stream {
         proxy_pass kube-apiserver;
     }
 }
+
+
+stream {
+    upstream kube-apiserver {
+        server 10.4.7.21:6443     max_fails=3 fail_timeout=30s;
+        server 10.4.7.22:6443     max_fails=3 fail_timeout=30s;
+    }
+    server {
+        listen 6443;
+        proxy_connect_timeout 2s;
+        proxy_timeout 900s;
+        proxy_pass kube-apiserver;
+    }
+}
 ```
 #### keepalived
 ```
