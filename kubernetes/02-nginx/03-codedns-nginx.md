@@ -29,10 +29,14 @@ harbor             A    10.4.7.200
 k8s-yaml           A    10.4.7.200
 ```
 
-
+下载官网上coredns容器  
 > $ docker pull coredns/coredns:1.6.1  
+打上tag  
 > $ docker tag c0f6e815079e harbor.od.com/public/coredns:v1.6.1  
+上传到自己的镜像厂库  
 > $ docker push harbor.od.com/public/coredns:v1.6.1  
+配置文件下载地址  
+> $ wget https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/dns/coredns/coredns.yaml.base
 
 
 ```yaml
