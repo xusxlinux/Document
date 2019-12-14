@@ -15,6 +15,7 @@
     <tr>
         <td><strong></strong>镜像仓库</td>
         <td><a href="03-镜像仓库.md">harbor</a></td>
+        <td><a href="02-nginx/02-harbor-nginx.md">harbor业务域</a></td>
     </tr>
     <tr>
         <td><strong></strong>主控节点</td>
