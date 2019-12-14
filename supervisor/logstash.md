@@ -16,7 +16,7 @@ user=root
 autorestart=yes
 
 
-[program:evcos_log]
+[program:ev_log]
 
 command=/data/logstash-2.4.0/bin/logstash -f /data/logstash-2.4.0/etc/evcos_log.conf -l /data/logstash-2.4.0/logs/evcos_logs.log
 directory=/data/logstash-2.4.0
