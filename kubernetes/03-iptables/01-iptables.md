@@ -7,3 +7,6 @@
 
 > (在主机10.4.7.21主机上,来源是172.7.21.0/24段docker的IP地址,目标地址不是从172.7.0.0/16,网络发包不是从docker0桥设备出网的,需要做源地址SNAT转换)  
 > $ iptables -t nat -I POSTROUTING -s 172.7.21.0/24 ! -d 172.7.0.0/16 ! -o docker0 -j MASQUERADE  
+
+> 保存规则  
+> $ iptables-save > /etc/sysconfig/iptables
