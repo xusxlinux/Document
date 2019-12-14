@@ -19,7 +19,7 @@
     <tr>
         <td><strong></strong>主控节点</td>
         <td><a href="06-kube-apiserver.md">kube-apiserver</a></td>
-        <td><a href="02-nginx/nginx.md">02-nginx/01-availability-nginx.md</a></td>
+        <td><a href="02-nginx/01-availability-nginx.md">高可用</a></td>
         <td><a href="06-kube-scheduler.md">kube-scheduler</a></td>
         <td><a href="06-kube-controller-manager.md">kube-controller-manager</a></td>
     </tr>
