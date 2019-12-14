@@ -31,4 +31,6 @@ stdout_logfile_maxbytes=64MB                                         ; max # log
 stdout_logfile_backups=4                                             ; # of stdout logfile backups (default 10)
 stdout_capture_maxbytes=1MB                                          ; number of bytes in 'capturemode' (default 0)
 stdout_events_enabled=false                                          ; emit events on stdout writes (default false)
+killasgroup=true
+stopasgroup=true
 ```
