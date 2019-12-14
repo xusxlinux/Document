@@ -85,7 +85,7 @@ spec:
         - --kubernetes
         - --logLevel=INFO
         - --insecureskipverify=true
-        - --kubernetes.endpoint=https://10.4.7.10:7443
+        - --kubernetes.endpoint=https://10.4.7.10:6443
         - --accesslog
         - --accesslog.filepath=/var/log/traefik_access.log
         - --traefiklog
