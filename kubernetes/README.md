@@ -36,6 +36,7 @@
     </tr>
     <tr>
         <td><strong></strong>服务暴露</td>
+        <td><a href="02-nginx/03-codedns-nginx.md">coredns</a></td>
         <td><a href="02-nginx/04-traefik-nginx.md">traefik</a></td>
         <td><a href="09-Ingress.md">ingress</a></td>
         <td><a href="09-Ingress.md">nginx</a></td>
