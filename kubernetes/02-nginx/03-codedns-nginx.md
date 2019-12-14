@@ -30,9 +30,9 @@ k8s-yaml           A    10.4.7.200
 ```
 
 
-docker pull coredns/coredns:1.6.1
-docker tag c0f6e815079e harbor.od.com/public/coredns:v1.6.1
-docker push harbor.od.com/public/coredns:v1.6.1
+> $ docker pull coredns/coredns:1.6.1  
+> $ docker tag c0f6e815079e harbor.od.com/public/coredns:v1.6.1  
+> $ docker push harbor.od.com/public/coredns:v1.6.1  
 
 
 ```yaml
