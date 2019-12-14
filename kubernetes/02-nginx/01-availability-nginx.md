@@ -1,5 +1,6 @@
 #### 四层代理
 ```
+$ cat /etc/nginx/nginx.conf
 stream {
     log_format main "$remote_addr $upstream_addr - $time_local $status";
     access_log /var/log/nginx/k8s-access.log main;
@@ -15,6 +16,7 @@ stream {
 }
 
 
+$ cat /etc/nginx/nginx.conf
 stream {
     upstream kube-apiserver {
         server 10.4.7.21:6443     max_fails=3 fail_timeout=30s;
