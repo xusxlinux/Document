@@ -16,3 +16,10 @@
 
 > 保存规则  
 > $ iptables-save > /etc/sysconfig/iptables
+
+> 在容器内,容器需要互相看到真实pod的IP  
+> $ kubectl logs -f nginx-ds-hvm6v  
+未做SNAT优化
+10.4.7.22 - - [14/Dec/2019:14:05:22 +0000] "GET / HTTP/1.1" 200 612 "-" "curl/7.38.0" "-"  
+做完SNAT优化
+172.7.12.2 - - [14/Dec/2019:15:00:48 +0000] "GET / HTTP/1.1" 200 612 "-" "curl/7.38.0" "-"
