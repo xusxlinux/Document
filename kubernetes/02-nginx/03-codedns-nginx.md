@@ -39,7 +39,7 @@ k8s-yaml           A    10.4.7.200
 > $ wget https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/dns/coredns/coredns.yaml.base
 
 
-```yaml
+```vim /data/k8s-yaml/coredns/rbac.yaml
 $ cat rbac.yaml
 apiVersion: v1
 kind: ServiceAccount
