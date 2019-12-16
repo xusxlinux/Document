@@ -29,6 +29,27 @@ harbor             A    10.4.7.200
 k8s-yaml           A    10.4.7.200
 ```
 
+
+```
+~]# kubectl create deployment nginx-dp --image=harbor.od.com/public/nginx:v1.15.3 -n kube-public
+~]# kubectl get pods -o wide -n kube-public 
+NAME                        READY   STATUS    RESTARTS   AGE     IP           NODE                NOMINATED NODE   READINESS GATES
+nginx-dp-686959b78f-hs8zg   1/1     Running   0          3m44s   172.7.11.2   hdss7-11.host.com   <none>           <none>
+
+
+~]# kubectl expose deployment nginx-dp --port=80 -n kube-public
+~]# kubectl get svc -o wide -n kube-public 
+NAME       TYPE        CLUSTER-IP        EXTERNAL-IP   PORT(S)   AGE   SELECTOR
+nginx-dp   ClusterIP   192.168.225.221   <none>        80/TCP    3s    app=nginx-dp
+
+
+~]# dig -t A nginx-dp @192.168.0.2 +short
+
+~]# dig -t A nginx-dp.kube-public.svc.cluster.local. @192.168.0.2 +short
+192.168.225.221
+```
+
+
 下载官网上coredns容器  
 > $ docker pull coredns/coredns:1.6.1  
 打上tag  
