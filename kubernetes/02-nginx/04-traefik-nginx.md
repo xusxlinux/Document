@@ -1,5 +1,4 @@
-github地址  
-https://github.com/containous/traefik
+github地址  https://github.com/containous/traefik
 
 ```
 upstream default_backend_traefik {
