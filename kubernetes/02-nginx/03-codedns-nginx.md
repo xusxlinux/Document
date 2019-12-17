@@ -51,7 +51,78 @@ nginx-dp   ClusterIP   192.168.225.221   <none>        80/TCP    3s    app=nginx
 192.168.225.221
 ```
 
+```yaml
+nginx-dp.yaml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-dp
+  namespace: kube-public
+spec:
+  template:
+    metadata:
+      labels:
+        app: nginx-dp
+    spec:
+      containers:
+      - name: my-nginx
+        image: harbor.od.com/public/nginx_hith_curl:v1.15.2
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginx-dp
+  name: nginx-dp
+  namespace: kube-public
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx-dp
+  sessionAffinity: None
+  type: ClusterIP
+```
 
+```yaml
+cat nginx-ds.yaml
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: nginx-ds
+spec:
+  template:
+    metadata:
+      labels:
+        app: nginx-ds
+    spec:
+      containers:
+      - name: my-nginx
+        image: harbor.od.com/public/nginx_hith_curl:v1.15.2
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginx-ds
+  name: nginx-ds
+  namespace: default
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx-ds
+  sessionAffinity: None
+  type: ClusterIP
+```
 
 ```
 查看默认命名空间的容器信息
