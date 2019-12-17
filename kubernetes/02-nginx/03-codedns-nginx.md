@@ -50,6 +50,53 @@ nginx-dp   ClusterIP   192.168.225.221   <none>        80/TCP    3s    app=nginx
 ```
 
 
+
+```
+~]# kubectl get svc,pod,deploy -o wide
+NAME                 TYPE        CLUSTER-IP        EXTERNAL-IP   PORT(S)   AGE   SELECTOR
+service/kubernetes   ClusterIP   192.168.0.1       <none>        443/TCP   10d   <none>
+service/nginx-ds     ClusterIP   192.168.137.202   <none>        80/TCP    17h   app=nginx-ds
+
+NAME                 READY   STATUS    RESTARTS   AGE   IP           NODE                NOMINATED NODE   READINESS GATES
+pod/nginx-ds-5fw5l   1/1     Running   0          17h   172.7.12.2   hdss7-12.host.com   <none>           <none>
+pod/nginx-ds-8hgck   1/1     Running   0          17h   172.7.21.2   hdss7-21.host.com   <none>           <none>
+pod/nginx-ds-hhbpw   1/1     Running   0          17h   172.7.22.2   hdss7-22.host.com   <none>           <none>
+pod/nginx-ds-qz2qv   1/1     Running   0          17h   172.7.11.2   hdss7-11.host.com   <none>           <none>
+
+
+
+~]# kubectl get svc,pod,deploy -o wide -n kube-public 
+NAME               TYPE        CLUSTER-IP        EXTERNAL-IP   PORT(S)   AGE   SELECTOR
+service/nginx-dp   ClusterIP   192.168.223.105   <none>        80/TCP    17h   app=nginx-dp
+
+NAME                            READY   STATUS    RESTARTS   AGE   IP           NODE                NOMINATED NODE   READINESS GATES
+pod/nginx-dp-79cf69fc5f-fgrfr   1/1     Running   0          17h   172.7.12.3   hdss7-12.host.com   <none>           <none>
+
+NAME                             READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                                         SELECTOR
+deployment.extensions/nginx-dp   1/1     1            1           17h   my-nginx     harbor.od.com/public/nginx_hith_curl:v1.15.2   app=nginx-dp
+
+~]# curl -I -m 10 -o /dev/null -s -w %{http_code} 192.168.137.202
+200
+
+~]# curl -I -m 10 -o /dev/null -s -w %{http_code} 192.168.223.105
+200
+
+
+~]# kubectl exec -it pod/nginx-ds-5fw5l bash
+root@nginx-ds-5fw5l:/# cat /etc/resolv.conf 
+nameserver 192.168.0.2
+search default.svc.cluster.local svc.cluster.local cluster.local
+options ndots:5
+
+
+root@nginx-ds-5fw5l:/# curl -I -m 10 -o /dev/null -s -w %{http_code} 192.168.223.105
+200
+root@nginx-ds-5fw5l:/# curl -I -m 10 -o /dev/null -s -w %{http_code} 172.7.12.3
+200
+root@nginx-ds-5fw5l:/# curl -I -m 10 -o /dev/null -s -w %{http_code} nginx-dp.kube-public.svc.cluster.local.
+200
+```
+
 下载官网上coredns容器  
 > $ docker pull coredns/coredns:1.6.1  
 打上tag  
