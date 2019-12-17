@@ -1,4 +1,5 @@
-```
+```conf
+配置nginx的配置文件,下载coredns使用的
 $ cat /etc/nginx/conf.d/k8s-yaml.od.com.conf 
 server {
     listen       80;
@@ -13,6 +14,7 @@ server {
 ```
 
 ```
+配置内网域名解析
 $ORIGIN od.com.
 $TTL 600        ; 10 minutes
 @               IN SOA  dns.od.com. dnsadmin.od.com. (
@@ -52,6 +54,7 @@ nginx-dp   ClusterIP   192.168.225.221   <none>        80/TCP    3s    app=nginx
 
 
 ```
+查看默认命名空间的容器信息
 ~]# kubectl get svc,pod,deploy -o wide
 NAME                 TYPE        CLUSTER-IP        EXTERNAL-IP   PORT(S)   AGE   SELECTOR
 service/kubernetes   ClusterIP   192.168.0.1       <none>        443/TCP   10d   <none>
@@ -64,7 +67,7 @@ pod/nginx-ds-hhbpw   1/1     Running   0          17h   172.7.22.2   hdss7-22.ho
 pod/nginx-ds-qz2qv   1/1     Running   0          17h   172.7.11.2   hdss7-11.host.com   <none>           <none>
 
 
-
+查看kube-public命名空间的容器信息
 ~]# kubectl get svc,pod,deploy -o wide -n kube-public 
 NAME               TYPE        CLUSTER-IP        EXTERNAL-IP   PORT(S)   AGE   SELECTOR
 service/nginx-dp   ClusterIP   192.168.223.105   <none>        80/TCP    17h   app=nginx-dp
@@ -75,13 +78,14 @@ pod/nginx-dp-79cf69fc5f-fgrfr   1/1     Running   0          17h   172.7.12.3   
 NAME                             READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                                         SELECTOR
 deployment.extensions/nginx-dp   1/1     1            1           17h   my-nginx     harbor.od.com/public/nginx_hith_curl:v1.15.2   app=nginx-dp
 
+可以通过集群的ClusterIP来访问容器
 ~]# curl -I -m 10 -o /dev/null -s -w %{http_code} 192.168.137.202
 200
-
 ~]# curl -I -m 10 -o /dev/null -s -w %{http_code} 192.168.223.105
 200
 
 
+进入容器,查看dns的解析情况
 ~]# kubectl exec -it pod/nginx-ds-5fw5l bash
 root@nginx-ds-5fw5l:/# cat /etc/resolv.conf 
 nameserver 192.168.0.2
@@ -89,6 +93,7 @@ search default.svc.cluster.local svc.cluster.local cluster.local
 options ndots:5
 
 
+使用集群IP,容器IP,短域名 都能访问到
 root@nginx-ds-5fw5l:/# curl -I -m 10 -o /dev/null -s -w %{http_code} 192.168.223.105
 200
 root@nginx-ds-5fw5l:/# curl -I -m 10 -o /dev/null -s -w %{http_code} 172.7.12.3
