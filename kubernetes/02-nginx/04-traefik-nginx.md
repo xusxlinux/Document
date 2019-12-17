@@ -1,7 +1,7 @@
 github地址  https://github.com/containous/traefik  
 github地址yaml:  https://github.com/containous/traefik/tree/v1.7/examples/k8s
 
-```
+```conf
 upstream default_backend_traefik {
     server 10.4.7.21:81    max_fails=3 fail_timeout=10s;
     server 10.4.7.22:81    max_fails=3 fail_timeout=10s;
