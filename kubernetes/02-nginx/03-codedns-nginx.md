@@ -52,7 +52,7 @@ nginx-dp   ClusterIP   192.168.225.221   <none>        80/TCP    3s    app=nginx
 ```
 
 ```yaml
-nginx-dp.yaml
+nginx-dp-clusterIP.yaml
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -89,7 +89,7 @@ spec:
 ```
 
 ```yaml
-cat nginx-ds.yaml
+cat nginx-ds-clusterIP.yaml
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
