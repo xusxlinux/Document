@@ -26,4 +26,5 @@ $TTL 600        ; 10 minutes
                                 NS   dns.od.com.
 $TTL 60 ; 1 minute
 dns                A    10.4.7.11
+harbor             A    10.4.7.200
 ```
