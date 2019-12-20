@@ -43,9 +43,10 @@ nginx-dp-686959b78f-hs8zg   1/1     Running   0          3m44s   172.7.11.2   hd
 ~]# kubectl get svc -o wide -n kube-public 
 NAME       TYPE        CLUSTER-IP        EXTERNAL-IP   PORT(S)   AGE   SELECTOR
 nginx-dp   ClusterIP   192.168.225.221   <none>        80/TCP    3s    app=nginx-dp
+```
 
-
-~]# dig -t A nginx-dp @192.168.0.2 +short
+```
+[root@hdss7-21 ~]# dig -t A nginx-dp @192.168.0.2 +short
 
 [root@hdss7-21 ~]# dig -t A nginx-dp.kube-public.svc.cluster.local. @192.168.0.2 +short
 192.168.225.221
