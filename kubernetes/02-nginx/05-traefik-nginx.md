@@ -11,6 +11,7 @@
 
 $ cat /etc/nginx/conf.d/od.com.conf
 upstream default_backend_traefik {
+    #增加新的运算节点后,相应的增加server
     server 10.4.7.21:81    max_fails=3 fail_timeout=10s;
     server 10.4.7.22:81    max_fails=3 fail_timeout=10s;
 }
