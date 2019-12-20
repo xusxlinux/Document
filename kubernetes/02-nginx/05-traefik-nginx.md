@@ -152,3 +152,8 @@ spec:
           serviceName: traefik-ingress-service
           servicePort: 8080
 ```
+
+```
+~]#  netstat -lntup | grep 81
+tcp6       0      0 :::81                   :::*                    LISTEN      107448/docker-proxy
+```
