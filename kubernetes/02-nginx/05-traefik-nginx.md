@@ -154,6 +154,7 @@ spec:
 ```
 
 ```
+所有的http 7层的流量都需要从81端口进入,在由ingress规则来分配流量,来找特定的service
 ~]#  netstat -lntup | grep 81
 tcp6       0      0 :::81                   :::*                    LISTEN      107448/docker-proxy
 ```
