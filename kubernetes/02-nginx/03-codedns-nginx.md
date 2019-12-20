@@ -47,7 +47,7 @@ nginx-dp   ClusterIP   192.168.225.221   <none>        80/TCP    3s    app=nginx
 
 ~]# dig -t A nginx-dp @192.168.0.2 +short
 
-~]# dig -t A nginx-dp.kube-public.svc.cluster.local. @192.168.0.2 +short
+[root@hdss7-21 ~]# dig -t A nginx-dp.kube-public.svc.cluster.local. @192.168.0.2 +short
 192.168.225.221
 ```
 
