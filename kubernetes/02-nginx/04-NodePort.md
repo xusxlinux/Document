@@ -1,5 +1,6 @@
 ```
-~]# cat -n /opt/kubernetes/server/bin/kube-proxy.sh
+修改转发的模式
+~]# cat /opt/kubernetes/server/bin/kube-proxy.sh
 --proxy-mode=iptables \
 --ipvs-scheduler=rr \
 ```
@@ -17,11 +18,13 @@ ipvsadm -D -u 192.168.0.2:53
 ```
 
 ```
+日志中kube-proxy的运行模式更改为iptables
 ~]# tail -f /data/logs/kubernetes/kube-proxy/proxy.stdout.log
 I1220 22:06:04.890923   74254 server_others.go:143] Using iptables Proxier.
 ```
 
 ```yaml
+NodePort型Service的声明方式
 cat nginx-ds-NodePort.yaml
 apiVersion: v1
 kind: Service
