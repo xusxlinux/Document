@@ -43,3 +43,12 @@ spec:
   sessionAffinity: None
   type: NodePort
 ```
+
+```
+iptables转发的规则
+~]# iptables-save | grep 8000
+-A KUBE-MARK-DROP -j MARK --set-xmark 0x8000/0x8000
+-A KUBE-NODEPORTS -p tcp -m comment --comment "default/nginx-ds:" -m tcp --dport 8000 -j KUBE-MARK-MASQ
+-A KUBE-NODEPORTS -p tcp -m comment --comment "default/nginx-ds:" -m tcp --dport 8000 -j KUBE-SVC-T4RQBNWQFKKBCRET
+```
+
