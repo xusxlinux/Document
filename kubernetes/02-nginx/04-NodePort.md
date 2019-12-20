@@ -45,6 +45,11 @@ spec:
 ```
 
 ```
+可以在宿主机上看到8000端口
+~]# netstat -lntup | grep 8000
+tcp6       0      0 :::8000                 :::*                    LISTEN      72824/./kube-proxy
+
+
 iptables转发的规则
 ~]# iptables-save | grep 8000
 -A KUBE-MARK-DROP -j MARK --set-xmark 0x8000/0x8000
