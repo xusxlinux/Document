@@ -1,8 +1,10 @@
-
+```
 ~]# cat -n /opt/kubernetes/server/bin/kube-proxy.sh
 --proxy-mode=iptables \
 --ipvs-scheduler=rr \
+```
 
+```
 删除ipvsadm规则,当kube-proxy还原为ipvs的时候,该规则自动还原
 ipvsadm -D -t 192.168.0.1:443
 ipvsadm -D -t 192.168.0.2:53
@@ -12,11 +14,12 @@ ipvsadm -D -t 192.168.111.12:80
 ipvsadm -D -t 192.168.189.40:80
 ipvsadm -D -t 192.168.223.11:80
 ipvsadm -D -u 192.168.0.2:53
+```
 
-
+```
 ~]# tail -f /data/logs/kubernetes/kube-proxy/proxy.stdout.log
 I1220 22:06:04.890923   74254 server_others.go:143] Using iptables Proxier.
-
+```
 
 ```yaml
 cat nginx-ds-NodePort.yaml
