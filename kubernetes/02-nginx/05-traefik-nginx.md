@@ -7,6 +7,9 @@
 > docker push harbor.od.com/public/traefik:v1.7.2  
 
 ```conf
+在11和12上的nginx都需要配置
+
+$ /etc/nginx/conf.d/od.com.conf
 upstream default_backend_traefik {
     server 10.4.7.21:81    max_fails=3 fail_timeout=10s;
     server 10.4.7.22:81    max_fails=3 fail_timeout=10s;
