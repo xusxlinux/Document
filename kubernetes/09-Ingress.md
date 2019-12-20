@@ -1,6 +1,6 @@
 
 K8S实现了服务在集群`内`被自动发现,那如何使得服务在K8S集群`外`被使用和访问呢？
-* 使用NodePort型的Service  
+** 使用NodePort型的Service  
   注意:无法使用kube-proxy的ipvs模型,只能使用iptables模型  
 * 使用Ingress  
   注意:只能调度并暴露7层应用,特指http和https协议  
