@@ -120,8 +120,8 @@ spec:
 
 ```yaml
 $ cat svc.yaml
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: traefik-ingress-service
   namespace: kube-system
