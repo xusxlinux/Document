@@ -1,3 +1,7 @@
+* K8S的服务发现  
+  * 集群网络 -> Cluster IP  
+  * Service资源 -> Service Name  
+  * Coredns软件 -> 实现了Service Name和Cluster IP的自动关联  
 ```conf
 配置nginx的配置文件,下载coredns使用的
 $ cat /etc/nginx/conf.d/k8s-yaml.od.com.conf 
