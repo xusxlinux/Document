@@ -50,8 +50,8 @@ stopasgroup=true
 
 ## 如果新增节点需要把授权文件导入
 ```
-$ mkdir -pv /root/.kube/config
-$ cp *.kubeconfig /root/.kube/config
+$ mkdir -p /root/.kube/
+$ cp -i kubelet.kubeconfig /root/.kube/config
 $ echo "export KUBECONFIG=/root/.kube/config" >> /etc/profile
 $ source /etc/profile
 ```
