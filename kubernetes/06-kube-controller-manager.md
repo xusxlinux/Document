@@ -42,5 +42,6 @@ stopasgroup=true
 ## 给节点打上名称标记
 添加标签  
 > $ kubectl label node hdss7-21.host.com node-role.kubernetes.io/node=  
+
 删除标签  
 > $ kubectl label node hdss7-11.host.com node-role.kubernetes.io/master-
