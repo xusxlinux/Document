@@ -44,7 +44,7 @@
     </tr>
     <tr>
         <td><strong></strong>控制面板</td>
-        <td><a href="01-环境准备.md">rbac</a></td>
+        <td><a href="10-rbac.md">rbac</a></td>
         <td><a href="10-控制面板.md">dashborad</a></td>
     </tr>
     <tr>
