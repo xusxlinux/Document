@@ -31,6 +31,8 @@ $ chmod +x get-docker.sh
 
 提交到私钥仓库
 $ docker build . -t harbor.od.com/infra/jenkins:v2.210
+验证镜像是否正确
+$ docker run --rm harbor.od.com/infra/jenkins:v2.210 ssh -i id_rsa -T gitee@gitee.com
 ```
 
 ```
