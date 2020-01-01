@@ -26,14 +26,14 @@ server.3=zk3.od.com:2888:3888
 ```
 ```
 三个zk的myid组成集群
-cat /data/zookeeper/data/myid  
-1  
-cat /data/zookeeper/data/myid  
-2  
-cat /data/zookeeper/data/myid  
-3  
+cat /data/zookeeper/data/myid
+1
+cat /data/zookeeper/data/myid
+2
+cat /data/zookeeper/data/myid
+3
 
-启动zk  
-> $ /opt/zookeeper/bin/zkServer.sh start  
+启动zk
+> $ /opt/zookeeper/bin/zkServer.sh start
 ```
 
