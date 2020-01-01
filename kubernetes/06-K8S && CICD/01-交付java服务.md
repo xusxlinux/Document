@@ -32,8 +32,8 @@ cat /data/zookeeper/data/myid
 2  
 cat /data/zookeeper/data/myid  
 3  
-```
+
 启动zk  
 > $ /opt/zookeeper/bin/zkServer.sh start  
-
+```
 
