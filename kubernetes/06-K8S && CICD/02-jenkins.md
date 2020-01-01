@@ -2,9 +2,9 @@
 [jenkins镜像](https://hub.docker.com/r/jenkins/jenkins)  
 
 下载最新镜像
-> $docker pull jenkins/jenkins:2.210
-> $docker tag 5810ec636c04 harbor.od.com/public/jenkins:v2.210
-> $docker push harbor.od.com/public/jenkins:v2.210
+> $docker pull jenkins/jenkins:2.210  
+> $docker tag 5810ec636c04 harbor.od.com/public/jenkins:v2.210  
+> $docker push harbor.od.com/public/jenkins:v2.210  
 
 ```
 创建dokcerfile
