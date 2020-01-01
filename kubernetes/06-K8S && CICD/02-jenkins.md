@@ -32,3 +32,101 @@ $ chmod +x get-docker.sh
 提交到私钥仓库
 $ docker build . -t harbor.od.com/infra/jenkins:v2.210
 ```
+
+```
+创建名称空间
+$ kubectl create ns infra
+创建私有仓库密钥认证
+$ kubectl create secret docker-registry harbor --docker-server=harbor.od.com --docker-username=admin --docker-password=123456 -n infra
+```
+
+```yaml
+$ cat dp.yaml
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: jenkins
+  namespace: infra
+  labels: 
+    name: jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      name: jenkins
+  template:
+    metadata:
+      labels: 
+        app: jenkins 
+        name: jenkins
+    spec:
+      volumes:
+      - name: data
+        nfs: 
+          server: hdss7-200
+          path: /data/nfs-volume/jenkins_home
+      - name: docker
+        hostPath: 
+          path: /run/docker.sock
+          type: ''
+      containers:
+      - name: jenkins
+        image: harbor.od.com/infra/jenkins:v2.190.3
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        env:
+        - name: JAVA_OPTS
+          value: -Xmx512m -Xms512m
+        volumeMounts:
+        - name: data
+          mountPath: /var/jenkins_home
+        - name: docker
+          mountPath: /run/docker.sock
+      imagePullSecrets:
+      - name: harbor
+      securityContext: 
+        runAsUser: 0
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
+      maxSurge: 1
+  revisionHistoryLimit: 7
+  progressDeadlineSeconds: 600
+```
+
+```yaml
+$ cat svc.yaml
+kind: Service
+apiVersion: v1
+metadata: 
+  name: jenkins
+  namespace: infra
+spec:
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  selector:
+    app: jenkins
+```
+
+```yaml
+$ cat ingress.yaml
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata: 
+  name: jenkins
+  namespace: infra
+spec:
+  rules:
+  - host: jenkins.od.com
+    http:
+      paths:
+      - path: /
+        backend: 
+          serviceName: jenkins
+          servicePort: 80
+```
