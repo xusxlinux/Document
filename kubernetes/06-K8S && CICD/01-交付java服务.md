@@ -9,11 +9,12 @@ $ export CLASSPATH=$CLASSPATH:$JAVA_HOME/lib:$JAVA_HOME/lib/tools.jar
 
 ### zk的安装
 [zookeeper下载地址](https://archive.apache.org/dist/zookeeper/)  
-创建配置文件和日志的存放目录  
-> $ mkdir -pv /data/zookeeper/{data,logs}  
 ```
+三个节点创建配置文件和日志的存放目录  
+$ mkdir -pv /data/zookeeper/{data,logs}  
+
 三个节点的配置文件  
-> $ cat /opt/zookeeper/conf/zoo.cfg
+$ cat /opt/zookeeper/conf/zoo.cfg
 tickTime=2000
 initLimit=10
 syncLimit=5
@@ -23,9 +24,8 @@ clientPort=2181
 server.1=zk1.od.com:2888:3888
 server.2=zk2.od.com:2888:3888
 server.3=zk3.od.com:2888:3888
-```
-```
-三个zk的myid组成集群
+
+三个节点的myid组成集群
 cat /data/zookeeper/data/myid
 1
 cat /data/zookeeper/data/myid
@@ -33,7 +33,7 @@ cat /data/zookeeper/data/myid
 cat /data/zookeeper/data/myid
 3
 
-启动zk
+三个节点启动zk
 > $ /opt/zookeeper/bin/zkServer.sh start
 ```
 
