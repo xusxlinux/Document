@@ -130,3 +130,8 @@ spec:
           serviceName: jenkins
           servicePort: 80
 ```
+
+```
+挂载资源
+/data/nfs-volume 10.4.7.0/24(rw,no_root_squash)
+```
