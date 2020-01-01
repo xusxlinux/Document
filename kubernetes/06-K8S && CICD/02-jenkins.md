@@ -28,4 +28,7 @@ $ cp /root/.docker/config.json .
 下载docker安装脚本
 $ curl -fsSL get.docker.com -o get-docker.sh
 $ chmod +x get-docker.sh
+
+提交到私钥仓库
+$ docker build . -t harbor.od.com/infra/jenkins:v2.210
 ```
