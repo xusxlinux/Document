@@ -35,5 +35,9 @@ cat /data/zookeeper/data/myid
 
 三个节点启动zk
 > $ /opt/zookeeper/bin/zkServer.sh start
+
+/opt/zookeeper/bin/zkCli.sh -server localhost:2181
+
+ls /
 ```
 
