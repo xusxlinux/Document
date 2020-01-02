@@ -143,3 +143,7 @@ $ mkdir -pv /data/nfs-volume
 $ systemctl start nfs
 $ systenctl enable nfs
 ```
+```
+查看jenkins的admin认证密码
+$ cat /data/nfs-volume/jenkins_home/secrets/initialAdminPassword
+```
