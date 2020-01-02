@@ -143,6 +143,31 @@ $ mkdir -pv /data/nfs-volume
 $ systemctl start nfs
 $ systenctl enable nfs
 ```
+
+```
+$ cat /var/named/od.com.zone 
+$ORIGIN od.com.
+$TTL 600	; 10 minutes
+@   		IN SOA	dns.od.com. dnsadmin.od.com. (
+				2019111006 ; serial
+				10800      ; refresh (3 hours)
+				900        ; retry (15 minutes)
+				604800     ; expire (1 week)
+				86400      ; minimum (1 day)
+				)
+				NS   dns.od.com.
+$TTL 60	; 1 minute
+dns                A    10.4.7.11
+harbor             A    10.4.7.200
+traefik            A    10.4.7.10
+k8s-yaml           A    10.4.7.200
+dashboard          A    10.4.7.10
+zk1                A    10.4.7.11
+zk2                A    10.4.7.12
+zk3                A    10.4.7.21
+jenkins            A    10.4.7.10
+```
+
 ```
 查看jenkins的admin认证密码
 $ cat /data/nfs-volume/jenkins_home/secrets/initialAdminPassword
