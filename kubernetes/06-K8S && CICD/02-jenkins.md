@@ -145,7 +145,8 @@ $ systenctl enable nfs
 ```
 
 ```
-$ cat /var/named/od.com.zone 
+$ cat /var/named/od.com.zone
+
 $ORIGIN od.com.
 $TTL 600	; 10 minutes
 @   		IN SOA	dns.od.com. dnsadmin.od.com. (
