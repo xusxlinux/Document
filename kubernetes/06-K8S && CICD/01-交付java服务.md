@@ -40,4 +40,18 @@ cat /data/zookeeper/data/myid
 
 ls /
 ```
+### maven安装
+```
+mkdir -pv /data/nfs-volume/jenkins_home/maven-3.6.1-8u221
+cp -r maven/* /data/nfs-volume/jenkins_home/maven-3.6.1-8u221
 
+
+/data/nfs-volume/jenkins_home/maven-3.6.1-8u221/conf/settings.xml
+
+<mirror>
+  <id>nexus-aliyun</id>
+  <mirrorOf>*</mirrorOf>
+  <name>Nexus aliyun</name>
+  <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+</mirror>
+```
