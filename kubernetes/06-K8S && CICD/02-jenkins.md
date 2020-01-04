@@ -169,6 +169,12 @@ zk3                A    10.4.7.21
 jenkins            A    10.4.7.10
 ```
 
+
+
+![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/jenkins-01.png)  
+![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/jenkins-02.png)  
+![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/jenkins-03.png)
+
 ```
 查看jenkins的admin认证密码
 $ cat /data/nfs-volume/jenkins_home/secrets/initialAdminPassword
