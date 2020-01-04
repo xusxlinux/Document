@@ -54,7 +54,7 @@
     </tr>
     <tr>
         <td><strong></strong>服务交付</td>
-        <td><a href="Document/CICD">Jenkins</a></td>
+        <td><a href="06-K8S && CICD/02-jenkins安装部署.md">Jenkins</a></td>
         <td><a href="10-控制面板.md">spinnaker</a></td>
     </tr>
     <tr>
