@@ -11,6 +11,7 @@ CMD ["/entrypoint.sh"]
 ```
 
 ```yml
+$ cat config.yml
 ---
 rules:
   - pattern: '.*'
