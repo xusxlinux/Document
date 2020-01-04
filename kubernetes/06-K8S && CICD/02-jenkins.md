@@ -173,7 +173,6 @@ jenkins            A    10.4.7.10
 
 ![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/jenkins-01.png)  
 ![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/jenkins-02.png)  
-![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/jenkins-03.png)
 
 ```
 查看jenkins的admin认证密码
@@ -184,3 +183,5 @@ $ cd /data/nfs-volume/jenkins_home/updates
 $ sed -i 's/http:\/\/updates.jenkins-ci.org\/download/https:\/\/mirrors.tuna.tsinghua.edu.cn\/jenkins/g' default.json && sed -i 's/http:\/\/www.google.com/https:\/\/www.baidu.com/g' default.json
 
 ```
+
+![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/jenkins-03.png)
