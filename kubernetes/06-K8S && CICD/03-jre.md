@@ -1,6 +1,6 @@
 ```yaml
 $ cat Dockerfile
-FROM harbor.od.com/public/jre:8u112
+FROM harbor.od.com/public/jre8:8u112
 RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&\
     echo 'Asia/Shanghai' >/etc/timezone
 ADD config.yml /opt/prom/config.yml
