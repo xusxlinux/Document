@@ -19,7 +19,7 @@ ADD id_rsa /root/.ssh/id_rsa
 ADD config.json /root/.docker/config.json
 ADD get-docker.sh /get-docker.sh
 RUN echo "    StrictHostKeyChecking no" >> /etc/ssh/ssh_config &&\
-    /get-docker.sh
+    /get-docker.sh  --mirror Aliyun
 
 拷贝私钥
 $ cp /root/.ssh/id_rsa .
