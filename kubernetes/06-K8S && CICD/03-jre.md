@@ -29,4 +29,9 @@ M_OPTS="-Duser.timezone=Asia/Shanghai -javaagent:/opt/prom/jmx_javaagent-0.3.1.j
 C_OPTS=${C_OPTS}
 JAR_BALL=${JAR_BALL}
 exec java -jar ${M_OPTS} ${C_OPTS} ${JAR_BALL}
+
+docker进程在执行shell脚本的时候会分配一个pid,这个pid=1。要保证pid=1的进程在前台一直运行,才能维持docker的生命周期在run状态。
+如果不用exec,docker执行完脚本之后会退出。pid=1的进程就会退出,docker就会退出。
+所以脚本中的exec后面的命令代替了当前的shell脚本进程,变成了pid=1的进程。
 ```
+
