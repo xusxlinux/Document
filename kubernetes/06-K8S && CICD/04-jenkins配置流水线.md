@@ -1,5 +1,13 @@
 
+
+```
+Jenkins的工作目录
+$ ls /data/nfs-volume/jenkins_home/workspace/dubbo-demo/dubbo-demo-service/
+10  2  3  4  5  6  8  9
+```
+
 ```pipeline
+流水线脚本
 pipeline {
   agent any 
     stages {
