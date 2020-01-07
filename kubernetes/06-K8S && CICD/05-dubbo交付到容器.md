@@ -4,7 +4,7 @@ kubectl create secret docker-registry harbor --docker-server=harbor.od.com --doc
 
 
 ```yaml
-$ cat 
+$ /data/k8s-yaml/dubbo-demo-service/dp.yaml
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
