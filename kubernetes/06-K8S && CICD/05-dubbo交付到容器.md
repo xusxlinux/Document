@@ -1,6 +1,7 @@
-kubectl create ns app
-
-kubectl create secret docker-registry harbor --docker-server=harbor.od.com --docker-username=admin --docker-password=Harbor12345 -n app
+创建app名称空间  
+kubectl create ns app  
+创建私有仓库镜像的密钥  
+kubectl create secret docker-registry harbor --docker-server=harbor.od.com --docker-username=admin --docker-password=123456 -n app
 
 
 ```yaml
