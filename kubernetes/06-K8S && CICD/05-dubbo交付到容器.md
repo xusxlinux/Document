@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: dubbo-demo-service
-        image: harbor.od.com/app/dubbo-demo-service:master_20200106_1410
+        image: harbor.od.com/app/dubbo-service:master_20200106_1410
         ports:
         - containerPort: 20880
           protocol: TCP
