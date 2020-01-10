@@ -136,8 +136,8 @@ spec:
 ```
 安装nfs
 $ yum install nfs-utils rpcbind -y
-$ systemctl start nfs-utils rpc-bind
-$ systemctl enable nfs-utils rpc-bind
+$ systemctl start nfs-utils rpcbind
+$ systemctl enable nfs-utils rpcbind
 
 挂载资源
 $ cat /etc/exports
