@@ -139,6 +139,8 @@ $ yum install nfs-utils rpcbind -y
 $ systemctl start nfs-utils rpcbind
 $ systemctl enable nfs-utils rpcbind
 
+$ 10.4.7.200:/opt                           /mnt                    nfs     defaults,_netdev  0 0
+
 挂载资源
 $ cat /etc/exports
 /data/nfs-volume 10.4.7.0/24(rw,no_root_squash)
