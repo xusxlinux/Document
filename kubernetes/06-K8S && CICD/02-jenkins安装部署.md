@@ -134,6 +134,11 @@ spec:
 ```
 
 ```
+安装nfs
+$ yum install nfs-utils rpc-bind -y
+$ systemctl start nfs-utils rpc-bind
+$ systemctl enable nfs-utils rpc-bind
+
 挂载资源
 $ cat /etc/exports
 /data/nfs-volume 10.4.7.0/24(rw,no_root_squash)
