@@ -23,7 +23,7 @@ clientPort=2181
 ```
 
 ```yaml
- $ cat /data/k8s-yaml/dubbo-monitor/cm.yaml
+$ cat /data/k8s-yaml/dubbo-monitor/cm.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -46,7 +46,7 @@ data:
 
 ```yaml
  $ cat /data/k8s-yaml/dubbo-monitor/dp-cm.yaml
- kind: Deployment
+kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
   name: dubbo-monitor
