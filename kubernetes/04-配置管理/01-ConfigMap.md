@@ -33,7 +33,7 @@ data:
   dubbo.properties: |
     dubbo.container=log4j,spring,registry,jetty
     dubbo.application.name=simple-monitor
-    dubbo.application.owner=OldboyEdu
+    dubbo.application.owner=xusx
     dubbo.registry.address=zookeeper://zk1.od.com:2181
     dubbo.protocol.port=20880
     dubbo.jetty.port=8080
