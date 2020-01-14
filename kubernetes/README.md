@@ -49,8 +49,9 @@
     </tr>
     <tr>
         <td><strong></strong>配置中心</td>
-        <td><a href="Document/CICD">Apollo</a></td>
-        <td><a href="Document/CICD">ConfigMap</a></td>
+        <td><a href="04-配置管理/01-ConfigMap.md">ConfigMap</a></td>       
+        <td><a href="04-配置管理/02-secrets.md">secrets</a></td>
+        <td><a href="04-配置管理/03-apollo.md">Apollo</a></td>        
     </tr>
     <tr>
         <td><strong></strong>服务交付</td>
