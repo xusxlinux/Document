@@ -97,7 +97,7 @@ spec:
  ```
 
 ```
-使用命令行的方式创建一个configmap
+对于格式不友好的,使用命令行的方式创建一个configmap
 $ ll /opt/kubernetes/server/bin/conf/
 total 20
 -rw-r--r-- 1 root root 2223 Dec 18 23:22 audit.yaml
@@ -106,5 +106,5 @@ total 20
 
 放在默认的命名空间
 $ kubectl create configmap kubelet-cm --from-file=kubelet.kubeconfig
-$ kubectl get configmaps
+$ kubectl describe cm
 ```
