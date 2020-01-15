@@ -95,3 +95,16 @@ spec:
   revisionHistoryLimit: 7
   progressDeadlineSeconds: 600 
  ```
+
+```
+使用命令行的方式创建一个configmap
+$ ll /opt/kubernetes/server/bin/conf/
+total 20
+-rw-r--r-- 1 root root 2223 Dec 18 23:22 audit.yaml
+-rw------- 1 root root 6199 Dec 18 23:58 kubelet.kubeconfig
+-rw------- 1 root root 6223 Dec 18 23:58 kube-proxy.kubeconfig
+
+放在默认的命名空间
+$ kubectl create configmap kubelet-cm --from-file=kubelet.kubeconfig
+$ kubectl get configmaps
+```
