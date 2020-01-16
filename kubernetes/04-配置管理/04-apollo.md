@@ -1,6 +1,5 @@
 ```yaml
-cm.yaml
-
+$ cat /data/k8s-yaml/apollo-configservice/cm.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -18,8 +17,7 @@ data:
 ```
 
 ```yaml
-dp.yaml
-
+$ cat /data/k8s-yaml/apollo-configservice/dp.yaml
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
@@ -71,8 +69,7 @@ spec:
 ```
 
 ```yaml
-svc.yaml
-
+$ cat /data/k8s-yaml/apollo-configservice/svc.yaml
 kind: Service
 apiVersion: v1
 metadata: 
