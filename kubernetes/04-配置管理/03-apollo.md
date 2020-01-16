@@ -112,4 +112,5 @@ CMD ["/apollo-configservice/scripts/startup.sh"]
 
 
 docker build . -t harbor.od.com/infra/apollo-configservice:v1.5.1
+docker push harbor.od.com/infra/apollo-configservice:v1.5.1
 ```
