@@ -97,26 +97,16 @@ APOLLO_CONFIG_SERVICE_NAME=$(hostname -i)
 
 ```
 cat Dockerfile
-# Dockerfile for apollo-config-server
-# Build with:
-# docker build -t apollo-config-server:v1.0.0 .
-
 FROM harbor.od.com/base/jre8:8u112
 
-RUN \
-    echo "http://mirrors.aliyun.com/alpine/v3.8/main" > /etc/apk/repositories && \
-    echo "http://mirrors.aliyun.com/alpine/v3.8/community" >> /etc/apk/repositories && \
-    apk update upgrade && \
-    apk add --no-cache procps curl bash tzdata && \
-    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-    echo "Asia/Shanghai" > /etc/timezone && \
-    mkdir -p /apollo-config-server
+ENV VERSION 1.4.0
 
-ADD . /apollo-config-server/
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&\
+    echo "Asia/Shanghai" > /etc/timezone
 
-ENV APOLLO_CONFIG_SERVICE_NAME="service-apollo-config-server.sre"
+ADD apollo-configservice-${VERSION}.jar /apollo-configservice/apollo-configservice.jar
+ADD config/ /apollo-configservice/config
+ADD scripts/ /apollo-configservice/scripts
 
-EXPOSE 8080
-
-CMD ["/apollo-config-server/scripts/startup-kubernetes.sh"]
+CMD ["/apollo-configservice/scripts/startup.sh"]
 ```
