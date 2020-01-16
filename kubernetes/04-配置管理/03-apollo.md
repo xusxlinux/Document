@@ -76,3 +76,12 @@ dig -t A config.od.com @92.168.0.2 +short
 ```
 
 [下载1.5.1版本ConfigService软件包](https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-configservice-1.5.1-github.zip)  
+```
+wget https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-configservice-1.5.1-github.zip
+
+mkdir -pv /data/dockerfile/apollo-configservice
+
+unzip -o apollo-configservice-1.5.1-github.zip -d /data/dockerfile/apollo-configservice
+```
+
+
