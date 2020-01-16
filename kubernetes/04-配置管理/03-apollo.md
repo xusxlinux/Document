@@ -43,4 +43,32 @@ grant INSERT,DELETE,UPDATE,SELECT on ApollConfigDB.* to 'apolloconfig'@'172.7.0.
 update ApolloConfigDB.ServerConfig set ServerConfig.Value="http://config.od.com/eureka" where ServerConfig.Key="eureka.service.url";
 
 
+```
+$ cat /var/named/od.com.zone 
+$ORIGIN od.com.
+$TTL 600        ; 10 minutes
+@               IN SOA  dns.od.com. dnsadmin.od.com. (
+                                2019111009 ; serial
+                                10800      ; refresh (3 hours)
+                                900        ; retry (15 minutes)
+                                604800     ; expire (1 week)
+                                86400      ; minimum (1 day)
+                                )
+                                NS   dns.od.com.
+$TTL 60 ; 1 minute
+dns                A    10.4.7.11
+harbor             A    10.4.7.200
+traefik            A    10.4.7.10
+k8s-yaml           A    10.4.7.200
+dashboard          A    10.4.7.10
+zk1                A    10.4.7.11
+zk2                A    10.4.7.12
+zk3                A    10.4.7.21
+jenkins            A    10.4.7.10
+dubbo-monitor      A    10.4.7.10
+demo               A    10.4.7.10
+config             A    10.4.7.10
 
+
+dig -t A config.od.com @10.4.7.11 +short
+```
