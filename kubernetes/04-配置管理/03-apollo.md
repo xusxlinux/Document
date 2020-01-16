@@ -30,6 +30,7 @@ collation_server = utf8mb4_general_ci
 init_connect = "SET NAMES 'utf8mb4'"
 ```
 
+```
 下载sql脚本
 wget https://raw.githubusercontent.com/ctripcorp/apollo/1.5.1/scripts/db/migration/configdb/V1.0.0__initialization.sql -O apolloconfig.sql
 
@@ -41,7 +42,7 @@ grant INSERT,DELETE,UPDATE,SELECT on ApollConfigDB.* to 'apolloconfig'@'172.7.0.
 
 修改初始化数据
 update ApolloConfigDB.ServerConfig set ServerConfig.Value="http://config.od.com/eureka" where ServerConfig.Key="eureka.service.url";
-
+```
 
 ```
 $ cat /var/named/od.com.zone 
@@ -70,5 +71,6 @@ demo               A    10.4.7.10
 config             A    10.4.7.10
 
 
-dig -t A config.od.com @10.4.7.11 +short
+dig -t A config.od.com @10.4.7.11 +short   这个IP地址是192.168.0.2上一层DNS 同样可以查询到
+dig -t A config.od.com @92.168.0.2 +short
 ```
