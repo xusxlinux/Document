@@ -69,6 +69,7 @@ jenkins            A    10.4.7.10
 dubbo-monitor      A    10.4.7.10
 demo               A    10.4.7.10
 config             A    10.4.7.10
+mysql              A    10.4.7.11
 
 
 dig -t A config.od.com @10.4.7.11 +short   这个IP地址是192.168.0.2上一层DNS 同样可以查询到
