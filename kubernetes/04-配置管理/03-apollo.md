@@ -96,7 +96,7 @@ APOLLO_CONFIG_SERVICE_NAME=$(hostname -i)
 ```
 
 ```
-cat Dockerfile
+$ cat Dockerfile
 FROM harbor.od.com/base/jre8:8u112
 
 ENV VERSION 1.5.1
