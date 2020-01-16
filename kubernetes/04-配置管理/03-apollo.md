@@ -83,6 +83,16 @@ wget https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-configs
 mkdir -pv /data/dockerfile/apollo-configservice
 
 unzip -o apollo-configservice-1.5.1-github.zip -d /data/dockerfile/apollo-configservice
+
+sed -i "s#fill-in-the-correct-server#mysql.od.com#g" /data/dockerfile/apollo-configservice/config/application-github.properties 
+sed -i "s#FillInCorrectPassword#123456#g" /data/dockerfile/apollo-configservice/config/application-github.properties 
+sed -i "s#FillInCorrectUser#apolloconfig#g" /data/dockerfile/apollo-configservice/config/application-github.properties 
+```
+
+[修改启动脚本startup.sh](https://github.com/ctripcorp/apollo/blob/1.5.1/scripts/apollo-on-kubernetes/apollo-config-server/scripts/startup-kubernetes.sh)  
+```
+/data/dockerfile/apollo-configservice/scripts/startup.sh
+APOLLO_CONFIG_SERVICE_NAME=$(hostname -i)
 ```
 
 
