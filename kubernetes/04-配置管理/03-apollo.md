@@ -89,7 +89,7 @@ sed -i "s#FillInCorrectPassword#123456#g" /data/dockerfile/apollo-configservice/
 sed -i "s#FillInCorrectUser#apolloconfig#g" /data/dockerfile/apollo-configservice/config/application-github.properties 
 ```
 
-[修改启动脚本startup.sh](https://raw.githubusercontent.com/ctripcorp/apollo/1.5.1/scripts/apollo-on-kubernetes/apollo-config-server/scripts/startup-kubernetes.sh)  
+[修改启动脚本startup.sh](https://github.com/ctripcorp/apollo/blob/1.5.1/scripts/apollo-on-kubernetes/apollo-config-server/scripts/startup-kubernetes.sh)  
 ```
 $ cat /data/dockerfile/apollo-configservice/scripts/startup.sh
 APOLLO_CONFIG_SERVICE_NAME=$(hostname -i)
