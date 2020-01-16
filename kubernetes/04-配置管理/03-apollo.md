@@ -74,3 +74,5 @@ config             A    10.4.7.10
 dig -t A config.od.com @10.4.7.11 +short   这个IP地址是192.168.0.2上一层DNS 同样可以查询到
 dig -t A config.od.com @92.168.0.2 +short
 ```
+
+[下载1.5.1版本ConfigService软件包](https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-configservice-1.5.1-github.zip)  
