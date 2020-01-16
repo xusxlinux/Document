@@ -82,9 +82,10 @@ spec:
     targetPort: 8080
   selector: 
     app: apollo-configservice
-	
-ingress.yaml
+```
 
+```yaml
+$ cat /data/k8s-yaml/apollo-configservice/ingress.yaml
 kind: Ingress
 apiVersion: extensions/v1beta1
 metadata: 
