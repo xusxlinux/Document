@@ -99,7 +99,7 @@ APOLLO_CONFIG_SERVICE_NAME=$(hostname -i)
 cat Dockerfile
 FROM harbor.od.com/base/jre8:8u112
 
-ENV VERSION 1.4.0
+ENV VERSION 1.5.1
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&\
     echo "Asia/Shanghai" > /etc/timezone
@@ -109,4 +109,7 @@ ADD config/ /apollo-configservice/config
 ADD scripts/ /apollo-configservice/scripts
 
 CMD ["/apollo-configservice/scripts/startup.sh"]
+
+
+docker build . -t harbor.od.com/infra/apollo-configservice:v1.5.1
 ```
