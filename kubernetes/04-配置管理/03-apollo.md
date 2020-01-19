@@ -100,8 +100,7 @@ sed -i "s#FillInCorrectUser#apolloconfig#g" /data/dockerfile/apollo-configservic
 
 [修改config-server启动脚本startup.sh](https://github.com/ctripcorp/apollo/blob/1.5.1/scripts/apollo-on-kubernetes/apollo-config-server/scripts/startup-kubernetes.sh)  
 ```
-$ cat /data/dockerfile/apollo-configservice/scripts/startup.sh
-APOLLO_CONFIG_SERVICE_NAME=$(hostname -i)
+$ sed -i '7a\APOLLO_CONFIG_SERVICE_NAME=$(hostname -i)' /data/dockerfile/apollo-configservice/scripts/startup.sh
 ```
 
 ```
