@@ -182,5 +182,26 @@ update ServerConfig set Value='[{"orgId":"od01","orgName":"Linux学院"},{"orgId
 [修改portal启动脚本startup.sh](https://github.com/ctripcorp/apollo/blob/master/scripts/apollo-on-kubernetes/apollo-portal-server/scripts/startup-kubernetes.sh) 
 
 ```
+sed -i 's#SERVER_PORT=8070#SERVER_PORT=8080#g' /data/dockerfile/apollo-portal/scripts/startup.sh
+sed -i '7a\APOLLO_ADMIN_SERVICE_NAME=$(hostname -i)' /data/dockerfile/apollo-portal/scripts/startup.sh
+```
 
+```
+cat /data/dockerfile/apollo-portal/Dockerfile
+FROM harbor.od.com/base/jre8:8u112
+
+ENV VERSION 1.5.1
+
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&\
+    echo "Asia/Shanghai" > /etc/timezone
+
+ADD apollo-portal-${VERSION}.jar /apollo-portal/apollo-portal.jar
+ADD config/ /apollo-portal/config
+ADD scripts/ /apollo-portal/scripts
+
+CMD ["/apollo-portal/scripts/startup.sh"]
+
+
+docker build . -t harbor.od.com/infra/apollo-portal:v1.5.1
+docker push harbor.od.com/infra/apollo-portal:v1.5.1
 ```
