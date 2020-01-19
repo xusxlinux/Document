@@ -66,6 +66,5 @@ spec:
       maxSurge: 1
   revisionHistoryLimit: 7
   progressDeadlineSeconds: 600
-    appId=100003172
 ```    
     
