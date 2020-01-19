@@ -101,5 +101,3 @@ spec:
           serviceName: apollo-configservice
           servicePort: 8080
 ```
-
-11
