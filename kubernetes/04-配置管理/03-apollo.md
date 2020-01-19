@@ -104,7 +104,7 @@ $ sed -i '7a\APOLLO_CONFIG_SERVICE_NAME=$(hostname -i)' /data/dockerfile/apollo-
 ```
 
 ```
-$ cat Dockerfile
+$ cat /data/dockerfile/apollo-configservice/Dockerfile
 FROM harbor.od.com/base/jre8:8u112
 
 ENV VERSION 1.5.1
@@ -137,6 +137,9 @@ rm -rf /data/dockerfile/apollo-adminservice/apollo-adminservice.conf
 sed -i 's#SERVER_PORT=8090#SERVER_PORT=8080#g' /data/dockerfile/apollo-adminservice/scripts/startup.sh
 sed -i '7a\APOLLO_ADMIN_SERVICE_NAME=$(hostname -i)' /data/dockerfile/apollo-adminservice/scripts/startup.sh
 ```
+
+```
+cat /data/dockerfile/apollo-adminservice/Dockerfile
 FROM harbor.od.com/base/jre8:8u112
 
 ENV VERSION 1.5.1
