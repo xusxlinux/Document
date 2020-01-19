@@ -98,7 +98,7 @@ sed -i "s#FillInCorrectPassword#123456#g" /data/dockerfile/apollo-configservice/
 sed -i "s#FillInCorrectUser#apolloconfig#g" /data/dockerfile/apollo-configservice/config/application-github.properties 
 ```
 
-[修改启动脚本startup.sh](https://github.com/ctripcorp/apollo/blob/1.5.1/scripts/apollo-on-kubernetes/apollo-config-server/scripts/startup-kubernetes.sh)  
+[修改config-server启动脚本startup.sh](https://github.com/ctripcorp/apollo/blob/1.5.1/scripts/apollo-on-kubernetes/apollo-config-server/scripts/startup-kubernetes.sh)  
 ```
 $ cat /data/dockerfile/apollo-configservice/scripts/startup.sh
 APOLLO_CONFIG_SERVICE_NAME=$(hostname -i)
@@ -122,4 +122,36 @@ CMD ["/apollo-configservice/scripts/startup.sh"]
 
 docker build . -t harbor.od.com/infra/apollo-configservice:v1.5.1
 docker push harbor.od.com/infra/apollo-configservice:v1.5.1
+```
+
+
+[下载1.5.1版本adminService软件包](https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-adminservice-1.5.1-github.zip)  
+```
+unzip -o apollo-adminservice-1.5.1-github.zip -d /data/dockerfile
+
+rm -rf /data/dockerfile/apollo-adminservice/apollo-adminservice-1.5.1-sources.jar
+rm -rf /data/dockerfile/apollo-adminservice/apollo-adminservice.conf
+```
+
+[修改admin-server启动脚本startup.sh](https://github.com/ctripcorp/apollo/blob/1.5.1/scripts/apollo-on-kubernetes/apollo-admin-server/scripts/startup-kubernetes.sh) 
+```
+sed -i 's#SERVER_PORT=8090#SERVER_PORT=8080#g' /data/dockerfile/apollo-adminservice/scripts/startup.sh
+sed -i '7a\APOLLO_ADMIN_SERVICE_NAME=$(hostname -i)' /data/dockerfile/apollo-adminservice/scripts/startup.sh
+```
+FROM harbor.od.com/base/jre8:8u112
+
+ENV VERSION 1.5.1
+
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&\
+    echo "Asia/Shanghai" > /etc/timezone
+
+ADD apollo-adminservice-${VERSION}.jar /apollo-adminservice/apollo-adminservice.jar
+ADD config/ /apollo-adminservice/config
+ADD scripts/ /apollo-adminservice/scripts
+
+CMD ["/apollo-adminservice/scripts/startup.sh"]
+
+
+docker build . -t harbor.od.com/infra/apollo-adminservice:v1.5.1
+docker push harbor.od.com/infra/apollo-adminservice:v1.5.1
 ```
