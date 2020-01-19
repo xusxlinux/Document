@@ -1,5 +1,5 @@
 ```yaml
-cm.yaml
+$ cat /data/dockerfile/apollo-adminservice/cm.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -17,7 +17,7 @@ data:
 ```
 
 ```yaml
-dp.yaml
+$ cat /data/dockerfile/apollo-adminservice/dp.yaml
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
