@@ -126,6 +126,7 @@ docker push harbor.od.com/infra/apollo-configservice:v1.5.1
 
 [下载1.5.1版本adminService软件包](https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-adminservice-1.5.1-github.zip)  
 ```
+mkdir -pv /data/dockerfile/apollo-adminservice
 unzip -o apollo-adminservice-1.5.1-github.zip -d /data/dockerfile
 
 rm -rf /data/dockerfile/apollo-adminservice/apollo-adminservice-1.5.1-sources.jar
@@ -156,4 +157,30 @@ CMD ["/apollo-adminservice/scripts/startup.sh"]
 
 docker build . -t harbor.od.com/infra/apollo-adminservice:v1.5.1
 docker push harbor.od.com/infra/apollo-adminservice:v1.5.1
+```
+
+
+[下载1.5.1版本portal软件包](https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-portal-1.5.1-github.zip) 
+```
+mkdir -pv /data/dockerfile/apollo-portal
+wget https://github.com/ctripcorp/apollo/releases/download/v1.5.1/apollo-portal-1.5.1-github.zip
+
+rm -rf apollo-portal-1.5.1-sources.jar 
+rm -rf apollo-portal.conf 
+```
+
+[portal数据库脚本下载地址](https://github.com/ctripcorp/apollo/blob/master/scripts/sql/apolloportaldb.sql)
+```
+导入sql
+mysql -uroot -p < apolloportaldb.sql
+
+grant INSERT,DELETE,UPDATE,SELECT on ApolloPortalDB.* to "apolloportal"@"10.4.7.%" identified by "123456";
+
+update ServerConfig set Value='[{"orgId":"od01","orgName":"Linux学院"},{"orgId":"od02","orgName":"云计算学院"},{"orgId":"od03","orgName":"Python学院"}]' where Id=2;
+```
+
+[修改portal启动脚本startup.sh](https://github.com/ctripcorp/apollo/blob/master/scripts/apollo-on-kubernetes/apollo-portal-server/scripts/startup-kubernetes.sh) 
+
+```
+
 ```
