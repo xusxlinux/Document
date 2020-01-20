@@ -38,10 +38,10 @@ wget https://raw.githubusercontent.com/ctripcorp/apollo/1.5.1/scripts/db/migrati
 mysql -uroot -p < /mnt/apollo-v1.5.1/apolloconfig.sql
 
 如果使用172.7.0.%这个网段需要在iptables上做优化
-iptables -t nat -I POSTROUTING -s 172.7.11.0/16  ! -d 172.7.0.0/16 ! -o docker0 -j MASQUERADE
-iptables -t nat -I POSTROUTING -s 172.7.12.0/16  ! -d 172.7.0.0/16 ! -o docker0 -j MASQUERADE
-iptables -t nat -I POSTROUTING -s 172.7.21.0/16  ! -d 172.7.0.0/16 ! -o docker0 -j MASQUERADE
-iptables -t nat -I POSTROUTING -s 172.7.22.0/16  ! -d 172.7.0.0/16 ! -o docker0 -j MASQUERADE
+iptables -t nat -I POSTROUTING -s 172.7.11.0/32  ! -d 172.7.0.0/16 ! -o docker0 -j MASQUERADE
+iptables -t nat -I POSTROUTING -s 172.7.12.0/32  ! -d 172.7.0.0/16 ! -o docker0 -j MASQUERADE
+iptables -t nat -I POSTROUTING -s 172.7.21.0/32  ! -d 172.7.0.0/16 ! -o docker0 -j MASQUERADE
+iptables -t nat -I POSTROUTING -s 172.7.22.0/32  ! -d 172.7.0.0/16 ! -o docker0 -j MASQUERADE
 
 创建授权账号,授权IP必须是做SNAT优化后的IP,没做优化，使用的是本地内网IP
 grant INSERT,DELETE,UPDATE,SELECT on ApollConfigDB.* to 'apolloconfig'@'172.7.0.%' identified by '123456';
