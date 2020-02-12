@@ -103,7 +103,7 @@ spec:
           servicePort: 8080
 ```
 
-## 新建项目  
+## 新建项目dubbo提供者  
 ![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/01-apollo.png)  
 ![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/09-apollo.png)  
 ![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/02-apollo.png)  
@@ -159,4 +159,9 @@ spec:
 
 ## 已经连接上apollo
 ![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/03-apollo.png) 
-![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/10-apollo.png) 
+![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/04-apollo.png) 
+
+
+## 新建项目dubbo消费者
+![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/06-apollo.png) 
+![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/07-apollo.png) 
