@@ -157,3 +157,5 @@ spec:
   progressDeadlineSeconds: 600
 ```
 
+## 已经连接上apollo
+![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/03-apollo.png) 
