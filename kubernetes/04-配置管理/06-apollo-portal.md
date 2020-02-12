@@ -102,3 +102,8 @@ spec:
           serviceName: apollo-portal
           servicePort: 8080
 ```
+
+## 新建项目  
+![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/01-apollo.png)  
+![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/02-apollo.png)  
+![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/08-apollo.png)  
