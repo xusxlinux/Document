@@ -1,6 +1,5 @@
-$ kubectl create ns test
-
-$ kubectl create secret docker-registry harbor --docker-server=harbor.od.com --docker-username=admin --docker-password=123456 -n test
+> $ kubectl create ns test  
+> $ kubectl create secret docker-registry harbor --docker-server=harbor.od.com --docker-username=admin --docker-password=123456 -n test
 
 #### 修改sql创建test库
 ```
@@ -89,3 +88,21 @@ zk-prod            A    10.4.7.12
 config-test        A    10.4.7.10
 config-prod        A    10.4.7.10
 ```
+
+
+## 拷贝资源配置清单修改adminservice
+```
+cp -r /data/k8s-yaml/apollo-adminservice/* /data/k8s-yaml/test/apollo-adminservice/
+
+grep -in test *
+cm.yaml:5:  namespace: test
+cm.yaml:9:    spring.datasource.url = jdbc:mysql://mysql.od.com:3306/ApolloConfigTestDB?characterEncoding=utf8
+```
+
+## 数据库作弊
+```
+> truncate table App;
+> truncate table Appnamespace;
+```
+
+![Image text](https://github.com/xusxlinux/Document/blob/master/kubernetes/100-images/11-apollo.png)
