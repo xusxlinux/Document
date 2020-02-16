@@ -1,4 +1,6 @@
 > $ kubectl create ns test  
+
+
 > $ kubectl create secret docker-registry harbor --docker-server=harbor.od.com --docker-username=admin --docker-password=123456 -n test
 
 #### 修改sql创建test库
@@ -101,6 +103,7 @@ cm.yaml:9:    spring.datasource.url = jdbc:mysql://mysql.od.com:3306/ApolloConfi
 
 ## 数据库作弊
 ```
+> use ApolloPortalDB
 > truncate table App;
 > truncate table Appnamespace;
 ```
