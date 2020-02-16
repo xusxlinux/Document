@@ -1,6 +1,5 @@
-$ kubectl create ns prod
-
-$ kubectl create secret docker-registry harbor --docker-server=harbor.od.com --docker-username=admin --docker-password=123456 -n prod
+> $ kubectl create ns prod  
+> $ kubectl create secret docker-registry harbor --docker-server=harbor.od.com --docker-username=admin --docker-password=123456 -n prod
 
 #### 修改sql创建prod库
 ```
@@ -30,3 +29,11 @@ ingress.yaml:8:  - host: config-prod.od.com
 svc.yaml:5:  namespace: prod
 ```
 
+#### 拷贝资源配置清单修改adminservice
+```
+cp -r /data/k8s-yaml/apollo-adminservice/* /data/k8s-yaml/prod/apollo-adminservice/
+
+grep -in prod *
+cm.yaml:5:  namespace: prod
+cm.yaml:9:    spring.datasource.url = jdbc:mysql://mysql.od.com:3306/ApolloConfigProdDB?characterEncoding=utf8
+```
