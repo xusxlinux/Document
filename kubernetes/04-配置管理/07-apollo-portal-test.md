@@ -44,7 +44,7 @@ cd /data/k8s-yaml/test/apollo-configservice
 cp -r /data/k8s-yaml/apollo-configservice/* .
 ```
 
-## 修改名称空间
+#### 修改名称空间
 ```
 grep -n test *
 cm.yaml:5:  namespace: test
@@ -55,7 +55,7 @@ ingress.yaml:8:  - host: config-test.od.com
 svc.yaml:5:  namespace: test
 ```
 
-## 做域名解析
+#### 做域名解析
 ```
 $ cat /var/named/od.com.zone 
 
