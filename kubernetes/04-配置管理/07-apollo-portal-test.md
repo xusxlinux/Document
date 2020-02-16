@@ -2,7 +2,7 @@ $ kubectl create ns test
 
 $ kubectl create secret docker-registry harbor --docker-server=harbor.od.com --docker-username=admin --docker-password=123456 -n test
 
-## 修改sql创建test库
+#### 修改sql创建test库
 ```
 CREATE DATABASE IF NOT EXISTS ApolloConfigTestDB DEFAULT CHARACTER SET = utf8mb4;
 Use ApolloConfigTestDB;
@@ -16,7 +16,7 @@ update ServerConfig set Value='fat,pro' where Id=1;
 ```
 
 
-## 修改资源配置清单
+#### 修改资源配置清单
 ```
 $ cat /data/k8s-yaml/apollo-portal/cm.yaml
 apiVersion: v1
@@ -37,12 +37,15 @@ data:
     pro.meta=http://config-prod.od.com
 ```
 
-
+#### 拷贝资源配置清单
+```
 mkdir -pv test/{apollo-configservice,apollo-adminservice,dubbo-demo-service,dubbo-demo-consumer}
 cd /data/k8s-yaml/test/apollo-configservice
 cp -r /data/k8s-yaml/apollo-configservice/* .
+```
 
 ## 修改名称空间
+```
 grep -n test *
 cm.yaml:5:  namespace: test
 cm.yaml:12:    eureka.service.url = http://config-test.od.com/eureka
@@ -50,6 +53,7 @@ dp.yaml:5:  namespace: test
 ingress.yaml:5:  namespace: test
 ingress.yaml:8:  - host: config-test.od.com
 svc.yaml:5:  namespace: test
+```
 
 ## 做域名解析
 ```
