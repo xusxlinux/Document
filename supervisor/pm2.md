@@ -18,7 +18,7 @@ cat app.json
             "-XX:+PrintGCDateStamps",
             "-XX:+PrintGCCause",
             "-Xloggc:/date/logs/${java_module_name}_gc.log",
-            "wm-lbs-server.jar",
+            "${java_module_name}.jar",
             "-Djava.security.egd=file:/dev/./urandom"
         ],
         "env": {
