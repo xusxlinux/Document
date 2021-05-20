@@ -81,4 +81,5 @@ EOF
 
 # ubantu容器中安装curl命令
 root@08d3ee0358cd:/# apt-get update && apt-get install curl -y
+root@08d3ee0358cd:/# curl -k https://www.baidu.com
 ```
