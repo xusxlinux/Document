@@ -29,7 +29,8 @@ ADD                 添加的路径可以是一个URL,这种情况Docker引擎�
 
 CMD                 shell格式        CMD <命令>
                     exec格式         CMD ["可执行文件","参数1","参数2"...]
-		    参数列表格式      CMD ["参数1","参数2"...]  在指定了 ENTRYPOIN指令后,用 CMD 指定具体的参数
+		    参数列表格式     CMD ["参数1","参数2"...]  在指定了 ENTRYPOIN指令后,用 CMD 指定具体的参数
+		    执行 /bin/echo 123 能执行  ENTRYPOINT则不能 执行 /bin/echo 123
 
 
 ENTRYPOINT          ADD entrypoint.sh /entrypoint.sh	# 需要加上执行权限 chmod +x entrypoint.sh
