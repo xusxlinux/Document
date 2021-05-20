@@ -99,204 +99,6 @@ RUN yum install bind-$VER -y
 dockerfile]# docker build . -t harbor.chain.com/public/centos7_bind9:v0.0.1
 dockerfile]# docker build -f Dockerfile -t harbor.chain.com/public/centos7_bind9:v0.0.1 .
 
-Sending build context to Docker daemon  3.072kB
-Step 1/4 : FROM centos:7
-7: Pulling from library/centos
-2d473b07cdd5: Pull complete 
-Digest: sha256:0f4ec88e21daf75124b8a9e5ca03c37a5e937e0e108a255d890492430789b60e
-Status: Downloaded newer image for centos:7
- ---> 8652b9f0cb4c
-Step 2/4 : ENV VER 9.11.4-26.P2.el7_9.5.x86_64
- ---> Running in 12eb1168f1ae
-Removing intermediate container 12eb1168f1ae
- ---> fcfcc9171196
-Step 3/4 : USER root
- ---> Running in edb9628e4996
-Removing intermediate container edb9628e4996
- ---> 74a1cedf5760
-Step 4/4 : RUN yum install bind-$VER -y
- ---> Running in 34c6e10e35b4
-Loaded plugins: fastestmirror, ovl
-Determining fastest mirrors
- * base: mirrors.tuna.tsinghua.edu.cn
- * extras: mirrors.tuna.tsinghua.edu.cn
- * updates: mirrors.tuna.tsinghua.edu.cn
-Resolving Dependencies
---> Running transaction check
----> Package bind.x86_64 32:9.11.4-26.P2.el7_9.5 will be installed
---> Processing Dependency: bind-libs-lite(x86-64) = 32:9.11.4-26.P2.el7_9.5 for package: 32:bind-9.11.4-26.P2.el7_9.5.x86_64
---> Processing Dependency: bind-libs(x86-64) = 32:9.11.4-26.P2.el7_9.5 for package: 32:bind-9.11.4-26.P2.el7_9.5.x86_64
---> Processing Dependency: selinux-policy-base for package: 32:bind-9.11.4-26.P2.el7_9.5.x86_64
---> Processing Dependency: selinux-policy-base for package: 32:bind-9.11.4-26.P2.el7_9.5.x86_64
---> Processing Dependency: selinux-policy for package: 32:bind-9.11.4-26.P2.el7_9.5.x86_64
---> Processing Dependency: selinux-policy for package: 32:bind-9.11.4-26.P2.el7_9.5.x86_64
---> Processing Dependency: python-ply for package: 32:bind-9.11.4-26.P2.el7_9.5.x86_64
---> Processing Dependency: policycoreutils-python for package: 32:bind-9.11.4-26.P2.el7_9.5.x86_64
---> Processing Dependency: policycoreutils-python for package: 32:bind-9.11.4-26.P2.el7_9.5.x86_64
---> Processing Dependency: libselinux-utils for package: 32:bind-9.11.4-26.P2.el7_9.5.x86_64
---> Processing Dependency: libselinux-utils for package: 32:bind-9.11.4-26.P2.el7_9.5.x86_64
---> Processing Dependency: liblwres.so.160()(64bit) for package: 32:bind-9.11.4-26.P2.el7_9.5.x86_64
---> Processing Dependency: libisccfg.so.160()(64bit) for package: 32:bind-9.11.4-26.P2.el7_9.5.x86_64
---> Processing Dependency: libisccc.so.160()(64bit) for package: 32:bind-9.11.4-26.P2.el7_9.5.x86_64
---> Processing Dependency: libisc.so.169()(64bit) for package: 32:bind-9.11.4-26.P2.el7_9.5.x86_64
---> Processing Dependency: libdns.so.1102()(64bit) for package: 32:bind-9.11.4-26.P2.el7_9.5.x86_64
---> Processing Dependency: libbind9.so.160()(64bit) for package: 32:bind-9.11.4-26.P2.el7_9.5.x86_64
---> Processing Dependency: libGeoIP.so.1()(64bit) for package: 32:bind-9.11.4-26.P2.el7_9.5.x86_64
---> Running transaction check
----> Package GeoIP.x86_64 0:1.5.0-14.el7 will be installed
----> Package bind-libs.x86_64 32:9.11.4-26.P2.el7_9.5 will be installed
---> Processing Dependency: bind-license = 32:9.11.4-26.P2.el7_9.5 for package: 32:bind-libs-9.11.4-26.P2.el7_9.5.x86_64
----> Package bind-libs-lite.x86_64 32:9.11.4-26.P2.el7_9.5 will be installed
----> Package libselinux-utils.x86_64 0:2.5-15.el7 will be installed
----> Package policycoreutils-python.x86_64 0:2.5-34.el7 will be installed
---> Processing Dependency: policycoreutils = 2.5-34.el7 for package: policycoreutils-python-2.5-34.el7.x86_64
---> Processing Dependency: setools-libs >= 3.3.8-4 for package: policycoreutils-python-2.5-34.el7.x86_64
---> Processing Dependency: libsemanage-python >= 2.5-14 for package: policycoreutils-python-2.5-34.el7.x86_64
---> Processing Dependency: audit-libs-python >= 2.1.3-4 for package: policycoreutils-python-2.5-34.el7.x86_64
---> Processing Dependency: python-IPy for package: policycoreutils-python-2.5-34.el7.x86_64
---> Processing Dependency: libselinux-python for package: policycoreutils-python-2.5-34.el7.x86_64
---> Processing Dependency: libqpol.so.1(VERS_1.4)(64bit) for package: policycoreutils-python-2.5-34.el7.x86_64
---> Processing Dependency: libqpol.so.1(VERS_1.2)(64bit) for package: policycoreutils-python-2.5-34.el7.x86_64
---> Processing Dependency: libcgroup for package: policycoreutils-python-2.5-34.el7.x86_64
---> Processing Dependency: libapol.so.4(VERS_4.0)(64bit) for package: policycoreutils-python-2.5-34.el7.x86_64
---> Processing Dependency: checkpolicy for package: policycoreutils-python-2.5-34.el7.x86_64
---> Processing Dependency: libqpol.so.1()(64bit) for package: policycoreutils-python-2.5-34.el7.x86_64
---> Processing Dependency: libapol.so.4()(64bit) for package: policycoreutils-python-2.5-34.el7.x86_64
----> Package python-ply.noarch 0:3.4-11.el7 will be installed
----> Package selinux-policy.noarch 0:3.13.1-268.el7_9.2 will be installed
----> Package selinux-policy-minimum.noarch 0:3.13.1-268.el7_9.2 will be installed
---> Running transaction check
----> Package audit-libs-python.x86_64 0:2.8.5-4.el7 will be installed
----> Package bind-license.noarch 32:9.11.4-26.P2.el7 will be updated
----> Package bind-license.noarch 32:9.11.4-26.P2.el7_9.5 will be an update
----> Package checkpolicy.x86_64 0:2.5-8.el7 will be installed
----> Package libcgroup.x86_64 0:0.41-21.el7 will be installed
----> Package libselinux-python.x86_64 0:2.5-15.el7 will be installed
----> Package libsemanage-python.x86_64 0:2.5-14.el7 will be installed
----> Package policycoreutils.x86_64 0:2.5-34.el7 will be installed
----> Package python-IPy.noarch 0:0.75-6.el7 will be installed
----> Package setools-libs.x86_64 0:3.3.8-4.el7 will be installed
---> Finished Dependency Resolution
-
-Dependencies Resolved
-
-================================================================================
- Package                  Arch     Version                      Repository
-                                                                           Size
-================================================================================
-Installing:
- bind                     x86_64   32:9.11.4-26.P2.el7_9.5      updates   2.3 M
-Installing for dependencies:
- GeoIP                    x86_64   1.5.0-14.el7                 base      1.5 M
- audit-libs-python        x86_64   2.8.5-4.el7                  base       76 k
- bind-libs                x86_64   32:9.11.4-26.P2.el7_9.5      updates   157 k
- bind-libs-lite           x86_64   32:9.11.4-26.P2.el7_9.5      updates   1.1 M
- checkpolicy              x86_64   2.5-8.el7                    base      295 k
- libcgroup                x86_64   0.41-21.el7                  base       66 k
- libselinux-python        x86_64   2.5-15.el7                   base      236 k
- libselinux-utils         x86_64   2.5-15.el7                   base      151 k
- libsemanage-python       x86_64   2.5-14.el7                   base      113 k
- policycoreutils          x86_64   2.5-34.el7                   base      917 k
- policycoreutils-python   x86_64   2.5-34.el7                   base      457 k
- python-IPy               noarch   0.75-6.el7                   base       32 k
- python-ply               noarch   3.4-11.el7                   base      123 k
- selinux-policy           noarch   3.13.1-268.el7_9.2           updates   498 k
- selinux-policy-minimum   noarch   3.13.1-268.el7_9.2           updates   7.0 M
- setools-libs             x86_64   3.3.8-4.el7                  base      620 k
-Updating for dependencies:
- bind-license             noarch   32:9.11.4-26.P2.el7_9.5      updates    91 k
-
-Transaction Summary
-================================================================================
-Install  1 Package  (+16 Dependent packages)
-Upgrade             (  1 Dependent package)
-
-Total download size: 16 M
-Downloading packages:
-Delta RPMs disabled because /usr/bin/applydeltarpm not installed.
-warning: /var/cache/yum/x86_64/7/base/packages/audit-libs-python-2.8.5-4.el7.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY
-Public key for audit-libs-python-2.8.5-4.el7.x86_64.rpm is not installed
-Public key for bind-libs-9.11.4-26.P2.el7_9.5.x86_64.rpm is not installed
---------------------------------------------------------------------------------
-Total                                              620 kB/s |  16 MB  00:25     
-Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
-Importing GPG key 0xF4A80EB5:
- Userid     : "CentOS-7 Key (CentOS 7 Official Signing Key) <security@centos.org>"
- Fingerprint: 6341 ab27 53d7 8a78 a7c2 7bb1 24c6 a8a7 f4a8 0eb5
- Package    : centos-release-7-9.2009.0.el7.centos.x86_64 (@CentOS)
- From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
-Running transaction check
-Running transaction test
-Transaction test succeeded
-Running transaction
-  Installing : GeoIP-1.5.0-14.el7.x86_64                                   1/19 
-  Installing : libselinux-utils-2.5-15.el7.x86_64                          2/19 
-  Installing : policycoreutils-2.5-34.el7.x86_64                           3/19 
-  Installing : selinux-policy-3.13.1-268.el7_9.2.noarch                    4/19 
-  Updating   : 32:bind-license-9.11.4-26.P2.el7_9.5.noarch                 5/19 
-  Installing : 32:bind-libs-lite-9.11.4-26.P2.el7_9.5.x86_64               6/19 
-  Installing : 32:bind-libs-9.11.4-26.P2.el7_9.5.x86_64                    7/19 
-  Installing : libcgroup-0.41-21.el7.x86_64                                8/19 
-  Installing : setools-libs-3.3.8-4.el7.x86_64                             9/19 
-  Installing : audit-libs-python-2.8.5-4.el7.x86_64                       10/19 
-  Installing : checkpolicy-2.5-8.el7.x86_64                               11/19 
-  Installing : python-IPy-0.75-6.el7.noarch                               12/19 
-  Installing : libselinux-python-2.5-15.el7.x86_64                        13/19 
-  Installing : libsemanage-python-2.5-14.el7.x86_64                       14/19 
-  Installing : policycoreutils-python-2.5-34.el7.x86_64                   15/19 
-  Installing : selinux-policy-minimum-3.13.1-268.el7_9.2.noarch           16/19 
-  Installing : python-ply-3.4-11.el7.noarch                               17/19 
-  Installing : 32:bind-9.11.4-26.P2.el7_9.5.x86_64                        18/19 
-  Cleanup    : 32:bind-license-9.11.4-26.P2.el7.noarch                    19/19 
-  Verifying  : GeoIP-1.5.0-14.el7.x86_64                                   1/19 
-  Verifying  : python-ply-3.4-11.el7.noarch                                2/19 
-  Verifying  : 32:bind-libs-9.11.4-26.P2.el7_9.5.x86_64                    3/19 
-  Verifying  : 32:bind-libs-lite-9.11.4-26.P2.el7_9.5.x86_64               4/19 
-  Verifying  : libsemanage-python-2.5-14.el7.x86_64                        5/19 
-  Verifying  : 32:bind-license-9.11.4-26.P2.el7_9.5.noarch                 6/19 
-  Verifying  : libselinux-python-2.5-15.el7.x86_64                         7/19 
-  Verifying  : python-IPy-0.75-6.el7.noarch                                8/19 
-  Verifying  : selinux-policy-minimum-3.13.1-268.el7_9.2.noarch            9/19 
-  Verifying  : checkpolicy-2.5-8.el7.x86_64                               10/19 
-  Verifying  : libselinux-utils-2.5-15.el7.x86_64                         11/19 
-  Verifying  : policycoreutils-python-2.5-34.el7.x86_64                   12/19 
-  Verifying  : selinux-policy-3.13.1-268.el7_9.2.noarch                   13/19 
-  Verifying  : audit-libs-python-2.8.5-4.el7.x86_64                       14/19 
-  Verifying  : setools-libs-3.3.8-4.el7.x86_64                            15/19 
-  Verifying  : 32:bind-9.11.4-26.P2.el7_9.5.x86_64                        16/19 
-  Verifying  : libcgroup-0.41-21.el7.x86_64                               17/19 
-  Verifying  : policycoreutils-2.5-34.el7.x86_64                          18/19 
-  Verifying  : 32:bind-license-9.11.4-26.P2.el7.noarch                    19/19 
-
-Installed:
-  bind.x86_64 32:9.11.4-26.P2.el7_9.5                                           
-
-Dependency Installed:
-  GeoIP.x86_64 0:1.5.0-14.el7                                                   
-  audit-libs-python.x86_64 0:2.8.5-4.el7                                        
-  bind-libs.x86_64 32:9.11.4-26.P2.el7_9.5                                      
-  bind-libs-lite.x86_64 32:9.11.4-26.P2.el7_9.5                                 
-  checkpolicy.x86_64 0:2.5-8.el7                                                
-  libcgroup.x86_64 0:0.41-21.el7                                                
-  libselinux-python.x86_64 0:2.5-15.el7                                         
-  libselinux-utils.x86_64 0:2.5-15.el7                                          
-  libsemanage-python.x86_64 0:2.5-14.el7                                        
-  policycoreutils.x86_64 0:2.5-34.el7                                           
-  policycoreutils-python.x86_64 0:2.5-34.el7                                    
-  python-IPy.noarch 0:0.75-6.el7                                                
-  python-ply.noarch 0:3.4-11.el7                                                
-  selinux-policy.noarch 0:3.13.1-268.el7_9.2                                    
-  selinux-policy-minimum.noarch 0:3.13.1-268.el7_9.2                            
-  setools-libs.x86_64 0:3.3.8-4.el7                                             
-
-Dependency Updated:
-  bind-license.noarch 32:9.11.4-26.P2.el7_9.5                                   
-
-Complete!
-Removing intermediate container 34c6e10e35b4
- ---> 9e8ba121c895
-Successfully built 9e8ba121c895
-Successfully tagged harbor.chain.com/public/centos7_bind9:v0.0.1
 ```
 
 
@@ -335,4 +137,32 @@ ENTRYPOINT /entrypoint.sh
 
 加上执行权限
 chmod +x entrypoint.sh
+```
+
+
+``` Dockerfile
+# 制作一个可以访问的nginx镜像
+cat /data/dockerfile/Dockerfile 
+FROM nginx:1.16
+USER root
+ENV WWW /usr/share/nginx/html
+ENV CONF /etc/nginx/conf.d
+ENV TZ Asia/Shanghai
+WORKDIR $WWW
+ADD index.html $WWW/index.html
+ADD daemon.chain.com.conf $CONF/daemon.chain.com.conf;
+EXPOSE 80
+CMD ["nginx","-g","daemon off;"]
+
+
+
+cat daemon.chain.com.conf 
+server {
+	listen 80;
+	server_name daemon.chain.com;
+	location / {
+		root /usr/share/nginx/html;
+		index index.html;
+	}
+}
 ```
