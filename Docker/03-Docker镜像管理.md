@@ -79,5 +79,6 @@ deb http://mirrors.163.com/debian/ jessie main non-free contrib
 deb http://mirrors.163.com/debian/ jessie-updates main non-free contrib
 EOF
 
-
+# ubantu容器中安装curl命令
+root@08d3ee0358cd:/# apt-get install curl -y
 ```
