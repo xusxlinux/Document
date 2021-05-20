@@ -315,3 +315,23 @@ SHLVL=1
 HOME=/root
 VER=9.11.4-26.P2.el7_9.5.x86_64
 ```
+
+
+
+```
+# entrypoint的使用
+# cat /data/dockerfile/Dockerfile 
+FROM centos:7
+ENV VER 1.16.1-3.el7.x86_64
+RUN yum install epel-release -y && yum install nginx-$VER -y
+USER nginx
+ADD entrypoint.sh /entrypoint.sh
+ENTRYPOINT /entrypoint.sh
+
+# cat /data/dockerfile/entrypoint.sh 
+#!/bin/env bash
+/sbin/nginx -g "daemon off;"
+
+加上执行权限
+chmod +x entrypoint.sh
+```
