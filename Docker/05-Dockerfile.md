@@ -32,7 +32,7 @@ CMD                 shell格式        CMD <命令>
 		    参数列表格式      CMD ["参数1","参数2"...]  在指定了 ENTRYPOIN指令后,用 CMD 指定具体的参数
 
 
-ENTRYPOINT          ADD entrypoint.sh /entrypoint.sh
+ENTRYPOINT          ADD entrypoint.sh /entrypoint.sh	# 需要加上执行权限 chmod +x entrypoint.sh
 		    ENTRYPOINT /entrypoint.sh
 
 
