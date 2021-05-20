@@ -1,4 +1,4 @@
-```
+``` dockerfile
 FROM                指定基础镜像本地或者远端仓库拥有的
 
 
@@ -63,7 +63,7 @@ ONBUILD
 
 
 
-```
+``` dockerfile
 简单的Dockerfile
 $ vim Dockerfile 
 FROM nginx:1.15.3
@@ -84,7 +84,7 @@ nginx
 ```
 
 
-```
+``` dockerfile
 # 在centos7的镜像中安装bind9
 cat /data/dockerfile/Dockerfile 
 FROM centos:7
@@ -94,7 +94,7 @@ RUN yum install bind-$VER -y
 ```
 
 
-```
+``` shell
 # 运行
 dockerfile]# docker build . -t harbor.chain.com/public/centos7_bind9:v0.0.1
 dockerfile]# docker build -f Dockerfile -t harbor.chain.com/public/centos7_bind9:v0.0.1 .
@@ -122,7 +122,7 @@ VER=9.11.4-26.P2.el7_9.5.x86_64
 
 
 
-```
+``` dockerfile
 # entrypoint的使用
 # cat /data/dockerfile/Dockerfile 
 FROM centos:7
