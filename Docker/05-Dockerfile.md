@@ -95,6 +95,7 @@ RUN yum install bind-$VER -y
 ```
 # 运行
 dockerfile]# docker build . -t harbor.chain.com/public/centos7_bind9:v0.0.1
+dockerfile]# docker build -f Dockerfile -t harbor.chain.com/public/centos7_bind9:v0.0.1 .
 
 Sending build context to Docker daemon  3.072kB
 Step 1/4 : FROM centos:7
