@@ -188,6 +188,7 @@ root@nginx-ds-5fw5l:/# curl -I -m 10 -o /dev/null -s -w %{http_code} nginx-dp.ku
 > $ wget https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/dns/coredns/coredns.yaml.base
 
 
+#### 资源配置清单
 ```rbac.yaml
 $ cat /data/k8s-yaml/coredns/rbac.yaml
 apiVersion: v1
