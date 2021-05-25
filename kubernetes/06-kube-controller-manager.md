@@ -52,5 +52,3 @@ stopasgroup=true
 
 查看标签
 > $ kubectl get nodes -l os  
-> NAME                STATUS   ROLES       AGE     VERSION  
-hdss7-22.host.com   Ready    node,work   4h17m   v1.18.18
