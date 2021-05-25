@@ -47,7 +47,7 @@ stopasgroup=true
 > $ kubectl label node hdss7-21.host.com node-role.kubernetes.io/master-
 
 改标签
-> $ kubectl label node hdss7-22.host.com os=CentOS7-6
+> $ kubectl label node hdss7-22.host.com os=CentOS7-6 
 > $ kubectl label node hdss7-22.host.com os=CentOS7-9 --overwrite
 
 查看标签
