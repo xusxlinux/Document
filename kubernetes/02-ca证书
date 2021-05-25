@@ -1,0 +1,70 @@
+
+```
+# 生成CA私钥
+openssl genrsa -out ca.key 4096
+
+openssl req -x509 -new -nodes -sha512 -days 3650 \
+ -subj "/C=CN/ST=Beijing/L=Beijing/O=example/OU=Personal/CN=harbor.chain.com" \
+ -key ca.key \
+ -out ca.crt
+
+# 生成一个服务器私钥
+openssl genrsa -out harbor.chain.com.key 4096
+
+openssl req -sha512 -new \
+   -subj "/C=CN/ST=Beijing/L=Beijing/O=example/OU=Personal/CN=harbor.chain.com" \
+   -key harbor.chain.com.key \
+   -out harbor.chain.com.csr
+   
+
+
+# 生成X509 v3的密钥文件
+cat > v3.ext <<-EOF
+authorityKeyIdentifier=keyid,issuer
+basicConstraints=CA:FALSE
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1=harbor.chain.com
+DNS.2=harbor.chain.com
+EOF
+
+
+# 使用v3.ext文件生成你harbor主机密钥
+openssl x509 -req -sha512 -days 3650 \
+    -extfile v3.ext \
+    -CA ca.crt -CAkey ca.key -CAcreateserial \
+    -in harbor.chain.com.csr \
+    -out harbor.chain.com.crt
+
+
+# 为docker生成对应的证书给它使用
+openssl x509 -inform PEM -in harbor.chain.com.crt -out harbor.chain.com.cert	
+```
+
+#### 为docker配置harbor认证
+```
+# 将server证书cp到所有docker所在的机器固定目录中
+mkdir -pv /etc/docker/certs.d/harbor.chain.com
+cp harbor.chain.com.crt /etc/docker/certs.d/harbor.chain.com
+```
+
+#### 配置harbor.yml文件
+```
+https:
+  # https port for harbor, default is 443
+  port: 443
+  # The path of cert and key files for nginx
+  certificate: /data/cert/reg.frame4j.local.crt
+  private_key: /data/cert/reg.frame4j.local.key
+```
+
+#### 重新预部署
+```
+cd /data/harbor/
+
+# 重启一下harbor仓库
+./prepare
+```
