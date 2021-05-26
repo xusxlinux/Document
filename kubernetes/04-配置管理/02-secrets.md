@@ -5,6 +5,8 @@ kubectl create secret docker-registry harbor --docker-server=harbor.od.com --doc
 
 kubectl create secret docker-registry harbor --docker-server=harbor.od.com --docker-username=admin --docker-password=123456 -n app  
 
+```
 kubectl create secret docker-registry harbor --namespace=kube-system \
     --docker-server=harbor.chain.com --docker-username=admin \
     --docker-password=123456 --docker-email=xusxlinux@163.com
+```
