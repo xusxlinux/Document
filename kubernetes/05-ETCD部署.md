@@ -62,4 +62,5 @@ EOF
 supervisorctl update
 supervisorctl reload
 supervisorctl status
+supervisorctl restart all
 ```
