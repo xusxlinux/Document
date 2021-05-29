@@ -58,4 +58,8 @@ stopasgroup=true
 EOF
 ```
 
-> $ supervisorctl update
+```
+supervisorctl update
+supervisorctl reload
+supervisorctl status
+```
