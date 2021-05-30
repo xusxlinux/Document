@@ -38,17 +38,3 @@ stdout_events_enabled=false                                                     
 killasgroup=true
 stopasgroup=true
 ```
-
-## 给节点打上名称标记
-添加标签  
-> $ kubectl label node hdss7-21.host.com node-role.kubernetes.io/node=  
-
-删除标签  
-> $ kubectl label node hdss7-21.host.com node-role.kubernetes.io/master-  
-
-改标签
-> $ kubectl label node hdss7-22.host.com os=CentOS7-6  
-> $ kubectl label node hdss7-22.host.com os=CentOS7-9 --overwrite  
-
-查看标签
-> $ kubectl get nodes -l os  
