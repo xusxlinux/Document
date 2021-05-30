@@ -24,7 +24,7 @@
         <td><strong></strong>主控节点</td>
         <td><a href="07-master节点/01-kube-apiserver.md">kube-apiserver</a></td>
         <td><a href="07-master节点/03-kube-scheduler.md">kube-scheduler</a></td>
-        <td><a href="07-master节点/02-kube-controller-manager.md">kube-controller-manager</a></td>
+        <td><a href="07-master节点/02-kube-controller-manager.md">controller-manager</a></td>
         <td><a href="02-nginx/01-availability-nginx.md">高可用</a></td>
     </tr>
     <tr>
