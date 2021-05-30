@@ -35,7 +35,7 @@ $ chown -R etcd:etcd /opt/etcd /data/logs/etcd-server /data/etcd
  
  ```ini
 cat > /etc/supervisord.d/etcd-server.ini << EOF
-[program:etcd]
+[program:etcd02]
 command=/opt/etcd/etcd-server-startup.sh                        ; the program (relative uses PATH, can take args)
 numprocs=1                                                      ; number of processes copies to start (def 1)
 directory=/opt/etcd                                             ; directory to cwd to before exec (def no cwd)
@@ -59,7 +59,7 @@ EOF
 ```
 
 ```
-supervisorctl start etcd
+supervisorctl start etcd02
 supervisorctl update
 supervisorctl reload
 supervisorctl status
