@@ -11,7 +11,9 @@
     </tr>
     <tr>
         <td><strong></strong>存储节点</td>
-        <td><a href="05-ETCD部署.md">etcd</a></td>
+        <td><a href="05-ETCD01部署.md">etcd</a></td>
+        <td><a href="05-ETCD02部署.md">etcd</a></td>
+        <td><a href="05-ETCD03部署.md">etcd</a></td>
     </tr>
     <tr>
         <td><strong></strong>镜像仓库</td>
