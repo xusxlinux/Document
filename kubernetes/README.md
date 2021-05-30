@@ -23,14 +23,14 @@
     <tr>
         <td><strong></strong>主控节点</td>
         <td><a href="07-master节点/01-kube-apiserver.md">kube-apiserver</a></td>
-        <td><a href="07-master节点/02-kube-scheduler.md">kube-scheduler</a></td>
-        <td><a href="07-master节点/03-kube-controller-manager.md">kube-controller-manager</a></td>
+        <td><a href="07-master节点/03-kube-scheduler.md">kube-scheduler</a></td>
+        <td><a href="07-master节点/02-kube-controller-manager.md">kube-controller-manager</a></td>
         <td><a href="02-nginx/01-availability-nginx.md">高可用</a></td>
     </tr>
     <tr>
         <td><strong></strong>被控节点</td>
-        <td><a href="07-node节点/01-kubelet.md">kubelet</a></td>
-        <td><a href="07-node节点/02-kube-proxy.md">kube-proxy</a></td>
+        <td><a href="07-node节点/02-kubelet.md">kubelet</a></td>
+        <td><a href="07-node节点/01-kube-proxy.md">kube-proxy</a></td>
     </tr>
     <tr>
         <td><strong></strong>网络节点01</td>
