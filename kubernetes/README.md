@@ -21,11 +21,15 @@
         <td><a href="02-nginx/02-harbor-nginx.md">harbor业务域</a></td>
     </tr>
     <tr>
+        <td><strong></strong>集群方案</td>
+        <td><a href="02-nginx/01-availability-nginx.md">阿里云SLB</a></td>
+        <td><a href="02-nginx/01-availability-nginx.md">高可用</a></td>
+    </tr>
+    <tr>
         <td><strong></strong>主控节点</td>
         <td><a href="07-master节点/01-kube-apiserver.md">kube-apiserver</a></td>
         <td><a href="07-master节点/03-kube-scheduler.md">kube-scheduler</a></td>
         <td><a href="07-master节点/02-kube-controller-manager.md">controller-manager</a></td>
-        <td><a href="02-nginx/01-availability-nginx.md">高可用</a></td>
     </tr>
     <tr>
         <td><strong></strong>被控节点</td>
@@ -35,9 +39,6 @@
     <tr>
         <td><strong></strong>网络节点01</td>
         <td><a href="08-网络节点.md">flanned</a></td>
-    </tr>
-    <tr>
-        <td><strong></strong>网络节点02</td>
         <td><a href="08-网络节点.md">calico</a></td>
     </tr>
     <tr>
