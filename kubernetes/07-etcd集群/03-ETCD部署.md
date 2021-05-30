@@ -6,14 +6,14 @@ $ useradd -s /sbin/nologin -M etcd
 ```bash
 $ cat /opt/etcd/etcd-server-startup.sh
 #!/bin/sh
-./etcd --name etcd-server-7-12 \
+./etcd --name etcd-server-7-21 \
        --data-dir /data/etcd/etcd-server \
-       --listen-peer-urls https://10.4.7.12:2380 \
-       --listen-client-urls https://10.4.7.12:2379,http://127.0.0.1:2379 \
+       --listen-peer-urls https://10.4.7.21:2380 \
+       --listen-client-urls https://10.4.7.21:2379,http://127.0.0.1:2379 \
        --quota-backend-bytes 8000000000 \
-       --initial-advertise-peer-urls https://10.4.7.12:2380 \
-       --advertise-client-urls https://10.4.7.12:2379,http://127.0.0.1:2379 \
-       --initial-cluster  etcd-server-7-12=https://10.4.7.12:2380,etcd-server-7-21=https://10.4.7.21:2380,etcd-server-7-22=https://10.4.7.22:2380 \
+       --initial-advertise-peer-urls https://10.4.7.21:2380 \
+       --advertise-client-urls https://10.4.7.21:2379,http://127.0.0.1:2379 \
+       --initial-cluster  etcd-server-7-11=https://10.4.7.11:2380,etcd-server-7-12=https://10.4.7.12:2380,etcd-server-7-21=https://10.4.7.21:2380 \
        --ca-file ./certs/ca.pem \
        --cert-file ./certs/etcd-peer.pem \
        --key-file ./certs/etcd-peer-key.pem \
@@ -35,7 +35,7 @@ $ chown -R etcd:etcd /opt/etcd /data/logs/etcd-server /data/etcd
  
  ```ini
 cat > /etc/supervisord.d/etcd-server.ini << EOF
-[program:etcd-server-7-12]
+[program:etcd]
 command=/opt/etcd/etcd-server-startup.sh                        ; the program (relative uses PATH, can take args)
 numprocs=1                                                      ; number of processes copies to start (def 1)
 directory=/opt/etcd                                             ; directory to cwd to before exec (def no cwd)
@@ -59,6 +59,7 @@ EOF
 ```
 
 ```
+supervisorctl start etcd
 supervisorctl update
 supervisorctl reload
 supervisorctl status
