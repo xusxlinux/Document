@@ -119,16 +119,16 @@ spec:
 $ cat ingress.yaml
 kind: Ingress
 apiVersion: extensions/v1beta1
-metadata: 
+metadata:
   name: jenkins
   namespace: infra
 spec:
   rules:
-  - host: jenkins.od.com
+  - host: jenkins.wm-imotor.com
     http:
       paths:
       - path: /
-        backend: 
+        backend:
           serviceName: jenkins
           servicePort: 80
 ```
