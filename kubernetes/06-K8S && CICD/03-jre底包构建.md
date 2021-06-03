@@ -1,3 +1,11 @@
+
+```
+https://hub.docker.com/_/openjdk?tab=tags&page=1&ordering=last_updated
+
+# 自己在hub仓库下载一个openjdk的jre包
+docker pull openjdk
+```
+
 ```yaml
 $ cat Dockerfile
 FROM harbor.od.com/public/jre8:8u112
