@@ -124,7 +124,7 @@ metadata:
   namespace: infra
 spec:
   rules:
-  - host: jenkins.wm-imotor.com
+  - host: jenkins.chain.com
     http:
       paths:
       - path: /
