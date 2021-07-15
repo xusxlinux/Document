@@ -6,16 +6,24 @@ global_defs {
    router_id LVS_DEVEL
 }
 vrrp_instance VI_1 {
+    # 指定主节点,或者备用节点
     state BACKUP
+    # 非抢占模式,不用设置主备节点
     nopreempt
+    # 绑定网络接口
     interface eth0
+    # VRRP组名,节点的设置必须一样,指明各个节点属于同一VRRP组
     virtual_router_id 100
+    # 节点的优先级(1-254之间),备用节点优先级低
     priority 100
+    # 组播信息发送间隔,所有节点必须一致
     advert_int 1
+    # 设置验证信息,节点必须一致
     authentication {
         auth_type PASS
         auth_pass just0kk
     }
+    # 指定虚拟IP
     virtual_ipaddress {
         10.4.7.10
     }
