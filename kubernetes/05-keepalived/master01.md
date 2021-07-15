@@ -6,10 +6,10 @@ global_defs {
    router_id LVS_DEVEL
 }
 vrrp_instance VI_1 {
-    state MASTER
+    state BACKUP
     nopreempt
     interface eth0
-    virtual_router_id 80
+    virtual_router_id 100
     priority 100
     advert_int 1
     authentication {
