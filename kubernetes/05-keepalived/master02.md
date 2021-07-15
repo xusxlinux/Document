@@ -9,8 +9,8 @@ vrrp_instance VI_1 {
     state BACKUP
     nopreempt
     interface eth0
-    virtual_router_id 80
-    priority 100
+    virtual_router_id 100
+    priority 80
     advert_int 1
     authentication {
         auth_type PASS
