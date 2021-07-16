@@ -107,6 +107,14 @@ kubeadm join apiserver.chain.com:6443 --token wbz9dp.cg20mtk73tpmkk4r \
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+# kubectl命令补全
+echo "source <(kubectl completion bash)" >> ~/.bashrc
+source <(kubectl completion bash)
+
+yum install bash-completion -y
+source /usr/share/bash-completion/bash_completion
+source <(kubectl completion bash)
 ```
 
 ``` shell
