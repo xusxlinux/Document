@@ -1,4 +1,3 @@
-1
 ``` yaml
 使用pod创建etcd
 apiVersion: kubeproxy.config.k8s.io/v1alpha1
