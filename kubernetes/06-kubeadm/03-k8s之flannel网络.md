@@ -20,5 +20,5 @@ kubectl edit cm -n kube-system kube-flannel-cfg
 
 
 # 修改默认的flannel网络地址  方式二
-    sed -i 's#10.244.0.0/16#192.16.0.0/12#g' kube-flannel.yml
+sed -i 's#10.244.0.0/16#192.16.0.0/12#g' kube-flannel.yml
 ```
