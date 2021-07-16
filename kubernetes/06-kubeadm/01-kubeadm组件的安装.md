@@ -1,5 +1,6 @@
 1
 ``` yaml
+使用pod创建etcd
 apiVersion: kubeproxy.config.k8s.io/v1alpha1
 kind: KubeProxyConfiguration
 mode: "ipvs"
@@ -30,9 +31,9 @@ scheduler:
     extraArgs:
         address: 0.0.0.0
 imageRepository: gcr.azk8s.cn/google-containers
+```
 
-
-
+``` yaml
 外部的etcd
 apiVersion: kubeproxy.config.k8s.io/v1alpha1
 kind: KubeProxyConfiguration
@@ -71,4 +72,15 @@ scheduler:
     extraArgs:
         address: 0.0.0.0
 imageRepository: gcr.azk8s.cn/google-containers    
+```
+
+``` shell
+# 开始创建k8s集群
+kubeadm init --config kubeadm-config.yaml
+
+# token24小时过期处理
+kubeadm token create --print-join-command
+
+# 不让token过期
+kubeadm token create --print-join-command --ttl=0
 ```
