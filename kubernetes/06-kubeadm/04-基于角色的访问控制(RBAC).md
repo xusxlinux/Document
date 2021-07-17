@@ -1,6 +1,6 @@
 #### 基于角色的访问控制（RBAC）
-1、ServiceAccount：用于调用kubernetes API Server的实体（）
-2、Role/ClusterRole： 用于定义访问资源对象的权限`（Role只能定义namespace级别的权限，ClusterRole是定义集群级别的权限）`
+1、ServiceAccount：用于调用kubernetes API Server的实体（）  
+2、Role/ClusterRole： 用于定义访问资源对象的权限`（Role只能定义namespace级别的权限，ClusterRole是定义集群级别的权限）`  
 3、RoleBinding/ClusterRoleBinding：将ServiceAccount和Role绑定在一起`（RoleBinding是namespace级别的绑定，ClusterRoleBinding是集群级别的绑定）`
 
 ``` shell
