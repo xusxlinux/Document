@@ -91,7 +91,7 @@ metadata:
     addonmanager.kubernetes.io/mode: Reconcile
 ```
 
-## 如下在jumpserver上操作
+#### 如下在jumpserver上操作
 ``` shell
 yum install kubectl-1.18.18-0.x86_64 -y
 mkdir -pv /root/.kube/
