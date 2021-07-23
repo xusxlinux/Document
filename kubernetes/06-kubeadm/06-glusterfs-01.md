@@ -40,7 +40,7 @@ e1008d0d-d76b-4268-8ef8-2db6548df8cd	hdss7-21.host.com	Connected
 
 ``` shell
 # 所有存储节点上安装xfs支持包
-yum install xfsprogs -y 
+[root@hdss7-11 ~]# yum install xfsprogs -y 
 # 所有存储节点先做分区
 [root@hdss7-11 ~]# fdisk /dev/sdb
 # 所有文件系统格式化
@@ -53,12 +53,16 @@ yum install xfsprogs -y
 ```
 
 ``` shell
-# 创建 分布卷 应用场景：大量小文件
+# 创建 分布卷 应用场景：大量小文件   |   replica = brick
 [root@hdss7-11 ~]# gluster volume create gv1 hdss7-11.host.com:/storage/brick1 hdss7-12.host.com:/storage/brick1 hdss7-21.host.com:/storage/brick1 hdss7-22.host.com:/storage/brick1 force
 volume create: gv1: success: please start the volume to access data
 
+
+
 # 创建的卷需要启动后才能使用
 [root@hdss7-11 ~]# gluster volume start gv1
+
+
 
 # 查看一下启动后的状态
 [root@hdss7-11 ~]# gluster volume status gv1
@@ -73,6 +77,8 @@ Brick hdss7-22.host.com:/storage/brick1     49152     0          Y       70303
 Task Status of Volume gv1
 ------------------------------------------------------------------------------
 There are no active volume tasks
+
+
 
 # 卷的info信息
 [root@hdss7-11 ~]# gluster volume info
@@ -94,19 +100,43 @@ storage.fips-mode-rchecksum: on
 transport.address-family: inet
 nfs.disable: on
 
+
+
 # 卷的停止
 [root@hdss7-11 ~]# gluster volume stop gv1
 Stopping volume will make its data inaccessible. Do you want to continue? (y/n) y
 volume stop: gv1: success
+
+
+
+# 卷的使用, 创建一个临时挂载点
+[root@hdss7-11 ~]# mkdir -pv /data1
+[root@hdss7-11 ~]# mount -t glusterfs hdss7-11.host.com:/gv1 /data1
+
+
+
+# 测试
+[root@hdss7-11 data1]# cd /data1 && touch `seq 100`
+[root@hdss7-11 ~]# ls /storage/brick1/ | wc -l
+19
+[root@hdss7-12 ~]# ls /storage/brick1/ | wc -l
+27
+[root@hdss7-21 ~]# ls /storage/brick1/ | wc -l
+23
+[root@hdss7-22 ~]# ls /storage/brick1/ | wc -l
+30
 ```
 
 ``` shell
+# 创建 复制卷 应用场景：
 ```
 
 ``` shell
+# 条带卷 弃用!!!
 ```
 
 ``` shell
+# 分布式条带卷 弃用!!!
 ```
 
 ``` shell
