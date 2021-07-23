@@ -53,7 +53,7 @@ e1008d0d-d76b-4268-8ef8-2db6548df8cd	hdss7-21.host.com	Connected
 ```
 
 ``` shell
-# 创建 分布卷 应用场景：大量小文件   |   replica = brick
+# 创建 分布卷 应用场景：大量小文件   
 [root@hdss7-11 ~]# gluster volume create gv1 hdss7-11.host.com:/storage/brick1 hdss7-12.host.com:/storage/brick1 hdss7-21.host.com:/storage/brick1 hdss7-22.host.com:/storage/brick1 force
 volume create: gv1: success: please start the volume to access data
 
@@ -82,7 +82,6 @@ There are no active volume tasks
 
 # 卷的info信息
 [root@hdss7-11 ~]# gluster volume info
- 
 Volume Name: gv1
 Type: Distribute
 Volume ID: e9d718ef-fbce-4382-9797-3c82b1b0b3d2
@@ -128,7 +127,70 @@ volume stop: gv1: success
 ```
 
 ``` shell
-# 创建 复制卷 应用场景：
+# 创建 复制卷 应用场景：对可靠性高和读写性能要求高的场景,  读性能好,写性能差  |   replica = brick
+
+# 将分布卷删除
+[root@hdss7-11 ~]# gluster volume delete gv1
+
+
+
+# 创建复制卷
+[root@hdss7-11 ~]# gluster volume create gv1 replica 2 hdss7-11.host.com:/storage/brick1 hdss7-12.host.com:/storage/brick1 hdss7-21.host.com:/storage/brick1 hdss7-22.host.com:/storage/brick1 force
+volume create: gv1: success: please start the volume to access data
+
+
+
+# 启动复制卷
+[root@hdss7-11 ~]# gluster volume start gv1
+volume start: gv1: success
+
+
+
+#查看一下启动后的状态
+[root@hdss7-11 ~]# gluster volume status gv1
+Status of volume: gv1
+Gluster process                             TCP Port  RDMA Port  Online  Pid
+------------------------------------------------------------------------------
+Brick hdss7-11.host.com:/storage/brick1     49152     0          Y       67843
+Brick hdss7-12.host.com:/storage/brick1     49152     0          Y       59825
+Brick hdss7-21.host.com:/storage/brick1     49152     0          Y       55051
+Brick hdss7-22.host.com:/storage/brick1     49152     0          Y       103275
+Self-heal Daemon on localhost               N/A       N/A        Y       67860
+Self-heal Daemon on hdss7-22.host.com       N/A       N/A        Y       103292
+Self-heal Daemon on hdss7-12.host.com       N/A       N/A        Y       59842
+Self-heal Daemon on hdss7-21.host.com       N/A       N/A        Y       55068
+ 
+Task Status of Volume gv1
+------------------------------------------------------------------------------
+There are no active volume tasks
+
+
+
+# 卷的info信息
+[root@hdss7-11 ~]# gluster volume info
+Volume Name: gv1
+Type: Distributed-Replicate
+Volume ID: 35cd2240-3d5b-48a3-85f9-da6ecb4d4628
+Status: Created
+Snapshot Count: 0
+Number of Bricks: 2 x 2 = 4
+Transport-type: tcp
+Bricks:
+Brick1: hdss7-11.host.com:/storage/brick1
+Brick2: hdss7-12.host.com:/storage/brick1
+Brick3: hdss7-21.host.com:/storage/brick1
+Brick4: hdss7-22.host.com:/storage/brick1
+Options Reconfigured:
+cluster.granular-entry-heal: on
+storage.fips-mode-rchecksum: on
+transport.address-family: inet
+nfs.disable: on
+performance.client-io-threads: off
+
+
+
+# 挂载复制卷
+[root@hdss7-11 ~]# mount -t glusterfs hdss7-11.host.com:/gv1 /data1
 ```
 
 ``` shell
