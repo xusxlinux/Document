@@ -52,6 +52,7 @@ e1008d0d-d76b-4268-8ef8-2db6548df8cd	hdss7-21.host.com	Connected
 [root@hdss7-11 ~]# echo "/dev/sdb1 /storage/brick1                       xfs     defaults        0 0" >> /etc/fstab
 ```
 
+#### 分布卷
 ``` shell
 # 创建 分布卷 应用场景：大量小文件   
 [root@hdss7-11 ~]# gluster volume create gv1 hdss7-11.host.com:/storage/brick1 hdss7-12.host.com:/storage/brick1 hdss7-21.host.com:/storage/brick1 hdss7-22.host.com:/storage/brick1 force
@@ -126,6 +127,7 @@ volume stop: gv1: success
 30
 ```
 
+#### 复制卷
 ``` shell
 # 创建 复制卷 应用场景：对可靠性高和读写性能要求高的场景,  读性能好,写性能差  |   replica = brick
 
@@ -193,13 +195,37 @@ performance.client-io-threads: off
 [root@hdss7-11 ~]# mount -t glusterfs hdss7-11.host.com:/gv1 /data1
 ```
 
+#### 条带卷
 ``` shell
 # 条带卷 弃用!!!
 ```
 
+#### 分布式复制卷
+``` shell
+# 最常用
+```
+
+#### 分布式条带卷
 ``` shell
 # 分布式条带卷 弃用!!!
 ```
 
+#### 条带复制卷
 ``` shell
+# 条带复制卷 弃用!!!
+```
+
+#### 扩容
+``` shell
+
+```
+
+#### 缩容
+```
+
+```
+
+#### 替换
+``` shell
+
 ```
