@@ -202,7 +202,47 @@ performance.client-io-threads: off
 
 #### 分布式复制卷
 ``` shell
-# 最常用
+# 最常用 分布式复制卷   |   replica = brick * 2
+
+
+[root@hdss7-11 ~]# gluster volume stop gv1
+[root@hdss7-11 ~]# gluster volume delete gv1
+
+
+
+# 分布式复制卷
+[root@hdss7-11 ~]# gluster volume create gv1 replica 2 hdss7-11.host.com:/storage/brick1 hdss7-12.host.com:/storage/brick1 hdss7-21.host.com:/storage/brick1 hdss7-22.host.com:/storage/brick1 force
+volume create: gv1: success: please start the volume to access data
+
+
+
+# 启动
+[root@hdss7-11 ~]# gluster volume start gv1
+volume start: gv1: success
+
+
+
+# 查看信息
+[root@hdss7-11 ~]# gluster volume info gv1
+ 
+Volume Name: gv1
+Type: Distributed-Replicate
+Volume ID: e85616b7-f2e1-4691-a1c1-64b7dd51440f
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 2 x 2 = 4
+Transport-type: tcp
+Bricks:
+Brick1: hdss7-11.host.com:/storage/brick1
+Brick2: hdss7-12.host.com:/storage/brick1
+Brick3: hdss7-21.host.com:/storage/brick1
+Brick4: hdss7-22.host.com:/storage/brick1
+Options Reconfigured:
+cluster.granular-entry-heal: on
+storage.fips-mode-rchecksum: on
+transport.address-family: inet
+nfs.disable: on
+performance.client-io-threads: off
 ```
 
 #### 分布式条带卷
@@ -218,6 +258,64 @@ performance.client-io-threads: off
 #### 扩容
 ``` shell
 
+# 创建集群
+[root@hdss7-11 ~]# gluster volume create gv1  hdss7-11.host.com:/storage/brick1 hdss7-21.host.com:/storage/brick1 force
+volume create: gv1: success: please start the volume to access data
+
+
+# 启动
+[root@hdss7-11 ~]# gluster volume start gv1
+volume start: gv1: success
+
+
+
+# 查看信息
+[root@hdss7-11 ~]# gluster volume info gv1
+ 
+Volume Name: gv1
+Type: Distribute
+Volume ID: 47d5e036-920e-4a68-9694-3fd0b878ca58
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 2
+Transport-type: tcp
+Bricks:
+Brick1: hdss7-11.host.com:/storage/brick1
+Brick2: hdss7-21.host.com:/storage/brick1
+Options Reconfigured:
+storage.fips-mode-rchecksum: on
+transport.address-family: inet
+nfs.disable: on
+
+
+
+# 挂载
+[root@hdss7-11 ~]# mount -t glusterfs hdss7-11.host.com:/gv1 /data1
+
+
+
+# 扩容
+[root@hdss7-11 ~]# gluster volume add-brick gv1  hdss7-12.host.com:/storage/brick1 hdss7-22.host.com:/storage/brick1 force
+volume add-brick: success
+
+
+
+# 当新的磁盘加入到旧的集群中,需要平衡布局
+[root@hdss7-11 ~]# gluster volume rebalance gv1 start
+volume rebalance: gv1: success: Rebalance on gv1 has been started successfully. Use rebalance status command to check status of the rebalance process.
+ID: 0ea39109-c5c5-4c9d-aa22-debd92382065
+
+
+
+# 查看状态
+[root@hdss7-11 ~]# gluster volume rebalance gv1 status
+                                    Node Rebalanced-files          size       scanned      failures       skipped               status  run time in h:m:s
+                               ---------      -----------   -----------   -----------   -----------   -----------         ------------     --------------
+                       hdss7-12.host.com                0        0Bytes            27             0             0            completed        0:00:01
+                       hdss7-21.host.com                0        0Bytes            28             0             0            completed        0:00:01
+                       hdss7-22.host.com                0        0Bytes            27             0             3            completed        0:00:01
+                               localhost                0        0Bytes            46             0            19            completed        0:00:00
+volume rebalance: gv1: success
 ```
 
 #### 缩容
