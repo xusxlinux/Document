@@ -382,3 +382,15 @@ volume replace-brick: failed: replace-brick is not permitted on distribute only 
 # 按照提示,需要移除替换的盘,在把新的磁盘加入到集群中
 Please use add-brick and remove-brick operations instead.
 ```
+
+#### 
+``` shell
+# 设置网段访问挂载glusterfs
+[root@hdss7-11 ~]# gluster volume set gv1 auth.allow 10.4.7.*
+volume set: success
+
+
+# 查看
+[root@hdss7-11 ~]# gluster volume info
+auth.allow: 10.4.7.*
+```
