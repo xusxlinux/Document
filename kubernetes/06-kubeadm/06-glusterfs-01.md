@@ -320,10 +320,65 @@ volume rebalance: gv1: success
 
 #### 缩容
 ```
+# 移除其中一个坏掉的存储磁盘节点
+[root@hdss7-11 ~]# gluster volume remove-brick gv1  hdss7-22.host.com:/storage/brick1 force
+Remove-brick force will not migrate files from the removed bricks, so they will no longer be available on the volume.
+Do you want to continue? (y/n) y
 
+
+
+# 查看下状态
+[root@hdss7-11 ~]# gluster volume remove-brick gv1  hdss7-22.host.com:/storage/brick1 status
+volume remove-brick status: failed: remove-brick not started for volume gv1.
+
+
+
+# 查看磁盘的信息
+[root@hdss7-11 ~]# gluster volume info gv1
+ 
+Volume Name: gv1
+Type: Distribute
+Volume ID: 461b8f32-f59d-43b8-ad7e-50e3cb4fdae3
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 3
+Transport-type: tcp
+Bricks:
+Brick1: hdss7-11.host.com:/storage/brick1
+Brick2: hdss7-12.host.com:/storage/brick1
+Brick3: hdss7-21.host.com:/storage/brick1
+Options Reconfigured:
+performance.client-io-threads: on
+storage.fips-mode-rchecksum: on
+transport.address-family: inet
+nfs.disable: on
+
+
+
+# 重新 加载磁盘结构
+[root@hdss7-11 ~]# gluster volume rebalance gv1 start
+volume rebalance: gv1: success: Rebalance on gv1 has been started successfully. Use rebalance status command to check status of the rebalance process.
+ID: 8fa710a1-0506-4999-9bf7-c9ae74e2467f
+
+
+
+# 查看加载后的状态
+[root@hdss7-11 ~]# gluster volume rebalance gv1 status
+                                    Node Rebalanced-files          size       scanned      failures       skipped               status  run time in h:m:s
+                               ---------      -----------   -----------   -----------   -----------   -----------         ------------     --------------
+                       hdss7-12.host.com                4        0Bytes            28             0             0            completed        0:00:00
+                       hdss7-21.host.com                0        0Bytes            28             0             0            completed        0:00:00
+                               localhost                0        0Bytes            46             0            46            completed        0:00:00
+volume rebalance: gv1: success
 ```
 
 #### 替换
 ``` shell
+# replace-brick老版本的命令
+[root@hdss7-11 ~]# gluster volume replace-brick gv1 hdss7-21.host.com:/storage/brick1 hdss7-22.host.com:/storage/brick1 commit force
+volume replace-brick: failed: replace-brick is not permitted on distribute only volumes. Please use add-brick and remove-brick operations instead.
 
+
+# 按照提示,需要移除替换的盘,在把新的磁盘加入到集群中
+Please use add-brick and remove-brick operations instead.
 ```
