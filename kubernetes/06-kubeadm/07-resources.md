@@ -1,4 +1,5 @@
 #### 一、pods资源限制
+[Resource Quotas](https://feisky.gitbooks.io/kubernetes/content/concepts/quota.html)
 - Resources
   - Requests  
     表示容器希望被分配到的,可以完全保证的资源量,给到调度器,调度器会参考这个值来进行一系列的计算,从而找到最优的节点
@@ -41,7 +42,6 @@ docker inspect b2ca56b28d6c | grep -i cpuquota
             "CpuQuota": 10000
 ```
 
-https://feisky.gitbooks.io/kubernetes/content/components/kubelet.html
 
 #### 二、集群方面限制pod资源 (Limits range)
 
@@ -88,6 +88,7 @@ spec:
     # 对容器的限制
     type: Container
 ```
+
 
 #### 三、按团队进行资源配额
 
