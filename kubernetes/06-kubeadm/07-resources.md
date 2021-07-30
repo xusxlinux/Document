@@ -71,7 +71,6 @@ spec:
     # 对type是pod的资源做了限制
     type: Pod
   - default:
-    defaultLimit:
       cpu: 300m
       memory: 200Mi
     defaultRequest:
@@ -88,4 +87,41 @@ spec:
       memory: 4
     # 对容器的限制
     type: Container
+```
+
+#### 三、按团队进行资源配额
+
+``` yaml
+vim compute-resource.yaml
+
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: resource-quota
+  namespace: dev
+spec:
+  hard:
+    # pods允许只有4个
+    pods: 4
+    requests.cpu: 2000m
+    requests.memory: 4Gi
+    limits.cpu: 4000m
+    limits.memory: 8Gi
+```
+
+``` yaml
+vim object-count.yaml
+
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: object-counts
+  namespace: dev
+spec:
+  hard:
+    configmaps: 10
+    persistentvolumeclaims: 4
+    replicationcontrollers: 20
+    secrets: 10
+    services: 10
 ```
