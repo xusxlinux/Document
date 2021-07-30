@@ -109,6 +109,23 @@ spec:
     limits.memory: 8Gi
 ```
 
+``` shell
+# 如果没有配置名称空间, 可以在应用yaml的时候指定名称空间
+[root@hdss7-200 ~]# kubectl apply -f compute-resource.yaml -n dev
+
+# 查看对dev空间的资源限制
+[root@hdss7-200 ~]# kubectl describe quota resource-quota -n dev
+Name:            resource-quota
+Namespace:       dev
+Resource         Used  Hard
+--------         ----  ----
+limits.cpu       0     4
+limits.memory    0     8Gi
+pods             0     4
+requests.cpu     0     2
+requests.memory  0     4Gi
+```
+
 ``` yaml
 vim object-count.yaml
 
@@ -124,4 +141,18 @@ spec:
     replicationcontrollers: 20
     secrets: 10
     services: 10
+```
+
+``` shell
+# 查看对dev空间的资源限制
+[root@hdss7-200 ~]# kubectl describe quota object-count -n dev
+Name:                   object-counts
+Namespace:              dev
+Resource                Used  Hard
+--------                ----  ----
+configmaps              0     10
+persistentvolumeclaims  0     4
+replicationcontrollers  0     20
+secrets                 1     10
+services                0     10
 ```
