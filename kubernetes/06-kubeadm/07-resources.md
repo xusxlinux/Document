@@ -46,7 +46,7 @@ https://feisky.gitbooks.io/kubernetes/content/components/kubelet.html
 #### 二、集群方面限制pod资源 (Limits range)
 
 ``` yaml
-vim limits-range.yaml
+vim resource-limits-range.yaml
 
 apiVersion: v1
 kind: LimitRange
@@ -92,7 +92,7 @@ spec:
 #### 三、按团队进行资源配额
 
 ``` yaml
-vim compute-resource.yaml
+vim resource-compute.yaml
 
 apiVersion: v1
 kind: ResourceQuota
@@ -111,7 +111,7 @@ spec:
 
 ``` shell
 # 如果没有配置名称空间, 可以在应用yaml的时候指定名称空间
-[root@hdss7-200 ~]# kubectl apply -f compute-resource.yaml -n dev
+[root@hdss7-200 ~]# kubectl apply -f resource-compute.yaml -n dev
 
 # 查看对dev空间的资源限制
 [root@hdss7-200 ~]# kubectl describe quota resource-quota -n dev
@@ -127,7 +127,7 @@ requests.memory  0     4Gi
 ```
 
 ``` yaml
-vim object-count.yaml
+vim resource-object-count.yaml
 
 apiVersion: v1
 kind: ResourceQuota
@@ -156,3 +156,17 @@ replicationcontrollers  0     20
 secrets                 1     10
 services                0     10
 ```
+
+#### Pod驱逐 - Eviction
+- 常见驱逐策略配置
+  - --eviction-soft=memory.available<1.5Gi
+  - --eviction-soft-grace-period=memory.availabel=1m30s
+  - --eviction-hard=memory.available<100Mi,nodefs.available<1Gi,nodefs.inodesFree<5%
+- 磁盘紧缺
+  - 删除死掉的pod、容器
+  - 删除没用的镜像
+  - 按优先级、资源占用情况驱逐pod
+- 内存紧缺
+  - 驱逐不可靠的pod
+  - 驱逐基本可靠的pod
+  - 驱逐可靠的pod
