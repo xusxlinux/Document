@@ -117,6 +117,7 @@ spec:
         image: xusx/nginx:1.15.12
         ports:
         - containerPort: 80
+        # 存活性探针检测端口
         livenessProbe:
           tcpSocket:
             port: 80
@@ -125,6 +126,7 @@ spec:
           failureThreshold: 1
           successThreshold: 1
           timeoutSeconds: 5
+        # 就绪性探针检测uri
         readinessProbe:
           httpGet:
             path: index.html
