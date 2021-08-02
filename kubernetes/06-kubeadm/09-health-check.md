@@ -48,7 +48,6 @@ spec:
             path: /
             port: 8080
             scheme: HTTP
-
           # 等待容器启动的之后在执行cmd , 等待的时间是10秒
           initialDelaySeconds: 10
           # 健康检查的间隔时间, 检查的时间越短,消耗的性能越大
