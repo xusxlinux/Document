@@ -205,8 +205,10 @@ spec:
           timeoutSeconds: 5
         # readinessProbe负责告诉service我们的应用程序可以对外访问了, 最好是检测端口
         readinessProbe:
-          tcpSocket:
+          httpGet:
+            path: /
             port: 8080
+            scheme: HTTP
           initialDelaySeconds: 10
           periodSeconds: 10
           failureThreshold: 2
