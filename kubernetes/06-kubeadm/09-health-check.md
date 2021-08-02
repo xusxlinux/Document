@@ -43,7 +43,7 @@ spec:
           # 执行上面cmd的命令时候, 最长的等待时间
           timeoutSeconds: 5
         # 就绪性探针 readinessProbe负责告诉service 应用程序可以对外访问了
-        livenessProbe:
+        readinessProbe:
           exec:
             command:
             - /bin/sh
