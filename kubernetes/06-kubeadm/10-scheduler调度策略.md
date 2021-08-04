@@ -1,8 +1,8 @@
 
 - 预选策略(Predicate)
-
+  - 排除不符合的
 - 优选策略(Priority)
-
+  - 选择最优的
 
 - 节点的亲和性(affinity), 反亲和性(AntiAffinity)
 ``` yaml
