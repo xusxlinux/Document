@@ -50,7 +50,6 @@ spec:
             preference:
               matchExpressions:
               - key: disktype
-                #operator: NotIn
                 operator: NotIn
                 values:
                 - ssd
