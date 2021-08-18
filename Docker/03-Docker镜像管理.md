@@ -79,6 +79,14 @@ deb http://mirrors.163.com/debian/ jessie main non-free contrib
 deb http://mirrors.163.com/debian/ jessie-updates main non-free contrib
 EOF
 
+#debian 系统更新安装jdk11
+apt install dirmngr
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EA8CACC073C3DB2A
+echo "deb http://ppa.launchpad.net/linuxuprising/java/ubuntu bionic main" | sudo tee /etc/apt/sources.list.d/linuxuprising-java.list
+apt update
+apt install oracle-java11-installer -y
+apt install oracle-java11-set-default
+
 # ubantu容器中安装curl命令
 root@08d3ee0358cd:/# apt-get update && apt-get install curl -y
 root@08d3ee0358cd:/# curl -k https://www.baidu.com
