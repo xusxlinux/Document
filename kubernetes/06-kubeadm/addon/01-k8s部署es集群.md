@@ -84,6 +84,15 @@
           fsGroup: 1000
         restartPolicy: Always
         initContainers:
+        - name: fix-permissions
+          image: busybox
+          imagePullPolicy: IfNotPresent
+          command: ["sh", "-c", "chown -R 1000:1000 /usr/share/elasticsearch/data"]
+          securityContext:
+            privileged: true
+          volumeMounts:
+          - name: es-data
+            mountPath: /usr/share/elasticsearch/data
         - name: configure-sysctl
           securityContext:
             runAsUser: 0
@@ -104,6 +113,14 @@
             env:
               - name: cluster.name
                 value: "es_cluster"
+              - name: node.name
+                valueFrom:
+                  fieldRef:
+                    fieldPath: metadata.name
+              - name: "network.host"
+                value: "_eth0_"
+  #            - name: network.publish_host
+  #              value: "elasticsearch-api"
               - name: node.master
                 value: "false"
               - name: node.data
@@ -112,6 +129,12 @@
                 value: "true"
               - name: discovery.seed_hosts
                 value: "elasticsearch-discovery"
+              - name: discovery.seed_providers
+                value: "file"
+              - name: http.cors.enabled
+                value: "true"
+              - name: http.cors.allow-origin
+                value: "*"
               - name: bootstrap.memory_lock  # 开启
                 value: 'true'
               - name: ES_JAVA_OPTS
@@ -163,29 +186,6 @@
       app: elasticsearch
       role: master
   ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
