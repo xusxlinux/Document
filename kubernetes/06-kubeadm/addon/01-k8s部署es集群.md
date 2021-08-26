@@ -1,8 +1,8 @@
 
 
 - master
- - vim es-master.yaml
 
+ - vim es-master.yaml
  ``` yaml
  apiVersion: apps/v1
  kind: StatefulSet
