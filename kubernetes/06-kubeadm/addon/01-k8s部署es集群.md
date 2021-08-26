@@ -125,8 +125,44 @@
            path: /data/es-data
  ```
 
-
-
+- svc
+ - vim svc-es.yaml
+ ``` yaml
+ apiVersion: v1
+ kind: Service
+ metadata:
+   labels:
+     app: elasticsearch
+   name: elasticsearch-discovery
+   namespace: elk
+ spec:
+   publishNotReadyAddresses: true
+   ports:
+   - name: transport
+     port: 9300
+     targetPort: 9300
+   selector:
+     app: elasticsearch
+     role: master
+ ---
+ apiVersion: v1
+ kind: Service
+ metadata:
+   labels:
+     app: elasticsearch
+     role: data
+   name: elasticsearch-api
+   namespace: elk
+ spec:
+   type: ClusterIP
+   ports:
+   - name: http
+     protocol: TCP
+     port: 9200
+   selector:
+     app: elasticsearch
+     role: master
+ ```
 
 
 
