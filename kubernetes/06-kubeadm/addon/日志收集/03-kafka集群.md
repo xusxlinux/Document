@@ -54,14 +54,11 @@ num.recovery.threads.per.data.dir=1
 # 日志保留小时数，超时会自动删除，默认为7天
 log.retention.hours=168
 
-
 # 日志保留大小，超出大小会自动删除，默认为1G
 #log.retention.bytes=1073741824
 
-
 # 日志分片策略，单个日志文件的大小最大为1G，超出后则创建一个新的日志文件
 log.segment.bytes=1073741824
-
 
 # 每隔多长时间检测数据是否达到删除条件,300s
 log.retention.check.interval.ms=300000
@@ -69,7 +66,6 @@ log.retention.check.interval.ms=300000
 ############################# Zookeeper #############################
 # Zookeeper连接信息，如果是zookeeper集群，则以逗号隔开
 zookeeper.connect=hdss7-12.host.com:2181,hdss7-21.host.com:2181,hdss7-22.host.com:2181
-
 
 # 连接zookeeper的超时时间,6s
 zookeeper.connection.timeout.ms=6000
