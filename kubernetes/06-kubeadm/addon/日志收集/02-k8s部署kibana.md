@@ -1,7 +1,6 @@
 - kibana
 
   - vim kibana.yaml
-
   ``` yaml
   apiVersion: v1
   kind: Service
