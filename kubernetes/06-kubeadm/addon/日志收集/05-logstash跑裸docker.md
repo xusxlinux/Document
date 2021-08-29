@@ -39,7 +39,8 @@ output {
   - `--add-host` 这个参数是用于解析主机名。
     - elasticsearch:172.16.25.243 es集群中services的ClusterIP
 ``` shell
-docker run -d --name logstash-dev -v /etc/logstash:/etc/logstash  \
+docker run -d --name logstash-dev \
+  -v /etc/logstash:/etc/logstash  \
   --add-host elasticsearch:172.16.25.243 \
   logstash:7.14.0  \
   -f /etc/logstash/logstash-dev.conf
