@@ -4,7 +4,7 @@
     
 [官网地址](https://github.com/yahoo/CMAK)
 
-- kafka-manage镜像的打包命令 一
+- kafka-manage镜像的打包命令  (两种方式如下)
 
   - vim /data/Dockerfile/kafka-manage/Dockerfile
     ``` Dockerfile
