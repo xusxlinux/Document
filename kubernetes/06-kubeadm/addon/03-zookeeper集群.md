@@ -39,11 +39,19 @@ server.3=hdss7-22.host.com:2888:3888
 # 节点1
 echo "1" > /data/zookeeper/data/myid
 
-
 # 节点2
 echo "2" > /data/zookeeper/data/myid
 
-
 # 节点3
 echo "3" > /data/zookeeper/data/myid
+```
+
+- 启动zk集群
+``` shell
+cd /data/zookeeper/bin
+./zkServer.sh start
+```
+- 查看zk集群启动状态
+``` shell
+zkServer.sh status
 ```
