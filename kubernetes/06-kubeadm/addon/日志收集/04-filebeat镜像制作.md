@@ -1,6 +1,7 @@
 [filebeat 二进制包下载地址](https://www.elastic.co/cn/downloads/beats/filebeat)
 
 - filebeat7.14镜像制作
+  - topic名称 `k8s-filebeat-$ENV-%{[topic]}`
   - vim /data/Dockerfile/filebeat/Dockerfile
     ``` Dockerfile
     ENV FILEBEAT_VERSION=7.14.0 \
