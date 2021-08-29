@@ -58,4 +58,6 @@ cd /data/zookeeper/bin
 - 查看topic
 ``` shell
 ./kafka-topics.sh --list --zookeeper hdss7-12.host.com:2181,hdss7-21.host.com:2181,hdss7-22.host.com:2181
+__consumer_offsets
+k8s-filebeat-dev-logm-tomcat
 ```
