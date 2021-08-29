@@ -1,6 +1,6 @@
 为什么要制作这版镜像呢：  
-    因为： linux服务器上的java版本是jdk8，但是按照github官网的要求， 需要java11 才能启动这个进程  
-    所以：我们干脆就用这个镜像封装了一版可以使用java11跑manage跑这个程序的容器
+        因为： linux服务器上的java版本是jdk8，但是按照github官网的要求， 需要java11 才能启动这个进程  
+        所以：我们干脆就用这个镜像封装了一版可以使用java11跑manage跑这个程序的容器
     
 [官网地址](https://github.com/yahoo/CMAK)
 
