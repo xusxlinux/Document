@@ -6,7 +6,7 @@
 
 - kafka-manage镜像的打包命令 一
 
-  - /data/Dockerfile/kafka-manage/Dockerfile
+  - vim /data/Dockerfile/kafka-manage/Dockerfile
     ``` Dockerfile
     FROM hseeberger/scala-sbt:11.0.12_1.5.5_2.13.6
 
@@ -27,7 +27,7 @@
     EXPOSE 9000
     ENTRYPOINT ["./bin/cmak","-Dconfig.file=conf/application.conf"]
     ```
-  - /data/Dockerfile/kafka-manage/Dockerfile
+  - vim /data/Dockerfile/kafka-manage/Dockerfile
 
     ``` Dockerfile
     FROM hseeberger/scala-sbt:11.0.12_1.5.5_2.13.6
@@ -58,7 +58,7 @@
     ```
     
 - kafka-manage连接zookeeper集群的时候会出现如下一个BUG
-  - `Yikes! KeeperErrorCode = Unimplemented for /kafka-manager/mutex Try again.`
+  - `Yikes! KeeperErrorCode = Unimplemented for /kafka-manager/mutex Try again.`  
   [官网的issue](https://github.com/yahoo/CMAK/issues/731)
   - 解决办法
     ``` shell
