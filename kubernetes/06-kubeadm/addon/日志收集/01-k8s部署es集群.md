@@ -46,10 +46,10 @@
                 value: "true"
               - name: node.data
                 value: "false"
-              - name: discovery.seed_hosts # 旧版本使用 discovery.zen.ping.unicast.hosts
-                value: "elasticsearch-discovery" # Disvocery Service
-              - name: cluster.initial_master_nodes # 初始化的 master 节点，旧版本相关配置 discovery.zen.minimum_master_nodes
-                value: "elasticsearch-master-0,elasticsearch-master-1" # 根据副本数和name配置
+              - name: discovery.seed_hosts
+                value: "elasticsearch-discovery"
+              - name: cluster.initial_master_nodes
+                value: "elasticsearch-master-0,elasticsearch-master-1"
               - name: node.ingest
                 value: "false"
               - name: ES_JAVA_OPTS
