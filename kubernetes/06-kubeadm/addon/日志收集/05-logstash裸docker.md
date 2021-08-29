@@ -34,7 +34,6 @@ output {
     codec => rubydebug
   }
 }
-
 ```
 - 运行容器
   - `--add-host` 这个参数是用于解析主机名。
