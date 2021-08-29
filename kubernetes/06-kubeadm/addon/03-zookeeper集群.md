@@ -53,5 +53,9 @@ cd /data/zookeeper/bin
 ```
 - 查看zk集群启动状态
 ``` shell
-zkServer.sh status
+./zkServer.sh status
+```
+- 查看topic
+``` shell
+./kafka-topics.sh --list --zookeeper hdss7-12.host.com:2181,hdss7-21.host.com:2181,hdss7-22.host.com:2181
 ```
