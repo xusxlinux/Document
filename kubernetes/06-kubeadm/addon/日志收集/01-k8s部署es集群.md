@@ -83,11 +83,13 @@
         securityContext:
           fsGroup: 1000
         restartPolicy: Always
+        # 在主容器启动前的操作
         initContainers:
         - name: fix-permissions
           image: busybox
           imagePullPolicy: IfNotPresent
           command: ["sh", "-c", "chown -R 1000:1000 /usr/share/elasticsearch/data"]
+          # 设置容器为特权模式
           securityContext:
             privileged: true
           volumeMounts:
