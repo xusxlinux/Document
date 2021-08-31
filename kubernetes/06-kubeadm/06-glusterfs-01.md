@@ -44,7 +44,7 @@ e1008d0d-d76b-4268-8ef8-2db6548df8cd	hdss7-21.host.com	Connected
 # 所有存储节点先做分区
 [root@hdss7-11 ~]# fdisk /dev/sdb
 # 所有文件系统格式化
-[root@hdss7-11 ~]# mkfs.xfs /dev/sdb1
+[root@hdss7-11 ~]# mkfs.xfs -i size=512 /dev/sdb1
 # 所有创建挂载磁盘并挂载
 [root@hdss7-11 ~]# mkdir -pv /storage/brick1
 [root@hdss7-11 ~]# mount /dev/sdb1 /storage/brick1/
