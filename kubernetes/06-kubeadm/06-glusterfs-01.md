@@ -44,6 +44,8 @@ e1008d0d-d76b-4268-8ef8-2db6548df8cd	hdss7-21.host.com	Connected
 # 所有存储节点先做分区
 [root@hdss7-11 ~]# fdisk /dev/sdb
 # 所有文件系统格式化
+ - -i size=512  :默认的值是256KB，当内容小于这个值时，写到inode中，超过这个值时，写到block中
+ - -l size=128m :默认值的是10m，修改这个参数成128m，可以提高xfs文件系统删除文件的速度，拷贝文件的速度，这个参数需要大内存的支持
 [root@hdss7-11 ~]# mkfs.xfs -i size=512 /dev/sdb1
 # 所有创建挂载磁盘并挂载
 [root@hdss7-11 ~]# mkdir -pv /storage/brick1
