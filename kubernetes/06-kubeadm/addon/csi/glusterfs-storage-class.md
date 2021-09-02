@@ -1,3 +1,4 @@
+[volume 类型](https://v1-18.docs.kubernetes.io/zh/docs/concepts/storage/volumes/)
 [storage class 官网](https://v1-18.docs.kubernetes.io/zh/docs/concepts/storage/storage-classes/#glusterfs)
 - vim glusterfs-storage-class.yaml
     ``` yaml
