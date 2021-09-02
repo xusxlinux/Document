@@ -229,8 +229,10 @@ heketi-cli --user admin --secret admin@123 topology info
 # 创建一个1G的磁盘, 副本数为2
 heketi-cli --user admin --secret admin@123 volume create --size=1 --replica=2
 
+# 删除磁盘(挂载后卸载不掉可以使用这样的方式)
+heketi-cli --user admin --secret admin@123 volume delete c3cd919418407f54c2bbef18e4f64721 (Cluster Id)
 
-
+# 查看信息
 heketi-cli cluster info 5d5dd154de3da4b4617502fd007d8a40
 heketi-cli node list
 heketi-cli node info 878b339838e300c7a4c1d424843477d2
