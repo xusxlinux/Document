@@ -212,17 +212,29 @@ cat /etc/heketi/topology.json
 
 
 ``` shell
-# 使用heketi创建卷
-
-heketi-cli --user admin --secret admin@123 -s http://0.0.0.0:8080 topology load --json=topology.json
-heketi-cli --user admin --secret admin@123 topology info
-heketi-cli --user admin --secret admin@123 volume create --size=1 --replica=2
-
 
 # 添加环境变量
 export HEKETI_CLI_SERVER=http://10.4.7.200:8080
 export HEKETI_CLI_USER=admin
 export HEKETI_CLI_KEY=admin
+
+
+
+# 使用heketi创建卷
+heketi-cli --user admin --secret admin@123 -s http://0.0.0.0:8080 topology load --json=topology.json
+
+# 显示所有信息
+heketi-cli --user admin --secret admin@123 topology info
+
+# 创建一个1G的磁盘, 副本数为2
+heketi-cli --user admin --secret admin@123 volume create --size=1 --replica=2
+
+
+
+heketi-cli cluster info 5d5dd154de3da4b4617502fd007d8a40
+heketi-cli node list
+heketi-cli node info 878b339838e300c7a4c1d424843477d2
+heketi-cli device info abd32f316932cac0d3a1caa159892cca
 ```
 
 ``` shell
