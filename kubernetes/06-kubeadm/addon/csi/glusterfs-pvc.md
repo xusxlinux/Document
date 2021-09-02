@@ -1,4 +1,4 @@
-[PersistenVolumeClaim 创建](https://v1-18.docs.kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/)
+[PersistenVolumeClaim 创建](https://v1-18.docs.kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/#create-a-persistentvolumeclaim)
 - vim glusterfs-pvc.yaml
     ``` yaml
     kind: PersistentVolumeClaim
