@@ -396,3 +396,4 @@ volume set: success
 [root@hdss7-11 ~]# gluster volume info
 auth.allow: 10.4.7.*
 ```
+
