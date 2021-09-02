@@ -1,4 +1,4 @@
-[Glusterfs 官网](https://kubernetes.io/zh/docs/concepts/storage/storage-classes/)
+[storage class 官网](https://kubernetes.io/zh/docs/concepts/storage/storage-classes/)
 - vim glusterfs-storage-class.yaml
     ``` yaml
     apiVersion: storage.k8s.io/v1
