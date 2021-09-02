@@ -1,4 +1,4 @@
-
+[github heketi使用方式](https://github.com/heketi/heketi/blob/master/docs/admin/server.md)
 ```
 # 安装client
 yum install centos-release-gluster -y
