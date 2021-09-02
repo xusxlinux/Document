@@ -216,7 +216,7 @@ cat /etc/heketi/topology.json
 # 添加环境变量
 export HEKETI_CLI_SERVER=http://10.4.7.200:8080
 export HEKETI_CLI_USER=admin
-export HEKETI_CLI_KEY=admin
+export HEKETI_CLI_KEY=admin@123
 
 
 
