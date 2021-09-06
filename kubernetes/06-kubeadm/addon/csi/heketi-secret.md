@@ -1,3 +1,4 @@
+[heketi secret密码交互](https://github.com/kubernetes/examples/blob/master/staging/persistent-volume-provisioning/glusterfs/glusterfs-secret.yaml)
 - vim heketi-secret.yaml
     ``` yaml
     apiVersion: v1
