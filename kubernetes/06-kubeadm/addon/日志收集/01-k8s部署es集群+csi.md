@@ -18,7 +18,7 @@ parameters:
   gidMax: "50000"
   volumetype: "replicate:2"
 ```
-
+[Headless Services 官网](https://v1-18.docs.kubernetes.io/zh/docs/concepts/services-networking/service/#headless-services)  
 vim es-headless-svc.yaml
 ``` yaml
 kind: Service
