@@ -1,7 +1,7 @@
 [kubernetes  --> Ingress controller 官网](https://v1-18.docs.kubernetes.io/zh/docs/concepts/services-networking/ingress-controllers/)  
 k8s项目维持的控制器[GCE](https://github.com/kubernetes/ingress-gce/blob/master/README.md)或者[nginx controllers](https://github.com/kubernetes/ingress-nginx/blob/main/README.md)   
 其中如下实验使用的是[nginx controllers](https://github.com/kubernetes/ingress-nginx/blob/main/README.md)  
-我选择的是GitHub上main中Tags是[nginx-30.0](https://github.com/kubernetes/ingress-nginx/blob/nginx-0.30.0/README.md#get-started) Getting Started 1.18版本使用的配置  
+我选择的是GitHub上main中Tags是[nginx-30.0](https://github.com/kubernetes/ingress-nginx/blob/nginx-0.30.0/README.md#get-started) [Getting Started](https://kubernetes.github.io/ingress-nginx/deploy/) 1.18版本使用的配置  
 版本选择参考官方文档[Ingress-nginx version](https://github.com/kubernetes/ingress-nginx/blob/main/README.md#changelog)  
 [开始部署 --> 先决条件](https://github.com/kubernetes/ingress-nginx/blob/nginx-0.30.0/docs/deploy/index.md#prerequisite-generic-deployment-command)
 - 部署ingress-controller 有两种方式
