@@ -22,3 +22,9 @@ k8s项目维持的控制器[GCE](https://github.com/kubernetes/ingress-gce/blob/
   # 不需要ingress的直接删除标签就行
   kubectl label nodes hdss7-11.host.com app-
   ```
+- 产看安装的版本信息
+  ``` shell
+  POD_NAMESPACE=ingress-nginx
+  POD_NAME=$(kubectl get pods -n $POD_NAMESPACE -l app.kubernetes.io/name=ingress-nginx --field-selector=status.phase=Running -o jsonpath='{.items[0].metadata.name}')
+  kubectl exec -it $POD_NAME -n $POD_NAMESPACE -- /nginx-ingress-controller --version
+  ```
