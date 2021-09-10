@@ -18,4 +18,7 @@ k8s项目维持的控制器[GCE](https://github.com/kubernetes/ingress-gce/blob/
   ``` shell
   # 需要部署在哪些节点上, 就给哪些节点打上label
   kubectl label nodes hdss7-11.host.com app=ingress
+  
+  # 不需要ingress的直接删除标签就行
+  kubectl label nodes hdss7-11.host.com app-
   ```
