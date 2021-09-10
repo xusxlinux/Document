@@ -1,7 +1,4 @@
-# tcp服务如何使用
-kubectl get cm -n ingress-nginx
-
-
+# tcp服务使用
 vim tcp-config.yaml
 ``` yaml
 apiVersion: v1
@@ -16,8 +13,8 @@ data:
 
 
 # 进入到ingress容器中
-kubectl exec -it -n ingress-nginx nginx-ingress-controller-x7xbf -- /bin/sh
-[ingress-nginx官网文档的参数配置](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#configmaps)
+kubectl exec -it -n ingress-nginx nginx-ingress-controller-x7xbf -- /bin/sh  
+[ingress-nginx官网文档的参数配置](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#configmaps)  
 vim nginx-config.yaml
 ``` yaml
 kind: ConfigMap
