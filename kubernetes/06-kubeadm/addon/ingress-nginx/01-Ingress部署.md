@@ -5,8 +5,8 @@ k8s项目维持的控制器[GCE](https://github.com/kubernetes/ingress-gce/blob/
 版本选择参考官方文档[Ingress-nginx version](https://github.com/kubernetes/ingress-nginx/blob/main/README.md#changelog)  
 [开始部署 --> 先决条件](https://github.com/kubernetes/ingress-nginx/blob/nginx-0.30.0/docs/deploy/index.md#prerequisite-generic-deployment-command)
 - 部署ingress-controller 有两种方式
-  - 不推荐 [NodePort](https://github.com/kubernetes/ingress-nginx/blob/nginx-0.30.0/docs/deploy/index.md#bare-metal)
-  - 推荐[Cluster](https://github.com/xusxlinux/Document/blob/master/kubernetes/06-kubeadm/addon/ingress-nginx/01-magic_change.yaml)需要自己魔改
+  - 不推荐 [NodePort](https://github.com/kubernetes/ingress-nginx/blob/nginx-0.30.0/docs/deploy/index.md#bare-metal) 因为这需要多一层转发, 影响效率
+  - 推荐[ClusterIP](https://github.com/xusxlinux/Document/blob/master/kubernetes/06-kubeadm/addon/ingress-nginx/01-magic_change.yaml)需要自己魔改
   ``` yaml
   kind: DaemonSet
   
