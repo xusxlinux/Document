@@ -12,10 +12,16 @@ data:
 ```
 
 
-# 进入到ingress容器中
-kubectl exec -it -n ingress-nginx nginx-ingress-controller-x7xbf -- /bin/sh  
+#### 进入到ingress容器中
+``` shell
+# 进入容器
+kubectl exec -it -n ingress-nginx nginx-ingress-controller-x7xbf -- /bin/sh
+
+# 查找对应的server是否生效
+less nginx.conf
+```
 [ingress-nginx官网文档的参数配置](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#configmaps)  
-vim nginx-config.yaml
+- vim nginx-config.yaml
 ``` yaml
 kind: ConfigMap
 apiVersion: v1
@@ -32,7 +38,7 @@ data:
 再次进入容器中, 发现上述的参数生效
 
 
-# 自定义全局变量
+#### 自定义全局变量
 vim custom-header-global.yaml
 ``` yaml
 # ingres-nginx 容器中 定义全局变量
@@ -59,7 +65,7 @@ metadata:
   namespace: ingress-nginx
 ```
 
-# 定制在某个ingress下的haed
+#### 定制在某个ingress下的haed
 ``` yaml
 # default名称空间下 daem服务暴露 
 apiVersion: networking.k8s.io/v1beta1
@@ -82,7 +88,7 @@ spec:
 
 ```
 
-# 自定义配置模板
+#### 自定义配置模板
 [Custom NGINX template](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/custom-template/#custom-nginx-template)
 ``` shell
 # 把容器中的nginx.tmpl文件拷贝出来
