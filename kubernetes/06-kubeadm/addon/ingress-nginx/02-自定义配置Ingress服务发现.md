@@ -1,5 +1,5 @@
 #### tcp服务使用
-vim tcp-config.yaml
+- vim tcp-config.yaml
 ``` yaml
 apiVersion: v1
 kind: ConfigMap
@@ -7,7 +7,7 @@ metadata:
   name: tcp-services
   namespace: ingress-nginx
 data:
-  # 指定程序启动的名称空间"default"
+  # 指定程序启动的名称空间"default" /  服务的svc名称加上端口
   "30000": default/web-deploy:80
 ```
 
