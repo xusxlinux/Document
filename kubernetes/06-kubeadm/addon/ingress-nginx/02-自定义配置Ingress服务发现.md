@@ -1,5 +1,7 @@
 #### tcp服务使用
 - vim tcp-config.yaml
+  -  给deployment创建service [官网配置方式](https://v1-18.docs.kubernetes.io/zh/docs/concepts/services-networking/connect-applications-service/#%E5%88%9B%E5%BB%BA-service)
+  > kubectl expose deployment/web-deploy
 ``` yaml
 apiVersion: v1
 kind: ConfigMap
