@@ -71,6 +71,8 @@ metadata:
 ```
 验证如下, `先定义全局变量, 否则不生效`
 ``` shell
+kubectl apply -f custom-header-global.yaml
+
 kubectl exec -it -n ingress-nginx nginx-ingress-controller-tmck4 -- cat /etc/nginx/nginx.conf | grep  X-Request-Start
 379:		proxy_set_header X-Request-Start                    "t=${msec}";
 ```
