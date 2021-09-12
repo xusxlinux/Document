@@ -138,6 +138,14 @@ kubectl get cm -n ingress-nginx nginx-template -o yaml
 # 重新应用一下修改后的文件使之生效
 kubectl apply -f magic_change.yaml 
 
+# 初始值
+kubectl exec -it -n ingress-nginx nginx-ingress-controller-hfbk8 -- cat /etc/nginx/template/nginx.tmpl | grep -n 2048
+210:    types_hash_max_size             2048;
+
 # 编辑模板文件, 对要改变的参数做调整实现热加载
 kubectl edit -n ingress-nginx cm nginx-template 
+
+# 改变后的值
+kubectl exec -it -n ingress-nginx nginx-ingress-controller-hfbk8 -- cat /etc/nginx/template/nginx.tmpl | grep -n 4096
+210:    types_hash_max_size 
 ```
