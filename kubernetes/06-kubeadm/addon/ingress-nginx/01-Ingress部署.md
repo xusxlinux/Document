@@ -42,3 +42,29 @@ k8s项目维持的控制器[GCE](https://github.com/kubernetes/ingress-gce/blob/
   POD_NAME=$(kubectl get pods -n $POD_NAMESPACE -l app.kubernetes.io/name=ingress-nginx --field-selector=status.phase=Running -o jsonpath='{.items[0].metadata.name}')
   kubectl exec -it $POD_NAME -n $POD_NAMESPACE -- /nginx-ingress-controller --version
   ```
+- 一些不影响的报错信息
+``` shell
+00 +0000 UTC,DeletionTimestamp:<nil>,DeletionGracePeriodSeconds:nil,Labels:map[string]string{},Annotations:map[string]string{},OwnerReferences:[]OwnerReference{},Finalizers:[],ClusterName:,ManagedFields:[]ManagedFieldsEntry{},}, err services "ingress-nginx" not found
+```
+- 解决办法 - 创建一个headless
+  - vim ingress-headless-svc.yaml
+  ``` yaml
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: ingress-nginx
+    namespace: ingress-nginx
+  spec:
+    type: ClusterIP
+    ports:
+    - name: http
+      port: 80
+      targetPort: 80
+      protocol: TCP
+    - name: https
+      port: 443
+      targetPort: 443
+      protocol: TCP
+    selector:
+      app: ingress-nginx
+  ```
