@@ -22,6 +22,20 @@ k8s项目维持的控制器[GCE](https://github.com/kubernetes/ingress-gce/blob/
   # 不需要ingress的直接删除标签就行
   kubectl label nodes hdss7-11.host.com app-
   ```
+- 魔改的方式还是有讲究
+  ``` shell
+  # 魔改之前是使用deploy方式部署的
+  kubectl get all -n ingress-nginx
+  
+  # 删除delpy资源, 保留创建的ConfigMap , serviceaccount , clusterrole , rolebinding , clusterrolebinding
+  kubectl delete deploy -n ingress-nginx nginx-ingress-controller
+  
+  # 或者把deploy scale缩减成零
+  kubectl scale deploy -n ingress-nginx nginx-ingress-controller --replicas=0
+  
+  # 使用DaemonSet部署ingress
+  kubectl apply -f magic_change.yaml
+  ```
 - 产看安装的版本信息
   ``` shell
   POD_NAMESPACE=ingress-nginx
