@@ -33,11 +33,11 @@ data:
 ```
 再次进入容器中, 发现上述的参数生效
 ``` shell
-# 进入容器
-kubectl exec -it -n ingress-nginx nginx-ingress-controller-x7xbf -- /bin/sh
+kubectl apply -f nginx-config.yaml
 
-# 查找对应的server是否生效
-less nginx.conf
+kubectl exec -it -n ingress-nginx nginx-ingress-controller-tmck4 -- cat /etc/nginx/nginx.conf | grep -n 64m
+346:			client_max_body_size                    64m;
+498:			client_max_body_size                    64m;
 ```
 
 ---
