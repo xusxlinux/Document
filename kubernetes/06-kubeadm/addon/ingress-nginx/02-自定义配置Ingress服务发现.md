@@ -11,10 +11,9 @@ data:
   "30000": default/web-deploy:80
 ```
 
+---
 
 #### 进入到ingress容器中
-inx.conf
-```
 [ingress-nginx官网文档的参数配置](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#configmaps)  
 - vim nginx-config.yaml
 ``` yaml
@@ -36,7 +35,10 @@ data:
 kubectl exec -it -n ingress-nginx nginx-ingress-controller-x7xbf -- /bin/sh
 
 # 查找对应的server是否生效
-less ng
+less nginx.conf
+```
+
+---
 
 #### 自定义全局变量
 - vim custom-header-global.yaml
@@ -65,6 +67,7 @@ metadata:
   namespace: ingress-nginx
 ```
 
+---
 
 #### 定制在某个ingress下server的haed, 提供对外暴漏服务
 - vim ingress-custom-header.yaml
@@ -90,6 +93,7 @@ spec:
 
 ```
 
+---
 
 #### 自定义配置模板
 [Custom NGINX template](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/custom-template/#custom-nginx-template)
