@@ -31,9 +31,9 @@ data:
   proxy-read-timeout: "180"
   proxy-send-timeout: "180"
 ```
-再次进入容器中, 发现上述的参数生效
+再次查看, 发现上述的参数生效
 ``` shell
-# 可以使用热加载, `重新应用一下如下配置文件`
+# 可以使用热加载, (重新应用一下如下配置文件)
 kubectl apply -f nginx-config.yaml
 
 kubectl exec -it -n ingress-nginx nginx-ingress-controller-tmck4 -- cat /etc/nginx/nginx.conf | grep -n 64m
@@ -98,7 +98,6 @@ spec:
           serviceName: web-deploy
           servicePort: 80
         path: /
-
 ```
 
 ---
