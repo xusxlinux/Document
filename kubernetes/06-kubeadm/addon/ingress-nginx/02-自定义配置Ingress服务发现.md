@@ -69,7 +69,7 @@ metadata:
   name: custom-headers
   namespace: ingress-nginx
 ```
-验证如下, `这个配置与下一个配置一起时不会生效`
+验证如下, `先定义全局变量, 否则不生效`
 ``` shell
 kubectl exec -it -n ingress-nginx nginx-ingress-controller-tmck4 -- cat /etc/nginx/nginx.conf | grep  X-Request-Start
 379:		proxy_set_header X-Request-Start                    "t=${msec}";
@@ -98,6 +98,11 @@ spec:
           serviceName: web-deploy
           servicePort: 80
         path: /
+```
+配置生效
+``` shell
+[root@hdss7-200 ingress-nginx]# kubectl exec -it -n ingress-nginx nginx-ingress-controller-tmck4 -- cat /etc/nginx/nginx.conf | grep -n Request-Id
+562:			more_set_headers "Request-Id: $req_id";
 ```
 
 ---
