@@ -33,6 +33,7 @@ data:
 ```
 再次进入容器中, 发现上述的参数生效
 ``` shell
+# 可以使用热加载, `重新应用一下如下配置文件`
 kubectl apply -f nginx-config.yaml
 
 kubectl exec -it -n ingress-nginx nginx-ingress-controller-tmck4 -- cat /etc/nginx/nginx.conf | grep -n 64m
@@ -67,6 +68,11 @@ data:
 metadata:
   name: custom-headers
   namespace: ingress-nginx
+```
+验证如下, `这个配置与下一个配置一起时不会生效`
+``` shell
+kubectl exec -it -n ingress-nginx nginx-ingress-controller-tmck4 -- cat /etc/nginx/nginx.conf | grep  X-Request-Start
+379:		proxy_set_header X-Request-Start                    "t=${msec}";
 ```
 
 ---
