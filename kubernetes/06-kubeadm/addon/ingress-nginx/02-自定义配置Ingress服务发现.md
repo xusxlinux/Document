@@ -101,7 +101,7 @@ spec:
 ```
 配置生效
 ``` shell
-[root@hdss7-200 ingress-nginx]# kubectl exec -it -n ingress-nginx nginx-ingress-controller-tmck4 -- cat /etc/nginx/nginx.conf | grep -n Request-Id
+kubectl exec -it -n ingress-nginx nginx-ingress-controller-tmck4 -- cat /etc/nginx/nginx.conf | grep -n Request-Id
 562:			more_set_headers "Request-Id: $req_id";
 ```
 
