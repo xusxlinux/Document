@@ -147,5 +147,5 @@ kubectl edit -n ingress-nginx cm nginx-template
 
 # 改变后的值
 kubectl exec -it -n ingress-nginx nginx-ingress-controller-hfbk8 -- cat /etc/nginx/template/nginx.tmpl | grep -n 4096
-210:    types_hash_max_size 
+210:    types_hash_max_size 4096
 ```
