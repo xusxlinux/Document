@@ -98,7 +98,7 @@
       nginx.ingress.kubernetes.io/canary: "true"
       nginx.ingress.kubernetes.io/canary-by-header: "web-canary"
       nginx.ingress.kubernetes.io/canary-by-cookie: "web-canary"
-      nginx.ingress.kubernetes.io/canary-by-weight: "90"
+      nginx.ingress.kubernetes.io/canary-weight: "90"
   spec:
     rules:
     - host: canary.chain.com
