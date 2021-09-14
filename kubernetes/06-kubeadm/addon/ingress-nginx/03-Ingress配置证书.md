@@ -26,6 +26,7 @@ kubectl exec -it -n ingress-nginx nginx-ingress-controller-hfbk8 -- /nginx-ingre
 kubectl apply -f magic_change.yaml
 ```
 #### 创建一个https的secret对外暴露服务
+[ingress-tls](https://v1-18.docs.kubernetes.io/zh/docs/concepts/services-networking/ingress/#tls)  
 - vim ingress-https.yaml
 ``` yaml
 # default名称空间下 daem服务暴露 
