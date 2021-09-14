@@ -30,11 +30,32 @@
   apiVersion: networking.k8s.io/v1beta1
   kind: Ingress
   metadata:
-    name: canary
+    name: b-canary
     namespace: dev
     annotations:
       nginx.ingress.kubernetes.io/canary: "true"
       nginx.ingress.kubernetes.io/canary-weight: "10"
+  spec:
+    rules:
+    - host: canary.chain.com
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: b-canary
+            servicePort: 80
+  ```
+- vim ingress-canary-cookid.yaml
+
+  ``` yaml
+  apiVersion: networking.k8s.io/v1beta1
+  kind: Ingress
+  metadata:
+    name: b-canary
+    namespace: dev
+    annotations:
+      nginx.ingress.kubernetes.io/canary: "true"
+      nginx.ingress.kubernetes.io/canary-by-cookie: "web-canary"
   spec:
     rules:
     - host: canary.chain.com
