@@ -66,3 +66,46 @@
             serviceName: b-canary
             servicePort: 80
   ```
+- vim ingress-canary-header.yaml
+  ``` yaml
+  apiVersion: networking.k8s.io/v1beta1
+  kind: Ingress
+  metadata:
+    name: b-canary
+    namespace: dev
+    annotations:
+      nginx.ingress.kubernetes.io/canary: "true"
+      nginx.ingress.kubernetes.io/canary-by-header: "web-canary"
+  spec:
+    rules:
+    - host: canary.chain.com
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: b-canary
+            servicePort: 80
+  ```
+#### 按照优先级从上到下来
+- vim ingress-canary-completely.yaml
+  ``` yaml
+  apiVersion: networking.k8s.io/v1beta1
+  kind: Ingress
+  metadata:
+    name: b-canary
+    namespace: dev
+    annotations:
+      nginx.ingress.kubernetes.io/canary: "true"
+      nginx.ingress.kubernetes.io/canary-by-header: "web-canary"
+      nginx.ingress.kubernetes.io/canary-by-cookie: "web-canary"
+      nginx.ingress.kubernetes.io/canary-by-weight: "web-canary"
+  spec:
+    rules:
+    - host: canary.chain.com
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: b-canary
+            servicePort: 80
+  ```
