@@ -1,11 +1,33 @@
-> $ yum provides npm
+#### 因为npm的进程版本太老了,与nodejs的版本不符合
+- 安装pm2进程
+``` shell
+# 创建目录
+mkdir -pv /data/.pm2
+ln -vs /data/.pm2 /root/
 
-> $ yum install npm -y
+# 下载安装
+cd /data/
+wget https://npm.taobao.org/mirrors/node/v10.14.1/node-v10.14.1-linux-x64.tar.gz
+wget https://npm.taobao.org/mirrors/node/v12.12.0/node-v12.12.0-linux-x64.tar.gz
+tar xf node-v10.14.1-linux-x64.tar.gz
+mv node-v10.14.1-linux-x64 node
+echo "export PATH="$PATH:/data/node/bin"" >> /etc/profile
+source /etc/profile
 
-> $ npm install -g pm2@3.4.1
 
+# 确认好node高版本,使用npm安装
+[root@node ~]# node -v
+v10.14.1
+[root@node ~]# npm install -g pm2
+
+
+# 设置为淘宝 npm 源 
+npm config set registry https://registry.npm.taobao.org 
+# 查看 npm 源 
+npm config get registry
 ```
-cat app.json 
+- cat app.json 
+``` json
 {
     "apps": [{
         "name": "${java_module_name}",
