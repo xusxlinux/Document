@@ -25,8 +25,12 @@ Alter USER 'root'@'localhost' IDENTIFIED BY '123456';
 nohup mysqld_safe --defaults-file=/etc/my.cnf &
 mysqladmin -uroot -p 123456 shutdown -S /mysql/data/3306/mysql.sock
 
-# 创建CentOS启停脚本
-systemctl restart mysqld.service 
+# 创建CentOS Linux启停脚本
+systemctl start mysqld.service 
+
+# 卸载MySQL数据库
+systemctl stop mysqld.service 
+rm -rf /mysql*
 ```
 - 检验一下
 ``` sql
