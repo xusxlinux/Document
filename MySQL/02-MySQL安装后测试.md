@@ -1,17 +1,17 @@
-
+#### 新建用户
 ``` sql
-# 新建用户
 select host,user from user where user='root';
 create USER 'xusx'@'10.4.7.%' IDENTIFIED BY '123456';
 ```
 
-``` sql
-# 添加用户全部的权限
-grant all priviliges on hdss7_200.* to 'xusx'@'10.4.7.%' identified by '123456';
-
-# 只给select权限
-grant select on hdss7_200.test_01 to 'xusx'@'10.4.7.%';
-```
+#### 添加用户全部的权限
+  ``` sql
+  grant all priviliges on hdss7_200.* to 'xusx'@'10.4.7.%' identified by '123456';
+  ```
+  - 只给select权限
+  ``` sql
+  grant select on hdss7_200.test_01 to 'xusx'@'10.4.7.%';
+  ```
 
 ``` sql
 # 删除用户
