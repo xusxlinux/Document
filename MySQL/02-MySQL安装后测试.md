@@ -21,33 +21,24 @@ show grants for xusx@'10.4.7.%';
 flush privileges;
 ```
 - 权限级别
-  - 全局：user
-  - 库： db
-  - 表： tables_priv
-  - 列： columns_priv
-  - 程序：procs_priv
+  - 全局：desc user
+  - 库： desc db
+  - 表： desc tables_priv
+  - 列： desc columns_priv
+  - 程序：desc procs_priv
 ``` shell
-mysql> show grants for work@'10.4.7.%';
-+-----------------------------------------+
-| Grants for work@10.4.7.%                |
-+-----------------------------------------+
-| GRANT USAGE ON *.* TO 'work'@'10.4.7.%' |
-+-----------------------------------------+
+# 创建work用户, 没有任何权限
+create USER 'work'@'10.4.7.%' IDENTIFIED BY '123456';
+show grants for 'work'@'10.4.7.%';
 
+# 授予work用户select权限
+grant select on mysql.* to work@'10.4.7.%';
 
-mysql> grant select on mysql.* to work@'10.4.7.%';
+# 查看授权后的work用户
+show grants for work@'10.4.7.%';
 
-
-mysql> show grants for work@'10.4.7.%';
-+------------------------------------------------+
-| Grants for work@10.4.7.%                       |
-+------------------------------------------------+
-| GRANT USAGE ON *.* TO 'work'@'10.4.7.%'        |
-| GRANT SELECT ON `mysql`.* TO 'work'@'10.4.7.%' |
-+------------------------------------------------+
-
-
-mysql> select * from db where User='work'\G;
+# work用户, 库级别的 "Select_priv: Y" 权限
+select * from db where User='work'\G;
 ```
 
 #### 删除用户
