@@ -29,13 +29,17 @@ flush privileges;
 ``` shell
 # 创建work用户, 没有任何权限
 create USER 'work'@'10.4.7.%' IDENTIFIED BY '123456';
+# 查看授权后的work用户
 show grants for 'work'@'10.4.7.%';
 
-# 授予work用户select权限
-grant select on mysql.* to work@'10.4.7.%';
 
-# 查看授权后的work用户
-show grants for work@'10.4.7.%';
+# 授予work用户select权限  --> [库]
+grant select on mysql.* to work@'10.4.7.%';
+# 授予work用户select权限  --> [表]
+grant select on mysql.user to work@'10.4.7.%';
+# 授予work用户select权限  --> [列]
+grant select(id) on hdss7_200.test_01 to 'work'@'10.4.7.%';
+
 
 # work用户, 库级别的 "Select_priv: Y" 权限
 select * from db where User='work'\G;
