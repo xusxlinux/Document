@@ -5,6 +5,7 @@ create USER 'xusx'@'10.4.7.%' IDENTIFIED BY '123456';
 ```
 
 #### 添加用户权限
+- 权限处理逻辑与授予、回收
 ``` sql
 # 给全部权限
 grant all priviliges on hdss7_200.* to 'xusx'@'10.4.7.%' identified by '123456';
@@ -25,8 +26,28 @@ flush privileges;
   - 表： tables_priv
   - 列： columns_priv
   - 程序：procs_priv
-``` sql
+``` shell
+mysql> show grants for work@'10.4.7.%';
++-----------------------------------------+
+| Grants for work@10.4.7.%                |
++-----------------------------------------+
+| GRANT USAGE ON *.* TO 'work'@'10.4.7.%' |
++-----------------------------------------+
 
+
+mysql> grant select on mysql.* to work@'10.4.7.%';
+
+
+mysql> show grants for work@'10.4.7.%';
++------------------------------------------------+
+| Grants for work@10.4.7.%                       |
++------------------------------------------------+
+| GRANT USAGE ON *.* TO 'work'@'10.4.7.%'        |
+| GRANT SELECT ON `mysql`.* TO 'work'@'10.4.7.%' |
++------------------------------------------------+
+
+
+mysql> select * from db where User='work'\G;
 ```
 
 #### 删除用户
