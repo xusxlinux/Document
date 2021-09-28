@@ -20,6 +20,8 @@ tail -1 /mysql/logs/3306/hdss7-200.host.com-error.err
 # 修改密码
 mysql -uroot -p
 Alter USER 'root'@'localhost' IDENTIFIED BY '123456';
+set password='123456';
+flush privileges
 
 # 手动启动和停止
 nohup mysqld_safe --defaults-file=/etc/my.cnf &
