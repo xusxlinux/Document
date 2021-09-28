@@ -21,11 +21,11 @@ show grants for xusx@'10.4.7.%';
 flush privileges;
 ```
 - 权限级别
-  - 全局：desc user
-  - 库： desc db
-  - 表： desc tables_priv
-  - 列： desc columns_priv
-  - 程序：desc procs_priv
+  - 全局：  desc user;
+  - 库：    desc db;
+  - 表：    desc tables_priv;
+  - 列：    desc columns_priv;
+  - 程序：  desc procs_priv;
 ``` shell
 # 创建work用户, 没有任何权限
 create USER 'work'@'10.4.7.%' IDENTIFIED BY '123456';
