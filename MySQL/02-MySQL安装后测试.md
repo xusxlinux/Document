@@ -1,6 +1,6 @@
 
 ``` sql
-创建用户
+#创建用户
 select host,user from user where user='root';
 create USER 'root'@'10.4.7.%' IDENTIFIED BY '123456';
 
@@ -13,7 +13,7 @@ grant all privileges on hdss7_200.* to 'xusx'@'localhost' identified by '123456'
 # 删除创建错误的用户
 use mysql
 delete from user where host='10.4.7.%' and user='xusx';
-
+drop user xusx@'localhost';
 
 
 # 创建数据库
