@@ -1,8 +1,8 @@
 
 ``` sql
-#创建用户
+#创建用户, 没有授权
 select host,user from user where user='root';
-create USER 'root'@'10.4.7.%' IDENTIFIED BY '123456';
+create USER 'xusx'@'10.4.7.%' IDENTIFIED BY '123456';
 
 
 # 给xusx用户添加权限, 允许访问hdss7_200 这个库中的所有表
@@ -10,12 +10,15 @@ grant all priviliges on hdss7_200.* to 'xusx'@'10.4.7.%' identified by '123456';
 grant all privileges on hdss7_200.* to 'xusx'@'localhost' identified by '123456';
 
 
-# 删除创建错误的用户
+# 删除用户
 use mysql
 delete from user where host='10.4.7.%' and user='xusx';
 drop user xusx@'localhost';
+```
 
 
+
+``` sql
 # 创建数据库
 create database hdss7_200 DEFAULT charset utf8;
 
