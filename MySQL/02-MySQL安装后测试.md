@@ -44,7 +44,22 @@ grant select(id) on hdss7_200.test_01 to 'work'@'10.4.7.%';
 # work用户, 库级别的 "Select_priv: Y" 权限
 select * from db where User='work'\G;
 ```
-
+- 用户权限设定原则
+  - 只读用户  -->  运维人员
+    ``` sql
+    create user 'work01'@'10.4.7.%' identified by '123456';
+    grant select on hdss7_200.* to 'work01'@'10.4.7.%';
+    ```
+  - 可读可写  -->  前端应用程序
+    ``` sql
+    create user 'work02'@'10.4.7.%' identified by '123456';
+    grant select,insert,update,delete on hdss7_200.* to 'work02'@'10.4.7.%';
+    ```
+  - 管理用户  -->  项目负责人
+    ``` sql
+    create user 'work03'@'10.4.7.%' identified by '123456';
+    grant all privileges on hdss7_200.* to 'work03'@'10.4.7.%';
+    ```
 #### 删除用户
 ``` sql
 delete from user where host='10.4.7.%' and user='xusx';
