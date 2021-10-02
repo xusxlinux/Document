@@ -6,6 +6,7 @@ tar -xf mysql-5.7.30-linux-glibc2.12-x86_64.tar.gz -C /mysql/3306/app/
 
 useradd mysql -s /sbin/nologin -M
 chown mysql.mysql -R /mysql
+export PATH="$PATH:/mysql/3306/app/mysql/bin"
 
 # 创建MySQL配置文件
 vim /mysql/3306/conf/my.cnf
