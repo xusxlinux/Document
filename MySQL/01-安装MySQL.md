@@ -12,10 +12,10 @@ vim /mysql/3306/conf/my.cnf
 ln -vs /mysql/3306/conf/my.cnf /etc/my.cnf
 
 # 初始化MySQL
-mysqld --initialize --user=mysql --basedir=/mysql/app/mysql/ --datadir=/mysql/data/3306/data
+mysqld --initialize --user=mysql --basedir=/mysql/3306/app/mysql --datadir=/mysql/3306/data
 
 # 密码文件
-tail -1 /mysql/logs/3306/hdss7-200.host.com-error.err
+tail -1 /mysql/3306/logs/hdss7-200.host.com-error.err
 
 # 修改密码
 mysql -uroot -p
@@ -47,15 +47,15 @@ select host,user from user where user='root';
 ``` cnf
 [mysql]
 default-character-set                  = utf8
-socket                                 = /mysql/data/3306/mysql.sock
+socket                                 = /mysql/3306/tmp/mysql.sock
 
 [mysqld]
 #skip-name-resolve
 #skip-grant-tables
 port                                   = 3306
-socket                                 = /mysql/data/3306/mysql.sock
-basedir                                = /mysql/app/mysql
-datadir                                = /mysql/data/3306/data
+socket                                 = /mysql/3306/tmp/mysql.sock
+basedir                                = /mysql/3306/app/mysql
+datadir                                = /mysql/3306/data
 character-set-server                   = utf8
 default-storage-engine                 = INNODB
 innodb_buffer_pool_size                = 200M
@@ -63,11 +63,11 @@ max_allowed_packet                     = 16M
 explicit_defaults_for_timestamp        = 1
 log-output                             = FILE
 general_log                            = 0
-general_log_file                       = /mysql/logs/3306/hdss7-200.host.com-general.err
+general_log_file                       = /mysql/3306/logs/hdss7-200.host.com-general.err
 slow_query_log                         = No
-slow_query_log                         = /mysql/logs/3306/hdss7-200.host.com-query.err
+slow_query_log                         = /mysql/3306/logs/hdss7-200.host.com-query.err
 long_query_time                        = 10
-log-error                              = /mysql/logs/3306/hdss7-200.host.com-error.err
+log-error                              = /mysql/3306/logs/hdss7-200.host.com-error.err
 ```
 - CentOS Linux 系统的启停配置文件
   - vim /usr/lib/systemd/system/mysqld.service 
@@ -83,7 +83,7 @@ WantedBy=multi-user.target
 [Service]
 User=mysql
 Group=mysql
-ExecStart=/mysql/app/mysql/bin/mysqld --defaults-file=/mysql/data/3306/my.cnf
+ExecStart=/mysql/app/mysql/bin/mysqld --defaults-file=/mysql/3306/conf/my.cnf
 LimitNOFILE = 65535
 LimitNPROC = 65535
 ```
