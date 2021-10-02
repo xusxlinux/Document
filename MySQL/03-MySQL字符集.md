@@ -15,14 +15,14 @@
     show collation like 'latin1%';
     show collation like '%utf8%';
     ```
-- 指定字符集和检验规则
+- 指定字符集和检验规则  
   1.服务器端设置
     - 编译MySQL软件时指定
     - 启动参数指定
       ``` sql
       mysqld_safe --defaults-file=/mysql/3306/conf/my.cnf --character-set-server=utf8mb4 --callation-server=utf8mb4_general_ci
       ```
-    - 参数文件中配置
+    - 参数文件中配置 my.cnf
       - character_set_server
       - collation_server
     - MySQL服务运行期间更改
