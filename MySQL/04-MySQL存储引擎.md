@@ -1,4 +1,4 @@
-- MySQL体系结构
+#### MySQL体系结构
 
 - 常见存储引擎
   - MEMORY
@@ -55,5 +55,16 @@
   ERROR 1031 (HY000): Table storage engine for 't_arch' doesn't have this option
   ```
   - BLACKHOLE
+    - 特点：
+      1. 只有表结构文件(.frm), 没有表数据文件
+      2. 写入的数据会消失, 但会记录在binlog日志当中
+    - 应用场景：
+      配置一主多从时, 多个从服务器会在主服务器上分别开启自己相对应的线程, 执行`binlog dump`命令, 而且多个此类型进程并不是共享的.
+      为了避免因多个从服务器同事请求而导致主机资源耗尽, 可以单独建立一个伪的从服务器或者`分发服务器` 
+  ``` sql
+  create table t_blackhole(i int,c1 char(10)) engine=BLACKHOLE;
+  
+  insert into t_blackhole values(1,'record one'),(2,'record two');
+  ```
   - MRG_MYISAM
   - FEDERATED
