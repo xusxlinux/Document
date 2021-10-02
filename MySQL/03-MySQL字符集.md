@@ -58,7 +58,7 @@
     show variables like 'collation_database';
     
     # 修改gb_2312这个库的字符集
-    alter database db_gb2312 charater set utf8 collate utf8_general_ci;
+    alter database db_gb2312 character set utf8 collate utf8_general_ci;
     
     # 案例 --> 表, 创建一个
     create table t_gb2312(
