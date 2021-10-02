@@ -20,7 +20,7 @@
     - 编译MySQL软件时指定
     - 启动参数指定
       ``` sql
-      mysqld_safe --defaults-file=/mysql/3306/conf/my.cnf --character-set-server=utf8mb4 --callation-server=utf8mb4_general_ci
+      mysqld_safe --defaults-file=/mysql/3306/conf/my.cnf --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
       ```
     - 参数文件中配置 my.cnf
       - character_set_server
