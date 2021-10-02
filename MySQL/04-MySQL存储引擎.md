@@ -63,8 +63,30 @@
       为了避免因多个从服务器同事请求而导致主机资源耗尽, 可以单独建立一个伪的从服务器或者`分发服务器`  (不会存储数据,就代表数据不会落盘,这样就避免浪费存储空间)
   ``` sql
   create table t_blackhole(i int,c1 char(10)) engine=BLACKHOLE;
-  
   insert into t_blackhole values(1,'record one'),(2,'record two');
+   
+  # 查不到数据
+  select * from t_blackhole;
   ```
   - MRG_MYISAM
+    - 特点：
+      1. MRG_MYISAM引擎表本身不保存数据, 只是起到汇总作用, 将一组`结构相同`的MyISAM表逻辑聚合到一起
+      2. `.frm`文件存储表的结构信息
+      3. `.mgr`不保存数据，保存的是数据来源
+      4. 默认情况下, 不能向MRG_MyISAM引擎中插入记录。如果像插入记录，在创建MRG_MYISAM引擎时，可以通过`INSERT_METHOD`选项，指定插入的记录写道哪个表中
+        - `NO`：不允许插入 
+        - `FIRST`：插入到第一个表中
+        - `LAST`：插入到第二个表中
+    - 适用场景：
+      单表过大, `水平分表` (每个月生成1千万数据, 可以分成12月12张表, 查找聚合表就行, 可以避免单个表数据过大问题)
+  ``` sql
+  create table t_myisam_01(id int not null auto_increment primary key,c1 varchar(20)) engine=MyISAM;
+  create table t_myisam_02(id int not null auto_increment primary key,c1 varchar(20)) engine=MyISAM;
+  
+  insert into t_myisam_01(c1) values('this'),('is'),('myisam1');
+  insert into t_myisam_02(c1) values('this'),('is'),('myisam2');
+  
+  # 把两个相同表结构的表合并, (逻辑上合并) 起到聚合作用
+  create table t_mer1(id int not null auto_increment primary key,c1 varchar(20)) engine=MRG_MyISAM union=(t_myisam_01,t_myisam_02) INSERT_METHOD=LAST;
+  ```
   - FEDERATED
