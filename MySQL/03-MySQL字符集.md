@@ -4,8 +4,8 @@
 - 校对规则
   1. 比较字符集中字符的规则
   2. 如果希望比较两个字符的大小, 最简单的方式当然就是按照定义好的规则直接对比其编码, 由于0比1小, 因此我们说A比B小, 这就是所谓的校对规则
-
-- show character set;
+---
+- 显示数据库中所有的字符集 show character set;
   - Charset (字符集)
   - Default collation (校对规则)
     - _ci: 全称：case insensitive (大小写不敏感)
@@ -37,6 +37,7 @@
       3. MySQL服务端执行完语句后, 会按照`character_set_results`系统变量设置的字符集返回结果集到客户端
       ``` sql
       show variables like 'character_set%';
+      show global variables like 'character_set%';
       ```
     - set names(会话级别)  
     - set character set(会话级别)
@@ -65,12 +66,10 @@
     # 查看列的字符集
     # 查看列的检验规则
     ```
+#### 提示
+- 尽量让服务器端、客户端字符集保存一致, 并在配置文件中指定
+- 全局和库级粒度的字符集设置可以任意修改, 他们不会对现有数据造成影响。但是对于表粒度和列粒度中字符集的修改需要慎重处理, 因为表和列中真正保存着数据, 如果操作不慎, 会丢失数据
 
-
-
-
-查看字符集
-show global variables like 'character_set%';
 
 
 
