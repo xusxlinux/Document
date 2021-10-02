@@ -26,6 +26,8 @@
   show table status like 't_mem%';
   ```
   - CSV
+    - 特点：
+      1.这个`.csv `
   - ARCHIVE
   - BLACKHOLE
   - MRG_MYISAM
