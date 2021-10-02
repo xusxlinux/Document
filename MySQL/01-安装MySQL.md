@@ -1,15 +1,15 @@
 #### 简单安装MySQL
 - [MySQL 二进制包 下载地址](https://downloads.mysql.com/archives/community/)
 ``` shell
-mkdir -pv /mysql/{app,data,logs}/3306
-tar -xf mysql-5.7.25-linux-glibc2.12-x86_64.tar.gz -C /mysql/app/
+mkdir -pv /mysql/3306/{app,conf,data,logs,tmp}
+tar -xf mysql-5.7.30-linux-glibc2.12-x86_64.tar.gz -C /mysql/3306/app/
 
 useradd mysql -s /sbin/nologin -M
 chown mysql.mysql -R /mysql
 
 # 创建MySQL配置文件
-vim /mysql/data/3306/my.cnf
-ln -vs /mysql/data/3306/my.cnf /etc/my.cnf
+vim /mysql/3306/conf/my.cnf
+ln -vs /mysql/3306/conf/my.cnf /etc/my.cnf
 
 # 初始化MySQL
 mysqld --initialize --user=mysql --basedir=/mysql/app/mysql/ --datadir=/mysql/data/3306/data
