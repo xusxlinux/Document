@@ -48,7 +48,7 @@
       ```
   3.保存时指定  (同一个库下的不同表可以指定不同的字符集)  不能这么干, 会挨骂~
     ``` sql
-    # 案例, 创建一个db_gbk2312字符集的库
+    # 案例 --> 库 , 创建一个db_gbk2312字符集的库
     create database if not exists db_gb2312 default charset gb2312 collate  gb2312_chinese_ci;   
     # 查看指定库的字符集
     SELECT DEFAULT_CHARACTER_SET_NAME 'charset', DEFAULT_COLLATION_NAME 'collation' FROM information_schema.SCHEMATA WHERE SCHEMA_NAME = 'db_gb2312';
@@ -57,7 +57,10 @@
     # 查看库的检验规则
     show variables like 'collation_database';
     
-    # 案例, 创建一个
+    # 修改gb_2312这个库的字符集
+    alter database db_gb2312 charater set utf8 collate utf8_general_ci;
+    
+    # 案例 --> 表, 创建一个
     create table t_gb2312(
       id int auto_increment primary key, 
       name varchar(15)
