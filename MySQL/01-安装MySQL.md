@@ -26,7 +26,7 @@ flush privileges
 
 # 手动启动和停止
 nohup mysqld_safe --defaults-file=/etc/my.cnf &
-mysqladmin -uroot -p 123456 shutdown -S /mysql/data/3306/mysql.sock
+mysqladmin -uroot -p 123456 shutdown -S /mysql/3306/tmp/mysql.sock
 
 # 创建CentOS Linux启停脚本
 systemctl start mysqld.service 
