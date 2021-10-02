@@ -83,7 +83,7 @@ WantedBy=multi-user.target
 [Service]
 User=mysql
 Group=mysql
-ExecStart=/mysql/app/mysql/bin/mysqld --defaults-file=/mysql/3306/conf/my.cnf
+ExecStart=/mysql/3306/app/mysql/bin/mysqld --defaults-file=/mysql/3306/conf/my.cnf
 LimitNOFILE = 65535
 LimitNPROC = 65535
 ```
