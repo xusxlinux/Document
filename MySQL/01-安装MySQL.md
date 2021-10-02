@@ -4,8 +4,11 @@
 mkdir -pv /mysql/3306/{app,conf,data,logs,tmp}
 tar -xf mysql-5.7.30-linux-glibc2.12-x86_64.tar.gz -C /mysql/3306/app/
 
+# 需要注意MySQL文件夹的权限
 useradd mysql -s /sbin/nologin -M
 chown mysql.mysql -R /mysql
+
+# 添加环境变量
 export PATH="$PATH:/mysql/3306/app/mysql/bin"
 
 # 创建MySQL配置文件
