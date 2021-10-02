@@ -32,9 +32,9 @@
       ```
   2.客户端连接时指定
     - 客户端连接到服务器时信息的处理过程如下:
-      1. 客户端发出的SQL语句, 所使用的字符集由系统变量 'character_set_client' 指定
-      2. MySQL服务端接收到语句后, 会用到'character_set_connection'和'collation_connection'两个系统变量, 并且会将客户端发送的语句字符集由'character_set_client'转换到'character_set_connection'
-      3. MySQL服务端执行完语句后, 会按照character_set_results系统变量设置的字符集返回结果集到客户端
+      1. 客户端发出的SQL语句, 所使用的字符集由系统变量 `character_set_client` 指定
+      2. MySQL服务端接收到语句后, 会用到`character_set_connection`和`collation_connection`两个系统变量, 并且会将客户端发送的语句字符集由`character_set_client`转换到`character_set_connection`
+      3. MySQL服务端执行完语句后, 会按照`character_set_results`系统变量设置的字符集返回结果集到客户端
       ``` sql
       show variables like 'character_set%';
       ```
@@ -45,15 +45,22 @@
       [mysql]
       default-character-set                  = utf8
       ```
-  3.保存时指定
+  3.保存时指定  (同一个库下的不同表可以指定不同的字符集)  不能这么干, 会挨骂~
     ``` sql
-    # 查看库的字符集(同一个库下的不同表可以指定不同的字符集)  不能这么干, 会挨骂~
+    # 案例, 创建一个db_gbk2312字符集的库
+    create database if not exists db_gb2312 default charset gb2312 collate  gb2312_chinese_ci;    
+    # 查看库的字符集
     show variables like 'character_set_database';
     # 查看库的检验规则
     show variables like 'collation_database';
     
-    # 查看表的字符集(同一个表下的不同列可以指定不同的字符集)
-    # 查看库的检验规则
+    # 案例, 创建一个
+    create table t_gb2312(
+      id int auto_increment primary key, 
+      name varchar(15)
+    )engine = InnoDB default charset=gb2312 collate gb2312_chinese_ci;
+    # 查看表的字符集
+    show create table test_01;
     
     # 查看列的字符集
     # 查看列的检验规则
