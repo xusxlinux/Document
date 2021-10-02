@@ -8,7 +8,7 @@
       3. 使用表级锁
       4. 表的最大大小受参数max_heap_table_size的限制
     - 适用场景：
-      主要用于内容变化不频繁的表, h或者作为中间的查找表
+      主要用于内容变化不频繁的表, 或者作为中间的查找表
   ``` sql
   create database if not exists db_innodb default charset utf8  collate utf8_general_ci;
   # 创建 t_mem_01 插入数据后, 重启数据库, 数据消失
@@ -60,7 +60,7 @@
       2. 写入的数据会消失, 但会记录在binlog日志当中
     - 应用场景：
       配置一主多从时, 多个从服务器会在主服务器上分别开启自己相对应的线程, 执行`binlog dump`命令, 而且多个此类型进程并不是共享的.
-      为了避免因多个从服务器同事请求而导致主机资源耗尽, 可以单独建立一个伪的从服务器或者`分发服务器` 
+      为了避免因多个从服务器同事请求而导致主机资源耗尽, 可以单独建立一个伪的从服务器或者`分发服务器`  (不会存储数据,就代表数据不会落盘,这样就避免浪费存储空间)
   ``` sql
   create table t_blackhole(i int,c1 char(10)) engine=BLACKHOLE;
   
