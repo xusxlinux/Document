@@ -27,15 +27,10 @@
       - collation_server
     - MySQL服务运行期间更改
       ``` sql
-      # 设置全局字符集
+      # 设置全局字符集(会话级别)
       set global character_set_server=utf8;
-      
-      # 查看库的字符集
-      show variables like 'character_set_database';
-      # 查看库的检验规则
-      show variables like 'collation_database';
       ```
-  3.连接时指定
+  2.客户端连接时指定
     - 客户端连接到服务器时信息的处理过程如下:
       1. 客户端发出的SQL语句, 所使用的字符集由系统变量 'character_set_client' 指定
       2. MySQL服务端接收到语句后, 会用到'character_set_connection'和'collation_connection'两个系统变量, 并且会将客户端发送的语句字符集由'character_set_client'转换到'character_set_connection'
@@ -50,7 +45,19 @@
       [mysql]
       default-character-set                  = utf8
       ```
-  4.保存时指定
+  3.保存时指定
+    ``` sql
+    # 查看库的字符集(同一个库下的不同表可以指定不同的字符集)  不能这么干, 会挨骂~
+    show variables like 'character_set_database';
+    # 查看库的检验规则
+    show variables like 'collation_database';
+    
+    # 查看表的字符集(同一个表下的不同列可以指定不同的字符集)
+    # 查看库的检验规则
+    
+    # 查看列的字符集
+    # 查看列的检验规则
+    ```
 
 
 
