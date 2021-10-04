@@ -90,3 +90,6 @@
   create table t_mer1(id int not null auto_increment primary key,c1 varchar(20)) engine=MRG_MyISAM union=(t_myisam_01,t_myisam_02) INSERT_METHOD=LAST;
   ```
   - FEDERATED
+    - 特点：
+      1. 访问在远程数据库的表中的数据, 类似Oracle中的 db link
+      2. `.frm`文件存储表的结构信息
