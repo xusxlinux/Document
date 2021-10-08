@@ -101,7 +101,8 @@
     
   create table t_fd(id int(11) NOT NULL, name varchar(30) NOT NULL, age int(11) NOT NULL, PRIMARY KEY (id))ENGINE=InnoDB CHARSET=utf8;
   insert into t_fd(id,name,age) values(0,'zhangsan',20);
-    
+  
+  # 在其他的服务器的库中的建表语句, 以及socket连接方式
   create table t_fd(id int(11) NOT NULL, name varchar(30) NOT NULL, age int(11) NOT NULL, PRIMARY KEY (id))ENGINE=FEDERATED CONNECTION='mysql://root:123456@10.4.7.200:3306/hdss7_200/t_fd';
   
   # 可以在其他服务器上的库查到数据
