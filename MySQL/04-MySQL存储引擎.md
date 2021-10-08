@@ -103,4 +103,13 @@
   insert into t_fd(id,name,age) values(0,'zhangsan',20);
     
   create table t_fd(id int(11) NOT NULL, name varchar(30) NOT NULL, age int(11) NOT NULL, PRIMARY KEY (id))ENGINE=FEDERATED CONNECTION='mysql://root:123456@10.4.7.200:3306/hdss7_200/t_fd';
+  
+  # 可以在其他服务器上的库查到数据
+  select * from t_fd;
+  
+  # drop无法删除其他服务器上的表. 只能删除本地库的表
+  drop table t_fd;
+  
+  # truncate会把其他服务器上的表数据删除
+  truncate table t_fd;
   ```
