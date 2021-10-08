@@ -93,3 +93,14 @@
     - 特点：
       1. 访问在远程数据库的表中的数据, 类似Oracle中的 db link
       2. `.frm`文件存储表的结构信息
+    - 适用场景：
+      跨不同服务器的数据库查询
+    ``` sql
+    # 开启federated sed -i '9a federated' /mysql/data/3306/my.cnf 
+    show engines \G
+    
+    create table t_fd(id int(11) NOT NULL, name varchar(30) NOT NULL, age int(11) NOT NULL, PRIMARY KEY (id))ENGINE=InnoDB CHARSET=utf8;
+    insert into t_fd(id,name,age) values(0,'zhangsan',20);
+    
+    create table t_fd(id int(11) NOT NULL, name varchar(30) NOT NULL, age int(11) NOT NULL, PRIMARY KEY (id))ENGINE=FEDERATED CONNECTION='mysql://root:123456@10.4.7.200:3306/hdss7_200/t_fd';
+    ```
