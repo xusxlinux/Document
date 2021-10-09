@@ -25,7 +25,7 @@ InnoDB事务
   - 事务控制：  
       &ensp; &ensp; 默认情况下，链接到NySQL服务的客户端处于自动提交模式，也就是说每条DML执行即提交。若希望启用事务支持，有两种方式：
       - 一、禁用事务自动提交 
-          &ensp; &ensp; `show variables like 'autocommit';`  -->  `set autocommit=off;`    
+          &ensp; &ensp; `show variables like 'autocommit';`  -->  `set autocommit=off;`  
           &ensp; MySQL中默认提交功能由系统变量`autocommit`控制，将该变量值为`0`或`off`即可禁用自动提交，将事务的提交`commit`和`rollback`控制权交由前端用户控制
           ``` sql
           set autocommit=off;
