@@ -20,10 +20,11 @@ InnoDB事务
     - Durable(持久性)
       - `事务`成功完成后，所做的所有更改都会准确地记录在数据库中，所做的更改不会丢失
   - 事务概述：  
-      &ensp; 事务是数据库区别于文件系统的重要特性之一。事务是指逻辑上的一组操作，组成这组操作的各个单元，要么全成功，要么全失败。同时事务有严格的定义，它必须同时满足ACID
+      &ensp; &ensp; 事务是数据库区别于文件系统的重要特性之一。
+      &ensp; &ensp; 事务是指逻辑上的一组操作，组成这组操作的各个单元，要么全成功，要么全失败。同时事务有严格的定义，它必须同时满足ACID
   - 事务控制：  
       &ensp; 默认情况下，链接到NySQL服务的客户端处于自动提交模式，也就是说每条DML执行即提交。若希望启用事务支持，有两种方式：
-      - 禁用事务自动提交 `show variables like 'autocommit';`  -->  `set autocommit=off;`    
+      - 一、禁用事务自动提交 `show variables like 'autocommit';`  -->  `set autocommit=off;`    
           &ensp; MySQL中默认提交功能由系统变量`autocommit`控制，将该变量值为`0`或`off`即可禁用自动提交，将事务的提交`commit`和`rollback`控制权交由前端用户控制
           ``` sql
           set autocommit=off;
@@ -37,7 +38,7 @@ InnoDB事务
           insert into t_idb01(c1) values('a');
           commit；
           ```
-      - 显示声明事务  
+      - 二、显示声明事务  
           &ensp; 执行DML语句前，先通过`start transaction`或者`begin`语句启动一个事务，执行SQL语句后，就可以通过commit或者rollback语句来控制事务的提交或回滚  
             start transaction; //事务开始  
               &ensp; DML sql  
@@ -52,7 +53,7 @@ InnoDB体系结构
       1. Change Buffer的主要目的是将对二级索引的操作(insert, delete, update)缓存下来，而不是直接读入索引页进行更新；再择机将Change Buffer中的记录合并到真正的二级索引中，以此减少二级索引的随机IO
       2. innodb_chang_buffer_max_size：表示change buffer在buffer pool中的最大占比，默认`25%`，最大`50%`
       3. 在MySQL5.5之前的版本中，由于只支持缓存insert操作，最初叫做insert buffer，只是后来的版本中支持了更多的操作类型缓存，才改叫 Change Buffer  
-    __知识加油站__
+  __知识加油站__  
       1. InnoDB中 主键(聚簇索引)以外的索引都是二级索引
       2. InnoDB中 索引和数据(行记录)在同一个文件中存储
       3. InnoDB中 二级索引在文件中有自己单独的数据页
