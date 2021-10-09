@@ -56,10 +56,10 @@ InnoDB体系结构
       3. 在MySQL5.5之前的版本中，由于只支持缓存insert操作，最初叫做insert buffer，只是后来的版本中支持了更多的操作类型缓存，才改叫 Change Buffer  
   
   __知识加油站__  
-      1. InnoDB中 主键(聚簇索引)以外的索引都是二级索引
-      2. InnoDB中 索引和数据(行记录)在同一个文件中存储
-      3. InnoDB中 二级索引在文件中有自己单独的数据页
-      4. 对行记录的(insert, delete, update)操作时，二级索引可能也会被执行相应的(insert, delete, update)操作，很可能会产生大量的物理读(物理读二级索引数据页)
+      1. InnoDB中 主键(聚簇索引)以外的索引都是二级索引  
+      2. InnoDB中 索引和数据(行记录)在同一个文件中存储  
+      3. InnoDB中 二级索引在文件中有自己单独的数据页  
+      4. 对行记录的(insert, delete, update)操作时，二级索引可能也会被执行相应的(insert, delete, update)操作，很可能会产生大量的物理读(物理读二级索引数据页)    
 
     - Log Buffer
     
