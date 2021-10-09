@@ -44,6 +44,21 @@ InnoDB事务
               DML sql  
             commit or rollback; //事务结束
 InnoDB体系结构
+  - 内存结构
+    - Buffer Pool  
+      &nbsp; InnoDB专用缓存，用来缓存表对象的数据和索引信息的。大小由`innodb_buffer_pool_size`变量指定，默认为`128MB`。在独立的数据库服务器中，该缓存大小可以设置为物理内存的`80%`
+      &nbsp; 对二级索引的更改不直接更改数据文件当中的，而是将他缓存到 change buffer中更改
+    - Change Buffer
+      1. Change Buffer的主要目的是将对二级索引的操作(insert, delete, update)缓存下来，而不是直接读入索引页进行更新；再择机将Change Buffer中的记录合并到真正的二级索引中，以此减少二级索引的随机IO
+      2. innodb_chang_buffer_max_size：表示change buffer在buffer pool中的最大占比，默认`25%`，最大`50%`
+      3. 在MySQL5.5之前的版本中，由于只支持缓存insert操作，最初叫做insert buffer，只是后来的版本中支持了更多的操作类型缓存，才改叫 Change Buffer  
+    __知识加油站__
+      1. InnoDB中 主键(聚簇索引)以外的索引都是二级索引
+      2. InnoDB中 索引和数据(行记录)在同一个文件中存储
+      3. InnoDB中 二级索引在文件中有自己单独的数据页
+      4. 对行记录的(insert, delete, update)操作时，二级索引可能也会被执行相应的(insert, delete, update)操作，很可能会产生大量的物理读(物理读二级索引数据页)
+    - Log Buffer
+  - 物理存储结构
 
 InnoDB逻辑存储结构
 
