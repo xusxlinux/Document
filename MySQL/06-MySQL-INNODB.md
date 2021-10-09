@@ -40,11 +40,11 @@ InnoDB事务
           commit；
           ```
       - 二、显示声明事务  
-          &ensp; 执行DML语句前，先通过`start transaction`或者`begin`语句启动一个事务，执行SQL语句后，就可以通过commit或者rollback语句来控制事务的提交或回滚  
-            start transaction; //事务开始  
-              &ensp; DML sql  
-              &ensp; DML sql  
-            commit or rollback; //事务结束
+          &ensp; &ensp; 执行DML语句前，先通过`start transaction`或者`begin`语句启动一个事务，执行SQL语句后，就可以通过commit或者rollback语句来控制事务的提交或回滚  
+            &ensp; start transaction; //事务开始  
+              &ensp; &ensp; DML sql  
+              &ensp; &ensp; DML sql  
+            &ensp; commit or rollback; //事务结束
 InnoDB体系结构
   - 内存结构
     - Buffer Pool  
@@ -54,7 +54,9 @@ InnoDB体系结构
       1. Change Buffer的主要目的是将对二级索引的操作(insert, delete, update)缓存下来，而不是直接读入索引页进行更新；再择机将Change Buffer中的记录合并到真正的二级索引中，以此减少二级索引的随机IO
       2. innodb_chang_buffer_max_size：表示change buffer在buffer pool中的最大占比，默认`25%`，最大`50%`
       3. 在MySQL5.5之前的版本中，由于只支持缓存insert操作，最初叫做insert buffer，只是后来的版本中支持了更多的操作类型缓存，才改叫 Change Buffer  
+  
   __知识加油站__  
+  
       1. InnoDB中 主键(聚簇索引)以外的索引都是二级索引
       2. InnoDB中 索引和数据(行记录)在同一个文件中存储
       3. InnoDB中 二级索引在文件中有自己单独的数据页
