@@ -41,10 +41,10 @@ InnoDB事务
           ```
       - 二、显示声明事务  
           &ensp; &ensp; 执行DML语句前，先通过`start transaction`或者`begin`语句启动一个事务，执行SQL语句后，就可以通过commit或者rollback语句来控制事务的提交或回滚  
-            &ensp; start transaction; //事务开始  
+            &ensp; &ensp; start transaction; //事务开始  
               &ensp; &ensp; DML sql  
               &ensp; &ensp; DML sql  
-            &ensp; commit or rollback; //事务结束
+            &ensp; &ensp; commit or rollback; //事务结束  
 InnoDB体系结构
   - 内存结构
     - `Buffer Pool`  
