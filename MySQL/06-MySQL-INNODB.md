@@ -20,11 +20,11 @@ InnoDB事务
     - Durable(持久性)
       - `事务`成功完成后，所做的所有更改都会准确地记录在数据库中，所做的更改不会丢失
   - 事务概述：  
-      事务是数据库区别于文件系统的重要特性之一。事务是指逻辑上的一组操作，组成这组操作的各个单元，要么全成功，要么全失败。同时事务有严格的定义，它必须同时满足ACID
+      &ensp; 事务是数据库区别于文件系统的重要特性之一。事务是指逻辑上的一组操作，组成这组操作的各个单元，要么全成功，要么全失败。同时事务有严格的定义，它必须同时满足ACID
   - 事务控制：  
-      默认情况下，链接到NySQL服务的客户端处于自动提交模式，也就是说每条DML执行即提交。若希望启用事务支持，有两种方式：
+      &ensp; 默认情况下，链接到NySQL服务的客户端处于自动提交模式，也就是说每条DML执行即提交。若希望启用事务支持，有两种方式：
       - 禁用事务自动提交 `show variables like 'autocommit';`  -->  `set autocommit=off;`    
-          MySQL中默认提交功能由系统变量`autocommit`控制，将该变量值为`0`或`off`即可禁用自动提交，将事务的提交`commit`和`rollback`控制权交由前端用户控制
+          &ensp; MySQL中默认提交功能由系统变量`autocommit`控制，将该变量值为`0`或`off`即可禁用自动提交，将事务的提交`commit`和`rollback`控制权交由前端用户控制
           ``` sql
           set autocommit=off;
           create table t_idb01(id int not null auto_increment primary key, c1 varchar(20))ENGINE=innodb auto_increment=1;
@@ -38,16 +38,16 @@ InnoDB事务
           commit；
           ```
       - 显示声明事务  
-          执行DML语句前，先通过`start transaction`或者`begin`语句启动一个事务，执行SQL语句后，就可以通过commit或者rollback语句来控制事务的提交或回滚  
+          &ensp; 执行DML语句前，先通过`start transaction`或者`begin`语句启动一个事务，执行SQL语句后，就可以通过commit或者rollback语句来控制事务的提交或回滚  
             start transaction; //事务开始  
-              DML sql  
-              DML sql  
+              &ensp; DML sql  
+              &ensp; DML sql  
             commit or rollback; //事务结束
 InnoDB体系结构
   - 内存结构
     - Buffer Pool  
       &ensp; InnoDB专用缓存，用来缓存表对象的数据和索引信息的。大小由`innodb_buffer_pool_size`变量指定，默认为`128MB`。在独立的数据库服务器中，该缓存大小可以设置为物理内存的`80%`  
-      &emsp;对二级索引的更改不直接更改数据文件当中的，而是将他缓存到 change buffer中更改
+      &ensp; 对二级索引的更改不直接更改数据文件当中的，而是将他缓存到 change buffer中更改
     - Change Buffer
       1. Change Buffer的主要目的是将对二级索引的操作(insert, delete, update)缓存下来，而不是直接读入索引页进行更新；再择机将Change Buffer中的记录合并到真正的二级索引中，以此减少二级索引的随机IO
       2. innodb_chang_buffer_max_size：表示change buffer在buffer pool中的最大占比，默认`25%`，最大`50%`
