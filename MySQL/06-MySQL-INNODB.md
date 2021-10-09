@@ -45,6 +45,7 @@ InnoDB事务
               &ensp; &ensp; DML sql  
               &ensp; &ensp; DML sql  
             &ensp; &ensp; commit or rollback; //事务结束  
+
 InnoDB体系结构
   - 内存结构
     - `Buffer Pool`  
