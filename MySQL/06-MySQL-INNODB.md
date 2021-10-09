@@ -46,8 +46,8 @@ InnoDB事务
 InnoDB体系结构
   - 内存结构
     - Buffer Pool  
-      &nbsp; InnoDB专用缓存，用来缓存表对象的数据和索引信息的。大小由`innodb_buffer_pool_size`变量指定，默认为`128MB`。在独立的数据库服务器中，该缓存大小可以设置为物理内存的`80%`
-      &nbsp; 对二级索引的更改不直接更改数据文件当中的，而是将他缓存到 change buffer中更改
+      &ensp; InnoDB专用缓存，用来缓存表对象的数据和索引信息的。大小由`innodb_buffer_pool_size`变量指定，默认为`128MB`。在独立的数据库服务器中，该缓存大小可以设置为物理内存的`80%`
+      &emsp;对二级索引的更改不直接更改数据文件当中的，而是将他缓存到 change buffer中更改
     - Change Buffer
       1. Change Buffer的主要目的是将对二级索引的操作(insert, delete, update)缓存下来，而不是直接读入索引页进行更新；再择机将Change Buffer中的记录合并到真正的二级索引中，以此减少二级索引的随机IO
       2. innodb_chang_buffer_max_size：表示change buffer在buffer pool中的最大占比，默认`25%`，最大`50%`
