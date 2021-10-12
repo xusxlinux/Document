@@ -89,15 +89,14 @@ InnoDB体系结构
     - innodb_log_file_size
     - innodb_log_file_in_group  
 
-  __redo 在事务中的应用__  
-  
-  redo的作用：  
-  &ensp; &ensp; redo来实现事务持久性，redo对于AC也有相应的作用  
-  持久性相关组件：  
-  &ensp; &ensp; 重做日志缓存(redo log buffer)，是易失的  
-  &ensp; &ensp; 重做日志文件(redo log file)，是持久的  
-  持久性远离：  
-  &ensp; &ensp; 当事务提交 `commit` 时，会刷新当前事务的`redo buffer`到重做日志文件中进行持久化，待事务的commit完成才算完成(`会将此日志打上commit标记`)。还会顺便将一部分`redo buffer`中没有提交的事务日志也刷新到redo日志文件中。
+    __redo 在事务中的应用__  
+      redo的作用：  
+      &ensp; &ensp; redo来实现事务持久性，redo对于AC也有相应的作用  
+      持久性相关组件：  
+      &ensp; &ensp; 重做日志缓存(redo log buffer)，是易失的  
+      &ensp; &ensp; 重做日志文件(redo log file)，是持久的  
+      持久性远离：  
+      &ensp; &ensp; 当事务提交 `commit` 时，会刷新当前事务的`redo buffer`到重做日志文件中进行持久化，待事务的commit完成才算完成(`会将此日志打上commit标记`)。还会顺便将一部分`redo buffer`中没有提交的事务日志也刷新到redo日志文件中。  
   - Undo日志  
     
 
