@@ -88,7 +88,7 @@ InnoDB体系结构
     - innodb_log_group_home_dir
     - innodb_log_file_size
     - innodb_log_file_in_group
-  __redo 在事务中的应用__
+  __redo 在事务中的应用__  
   redo的作用：  
   &ensp; &ensp; redo来实现事务持久性，redo对于AC也有相应的作用  
   持久性相关组件：  
