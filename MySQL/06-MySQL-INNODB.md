@@ -65,15 +65,26 @@ InnoDB体系结构
         4. 对行记录的(insert, delete, update)操作时，二级索引可能也会被执行相应的(insert, delete, update)操作，很可能会产生大量的物理读(物理读二级索引数据页)    
 
 - 物理存储结构
-  - 系统表空间
+  - 系统表空间  
     &ensp; &ensp; 默认情况下InnoDB引擎只对应一个表空间，即系统表空间，所有InnoDB引擎表的数据(含索引)都存储再该表空间中，注意仅仅是保存数据和索引，表对象的结构信息仍然保存再`.frm`文件中  
     &ensp; &ensp; InnoDB系统表空间对应哪些物理数据文件，通过系统变量`innodb_data_file_path`指定，其语法：  
-    __innodb_data_file_path=file_name:file_size[:autoextend[:max:max_file_size]]__
-  - 独立表空间
+    __innodb_data_file_path=file_name:file_size[:autoextend[:max:max_file_size]]__  
+    - file_name：指定文件名
+    - file_size：指定文件初始化大小
+    - autoextend：指定文件是否可扩展，可选参数
+    - :max:max_file_size：指定该数据文件最大可占用空间，可选参数
+    &ensp; &ensp; MySQL5.7中 autoextend默认一次扩展64M的空间，可通过innodb_autoextend_increament系统变量指定  
+    &ensp; &ensp; 默认情况下InnoDB数据文件会保存在MySQL的data目录中。如果要变更文件的保存路径，可以通过系统变量`innodb_data_home_dir`设置  
+    &ensp; &ensp; &ensp; &ensp; 例如`innodb_data_home_dir=/mysql/3306/data`
+  - 独立表空间  
+    &ensp; &ensp; 默认的情况下，InnoDB引擎的表和索引都保存在系统表空间对应的数据文件中，当数据量很大的时候，管理成本就会上升。系统表空间的数据文件扩展后无法回缩，即使表被`DROP`或者`TRUNCATE`，甚至该表空间内实际已经没有任何数据，已分配的空间仍然仅是相对于InnoDB数据可用，而不能被操作系统再分配给其他文件使用。  
+    &ensp; &ensp; 针对这种情况，可以考虑应用InnoDB数据存储的另一项设定，InnoDB将其定义为多重表空间(multiple tablespaces)，就是每个表对象拥有一个独享的`.ibd`为扩展名的数据文件，这个文件就是一个独立的表空间。  
+    &ensp; &ensp; 是否启用独立的表空间是由系统变量 `innodb_file_per_table`控制  
+    a. 各表对象的数据独立存储至不同的文件，可以更灵活地分散I/O、执行备份及恢复操作
+    b. 当执行`DROP`或者`TRUNCATE`删除表对象时，空间可以即时释放回操作系统层
+  - Redo日志  
     
-  - Redo日志
-    
-  - Undo日志
+  - Undo日志  
     
 
 InnoDB逻辑存储结构
