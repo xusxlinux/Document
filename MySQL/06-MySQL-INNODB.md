@@ -65,6 +65,16 @@ InnoDB体系结构
         4. 对行记录的(insert, delete, update)操作时，二级索引可能也会被执行相应的(insert, delete, update)操作，很可能会产生大量的物理读(物理读二级索引数据页)    
 
 - 物理存储结构
+  - 系统表空间
+    &ensp; &ensp; 默认情况下InnoDB引擎只对应一个表空间，即系统表空间，所有InnoDB引擎表的数据(含索引)都存储再该表空间中，注意仅仅是保存数据和索引，表对象的结构信息仍然保存再`.frm`文件中  
+    &ensp; &ensp; InnoDB系统表空间对应哪些物理数据文件，通过系统变量`innodb_data_file_path`指定，其语法：  
+    __innodb_data_file_path=file_name:file_size[:autoextend[:max:max_file_size]]__
+  - 独立表空间
+    
+  - Redo日志
+    
+  - Undo日志
+    
 
 InnoDB逻辑存储结构
 
