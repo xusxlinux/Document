@@ -87,7 +87,7 @@ InnoDB体系结构
     &ensp; &ensp; redo日志仅针对InnoDB引擎，MySQl数据库的其他引擎是用不到的。默认情况下，InnoDB引擎会创建两组大小均为5MB的日志文件，分别命名为`ib_logfile0`和`ib_logfile1`,日志文件保存在datadir变量指定的路径下。不过可以通过InnoDB的专用参数修改日志路径、日志大小以及日志文件组的数量：  
     - innodb_log_group_home_dir
     - innodb_log_file_size
-    - innodb_log_file_in_group
+    - innodb_log_file_in_group  
   __redo 在事务中的应用__  
   redo的作用：  
   &ensp; &ensp; redo来实现事务持久性，redo对于AC也有相应的作用  
