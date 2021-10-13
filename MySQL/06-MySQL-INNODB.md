@@ -107,12 +107,12 @@ InnoDB体系结构
       __回滚段中的UNDO日志分为两种__  
         1. insert UNDO：仅在事务回滚时需要，事务提交后即可被废弃  
         2. update UNDO：用于构造一致性读，当没有任何事务需要用到行记录的之前版本时才会被废弃  
-      考虑到InnoDB的回滚段，一致性读这类特性，建议事务尽早提交，不要长期持有。因为长事务可能会造成回滚段过大，占满整个系统表空间，从而拖累整个InnoDB引擎的运行  
+      &ensp; &ensp; 考虑到InnoDB的回滚段，一致性读这类特性，建议事务尽早提交，不要长期持有。因为长事务可能会造成回滚段过大，占满整个系统表空间，从而拖累整个InnoDB引擎的运行  
       __UNDO 日志存储结构__  
-        默认情况，UNDO日志存储在系统表空间。从MySQL5.6版本开始，InnoDB引擎中的UNDO日志可以单独设置表空间，即UNDO表空间。想要使用独立的UNDO表空间，只需设置下面三个参数即可  
-        - innodb_undo_directory：指定单独存放undo表空间的目录，默认`datadir`。MySQl5.7只支持初始化设置，不能中途开启  
-        - innodb_rollback_segments：回滚段的数量，至少大于等于35，默认128  
-        - innodb_undo_tablespaces：指定单独存放的undo表空间个数。必须在mysql初始化阶段设置，初始化完成后就不能在修改  
+      &ensp; &ensp; 默认情况，UNDO日志存储在系统表空间。从MySQL5.6版本开始，InnoDB引擎中的UNDO日志可以单独设置表空间，即UNDO表空间。想要使用独立的UNDO表空间，只需设置下面三个参数即可  
+        `innodb_undo_directory`：指定单独存放undo表空间的目录，默认`datadir`。MySQl5.7只支持初始化设置，不能中途开启  
+        `innodb_rollback_segments`：回滚段的数量，至少大于等于35，默认128  
+        `innodb_undo_tablespaces`：指定单独存放的undo表空间个数。必须在mysql初始化阶段设置，初始化完成后就不能在修改  
 InnoDB逻辑存储结构
 
 什么是聚簇索引
