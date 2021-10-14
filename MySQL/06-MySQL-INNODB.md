@@ -1,6 +1,6 @@
 ## InnoDB存储引擎
 
-InnoDB特性概述
+#### InnoDB特性概述
   - 设计遵循`ACID模型`，支持`事务`
   - 支持行级锁，以提升多用户并发时的读写性能
   - Innodb引擎表组织数据时，按照`主键聚簇`
@@ -8,7 +8,7 @@ InnoDB特性概述
   - 拥有从服务器奔溃中恢复的能力，能够最大限度地保护数据
   - Innodb拥有自己独立的缓存池，常用的数据(含索引)都在缓存中
 
-InnoDB事务
+#### InnoDB事务
   - ACID模型
     - Atomic模型(原子性)
       - 所有语句作为一个单元全部成功执行或全部取消，不能出现中间状态  
@@ -46,7 +46,7 @@ InnoDB事务
               &ensp; &ensp; DML sql  
             &ensp; &ensp; commit or rollback; //事务结束  
 
-InnoDB体系结构
+#### InnoDB体系结构
   - 内存结构
     - `Buffer Pool`  
       &ensp; &ensp; InnoDB专用缓存，用来缓存表对象的数据和索引信息的。大小由`innodb_buffer_pool_size`变量指定，默认为`128MB`。在独立的数据库服务器中，该缓存大小可以设置为物理内存的`80%`  
@@ -114,13 +114,13 @@ InnoDB体系结构
         `innodb_rollback_segments`：回滚段的数量，至少大于等于35，默认128  
         `innodb_undo_tablespaces`：指定单独存放的undo表空间个数。必须在mysql初始化阶段设置，初始化完成后就不能在修改  
 
-InnoDB逻辑存储结构
+#### InnoDB逻辑存储结构
   - 页：页是InnoDB中的最小管理单元，同一个MySQL服务，所有表空间都拥有相同的页大小，默认情况下`16KB`，可以在初始化数据库时通过`innodb_page_size`变量进行配置，可选值有`4KB`、 `8KB`、 `16KB`
   - 区：每个区固定`1MB`大小，由`64`个`16KB`的页组成
   - 段：Segment由无数个Extent组成。段本身有很多种，比如数据段、索引段、回滚段。
   - 表空间：逻辑存储单元最高粒度
   &ensp; &ensp; 对于需要扩展表空间，InnoDB第一次是分配32个pages，之后，每次扩展会分配一个完整的Extent给Segment，最大能够同时向Segment中增加4个Extent，以确保数据的连续性  
-什么是聚簇索引
+#### 什么是聚簇索引
   - 聚簇索引：
     - 使用记录主键值的大小进行记录和页的排序，包括三个方面的含义
       - 页内的记录是按照主键的大小顺序排成一个单向链表
