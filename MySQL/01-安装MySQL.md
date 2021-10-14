@@ -69,7 +69,7 @@ log-output                             = FILE
 general_log                            = 0
 general_log_file                       = /mysql/3306/logs/hdss7-200.host.com-general.err
 slow_query_log                         = No
-slow_query_log                         = /mysql/3306/logs/hdss7-200.host.com-query.err
+slow_query_log_file                    = /mysql/3306/logs/hdss7-200.host.com-query.err
 long_query_time                        = 10
 log-error                              = /mysql/3306/logs/hdss7-200.host.com-error.err
 ```
