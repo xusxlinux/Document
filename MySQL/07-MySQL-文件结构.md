@@ -39,3 +39,4 @@ MySQL中既有支持事务的存储引擎，也有不支持事务的存储引擎
 <font color=#0099ff size=7 face="黑体">color=#0099ff size=72 face="黑体"</font>  
 $\color{red}{红色字}$
 <font face="黑体">我是黑体字</font>
+<font face="黑体" color=green size=5>我是黑体，绿色，尺寸为5</font>
