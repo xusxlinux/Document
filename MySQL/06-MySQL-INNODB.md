@@ -72,7 +72,7 @@
     - file_name：指定文件名
     - file_size：指定文件初始化大小
     - autoextend：指定文件是否可扩展，可选参数
-    - :max:max_file_size：指定该数据文件最大可占用空间，可选参数
+    - :max:max_file_size：指定该数据文件最大可占用空间，可选参数  
     &ensp; &ensp; MySQL5.7中 autoextend默认一次扩展64M的空间，可通过innodb_autoextend_increament系统变量指定  
     &ensp; &ensp; 默认情况下InnoDB数据文件会保存在MySQL的data目录中。如果要变更文件的保存路径，可以通过系统变量`innodb_data_home_dir`设置  
     &ensp; &ensp; &ensp; &ensp; 例如`innodb_data_home_dir=/mysql/3306/data`
