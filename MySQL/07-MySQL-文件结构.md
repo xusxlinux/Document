@@ -11,13 +11,14 @@ __告诉MySQL服务启动时在哪里可以找到数据库文件，并且指定�
 _慢查询日志：_  
 &ensp; &ensp; 慢查询指查询语句执行时间超过变量`long_query_time`指定的参数值，并且访问的记录数超过系统变量`min_examined_row_limit`的数量的语句  
 默认情况下慢查询日志功能时被禁用的，启用和禁用慢查询日志文件都是通过MySQL的系统参数控制，主要有三个：  
-`long_query_time`  
-`slow_query_log`  
+`long_query_time`：慢查询指查询语句超时时间  
+`slow_query_log`：开启慢查询日志记录功能  
 `slow_query_log_file`：指定日志文件路径  
+
 _普通查询日志：_  
 &ensp; &ensp; 这个日志文件不仅仅记录查询语句，而是能够记录mysqld进程所做的几乎所有操作，不仅仅时客户端发出的SQL语句会被记录到普通查询日志中，对于数据库或对象的管理操作也会记录下来。因此，启用普通查询日志最大的功能点是：__审计！__ 启用或禁用普通查询日志主要有两个参数：  
-`general_log`  
-`general_log_file`
+`general_log`：开启普通查询日志  
+`general_log_file`：指定日志文件路径
 
 #### 二进制日志文件
 日志记录了对数据库执行更改的所有操作(DDL，DCL，DML)  
