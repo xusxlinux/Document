@@ -31,8 +31,11 @@ _复制_：将MySQL Master端的二进制日志发送至Slave端，Slave端即�
 
 二进制日志文件默认情况下并没有启动，需要手动指定参数开启。通过配置参数log-bin[=name]可以启动二进制日志。基本参数如下：  
 `log-bin`：开启后指定路径和文件名称。  
+
 `max_binlog_size`：binlog文件最大值，默认`10G`。  
+
 `expire_logs_days`：binlog文件保存多少天。  
+
 `binlog_cache_size`：  
 - MySQL中既有支持事务的存储引擎，也有不支持事务的存储引擎，因此在操作基于不同存储引擎对象时，二进制日志的处理也会有所不同。
 - 对于非事务表，语句执行之后就会立刻写入二进制日志中。对于事务表，针对暂未提交的事务，事务中的IDU会被缓存起来，直到收到`commit`语句，mysqld进程会将整个事务在`commit`执行前全部写到二进制日志。 
@@ -41,6 +44,7 @@ __提示：__
 体统变量和状态变量是不同的。系统变量一般是MySQL数据库中的系统配置，状态变量则是MySQL服务运行过程中的一些状态信息：
 1. MySQL命令行中查看`系统`变量：`show global variables like '变量名';`
 2. MySQL命令行中查看`状态`变量：`show global status like '变量名';`  
+
 `binlog_format`：  
 二进制日志记录事件的格式又3种：  
 1. 基于语句记录(statement)：记录的是日志逻辑SQL语句
