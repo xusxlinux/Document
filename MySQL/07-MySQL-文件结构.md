@@ -3,7 +3,7 @@ __告诉MySQL服务启动时在哪里可以找到数据库文件，并且指定�
 `mysqld_safe --defaults-file=/mysql/3306/conf/my.cnf`  
 如果把参数文件保存在自己指定的路径下，MySQL命令行在启动的时默认读不到，需要通过参数(defaults-file)指定其路径
 
----
+
 #### 错误日志文件
 作用：记录错误信息 [Note]、[Warning]、[Error]  
 路径：`show variables like '%log_er%';`
