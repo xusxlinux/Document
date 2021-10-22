@@ -67,3 +67,4 @@ __提示：__
 socket套接字文件：`mysql -uroot -p123456 -S /mysql/3306/tmp/mysql.sock`  
 
 自动配置文件：`uuid`  -->  `cat /mysql/3306/data/auto.cnf`
+
