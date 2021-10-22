@@ -40,7 +40,8 @@ _复制_：将MySQL Master端的二进制日志发送至Slave端，Slave端即�
 __提示：__  
 体统变量和状态变量是不同的。系统变量一般是MySQL数据库中的系统配置，状态变量则是MySQL服务运行过程中的一些状态信息：
 1. MySQL命令行中查看`系统`变量：`show global variables like '变量名';`
-2. MySQL命令行中查看`状态`变量：`show global status like '变量名';`
+2. MySQL命令行中查看`状态`变量：`show global status like '变量名';`  
+
 `binlog_format`：  
 二进制日志记录事件的格式又3种：  
 1. 基于语句记录(statement)：记录的是日志逻辑SQL语句
