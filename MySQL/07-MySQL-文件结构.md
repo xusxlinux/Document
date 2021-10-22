@@ -1,4 +1,4 @@
-#### 参数文件
+## 参数文件
 __告诉MySQL服务启动时在哪里可以找到数据库文件，并且指定某些初始化参数__  
 `mysqld_safe --defaults-file=/mysql/3306/conf/my.cnf`  
 如果把参数文件保存在自己指定的路径下，MySQL命令行在启动的时默认读不到，需要通过参数(defaults-file)指定其路径
