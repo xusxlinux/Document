@@ -38,7 +38,7 @@
   - 高级参数应用：  
     --single-transaction：所有被dump的表都会被锁(--lock-tables默认开启)  
     
-      - 例子：
+    __例子：__
     ``` sql
     mysqldump -uroot -p123456 -S /mysql/3306/tmp/mysql.sock -B db_innodb -R --triggers --single-transaction --default-character-set=utf8 > /mysql/backup-241/db_innodb_$(date "+%Y%m%d_%H%M%S").sql
     ```
@@ -50,7 +50,12 @@
       · 2 以注释的形式记录， 备份时刻的文件名+`postion`号  
     - 会产生全局锁`(--lock-all-tables)`
     - 联合 `--single-transaction`，则只对非InnoDB表进行锁表备份，InnoDB表进行热备
-    - 使用该参数的用户必须具有`reload`权限
+    - 使用该参数的用户必须具有`reload`权限  
+
+    __例子：__
+    ``` sql
+    
+    ```
     
 
 - mysqlbinlog使用
