@@ -57,9 +57,15 @@
     mysqldump -uroot -p123456 -S /mysql/3306/tmp/mysql.sock -B db_innodb -R --triggers --master-data=2 --single-transaction --default-character-set=utf8 > /mysql/backup-241/db_innodb02_$(date "+%Y%m%d_%H%M%S").sql
     ```
     
-
-- mysqlbinlog使用
-
+- mysqlbinlog使用  
+  --base64-output：解码处理  
+  -v ：重组伪SQL语句的  
+  --set-charset：设置字符集  
+  --database：只处理指定的数据库  
+  --start-positin：指定分析事件的起始位置  
+  --stop-position：指定分析时间的结束位置  
+  --start-datetime：指定分析的起始时间  
+  --stop-datetime：指定分析的结束时间
 
 - 案例演示
 
