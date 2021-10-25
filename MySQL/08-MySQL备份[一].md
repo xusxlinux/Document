@@ -35,6 +35,14 @@
     mysqldump -uroot -p123456 -S /mysql/3306/tmp/mysql.sock -B db_gb2312 db_innodb -R --triggers --default-character-set=utf8 > /mysql/backup-241/$(date "+%Y%m%d_%H%M%S").sql
     ```
 
+  - 高级参数应用：
+    --single-transaction：所有被dump的表都会被锁(--lock-tables默认开启)  
+    --master-data：对innodb进行一致性备份，对非innodb表可以实现自动锁表功能  
+    
+  - 例子：
+    ``` sql
+    mysqldump -uroot -p123456 -S /mysql/3306/tmp/mysql.sock -B db_innodb -R --triggers --single-transaction --default-character-set=utf8 > /mysql/backup-241/db_innodb_$(date "+%Y%m%d_%H%M%S").sql
+    ```
 - mysqlbinlog使用
 
 
