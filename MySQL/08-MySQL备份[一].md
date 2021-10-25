@@ -35,9 +35,16 @@
     mysqldump -uroot -p123456 -S /mysql/3306/tmp/mysql.sock -B db_gb2312 db_innodb -R --triggers --default-character-set=utf8 > /mysql/backup-241/$(date "+%Y%m%d_%H%M%S").sql
     ```
 
-  - 高级参数应用：
+  - 高级参数应用：  
     --single-transaction：所有被dump的表都会被锁(--lock-tables默认开启)  
     --master-data：对innodb进行一致性备份，对非innodb表可以实现自动锁表功能  
+    - 在备份时，会自动记录，二进制日志文件名和位置号
+      · 0 默认值  
+      · 1 以change master to 命令行事，可以用主从复制  
+      · 2 以注释的形式记录， 备份时刻的文件名+`postion`号  
+    - 会产生全局锁`(--lock-all-tables)`
+    - 联合 `--single-transaction`，则只对非InnoDB表进行锁表备份，InnoDB表进行热备
+    - 使用该参数的用户必须具有`reload`权限
     
   - 例子：
     ``` sql
