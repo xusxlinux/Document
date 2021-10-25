@@ -60,10 +60,19 @@
 - mysqlbinlog使用  
   --base64-output：解码处理  
   -v ：重组伪SQL语句的  
+  ``` sql
+  mysqlbinlog --no-defaults --base64-output=decode-row -v -v mysql-bin.000006 | more
+  ```  
   --set-charset：设置字符集  
+  ``` sql
+  mysqlbinlog --no-defaults --base64-output=decode-row -v -v --set-charset=utf8 mysql-bin.000006 | more
+  ```  
   --database：只处理指定的数据库  
-  --start-positin：指定分析事件的起始位置  
+  --start-position：指定分析事件的起始位置  
   --stop-position：指定分析时间的结束位置  
+  ``` sql
+  mysqlbinlog --no-defaults --start-position=154 --stop-position=997 --set-charset=utf8 mysql-bin.000006 | more
+  ```  
   --start-datetime：指定分析的起始时间  
   --stop-datetime：指定分析的结束时间
 
