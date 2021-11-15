@@ -1,7 +1,7 @@
 #### 简单安装MySQL
 - [MySQL 二进制包 下载地址](https://downloads.mysql.com/archives/community/)
 ``` shell
-mkdir -pv /mysql/3306/{app,conf,data,logs,tmp}
+mkdir -pv /mysql/3306/{app,conf,data,logs,tmp,binlog,redo}
 tar -xf mysql-5.7.30-linux-glibc2.12-x86_64.tar.gz -C /mysql/3306/app/
 
 # 需要注意MySQL文件夹的权限
