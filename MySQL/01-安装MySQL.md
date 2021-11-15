@@ -85,7 +85,6 @@ slow_query_log                         = ON
 slow_query_log_file                    = /mysql/3306/logs/linux-node-01.host.com-slow.err
 long_query_time                        = 10
 log-error                              = /mysql/3306/logs/linux-node-01.host.com-error.err
-
 ```
 - CentOS Linux 系统的启停配置文件
   - vim /usr/lib/systemd/system/mysqld.service 
