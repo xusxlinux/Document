@@ -117,6 +117,7 @@
   
 3、模拟库被删除：
   drop database db_innodb;
+  
   1、获取drop前的时间，避免进入循环
     show binary logs;
     show binlog events in 'mysql-bin.000014'
