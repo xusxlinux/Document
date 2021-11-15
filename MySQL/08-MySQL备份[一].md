@@ -14,7 +14,7 @@
   - *逻辑备份必须是热备*
   - 备份/恢复数度通常慢于物理备份
 
-- mysqldump使用
+- `mysqldump`使用
   - 客户端通用参数：  
     __本地备份：__ `mysqldump -uroot -p123456 -S /mysql/3306/tmp/mysql.sock`  
     __远程备份：__ `mysqldump -uroot -p123456 -h 192.168.2.10 -P3306`  
@@ -57,7 +57,7 @@
     mysqldump -uroot -p123456 -S /mysql/3306/tmp/mysql.sock -B db_innodb -R --triggers --master-data=2 --single-transaction --default-character-set=utf8 > /mysql/backup-241/db_innodb02_$(date "+%Y%m%d_%H%M%S").sql
     ```
     
-- mysqlbinlog使用  
+- `mysqlbinlog`使用  
   --base64-output：解码处理  
   -v ：重组伪SQL语句的  
   ``` sql
