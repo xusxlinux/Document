@@ -8,7 +8,7 @@ create USER 'xusx'@'10.4.7.%' IDENTIFIED BY '123456';
 - 权限处理逻辑与授予、回收
 ``` sql
 # 给全部权限
-grant all priviliges on hdss7_200.* to 'xusx'@'10.4.7.%' identified by '123456';
+grant all privileges on hdss7_200.* to 'xusx'@'10.4.7.%' identified by '123456';
 
 # 授select权限
 grant select on hdss7_200.test_01 to 'xusx'@'10.4.7.%';
