@@ -47,7 +47,7 @@ select host,user from user where user='root';
 ```
 
 - MySQL配置文件
-  - vim /mysql/data/3306/my.cnf
+  - vim /mysql/3306/conf/my.cnf
 ``` cnf
 [client]
 default-character-set                  = utf8
