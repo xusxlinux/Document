@@ -64,7 +64,7 @@
   --no-defaults：不使用my.cnf的缺省文件  
   --read-from-remote-server：备份远程服务器的`binlog`。不指定就会备份本地的  
   --raw：binlog日志会以二进制格式存储磁盘中，不指定，则会以文本形式保存  
-  --user：复制的MySQL用户，只需授予`replication slave`权限  `grant replication slave on *.* to 'work'@'10.4.7.%';`
+  --user：复制的MySQL用户，只需授予`replication slave`权限  `grant replication slave on *.* to 'work'@'10.4.7.%';`  
   --stop-never：`mysqlbinlog`可以只从远程服务器获取指定的几个`binlog`，也可将不断生成的`binlog`保存到本地，指定这个参数，代表只要远程服务器不关闭或者连接未未断开，`mysqlbinlog`就会不断的复制远程服务器上的`binlog`  
   --mysql-bin.000001：代表从哪个`binlog`开始复制  
   --result-file：用于设置远程服务器的binlog，保存到本地的前缀。（比如`mysql-bin.000001`，如果指定`--result-file=/mysql/backup/chain-`，保存到本地后文件名为`chain-mysql-bin.000001`）  
