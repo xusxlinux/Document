@@ -49,6 +49,9 @@ select host,user from user where user='root';
 - MySQL配置文件
   - vim /mysql/data/3306/my.cnf
 ``` cnf
+[client]
+default-character-set                  = utf8
+
 [mysql]
 default-character-set                  = utf8
 socket                                 = /mysql/3306/tmp/mysql.sock
@@ -60,18 +63,29 @@ port                                   = 3306
 socket                                 = /mysql/3306/tmp/mysql.sock
 basedir                                = /mysql/3306/app/mysql
 datadir                                = /mysql/3306/data
+tmpdir                                 = /mysql/3306/tmp
+pid-file                               = /mysql/3306/tmp/mysql.pid
+server-id                              = 1
+log-bin                                = /mysql/3306/binlog/mysql-bin
+log_bin_index                          = /mysql/3306/binlog/mysql-bin.index
+binlog_format                          = ROW
 character-set-server                   = utf8
+collation-server                       = utf8_general_ci
 default-storage-engine                 = INNODB
 innodb_buffer_pool_size                = 200M
+innodb_data_file_path                  = ibdata1:10M:autoextend
+innodb_log_group_home_dir              = /mysql/3306/redo
+innodb_file_per_table                  = 1
 max_allowed_packet                     = 16M
 explicit_defaults_for_timestamp        = 1
 log-output                             = FILE
-general_log                            = 0
-general_log_file                       = /mysql/3306/logs/hdss7-200.host.com-general.err
-slow_query_log                         = No
-slow_query_log_file                    = /mysql/3306/logs/hdss7-200.host.com-query.err
+general_log                            = ON
+general_log_file                       = /mysql/3306/logs/linux-node-01.host.com-general.err
+slow_query_log                         = ON
+slow_query_log_file                    = /mysql/3306/logs/linux-node-01.host.com-slow.err
 long_query_time                        = 10
-log-error                              = /mysql/3306/logs/hdss7-200.host.com-error.err
+log-error                              = /mysql/3306/logs/linux-node-01.host.com-error.err
+
 ```
 - CentOS Linux 系统的启停配置文件
   - vim /usr/lib/systemd/system/mysqld.service 
