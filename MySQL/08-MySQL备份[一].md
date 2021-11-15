@@ -82,15 +82,74 @@
   mysqlbinlog --no-defaults --base64-output=decode-row -v -v --set-charset=utf8 mysql-bin.000006 | more
   ```  
   --database：只处理指定的数据库  
+  ``` sql
+  mysqlbinlog --no-defaults --database db_innodb --set-charset=utf8 mysql-bin.000001 > /mysql/backup-200/bin1.sql
+  ```
   --start-position：指定分析事件的起始位置  
+  ``` sql
+  mysqlbinlog --no-defaults --database db_innodb --set-charset=utf8 --start-position=154 mysql-bin.000001 > /mysql/backup-200/bin1.sql
+  ```
   --stop-position：指定分析时间的结束位置  
   ``` sql
-  mysqlbinlog --no-defaults --start-position=154 --stop-position=997 --set-charset=utf8 mysql-bin.000006 | more
+  mysqlbinlog --no-defaults --database db_innodb --set-charset=utf8 --stop-position=219 mysql-bin.000002 > /mysql/backup-200/bin2.sql
   ```  
   --start-datetime：指定分析的起始时间  
   --stop-datetime：指定分析的结束时间
 
 - 案例演示
+```
+# 故障模拟及恢复执行步骤：
+1、模拟备份数据库：db_innodb
+  mysqldump -uroot -p123456 -S /mysql/3306/tmp/mysql.sock -B db_innodb -R --triggers --master-data=2 --single-transaction --default-character-set=utf8 > /mysql/backup-200/db_innodb01_$(date "+%Y%m%d_%H%M%S").sql
 
+2、模拟白天的业务数据变化：
+  create tables t_columns as select * from information_schema.columns;
+  commit;
+  flush logs;
+  
+  insert into t_columns select * from information_schema.columns;
+  commit;
+  flush logs;
+  
+  insert into t_columns select * from information_schema.columns;
+  commit;
+  flush logs;  
+  
+3、模拟库被删除：
+  drop database db_innodb;
+  1、获取drop前的时间，避免进入循环
+    show binary logs;
+    show binlog events in 'mysql-bin.000014'
+    +------------------+-----+----------------+-----------+-------------+---------------------------------------+
+    | Log_name         | Pos | Event_type     | Server_id | End_log_pos | Info                                  |
+    +------------------+-----+----------------+-----------+-------------+---------------------------------------+
+    | mysql-bin.000014 |   4 | Format_desc    |         1 |         123 | Server ver: 5.7.25-log, Binlog ver: 4 |
+    | mysql-bin.000014 | 123 | Previous_gtids |         1 |         154 |                                       |
+    | mysql-bin.000014 | 154 | Anonymous_Gtid |         1 |         219 | SET @@SESSION.GTID_NEXT= 'ANONYMOUS'  |
+    | mysql-bin.000014 | 219 | Query          |         1 |         326 | drop database db_innodb               |
+    +------------------+-----+----------------+-----------+-------------+---------------------------------------+
+4、恢复思路：
+  1、获取备份数据
+    db_innodb01_20211115_163853.sql
+  2、从备份中获取二进制日志位置
+    -- CHANGE MASTER TO MASTER_LOG_FILE='mysql-bin.000009', MASTER_LOG_POS=154;
+  3、根据日志位置截取需要的二进制日志
+    mysqlbinlog --no-defaults --database db_innodb --start-position=154 --set-charset=utf8 mysql-bin.000009 > /mysql/backup-200/bin9.sql
+    mysqlbinlog --no-defaults --database db_innodb --set-charset=utf8 mysql-bin.000010 > /mysql/backup-200/bin10.sql
+    mysqlbinlog --no-defaults --database db_innodb --set-charset=utf8 mysql-bin.000011 > /mysql/backup-200/bin11.sql
+    mysqlbinlog --no-defaults --database db_innodb --set-charset=utf8 mysql-bin.000012 > /mysql/backup-200/bin12.sql
+    mysqlbinlog --no-defaults --database db_innodb --set-charset=utf8 mysql-bin.000013 > /mysql/backup-200/bin13.sql
+    mysqlbinlog --no-defaults --database db_innodb --stop-position=219 --set-charset=utf8 mysql-bin.000014 > /mysql/backup-200/bin14.sql
+  4、恢复备份数据
+    set SQL_LOG_BIN=0;  (避免进入循环)
+    source /mysql/backup-200/db_innodb01_20211115_163853.sql
+  5、恢复二进制日志
+    source /mysql/backup-200/bin9.sql
+    source /mysql/backup-200/bin10.sql
+    source /mysql/backup-200/bin11.sql
+    source /mysql/backup-200/bin12.sql
+    source /mysql/backup-200/bin13.sql
+    source /mysql/backup-200/bin14.sql
+```
 
 #### 物理备份与恢复
