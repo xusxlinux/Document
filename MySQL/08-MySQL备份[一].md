@@ -36,7 +36,10 @@
     ```
 
   - 高级参数应用：  
-    --single-transaction：所有被dump的表都会被锁(--lock-tables默认开启)  
+    --single-transaction：  
+    不加这个参数的时候，所有被dump的表都会被锁(--lock-tables默认开启)  
+    加上这个参数的时候，对innodb进行一致性备份，对非innodb表可以实现自动锁表功能
+    
     
     __例子：__
     ``` sql
