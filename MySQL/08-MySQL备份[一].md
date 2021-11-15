@@ -69,6 +69,7 @@
   --mysql-bin.000001：代表从哪个`binlog`开始复制  
   --result-file：用于设置远程服务器的binlog，保存到本地的前缀。（比如`mysql-bin.000001`，如果指定`--result-file=/mysql/backup/chain-`，保存到本地后文件名为`chain-mysql-bin.000001`)  
   ``` sql
+  # mysql备份远程服务器的日志
   mysqlbinlog --no-defaults --read-from-remote-server --raw --result-file=/mysql/backup-11/IP200- --host=10.4.7.200 --user=work --password=123456 --stop-never mysql-bin.000001
   ```
   --base64-output：解码处理  
