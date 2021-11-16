@@ -204,7 +204,7 @@
     - 创建增量备份策略
     - 创建增量备份  
       __参数说明__  
-      `--incremental`：告诉xtrabackup这次创建的时增量备份
+      `--incremental`：告诉xtrabackup这次创建的时增量备份  
       `--incremental-basedir`：指定为前一次全备或者增量备份的目录  
       __创建增量备份__  
       ``` sql
