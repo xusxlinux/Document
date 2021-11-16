@@ -133,6 +133,7 @@
   1、获取备份数据
     db_innodb01_20211115_163853.sql
   2、从备份中获取二进制日志位置
+    vim /mysql/backup-200/db_innodb01_20211115_163853.sql
     -- CHANGE MASTER TO MASTER_LOG_FILE='mysql-bin.000009', MASTER_LOG_POS=154;
   3、根据日志位置截取需要的二进制日志
     mysqlbinlog --no-defaults --database db_innodb --start-position=154 --set-charset=utf8 mysql-bin.000009 > /mysql/backup-200/bin9.sql
