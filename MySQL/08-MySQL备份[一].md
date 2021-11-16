@@ -211,7 +211,7 @@
       ``` sql
       ## 增量备份
       innobackupex --defaults-file=/mysql/3306/conf/my.cnf --host=0.0.0.0 --user=xtrabk --password='123456' --no-timestamp \
-      --incremental --incremental-basedir=/mysql/backup/3306_full /mysql/backup/3306_inc1
+      --incremental --incremental-basedir=/mysql/backup-200/3306_full /mysql/backup-200/3306_inc1
       
       
       innobackupex --defaults-file=/mysql/3306/conf/my.cnf --host=0.0.0.0 --user=xtrabk --password='123456' --no-timestamp \
