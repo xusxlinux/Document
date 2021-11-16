@@ -166,7 +166,9 @@
 - 使用XtraBackup联机备份
   - XtraBackup简介  
     XtraBackup是由数据库软件企业Percona提供的一款热备工具，出来能够支持`MyISAM`、`InnoDB`引擎对象，还支持XtraDB引擎  
-  - XtraBackup安装[Xbackup下载地址](https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.22/binary/tarball/percona-xtrabackup-2.4.22-Linux-x86_64.glibc2.12.tar.gz)
+  - XtraBackup安装[Xbackup下载地址](https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.22/binary/tarball/percona-xtrabackup-2.4.22-Linux-x86_64.glibc2.12.tar.gz)  
+    - Xtrabackup： 专用于备份`InnoDB`和`XtraDB`引擎对象
+    - Innobackupex：能够备份所有使用`MyISAM`、`InnoDB`、`XtraDB`引擎的表对象（当该命令备份InnoDB和XtraDB引擎数据时，它会通过调用xtrabackup命令完成相关操作） 
     ``` shell
     ## 下载二进制包安装XtraBackup
     wget https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.22/binary/tarball/percona-xtrabackup-2.4.22-Linux-x86_64.glibc2.12.tar.gz
@@ -179,6 +181,21 @@
     create user xtrabk@'localhost' identified by '123456';
     grant reload,lock tables,Replication client,super,process on *.* to 'xtrabk'@'localhost';
     ```
-  - InnoBackupex创建全备
+  - InnoBackupex创建全备  
+    __基本参数__  
+    - --user：连接使用的用户名
+    - --password：连接使用的用户密码
+    - --defaults-file：MySQL的参数文件
+    - --no-timestamp：禁用生成日期子目录
+    - [backup_dir]：指定备份集的存储路径
+    ``` sql
+    innobackupex --defaults-file=/mysql/3306/conf/my.cnf --host=0.0.0.0 --user=xtrabk --password='123456' /mysql/backup-200/3306_full
+    ```
+    __备份集文件__  
+    - backup-my.cnf：包含备份所需的二进制信息
+    - xtrabackup_binlog_info：记录备份时的二进制日志文件位置
+    - xtrabackup_checkpoints：记录LSN(日志序列号，文件类型)以及备份的类型
+    - xtrabackup_info：
+    - xtrabackup_logfile：备份日志文件，里面记录备份操作过程中数据库的变更
   - InnoBackupex创建增量全备
 - 使用XtraBackup恢复
