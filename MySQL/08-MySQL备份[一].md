@@ -189,6 +189,7 @@
     - --no-timestamp：禁用生成日期子目录
     - [backup_dir]：指定备份集的存储路径
     ``` sql
+    ## 全备
     innobackupex --defaults-file=/mysql/3306/conf/my.cnf --host=0.0.0.0 --user=xtrabk --password='123456' /mysql/backup-200/3306_full
     ```
     __备份集文件__  
@@ -208,7 +209,12 @@
       `--incremental-basedir`：指定为前一次全备或者增量备份的目录  
       __创建增量备份__  
       ``` sql
+      ## 增量备份
       innobackupex --defaults-file=/mysql/3306/conf/my.cnf --host=0.0.0.0 --user=xtrabk --password='123456' --no-timestamp \
       --incremental --incremental-basedir=/mysql/backup/3306_full /mysql/backup/3306_inc1
+      
+      
+      innobackupex --defaults-file=/mysql/3306/conf/my.cnf --host=0.0.0.0 --user=xtrabk --password='123456' --no-timestamp \
+      --incremental --incremental-basedir=/mysql/backup-200/3306_inc1 /mysql/backup-200/3306_inc2
       ```
 - 使用XtraBackup恢复
