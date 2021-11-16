@@ -210,10 +210,13 @@
       __创建增量备份__  
       ``` sql
       ## 增量备份
+      
+      #方式一 （第一天到第二天备份，第一天到第三天备份，第一天到第四天备份，第一天到第五天备份）
       innobackupex --defaults-file=/mysql/3306/conf/my.cnf --host=0.0.0.0 --user=xtrabk --password='123456' --no-timestamp \
       --incremental --incremental-basedir=/mysql/backup-200/3306_full /mysql/backup-200/3306_inc1
       
       
+      #方式二 （每天备份一个新的）
       innobackupex --defaults-file=/mysql/3306/conf/my.cnf --host=0.0.0.0 --user=xtrabk --password='123456' --no-timestamp \
       --incremental --incremental-basedir=/mysql/backup-200/3306_inc1 /mysql/backup-200/3306_inc2
       ```
