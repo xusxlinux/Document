@@ -155,3 +155,30 @@
 ```
 
 #### 物理备份与恢复
+- 物理备份与恢复特点
+  - 1. 备份集中包括完整的数据库目录和数据文件
+  - 2. 备份粒度一般是数据库服务级别
+  - 3. 物理备份一般都比较块
+  - 4. 备份能够轻易恢复到配置类似的机器上
+  __常用工具__  
+  1. 冷备： cp、scp、tar
+  2. 热备：XtraBackup
+- 使用XtraBackup联机备份
+  - XtraBackup简介  
+    XtraBackup是由数据库软件企业Percona提供的一款热备工具，出来能够支持`MyISAM`、`InnoDB`引擎对象，还支持XtraDB引擎  
+  - XtraBackup安装[Xbackup下载地址](https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.22/binary/tarball/percona-xtrabackup-2.4.22-Linux-x86_64.glibc2.12.tar.gz)
+    ``` shell
+    ## 下载二进制包安装XtraBackup
+    wget https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.22/binary/tarball/percona-xtrabackup-2.4.22-Linux-x86_64.glibc2.12.tar.gz
+    tar -xf percona-xtrabackup-2.4.22-Linux-x86_64.glibc2.12.tar.gz -C /usr/local/
+    mv percona-xtrabackup-2.4.22-Linux-x86_64.glibc2.12 xtrabackup
+    chown -R mysql.mysql /usr/local/xtrabackup
+    echo 'export PATH="$PATH:/usr/local/xtrabackup/bin"' >> /etc/profile
+    
+    ## 创建备份账号
+    create user xtrabk@'localhost' identified by '123456';
+    grant reload,lock tables,Replication client,super,process on *.* to 'xtrabk'@'localhost';
+    ```
+  - InnoBackupex创建全备
+  - InnoBackupex创建增量全备
+- 使用XtraBackup恢复
