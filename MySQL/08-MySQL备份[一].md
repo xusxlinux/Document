@@ -220,8 +220,8 @@
       innobackupex --defaults-file=/mysql/3306/conf/my.cnf --host=0.0.0.0 --user=xtrabk --password='123456' --no-timestamp \
       --incremental --incremental-basedir=/mysql/backup-200/3306_inc1 /mysql/backup-200/3306_inc2
       ```
-- 使用XtraBackup恢复
-  - 两个阶段：  
+- 使用XtraBackup恢复  
+
   1、__准备阶段__：按顺序逐一将各个增量备份集合并到全备份集中  
     `参数说明`   
       --apply-log：此选项作用是通过回滚未提交的事务及同步已提交的事务至数据文件（前滚）使数据文件处于一致性状态  
