@@ -231,10 +231,10 @@
     innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log --redo-only /mysql/backup-200/3306_full
   
     ##合并inc1到full中
-    innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log --redo-only /mysql/backup-200/3306_full --incremental-dir=/mysql/backup/3306_inc1
+    innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log --redo-only /mysql/backup-200/3306_full --incremental-dir=/mysql/backup-200/3306_inc1
   
     ##合并inc2到full中
-    innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log  /mysql/backup-200/3306_full --incremental-dir=/mysql/backup/3306_inc2
+    innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log  /mysql/backup-200/3306_full --incremental-dir=/mysql/backup-200/3306_inc2
     ```
   2、__恢复阶段__：将准备好的备份集恢复到指定的路径下  
     `参数说明`  
