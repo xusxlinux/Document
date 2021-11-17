@@ -221,3 +221,26 @@
       --incremental --incremental-basedir=/mysql/backup-200/3306_inc1 /mysql/backup-200/3306_inc2
       ```
 - 使用XtraBackup恢复
+  - 两个阶段：
+  1、__准备阶段__：按顺序逐一将各个增量备份集合并到全备份集中  
+    --apply-log：此选项作用是通过回滚未提交的事务及同步已提交的事务至数据文件（前滚）使数据文件处于一致性状态  
+    --redo-only：最后一次恢复之前的增量恢复，只需redo（前滚）不需rollback（回滚），强制在恢复时只redo（前滚）而跳过rollback（回滚）  
+  ``` sql
+  ##对全量备份做准备
+  innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log --redo-only /mysql/backup-200/3306_full
+  
+  ##合并inc1到full中
+  innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log --redo-only /mysql/backup-200/3306_full --incremental-dir=/mysql/backup/3306_inc1
+  
+  ##合并inc2到full中
+  innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log  /mysql/backup-200/3306_full --incremental-dir=/mysql/backup/3306_inc2
+  ```
+  2、__恢复阶段__：将准备好的备份集恢复到指定的路径下  
+    `参数说明`  
+      --defaults-file：指定初始化选项文件  
+      --copy-back：指明接下来要做的操作是从备份路径中，将文件复制会初始化选项指定的路劲下  
+      [backup_dir]：指定备份文件所在路径
+    ``` sql
+    
+    ```
+  
