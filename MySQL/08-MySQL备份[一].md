@@ -165,7 +165,7 @@
   2. 热备：XtraBackup
 - 使用XtraBackup联机备份
   - XtraBackup简介  
-    XtraBackup是由数据库软件企业Percona提供的一款热备工具，出来能够支持`MyISAM`、`InnoDB`引擎对象，还支持XtraDB引擎  
+    - XtraBackup是由数据库软件企业Percona提供的一款热备工具，出来能够支持`MyISAM`、`InnoDB`引擎对象，还支持XtraDB引擎  
   - XtraBackup安装[Xbackup下载地址](https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.22/binary/tarball/percona-xtrabackup-2.4.22-Linux-x86_64.glibc2.12.tar.gz)  
     - Xtrabackup： 专用于备份`InnoDB`和`XtraDB`引擎对象
     - Innobackupex：能够备份所有使用`MyISAM`、`InnoDB`、`XtraDB`引擎的表对象（当该命令备份InnoDB和XtraDB引擎数据时，它会通过调用xtrabackup命令完成相关操作） 
