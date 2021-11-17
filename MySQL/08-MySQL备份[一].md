@@ -224,8 +224,8 @@
 
   1、__准备阶段__：按顺序逐一将各个增量备份集合并到全备份集中  
     `参数说明`   
-      --apply-log：此选项作用是通过回滚未提交的事务及同步已提交的事务至数据文件（前滚）使数据文件处于一致性状态  
-      --redo-only：最后一次恢复之前的增量恢复，只需redo（前滚）不需rollback（回滚），强制在恢复时只redo（前滚）而跳过rollback（回滚）  
+      --apply-log：此选项作用是通过回滚未提交的事务及同步已提交的事务至数据文件（前滚）使数据文件处于一致性状态[前滚和回滚两个操作]  
+      --redo-only：最后一次恢复之前的增量恢复，只需redo（前滚）不需rollback（回滚），强制在恢复时只redo（前滚）而跳过rollback（回滚）[只做前滚操作  跳过回滚操作]  
     ``` sql
     ##对全量备份做准备
     innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log --redo-only /mysql/backup-200/3306_full
