@@ -26,6 +26,9 @@ mv redis-4.0.14 redis
 cd redis/
 make
 
+# 普通用户下创建目录
+su - xusx
+mkdir -pv redis6379/{conf,data,logs}
 
 # 创建环境变量
 export PATH="$PATH:/usr/local/redis/src"
