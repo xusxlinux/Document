@@ -3,7 +3,7 @@
 #作者: xusx
 #时间: 2019/08/05
 time=`date +%Y%m%d%H%M%S`
-localdir="/usr/local/src/wm-rent-deploy"
+localdir="/usr/local/src/chain-rent-deploy"
 backupdir="/usr/local/src/backup"
 RED_COLOR='\E[0;31m'
 GREEN_COLOR='\E[0;32m'
@@ -20,7 +20,7 @@ function copypkg(){
 function deployto(){
   checkprc $1
   copypkg $1 $2
-  if [[ $1 == wm-bigdata-bi-0.0.1-SNAPSHOT.jar ]];then
+  if [[ $1 == chain-bigdata-bi-0.0.1-SNAPSHOT.jar ]];then
     kill -9 $process
     nohup /usr/java/jdk1.8.0_201/bin/java -jar $1  --spring.profiles.active=pro >> /dev/null 2>&1 &
   elif [[ $1 == collect-service-1.0-SNAPSHOT.jar ]];then
@@ -45,7 +45,7 @@ function selectact(){
 # jar启动使用函数 deployto
 # jar包拷包以及备份使用 copypkg
 case $1 in 
-	bigdata-bi)	        pkg="wm-bigdata-bi-0.0.1-SNAPSHOT.jar"
+	bigdata-bi)	        pkg="chain-bigdata-bi-0.0.1-SNAPSHOT.jar"
 			        dir="/mnt/software/jars"
 			        deployto "$pkg" "$dir";;
         bigdata-collect)        pkg="collect-service-1.0-SNAPSHOT.jar"
