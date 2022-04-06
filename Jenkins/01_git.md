@@ -36,8 +36,11 @@ git branch -r
 
 #### git常用命令 - 合并分支
 ``` md
-dev分支的工作完成，切换回master分支：
-git checkout master
+切换到develop分支：
+git checkout dev
+
+把develop分支代码拉取到本地：
+git pull
 
 merge命令用于合并指定分支(dev)到当前分支:
 git merge dev
