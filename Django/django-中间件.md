@@ -12,7 +12,7 @@
 from django.utils.deprecation import MiddlewareMixin
 ```
 
-<h2 id="一">二、中间件类实现的五个方法</h2>
+<h2 id="二">二、中间件类实现的五个方法</h2>
 
 #### 中间件类实现的五个方法:
 ```
