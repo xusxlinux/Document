@@ -1,7 +1,7 @@
 - [一、中间件类需要继承](#一)
 - [二、中间件类实现的五个方法](#二)
   - [代码实现](#2.1)
-- [三、案例](#三)
+- [三、限制请求案例](#三)
 - [四、跨站攻击 CSRF](#四)
 
 
@@ -36,6 +36,7 @@ process_template_response(self, request, response)
 
 #### 代码实现:
 ``` py
+# 初学者熟练掌握如下3种
 class MyMW1(MiddlewareMixin):
     # 需要写多少方法, 看需求
     def process_request(self, request):
@@ -51,7 +52,7 @@ class MyMW1(MiddlewareMixin):
 # 测试执行顺序 - 按照注册顺序执行的
 ```
 
-<h2 id="三">三、案例</h2>
+<h2 id="三">三、限制请求案例</h2>
 
 #### 使用中间件实现强制某个IP地址只能向/test 开头的地址发生5次请求:
 ``` py
