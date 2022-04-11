@@ -6,12 +6,14 @@
 
 
 <h2 id="一">一、中间件类需要继承</h2>
+
 #### 中间件类需继承:
 ``` 
 from django.utils.deprecation import MiddlewareMixin
 ```
 
 <h2 id="一">二、中间件类实现的五个方法</h2>
+
 #### 中间件类实现的五个方法:
 ```
 执行路由之前被调用, 在每个请求上调用, 返回None或HttpResponse对象
@@ -31,6 +33,7 @@ process_template_response(self, request, response)
 ```
 
 <h3 id="2.1">代码实现</h3>
+
 #### 代码实现:
 ``` py
 class MyMW1(MiddlewareMixin):
@@ -49,6 +52,7 @@ class MyMW1(MiddlewareMixin):
 ```
 
 <h2 id="三">三、案例</h2>
+
 #### 使用中间件实现强制某个IP地址只能向/test 开头的地址发生5次请求:
 ``` py
 request.META['REMOTE_ADDR']可以得到远程客户端的IP地址
@@ -73,6 +77,7 @@ class VisitLimit(MiddlewareMixin):
 ```
 
 <h2 id="四">四、跨站伪造请求攻击 CSRF</h2>
+
 #### CSRF - 跨站伪造请求攻击
 ```
 settings.py中确认 MIDDLEWARE 中 
