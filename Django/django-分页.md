@@ -1,7 +1,10 @@
 - [一、paginator对象的使用说明](#一)
 - [二、Page对象对象的使用说明](#二)
-- [三、分页代码示例](#三)
-
+- [三、分页代码示例 后端](#三)
+- [四、分页代码示例 前端](#四)
+  - [前端代码 - 上一页](#4.1)
+  - [当前页显示页码](#4.2)
+  - [前端代码 - 下一页](#4.3)
 
 ```
 分页是指在web页面有大量数据需要显示, 为了阅读方便再每个页面中显示部分数据(方便阅读, 减少数据提取)
@@ -78,43 +81,65 @@
 
 #### 后端代码
 ``` python
-def test_page(request):
-    # /test_page?page=1 使用查询字符串
-    page_number = request.GET.get('page', 1)
-    # 这个all_data 我可以使用ORM, 取数据库中的表数据
-    all_data = ['a', 'b', 'c', 'd', 'e','f','g','h','i','j']
-    # 初始化paginator 分页数据, 分两页
-    paginator = Paginator(all_data, 10)
+def list_note(request):
+    # /list_note?page=1 使用查询字符串
+
+    # 这个all_note 我可以使用ORM, 取数据库中的表数据
+    from .models import Notes
+    all_notes = Notes.objects.get_queryset().all()
+
+    # 导入类库 paginator类
+    from django.core.paginator import Paginator, Page, PageNotAnInteger, EmptyPage
+    paginator = Paginator(all_notes, 3)
+
     # 初始化 具体页码的 page对象
+    page_number = request.GET.get('page', 1)
     c_page = paginator.page(int(page_number))
-    return render(request, 'test_page.html', locals())
+
+    return render(request, 'notes/list_note.html', locals())
 ```
+
+<h4 id="4.1">前端代码示例</h4>
 
 #### 前端代码
 ``` html
-{% for p in c_page %}
+{% for note in c_page %}
     <p>
-        {{ p }}
+        {{ note.title }}
+        {{ note.content }}
+        <a href="">查看</a>
+        <a href="">删除</a>
     </p>
 {% endfor %}
+```
 
+<h4 id="4.1">前端代码示例 - 上一页</h4>
+
+``` html
 {% if c_page.has_previous %}
-    <a href="/test_page?page={{ c_page.previous_page_number }}">上一页</a>
+    <a href="/notes/list_note?page={{ c_page.previous_page_number }}">上一页</a>
 {% else %}
     上一页
 {% endif %}
+```
 
-<!-- 当前页显示页码, 非当前页显示标签 -->
+<h4 id="4.3">当前页显示页码</h4>
+
+``` html
 {% for p_number in paginator.page_range %}
     {% if p_number == c_page.number %}
         {{ p_number }}
     {% else %}
-        <a href="/test_page?page={{ p_number }}">{{ p_number }}</a>
+        <a href="/notes/list_note?page={{ p_number }}">{{ p_number }}</a>
     {% endif %}
 {% endfor %}
+```
 
+<h4 id="4.3">前端代码示例 - 下一页</h4>
+
+``` html
 {% if c_page.has_next %}
-    <a href="/test_page?page={{ c_page.next_page_number }}">下一页</a>
+    <a href="/notes/list_note?page={{ c_page.next_page_number }}">下一页</a>
 {% else %}
     下一页
 {% endif %}
