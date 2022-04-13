@@ -77,9 +77,8 @@
 ```
 
 
-<h3 id="三">三、代码示例</h3>
+<h3 id="三">三、后端代码示例</h3>
 
-#### 后端代码
 ``` python
 def list_note(request):
     # /list_note?page=1 使用查询字符串
@@ -101,7 +100,6 @@ def list_note(request):
 
 <h4 id="4.1">前端代码示例</h4>
 
-#### 前端代码
 ``` html
 {% for note in c_page %}
     <p>
@@ -123,7 +121,7 @@ def list_note(request):
 {% endif %}
 ```
 
-<h4 id="4.3">当前页显示页码</h4>
+<h4 id="4.2">当前页显示页码</h4>
 
 ``` html
 {% for p_number in paginator.page_range %}
