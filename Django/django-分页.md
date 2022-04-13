@@ -13,7 +13,6 @@
 <h3 id="一">一、paginator对象</h3>
 
 ```
-paginator对象:
 负责分页数据整体管理:
 	from django.core.paginator import Paginator
 		
@@ -26,8 +25,9 @@ paginator对象:
 			- 返回值:
 				- Paginator的对象
 			
-	Paginator属性:
+	Paginator对象属性:
 			- count: 需要分页数据的对象总数
+			
 			- num_pages: 分页后的页面总数
 				page_number = request.GET.get('page', 1)
 				
@@ -37,7 +37,7 @@ paginator对象:
 			- per_page: 每页数据的个数
 				paginator = Paginator(all_data, 10)
 	
-	Paginator方法:
+	Paginator对象方法:
 		paginator.page(int(page_number))
 			- 参数 number 为页码信息(从1开始)
 				c_page = paginator.page(int(page_number))
@@ -54,7 +54,6 @@ paginator对象:
 <h3 id="二">二、Page对象</h3>
 
 ```
-Page对象:
 负责具体某一页的数据管理
 
 	创建对象:
@@ -77,6 +76,7 @@ Page对象:
 
 <h3 id="三">三、代码示例</h3>
 
+#### 后端代码
 ``` python
 def test_page(request):
     # /test_page?page=1 使用查询字符串
@@ -88,4 +88,34 @@ def test_page(request):
     # 初始化 具体页码的 page对象
     c_page = paginator.page(int(page_number))
     return render(request, 'test_page.html', locals())
+```
+
+#### 前端代码
+``` html
+{% for p in c_page %}
+    <p>
+        {{ p }}
+    </p>
+{% endfor %}
+
+{% if c_page.has_previous %}
+    <a href="/test_page?page={{ c_page.previous_page_number }}">上一页</a>
+{% else %}
+    上一页
+{% endif %}
+
+<!-- 当前页显示页码, 非当前页显示标签 -->
+{% for p_number in paginator.page_range %}
+    {% if p_number == c_page.number %}
+        {{ p_number }}
+    {% else %}
+        <a href="/test_page?page={{ p_number }}">{{ p_number }}</a>
+    {% endif %}
+{% endfor %}
+
+{% if c_page.has_next %}
+    <a href="/test_page?page={{ c_page.next_page_number }}">下一页</a>
+{% else %}
+    下一页
+{% endif %}
 ```
