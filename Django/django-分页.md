@@ -98,7 +98,7 @@ def list_note(request):
     return render(request, 'notes/list_note.html', locals())
 ```
 
-<h4 id="4.1">前端代码示例</h4>
+<h3 id="四">前端代码示例</h3>
 
 ``` html
 {% for note in c_page %}
