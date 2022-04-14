@@ -68,6 +68,7 @@ def test_upload(request):
         title = request.POST['title']
         myfile = request.FILES['myfile']
 
+	from upload_app.models import Content
         Content.objects.create(title=title, picture=myfile)
 
         return HttpResponse('--- 文件 {} 上传成功 ---'.format(title))
