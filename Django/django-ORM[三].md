@@ -32,7 +32,7 @@ class Wife(models.Model):
 	  # author_id 外键关联 author.id主键
     author = models.OneToOneField(Author, on_delete=models.CASCADE)
 ```
-<h4 id='1.1'>外键</h4>
+<h4 id='1.2'>外键</h4>
 
 无外键的模型类[Author]:  
 &ensp; &ensp; author1 = Author.objects.create(name='王老师')  
