@@ -35,21 +35,21 @@ class Wife(models.Model):
 <h4 id='1.2'>外键</h4>
 
 无外键的模型类[Author]:  
-&ensp; &ensp; author1 = Author.objects.create(name='王老师')  
+&ensp; &ensp; `author1 = Author.objects.create(name='王老师')`  
   
 有外键的类型类[Wife]:  
 &ensp; &ensp; 使用类属性名去创建数据做关联的时候, 必须给一个实例化对象 obj(author1)  
-&ensp; &ensp; wife1 = Wife.objects.create(name='王夫人', author=author1)  
+&ensp; &ensp; `wife1 = Wife.objects.create(name='王夫人', author=author1)`  
   
 &ensp; &ensp; 外键字段名, 需要告诉它这个值是多少  
-&ensp; &ensp; wife1 = Wife.objects.create(name='王夫人', author=author1) 
-&ensp; &ensp; wife2 = Wife.objects.create(name='王夫人', author_id=2)  
-&ensp; &ensp; wife2 = Wife.objects.create(name='王夫人', author_id=author2.id)   
+&ensp; &ensp; `author2 = Author.objects.create(name='王老师')`  
+&ensp; &ensp; `wife2 = Wife.objects.create(name='王夫人', author_id=2)`  
+&ensp; &ensp; `wife2 = Wife.objects.create(name='王夫人', author_id=author2.id)`   
 
 <h4 id='1.3'>查询方式</h4>
 
 查询方式:(有外键属性的查询是属于正向查询的)  
 &ensp; &ensp; 正向查询:   
-&ensp; &ensp; &ensp; &ensp; wife1.author.name  
+&ensp; &ensp; &ensp; &ensp; `wife1.author.name`  
 &ensp; &ensp; 反向查询:  
-&ensp; &ensp; &ensp; &ensp; author1.wife.name  
+&ensp; &ensp; &ensp; &ensp; `author1.wife.name`  
