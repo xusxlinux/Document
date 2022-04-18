@@ -4,7 +4,7 @@
   - [模型类 - 字段类型](#3.1)
   - [模型类 - 字段选项](#3.2)
   - [模型类 - 修改表名](#3.3)
-
+- [四、ORM操作图](#四)
 
 <h3 id="一">一、django settings.py 链接配置</h3>
 
@@ -174,3 +174,7 @@ class Author(modules.Model):
   class Meta:
     db_table = 'auto'
 ```
+
+<h3 id="四">ORM图 链接配置</h3>
+
+![Image text](https://raw.githubusercontent.com/xusxlinux/Document/master/Django/images/ORM%E6%93%8D%E4%BD%9C%20%E4%BA%8C.jpg)
