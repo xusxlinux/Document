@@ -28,8 +28,8 @@ class Wife(models.Model):
     '''作家妻子模型'''
     name = models.CharField('妻子', max_length=50)
     # 增加一对一属性, on_delete是级联删除显性的规则, 要告诉django
-	  # 通常外键属性对应类名的小写
-	  # author_id 外键关联 author.id主键
+    # 通常外键属性对应类名的小写
+    # author_id 外键关联 author.id主键
     author = models.OneToOneField(Author, on_delete=models.CASCADE)
 ```
 <h4 id='1.2'>外键</h4>
@@ -48,8 +48,8 @@ class Wife(models.Model):
 
 <h4 id='1.3'>查询方式</h4>
 
-查询方式:(有外键属性的查询是属于正向查询的)  
-&ensp; &ensp; 正向查询:   
+查询方式:  
+&ensp; &ensp; 正向查询: (`有外键属性`的查询是属于`正向查询`的)  
 &ensp; &ensp; &ensp; &ensp; `wife1.author.name`  
 &ensp; &ensp; 反向查询:  
 &ensp; &ensp; &ensp; &ensp; `author1.wife.name`  
