@@ -175,6 +175,3 @@ class Author(modules.Model):
     db_table = 'auto'
 ```
 
-<h3 id="四">ORM图 链接配置</h3>
-
-![Image text](https://raw.githubusercontent.com/xusxlinux/Document/master/Django/images/ORM%E6%93%8D%E4%BD%9C%20%E4%BA%8C.jpg)
