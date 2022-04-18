@@ -75,7 +75,7 @@ pip install mysqlclient
 
 <h4 id="3.1">模型类 - 字段类型</h4>
 
-- BooleanField()  
+BooleanField()  
  - 数据库类型: tinyint(1)  
  - 编程语言中: 使用True或False来表示值  
  - 在数据库中: 使用1或0来表示具体的值  
