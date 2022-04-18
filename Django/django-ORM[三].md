@@ -2,7 +2,7 @@
 
 - [一对一](#一)
   - [代码演示](#1.1)
-  - [模型类型](#1.2)
+  - [外键](#1.2)
   - [查询方式](#1.3)
 - [一对多](#二)
 - [多对多](#三)
@@ -32,6 +32,8 @@ class Wife(models.Model):
 	  # author_id 外键关联 author.id主键
     author = models.OneToOneField(Author, on_delete=models.CASCADE)
 ```
+<h4 id='1.1'>外键</h4>
+
 无外键的模型类[Author]:  
 &ensp; &ensp; author1 = Author.objects.create(name='王老师')  
   
@@ -39,10 +41,12 @@ class Wife(models.Model):
 &ensp; &ensp; 使用类属性名去创建数据做关联的时候, 必须给一个实例化对象 obj(author1)  
 &ensp; &ensp; wife1 = Wife.objects.create(name='王夫人', author=author1)  
   
-&ensp; &ensp; 外键字段名, 需要告诉它这个值是多少	
-&ensp; &ensp; wife1 = Wife.objects.create(name='王夫人', author_id=1)  
-&ensp; &ensp; wife1 = Wife.objects.create(name='王夫人', author_id=author1.id)   
+&ensp; &ensp; 外键字段名, 需要告诉它这个值是多少  
+&ensp; &ensp; wife1 = Wife.objects.create(name='王夫人', author=author1) 
+&ensp; &ensp; wife2 = Wife.objects.create(name='王夫人', author_id=2)  
+&ensp; &ensp; wife2 = Wife.objects.create(name='王夫人', author_id=author2.id)   
 
+<h4 id='1.3'>查询方式</h4>
 
 查询方式:(有外键属性的查询是属于正向查询的)  
 &ensp; &ensp; 正向查询:   
