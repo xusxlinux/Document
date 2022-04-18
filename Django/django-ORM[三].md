@@ -1,9 +1,9 @@
 #### 映射关系
 
 - [一对一](#一)
- - [代码演示](#1.1)
- - [模型类型](#1.2)
- - [查询方式](#1.3)
+  - [代码演示](#1.1)
+  - [模型类型](#1.2)
+  - [查询方式](#1.3)
 - [一对多](#二)
 - [多对多](#三)
 
@@ -36,7 +36,6 @@ class Wife(models.Model):
 &ensp; &ensp; author1 = Author.objects.create(name='王老师')  
   
 有外键的类型类[Wife]:  
-
 &ensp; &ensp; 使用类属性名去创建数据做关联的时候, 必须给一个实例化对象 obj(author1)  
 &ensp; &ensp; wife1 = Wife.objects.create(name='王夫人', author=author1)  
   
@@ -46,7 +45,6 @@ class Wife(models.Model):
 
 
 查询方式:(有外键属性的查询是属于正向查询的)  
-
 &ensp; &ensp; 正向查询:   
 &ensp; &ensp; &ensp; &ensp; wife1.author.name  
 &ensp; &ensp; 反向查询:  
