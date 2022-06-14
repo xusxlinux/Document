@@ -17,8 +17,8 @@ make -j4 && make altinstall
 
 #### 创建python39软连接
 ``` shell
-ln -vs /usr/local/python3/bin/python3 /usr/bin/python3
-ln -vs /usr/local/python3/bin/pip3 /usr/bin/pip3
+ln -vs /usr/local/python3/bin/python3.9 /usr/bin/python3
+ln -vs /usr/local/python3/bin/pip3.9 /usr/bin/pip3
 
 # 升级pip
 python3 -m pip3 install --upgrade pip3
