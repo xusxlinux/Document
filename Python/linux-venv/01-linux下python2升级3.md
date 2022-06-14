@@ -12,7 +12,7 @@ tar xf Python-3.9.9.tgz && cd Python-3.9.9
 ./configure --prefix=/usr/local/python3
 
 # make install会执行commoninstall、bininstall、maninstall三个过程,make altinstall只执行commoninstall过程。
-make && make altinstall
+make -j4 && make altinstall
 ```
 
 #### 创建python39软连接
