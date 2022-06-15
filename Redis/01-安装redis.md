@@ -35,6 +35,8 @@ export PATH="$PATH:/usr/local/redis/src"
 ```
 #### 简单配置文件
 ``` txt
+vim redis.conf
+
 # Redis不支持注释,  需要删除,  否则报错
 bind 127.0.0.1
 port 6379
