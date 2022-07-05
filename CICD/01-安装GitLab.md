@@ -42,6 +42,13 @@ git_data_dirs({
     "path" => "/data/gitlab-data"
    }
 })
+
+
+## 配置 https 官网不建议
+external_url 'https://note.3bgm.com'
+nginx['ssl_certificate'] = "/etc/gitlab/ssl/note.3bgm.com.pem"
+nginx['ssl_certificate_key'] = "/etc/gitlab/ssl/note.3bgm.com.key"
+letsencrypt['enable'] = false
 ```
 
 #### 测试邮件发送
