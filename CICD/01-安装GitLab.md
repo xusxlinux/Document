@@ -35,6 +35,9 @@ gitlab_rails['gitlab_email_from'] = 'xusxlinux@163.com'
 gitlab_rails['gitlab_email_display_name'] = 'Gitlab'
 gitlab_rails['gitlab_email_reply_to'] = 'xusxlinux@163.com'
 gitlab_rails['gitlab_email_subject_suffix'] = '[gitlab]'
+## gitlab-code backup
+gitlab_rails['manage_backup_path'] = true
+gitlab_rails['backup_path'] = "/data/gitlab-backup"
 
 ## For setting up different data storing directory
 git_data_dirs({
@@ -93,4 +96,32 @@ gitlab-ctl remove-accounts
 删除文件
 cd /
 find / -name gitlab | xargs rm -rf
+```
+
+#### gitlab 备份
+``` shell
+查看软件版本
+cat /opt/gitlab/embedded/service/gitlab-rails/VERSION
+
+备份命令
+gitlab-rake gitlab:backup:create
+
+定时任务备份
+0 0 * * * gitlab-rake gitlab:backup:create
+```
+
+#### gitlab 恢复方式
+``` shell
+输入两次yes
+gitlab-rake gitlab:backup:restore
+注意: 目录保留一个备份文件就行
+
+恢复完成后, 启动刚刚得两个服务, 或者重启所有服务,在使用浏览器访问, 数据可之前一致
+gitlab-ctl start unicorn
+gitlab-ctl start sidekiq
+
+或者
+gitlab-ctl restart
+
+注意: 通过备份文件恢复gitlab必须保障两台主机gitlab版本一致, 否则会提是版本不匹配
 ```
