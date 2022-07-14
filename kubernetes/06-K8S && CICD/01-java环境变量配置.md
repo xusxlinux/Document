@@ -9,7 +9,7 @@ ln -sv /usr/java/jdk1.8.0_221 /usr/java/jdk
 ``` shell
 export JAVA_HOME=/usr/java/jdk  
 export PATH=$JAVA_HOME/bin:$PATH  
-export CLASSPATH=$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar  
+export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar  
 ```
 
 ### zk的安装
