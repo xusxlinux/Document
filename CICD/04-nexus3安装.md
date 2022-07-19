@@ -24,3 +24,7 @@ vim /data/nexus/bin/nexus.vmoptions
 查看密码
 cat /data/sonatype-work/nexus3/admin.password 
 ```
+
+#### 私服nexus的使用
+[使用教程 一](https://www.toobug.cn/post/4118.html)  
+[使用教程 二](https://www.xncoding.com/2017/09/02/tool/nexus.html)
