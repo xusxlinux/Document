@@ -17,9 +17,12 @@ chown -R nexus.nexus /data/nexus
 chown -R nexus.nexus /data/sonatype-work
 su - nexus -c "/data/nexus/bin/nexus start"
 
-nexus最少要4G磁盘空间
+nexus内存和磁盘的配置
 vim /data/nexus/bin/nexus.vmoptions
 -Dstorage.diskCache.diskFreeSpaceLimit=2048
+
+nexus端口的配置(需要通过nginx代理, 不能直接使用80端口)
+vim /data/nexus/etc/nexus-default.properties
 
 查看密码
 cat /data/sonatype-work/nexus3/admin.password 
