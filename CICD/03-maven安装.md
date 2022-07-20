@@ -17,7 +17,7 @@ export PATH=$MAVEN_HOME/bin:$PATH
 mvn --version
 ```
 #### 添加仓库到服务器上的 maven
-``` shell
+``` xml
 vim /usr/local/maven/conf/settings.xml
 
 <?xml version="1.0" encoding="UTF-8"?>
@@ -65,6 +65,6 @@ vim /usr/local/maven/conf/settings.xml
 ```
 
 #### 配置上传到nexus的 pom.xml
-``` shell
+``` xml
 
 ```
