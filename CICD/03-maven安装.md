@@ -61,6 +61,26 @@ vim /usr/local/maven/conf/settings.xml
         <url>http://10.4.7.11:8081/repository/maven-public/</url>
     </mirror>
   </mirrors>
+
+  <profiles>
+    <profile>
+        <id>jdk1.8</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+            <jdk>1.8</jdk>
+        </activation>
+        <properties>
+            <maven.compiler.source>1.8</maven.compiler.source>
+            <maven.compiler.target>1.8</maven.compiler.target>
+            <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+        </properties>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>jdk8</activeProfile>
+  </activeProfiles>
+          
 </settings>
 ```
 
