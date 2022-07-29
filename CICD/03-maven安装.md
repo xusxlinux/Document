@@ -78,6 +78,7 @@ vim /usr/local/maven/conf/settings.xml
 #### 手动发布
 ``` shell
 vim deploy.sh 
+
 #!/usr/bin/env bash
 mvn deploy:deploy-file \
 -DgroupId=org.scala-lang \
@@ -91,7 +92,17 @@ mvn deploy:deploy-file \
 
 #### 安装到本地仓库
 ``` shell
-mvn install:install-file
+vim a.sh 
+
+#!/usr/bin/env bash
+mvn deploy:deploy-file \
+-DgroupId=org.scala-lang \
+-DartifactId=scala-library \
+-Dversion=2.11.1-SNAPSHOT \
+-Dpackaging=jar \
+-Dfile=scala-library-2.11.1.jar \
+-Durl=http://10.4.7.11:8081/repository/maven-snapshots/ \
+-DrepositoryId=snapshots
 ```
 
 #### 配置上传到nexus的 pom.xml
