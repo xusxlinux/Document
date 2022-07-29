@@ -75,9 +75,9 @@ vim /usr/local/maven/conf/settings.xml
   </activeProfiles>
 </settings>
 ```
-#### 手动发布
+#### 手动发布 - release
 ``` shell
-vim deploy.sh 
+vim deploy-releases.sh 
 
 #!/usr/bin/env bash
 mvn deploy:deploy-file \
@@ -90,12 +90,27 @@ mvn deploy:deploy-file \
 -DrepositoryId=releases
 ```
 
-#### 安装到本地仓库
+#### 手动发布 - snapshots
 ``` shell
-vim a.sh 
+vim deploy-snapshot.sh 
 
 #!/usr/bin/env bash
 mvn deploy:deploy-file \
+-DgroupId=org.scala-lang \
+-DartifactId=scala-library \
+-Dversion=2.11.1-SNAPSHOT \
+-Dpackaging=jar \
+-Dfile=scala-library-2.11.1.jar \
+-Durl=http://10.4.7.11:8081/repository/maven-snapshots/ \
+-DrepositoryId=snapshots
+```
+
+#### 本地安装
+``` shell
+vim install-local.sh 
+
+#!/usr/bin/env bash
+mvn install:install-file \
 -DgroupId=org.scala-lang \
 -DartifactId=scala-library \
 -Dversion=2.11.1-SNAPSHOT \
