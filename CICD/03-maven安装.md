@@ -25,7 +25,6 @@ vim /usr/local/maven/conf/settings.xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-
   <pluginGroups>
   </pluginGroups>
 
@@ -36,25 +35,18 @@ vim /usr/local/maven/conf/settings.xml
     <!-- 这里配置我们刚刚创建的user用户所对应的release pom.xml文件中的id要和setting.xml相同 -->
     <server>
         <id>releases</id>
-        <user>xusx</user>
+        <username>admin</username>
         <password>123456</password>
     </server>
     <!-- 这里配置我们刚刚创建的user用户所对应的snapshots pom.xml文件中的id要和setting.xml相同 -->
     <server>
         <id>snapshots</id>
-        <user>xusx</user>
+        <username>admin</username>
         <password>123456</password>
     </server>
   </servers>
 
   <mirrors>
-    <!-- <mirror>
-        <id>nexus-aliyun</id>
-        <mirrorOf>central</mirrorOf>
-        <name>Nexus aliyun</name>
-        <url>http://maven.aliyun.com/nexus/content/groups/public</url>
-    </mirror> -->
-    <!-- 这里配置我们线上的public仓库就行 -->
     <mirror>
         <id>nexus</id>
         <mirrorOf>*</mirrorOf>
@@ -63,25 +55,43 @@ vim /usr/local/maven/conf/settings.xml
   </mirrors>
 
   <profiles>
-    <profile>
-        <id>jdk1.8</id>
-        <activation>
-            <activeByDefault>true</activeByDefault>
-            <jdk>1.8</jdk>
-        </activation>
-        <properties>
-            <maven.compiler.source>1.8</maven.compiler.source>
-            <maven.compiler.target>1.8</maven.compiler.target>
-            <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
-        </properties>
-    </profile>
+    <!-- 配置jdk的全局配置 -->
+    <profile>    
+        <id>jdk8</id>    
+        <activation>    
+            <activeByDefault>true</activeByDefault>    
+            <jdk>1.8</jdk>    
+        </activation>    
+        <properties>    
+            <maven.compiler.source>1.8</maven.compiler.source>    
+            <maven.compiler.target>1.8</maven.compiler.target>    
+            <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>    
+        </properties>     
+    </profile> 
   </profiles>
 
   <activeProfiles>
     <activeProfile>jdk8</activeProfile>
   </activeProfiles>
-          
 </settings>
+```
+#### 手动发布
+``` shell
+vim deploy.sh 
+#!/usr/bin/env bash
+mvn deploy:deploy-file \
+-DgroupId=org.scala-lang \
+-DartifactId=scala-library \
+-Dversion=2.10.5 \
+-Dpackaging=jar \
+-Dfile=scala-library-2.10.5.jar \
+-Durl=http://10.4.7.11:8081/repository/maven-releases/ \
+-DrepositoryId=releases
+```
+
+#### 安装到本地仓库
+``` shell
+mvn install:install-file
 ```
 
 #### 配置上传到nexus的 pom.xml
