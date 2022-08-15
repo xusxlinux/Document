@@ -18,6 +18,15 @@ systemctl enable salt-minion.service
 ```
 #### 配置 master 并启动
 ```
+[root@web-01 ~]# vim /etc/salt/master
+
+file_roots:
+  base:
+    - /srv/salt
+
+创建目录
+[root@web-01 ~]# mkdir -pv /srv/salt
+
 systemctl start salt-master.service
 systemctl enable salt-master.service
 ```
@@ -48,16 +57,4 @@ systemctl restart salt-minion
 ```
 [root@web-01 ~]# salt '*' cmd.run ls
 [root@web-01 ~]# salt '*' test.ping
-```
-
-#### 修改master 配置文件
-```
-[root@web-01 ~]# vim /etc/salt/master
-
-file_roots:
-  base:
-    - /srv/salt
-
-创建目录
-[root@web-01 ~]# mkdir -pv /srv/salt
 ```
