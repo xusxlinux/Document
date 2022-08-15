@@ -31,6 +31,7 @@ systemctl enable salt-master.service
 [root@web-01 ~]# salt-key -A
 ```
 #### 认证后 在master节点上查看
+```
 [root@web-01 ~]# tree /etc/salt/
 ```
 #### 删除 与 重新加入
