@@ -39,7 +39,7 @@ salt -G 'roles:nginx' state.highstate
 ```
 
 ## pillar 是在 master 节点上配置
-- Pillar 存储位置在 Master端, 是动态数据, 可以指定给对应的Minion.  使用saltutil.refresh_pillar来刷新, 用于敏感数据  
+- Pillar 存储位置在 Master端, 是动态数据, 可以指定给对应的Minion.  使用`saltutil.refresh_pillar`来刷新, 用于敏感数据  
 ```
 打开 pillar 的配置
 sed -i 's/#pillar_opts: False/pillar_opts: True/g' /etc/salt/master
