@@ -32,12 +32,16 @@ systemctl enable salt-master.service
 ```
 #### 启动master后可以查看minion的认证信息
 ```
-#### 未认证前 在master节点上查看
+未认证前 在master节点上查看
 [root@web-01 ~]# tree /etc/salt/
 ```
-#### 加入 minion 节点
+#### Master与Minion认证
 ``` 
-[root@web-01 ~]# salt-key -A
+salt-key -L  或者salt-key 显示所有的key
+salt-key -D  删除所有认证主机id证书
+salt-key -d  keys_values -y
+salt-key -A  接收所有id证书请求
+salt-key -a  id 接受单个id证书请求
 ```
 #### 认证后 在master节点上查看
 ```
