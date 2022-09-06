@@ -48,7 +48,7 @@ vim /etc/systemd/system/tomcat.service
  Group=root
 
  Environment="JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-1.1.al7.x86_64"
- Environment="JAVA_OPTS=-Djava.security.egd=file:///dev/urandom"
+ Environment="JAVA_OPTS=-Djava.security.egd=file:/dev/urandom"
 
  Environment="CATALINA_BASE=/usr/local/tomcat"
  Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
