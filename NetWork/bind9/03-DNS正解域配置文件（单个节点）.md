@@ -46,6 +46,7 @@ nameserver 10.4.7.12
 # 自定义区域配置文件
 [root@hdss7-11 ~]# vim /etc/named.rfc1912.zones
 
+# 主机域配置
 zone "host.com" IN {
         type  master;                                // 自定义区域类型
         file  "host.com.zone";                       // 绝对或相对路径
