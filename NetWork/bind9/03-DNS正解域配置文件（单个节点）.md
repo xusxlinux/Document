@@ -2,7 +2,7 @@
 ``` shell
 # named需要修改的配置文件
 [root@hdss7-11 ~]# vim /etc/named.conf
-13         listen-on port 53 { 10.4.7.11; };
+13         listen-on port 53 { 10.4.7.11; };  // 本机地址
 14         listen-on-v6 port 53 { ::1; };     // 删除这行
 
 20         allow-query     { any; };          // 允许本机的DNS帮你查询
@@ -38,7 +38,9 @@ nameserver 10.4.7.12
 [root@hdss7-11 ~]# ping www.baidu.com
 ```
 
-#### 自定义正解域
+#### DNS自定义区域配置文件
+- 也可以配置在自定义的其他文件内, 并在named.conf里include  
+- 文件的权限, 属主root, 属组named, 权限640
 
 ``` shell
 # 自定义区域配置文件
