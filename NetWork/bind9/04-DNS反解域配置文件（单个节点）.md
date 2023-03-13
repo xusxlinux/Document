@@ -2,7 +2,7 @@
 ``` shell
 [root@hdss7-11 ~]# vim /etc/named.rfc1912.zones
 
-# 反解域的配置
+# 粘贴如下反解域的配置
 zone "7.4.10.in-addr.arpa" IN {
         type master;
         file "7.4.10.in-addr.arpa.zone";
@@ -17,6 +17,7 @@ zone "7.4.10.in-addr.arpa" IN {
 #### 添加反解域的区域数据库文件
 ``` shell
 [root@hdss7-11 ~]# vim /var/named/7.4.10.in-addr.arpa.zone
+# 复制粘贴如下配置到zone文件中
 
 $TTL 600 ;10 minutes
 @        IN    SOA     dns.host.com. dnsadmin.host.com. (
