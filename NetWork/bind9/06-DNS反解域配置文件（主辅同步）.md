@@ -25,6 +25,6 @@ zone "7.4.10.in-addr.arpa" IN {
 # 出现结果就是配置成功
 [root@hdss7-12 ~]# cat /var/named/slaves/7.4.10.in-addr.arpa.zone
 
-
+# 在辅助DNS上去检查完全区域传送
 [root@hdss7-12 ~]# dig -t AXFR 7.4.10.in-addr.arpa. @10.4.7.11
 ```
