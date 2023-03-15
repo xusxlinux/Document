@@ -1,7 +1,7 @@
 ## 业务域(不需要反解)
 - 注意： 主机域可以是假域， 业务域推荐用真实的已购买的
 
-#### 添加 区域配置文件 
+#### 在主DNS服务器上添加 区域配置文件 
 ``` shell
 [root@hdss7-11 ~]# vim /etc/named.rfc1912.zones
 # 业务域配置
@@ -22,7 +22,7 @@ zone "chain.com" IN {
 [root@hdss7-11 ~]# chown root:named /var/named/chain.com.zone
 [root@hdss7-11 ~]# chmod 640 /var/named/chain.com.zone
 ```
-#### 添加区域数据库文件
+#### 在主DNS服务器上添加区域数据库文件
 ``` shell
 [root@hdss7-11 ~]# vim /var/named/chain.com.zone
 # 业务域
