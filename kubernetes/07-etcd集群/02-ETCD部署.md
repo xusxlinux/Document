@@ -1,11 +1,15 @@
 ## ETCD集群部署
-```
-$ useradd -s /sbin/nologin -M etcd
+- [etcd安装包下载](https://github.com/etcd-io/etcd/releases?q=3.3.15&expanded=true)  
+
+#### 创建一个etcd用户
+``` shell
+# 安装etcd节点的服务器都需要创建
+useradd -s /sbin/nologin -M etcd
 ```
 
 ```bash
-$ cat /opt/etcd/etcd-server-startup.sh
-#!/bin/sh
+vim /opt/etcd/etcd-server-startup.sh
+#!/bin/env bash
 ./etcd --name etcd-server-7-12 \
        --data-dir /data/etcd/etcd-server \
        --listen-peer-urls https://10.4.7.12:2380 \
@@ -26,13 +30,20 @@ $ cat /opt/etcd/etcd-server-startup.sh
        --peer-trusted-ca-file ./certs/ca.pem \
        --log-output stdout
  ```
- 
+
+#### 创建目录,添加权限
  ```
-$ mkdir -pv /opt/etcd/certs /data/logs/etcd-server /data/etcd/etcd-server
-$ chmod +x /opt/etcd/etcd-server-startup.sh
-$ chown -R etcd:etcd /opt/etcd /data/logs/etcd-server /data/etcd
+mkdir -pv /opt/etcd/certs /data/logs/etcd-server /data/etcd/etcd-server
+chmod +x /opt/etcd/etcd-server-startup.sh
+chown -R etcd:etcd /opt/etcd /data/logs/etcd-server /data/etcd
  ```
  
+ #### 安装进程管理工具
+ ``` shell
+ yum install supervisor -y
+ ```
+ 
+ #### 使用supervisor管理etcd
  ```ini
 cat > /etc/supervisord.d/etcd-server.ini << EOF
 [program:etcd02]
@@ -58,6 +69,7 @@ stopasgroup=true
 EOF
 ```
 
+#### supervisor 命令
 ```
 supervisorctl start etcd02
 supervisorctl update
