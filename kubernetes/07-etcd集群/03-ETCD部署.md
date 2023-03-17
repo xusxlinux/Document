@@ -9,10 +9,11 @@ mkdir -pv /opt/etcd/certs /data/logs/etcd-server /data/etcd/etcd-server
 #### 下载后解压
 ``` shell
 tar xf etcd-v3.3.15-linux-amd64.tar.gz -C /opt/etcd/
+mv /opt/etcd/etcd-v3.3.15-linux-amd64/etcd* /opt/etcd/
 ```
 
 #### 创建一个etcd用户
-```
+``` shell
 # 安装etcd节点的服务器都需要创建
 useradd -s /sbin/nologin -M etcd
 ```
