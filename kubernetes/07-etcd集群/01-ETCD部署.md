@@ -1,10 +1,14 @@
 ## ETCD集群部署
-```
-$ useradd -s /sbin/nologin -M etcd
+- [etcd安装包下载](https://github.com/etcd-io/etcd/releases?q=3.3.15&expanded=true)
+
+#### 创建一个etcd用户
+``` shell
+# 安装etcd节点的服务器都需要创建
+useradd -s /sbin/nologin -M etcd
 ```
 
 ```bash
-$ cat /opt/etcd/etcd-server-startup.sh
+vim /opt/etcd/etcd-server-startup.sh
 #!/bin/sh
 ./etcd --name etcd-server-7-11 \
        --data-dir /data/etcd/etcd-server \
@@ -27,10 +31,10 @@ $ cat /opt/etcd/etcd-server-startup.sh
        --log-output stdout
  ```
  
- ```
-$ mkdir -pv /opt/etcd/certs /data/logs/etcd-server /data/etcd/etcd-server
-$ chmod +x /opt/etcd/etcd-server-startup.sh
-$ chown -R etcd:etcd /opt/etcd /data/logs/etcd-server /data/etcd
+ ``` shell
+mkdir -pv /opt/etcd/certs /data/logs/etcd-server /data/etcd/etcd-server
+chmod +x /opt/etcd/etcd-server-startup.sh
+hown -R etcd:etcd /opt/etcd /data/logs/etcd-server /data/etcd
  ```
  
  ```ini
