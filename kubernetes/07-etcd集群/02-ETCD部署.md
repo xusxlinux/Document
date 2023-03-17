@@ -9,6 +9,7 @@ mkdir -pv /opt/etcd/certs /data/logs/etcd-server /data/etcd/etcd-server
 #### 下载后解压
 ``` shell
 tar xf etcd-v3.3.15-linux-amd64.tar.gz -C /opt/etcd/
+mv /opt/etcd/etcd-v3.3.15-linux-amd64/etcd* /opt/etcd/
 ```
 
 #### 创建一个etcd用户
@@ -17,7 +18,7 @@ tar xf etcd-v3.3.15-linux-amd64.tar.gz -C /opt/etcd/
 useradd -s /sbin/nologin -M etcd
 ```
 
-```bash
+``` shell
 vim /opt/etcd/etcd-server-startup.sh
 #!/bin/env bash
 ./etcd --name etcd-server-7-12 \
