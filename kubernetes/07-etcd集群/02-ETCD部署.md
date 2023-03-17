@@ -1,5 +1,15 @@
 ## ETCD集群部署
-- [etcd安装包下载](https://github.com/etcd-io/etcd/releases?q=3.3.15&expanded=true)  
+- [etcd3.3.15安装包下载](https://github.com/etcd-io/etcd/releases?q=3.3.15&expanded=true)  
+
+#### 创建应用目录
+``` shell
+mkdir -pv /opt/etcd/certs /data/logs/etcd-server /data/etcd/etcd-server
+```
+
+#### 下载后解压
+``` shell
+tar xf etcd-v3.3.15-linux-amd64.tar.gz -C /opt/etcd/
+```
 
 #### 创建一个etcd用户
 ``` shell
@@ -31,9 +41,8 @@ vim /opt/etcd/etcd-server-startup.sh
        --log-output stdout
  ```
 
-#### 创建目录,添加权限
+#### 添加权限, 变更目录属主,和属组
  ```
-mkdir -pv /opt/etcd/certs /data/logs/etcd-server /data/etcd/etcd-server
 chmod +x /opt/etcd/etcd-server-startup.sh
 chown -R etcd:etcd /opt/etcd /data/logs/etcd-server /data/etcd
  ```
