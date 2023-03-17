@@ -18,7 +18,7 @@
         <td><a href="07-etcd集群/01-ETCD部署.md">etcd01</a></td>
         <td><a href="07-etcd集群/02-ETCD部署.md">etcd02</a></td>
         <td><a href="07-etcd集群/03-ETCD部署.md">etcd03</a></td>
-        <td><a href=""></a></td>
+        <td><a href="07-etcd集群/04-ETCD证书.md">集群签发证书</a></td>
     </tr>
     <tr>
         <td><strong></strong>镜像仓库</td>
