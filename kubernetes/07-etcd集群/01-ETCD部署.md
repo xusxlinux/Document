@@ -31,20 +31,20 @@ vim /opt/etcd/etcd-server-startup.sh
        --log-output stdout
  ```
  
- #### 创建目录,添加权限
- ``` shell
+#### 创建目录,添加权限
+``` shell
 mkdir -pv /opt/etcd/certs /data/logs/etcd-server /data/etcd/etcd-server
 chmod +x /opt/etcd/etcd-server-startup.sh
 chown -R etcd:etcd /opt/etcd /data/logs/etcd-server /data/etcd
- ```
+```
  
- #### 安装进程管理工具
- ``` shell
- yum install supervisor -y
- ```
+#### 安装进程管理工具
+``` shell
+yum install supervisor -y
+```
  
- #### 使用supervisor管理etcd
- ```ini
+#### 使用supervisor管理etcd
+```ini
 cat > /etc/supervisord.d/etcd-server.ini << EOF
 [program:etcd01]
 command=/opt/etcd/etcd-server-startup.sh                        ; the program (relative uses PATH, can take args)
