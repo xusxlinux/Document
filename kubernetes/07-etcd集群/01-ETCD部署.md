@@ -7,9 +7,9 @@
 useradd -s /sbin/nologin -M etcd
 ```
 
-```bash
+``` shell
 vim /opt/etcd/etcd-server-startup.sh
-#!/bin/sh
+#!/bin/env bash
 ./etcd --name etcd-server-7-11 \
        --data-dir /data/etcd/etcd-server \
        --listen-peer-urls https://10.4.7.11:2380 \
@@ -31,12 +31,19 @@ vim /opt/etcd/etcd-server-startup.sh
        --log-output stdout
  ```
  
+ #### 创建目录,添加权限
  ``` shell
 mkdir -pv /opt/etcd/certs /data/logs/etcd-server /data/etcd/etcd-server
 chmod +x /opt/etcd/etcd-server-startup.sh
-hown -R etcd:etcd /opt/etcd /data/logs/etcd-server /data/etcd
+chown -R etcd:etcd /opt/etcd /data/logs/etcd-server /data/etcd
  ```
  
+ #### 安装进程管理工具
+ ``` shell
+ yum install supervisor -y
+ ```
+ 
+ #### 使用supervisor管理etcd
  ```ini
 cat > /etc/supervisord.d/etcd-server.ini << EOF
 [program:etcd01]
@@ -62,6 +69,7 @@ stopasgroup=true
 EOF
 ```
 
+#### supervisor 命令
 ```
 supervisorctl start etcd01
 supervisorctl update
