@@ -2,7 +2,7 @@
     <tr>
         <td><strong></strong>部署前的准备</td>
         <td><a href="01-环境准备.md">环境准备</a></td>
-        <td><a href="../NetWork/bind9/02-安装配置.md">主机域/业务域</a></td>
+        <td><a href="../NetWork/bind9/03-DNS正解域配置文件（单个节点）.md">内网DNS</a></td>
         <td><a href=""></a></td>
     </tr>
     <tr>
