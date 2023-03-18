@@ -119,11 +119,8 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=peer
 
 #### 把证书放到etcd的证书目录下
 ``` shell
-# 三张pem证书
-ll /opt/etcd/certs/
--rw-r--r-- 1 etcd etcd 1306 Mar 17 21:53 ca.pem
--rw------- 1 etcd etcd 1679 Mar 17 21:53 etcd-peer-key.pem
--rw-r--r-- 1 etcd etcd 1436 Mar 17 21:53 etcd-peer.pem
+# 把该目录下生成的三张pem证书拷贝到etcd的证书目录(所有的etcd都要拷贝)
+cp ca.pem etcd-peer.pem etcd-peer-key.pem /opt/etcd/certs/
 
 # 拷贝到etcd服务器的证书目录
 scp *.pem k8s-master-02:/opt/etcd/certs/
