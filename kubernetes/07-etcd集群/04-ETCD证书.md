@@ -85,6 +85,38 @@ vim /opt/certs/ca-config.json
 cfssl gencert -initca ca-csr.json | cfssl-json -bare ca
 ```
 
+#### 签发etcd-peer证书
+``` shell
+vim /opt/certs/etcd-peer-csr.json 
+{
+    "CN": "k8s-etcd",
+    "hosts": [
+        "10.4.7.11",
+        "10.4.7.12",
+        "10.4.7.21",
+        "10.4.7.22"
+    ],
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    },
+    "names": [
+        {
+            "C": "CN",
+            "ST": "beijing",
+            "L": "beijing",
+            "O": "chain",
+            "OU": "ops"
+        }
+    ]
+}
+```
+
+#### 生成etcd证书和私钥
+``` shell
+cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=peer etcd-peer-csr.json |cfssl-json -bare etcd-peer
+```
+
 #### 把证书放到etcd的证书目录下
 ``` shell
 # 三张pem证书
