@@ -1,3 +1,5 @@
+#### 集群初始化配置文件
+- etcd是pod状态
 ``` yaml
 使用pod创建etcd
 apiVersion: kubeproxy.config.k8s.io/v1alpha1
@@ -29,9 +31,9 @@ controllerManager:
 scheduler:
     extraArgs:
         address: 0.0.0.0
-imageRepository: gcr.azk8s.cn/google-containers
+imageRepository: registry.aliyuncs.com/google_containers
 ```
-
+- etcd是外部集群状态
 ``` yaml
 外部的etcd
 apiVersion: kubeproxy.config.k8s.io/v1alpha1
@@ -70,16 +72,23 @@ controllerManager:
 scheduler:
     extraArgs:
         address: 0.0.0.0
-imageRepository: gcr.azk8s.cn/google-containers    
+imageRepository: registry.aliyuncs.com/google_containers
 ```
 
 [k8s-kubeadm官网源](https://kubernetes.io/zh/docs/setup/production-environment/tools/kubeadm/install-kubeadm/  )
 
 ``` shell
+# 所有节点都需要安装软件
 yum install yum-utils device-mapper-persistent-data lvm2 psmisc kubeadm-1.18.18-0.x86_64 kubelet-1.18.18-0.x86_64 kubectl-1.18.18-0.x86_64 -y
+
+# 所有节点都需要开机自启动
+systemctl enable --now kubelet
 ```
 
 ``` shell
+# 只需要在第一个master节点上执行如下初始化命令
+kubeadm init --config kubeadm-config.yaml
+
 # master节点都需要创建
 mkdir -pv /etc/kubernetes/pki/
 
@@ -103,7 +112,7 @@ kubeadm join apiserver.chain.com:6443 --token wbz9dp.cg20mtk73tpmkk4r \
 kubeadm join apiserver.chain.com:6443 --token wbz9dp.cg20mtk73tpmkk4r \
     --discovery-token-ca-cert-hash sha256:7e00c712a461a0ae2ef897cc6fc1d9ec45efb2a324b440e45a8b849b98297e62
 
-# 在master集群中执行如下命令, 查看集群
+# 在所有master节点中执行如下命令, 查看集群
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
