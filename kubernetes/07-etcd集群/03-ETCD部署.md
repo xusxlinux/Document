@@ -87,3 +87,10 @@ supervisorctl reload
 supervisorctl status
 supervisorctl restart all
 ```
+
+#### 验证集群是否健康
+``` shell
+# 验证是否通信
+cd /opt/etcd/certs
+../etcdctl --ca-file=ca.pem -cert-file=etcd-peer.pem --key-file=etcd-peer-key.pem --endpoints="https://10.4.7.12:2379,https://10.4.7.11:2379,https://10.4.7.21:2379" cluster-health
+```
