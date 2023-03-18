@@ -16,7 +16,7 @@ mkdir -pv /opt/certs
 
 #### 创建生成CA证书签名请求(csr)的JSON配置文件
 ``` shell
-vim cat /opt/certs/ca-csr.json
+vim /opt/certs/ca-csr.json
 {
     "CN": "Kubernetes",
     "hosts": [
