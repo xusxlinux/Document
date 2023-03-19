@@ -51,6 +51,8 @@ chown -R etcd:etcd /opt/etcd /data/logs/etcd-server /data/etcd
 #### 安装进程管理工具
 ``` shell
 yum install supervisor -y
+systemctl start supervisord.service
+systemctl enable supervisord.service
 ```
  
 #### 使用supervisor管理etcd
