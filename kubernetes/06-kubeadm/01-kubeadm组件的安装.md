@@ -42,7 +42,7 @@ mode: "ipvs"
 ---
 apiVersion: kubeadm.k8s.io/v1beta1
 kind: ClusterConfiguration
-kubernetesVersion: v1.17.4
+kubernetesVersion: v1.18.18
 apiServer:
     certSANs:
     - "apiserver.dockerstart.com"
@@ -64,8 +64,8 @@ etcd:
     keyFile: /opt/etcd/certs/etcd-peer-key.pem
 networking:
 # This CIDR is a Flannel default. Substitute or remove for your CNI provider.
-    podSubnet: "192.168.0.0/12"
-    serviceSubnet: 172.16.0.0/16
+    podSubnet: "192.168.0.0/16"
+    serviceSubnet: "172.16.0.0/16"
 controllerManager:
     extraArgs:
         address: 0.0.0.0
