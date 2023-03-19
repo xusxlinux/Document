@@ -50,7 +50,7 @@
     </tr>
     <tr>
         <td><strong></strong>网络节点</td>
-        <td><a href="08-网络节点.md">flanned</a></td>
+        <td><a href="06-kubeadm/03-k8s之flannel网络.md">flanned</a></td>
         <td><a href="08-网络节点.md">calico</a></td>
         <td><a href=""></a></td>
         <td><a href=""></a></td>
@@ -71,7 +71,7 @@
     </tr>
     <tr>
         <td><strong></strong>控制面板</td>
-        <td><a href="10-rbac.md">rbac</a></td>
+        <td><a href="06-kubeadm/04-基于角色的访问控制(RBAC).mdd">基于角色的访问控制</a></td>
         <td><a href="10-控制面板.md">dashborad</a></td>
         <td><a href=""></a></td>
         <td><a href=""></a></td>
@@ -99,8 +99,9 @@
     </tr>
     <tr>
         <td><strong></strong>日志收集</td>
-        <td><a href="01-环境准备.md">ELK</a></td>
-        <td><a href=""></a></td>
-        <td><a href=""></a></td>
+        <td><a href="06-kubeadm/addon/日志收集/01-k8s部署es集群+csi.md">es集群+csi</a></td>
+        <td><a href="06-kubeadm/addon/日志收集/01-k8s部署es集群.md">k8s部署es集群.md</a></td>
+        <td><a href="06-kubeadm/addon/日志收集/01-服务器部署es集群.md">服务器部署es集群</a></td>
+        td><a href=""></a></td>
     </tr>
 </table>
