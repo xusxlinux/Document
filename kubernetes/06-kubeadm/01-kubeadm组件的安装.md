@@ -79,12 +79,13 @@ imageRepository: registry.aliyuncs.com/google_containers
 
 ``` shell
 # 所有节点都需要安装软件
-yum install yum-utils device-mapper-persistent-data lvm2 psmisc kubeadm-1.18.18-0.x86_64 kubelet-1.18.18-0.x86_64 kubectl-1.18.18-0.x86_64 -y
+yum install yum-utils device-mapper-persistent-data lvm2 psmisc \
+    kubeadm-1.18.18-0.x86_64 kubelet-1.18.18-0.x86_64 kubectl-1.18.18-0.x86_64 -y
 
 # 所有节点都需要开机自启动
 systemctl enable --now kubelet
 ```
-
+#### 创建集群
 ``` shell
 # 只需要在第一个master节点上执行如下初始化命令
 kubeadm init --config kubeadm-config.yaml
@@ -97,11 +98,13 @@ scp /etc/kubernetes/pki/ca.* hdss7-12:/etc/kubernetes/pki/
 scp /etc/kubernetes/pki/sa.* hdss7-12:/etc/kubernetes/pki/
 scp /etc/kubernetes/pki/front-proxy-ca.* hdss7-12:/etc/kubernetes/pki/
 
+# 有多个master的时候都需要拷贝证书到服务器上
 scp /etc/kubernetes/pki/ca.* hdss7-21:/etc/kubernetes/pki/
 scp /etc/kubernetes/pki/sa.* hdss7-21:/etc/kubernetes/pki/
 scp /etc/kubernetes/pki/front-proxy-ca.* hdss7-21:/etc/kubernetes/pki/
 ```
 
+#### 把master节点和node加入集群
 ``` shell
 # 加入master节点组建集群
 kubeadm join apiserver.chain.com:6443 --token wbz9dp.cg20mtk73tpmkk4r \
@@ -126,10 +129,25 @@ source /usr/share/bash-completion/bash_completion
 source <(kubectl completion bash)
 ```
 
+#### k8s集群重置的方式
 ``` shell
-# 开始创建k8s集群
-kubeadm init --config kubeadm-config.yaml
+# 删除所有的节点
+kubectl delete nodes nodeX.host.com
 
+# 重置k8s集群信息
+kubeadm reset
+
+# 清除ipvs 和 config 文件
+ipvsadm --clear
+rm -rf $HOME/.kube
+
+# 清除cni插件缓存
+rm -rf /var/lib/cni/
+rm -rf /etc/cni/
+```
+
+#### 集群token过期处理方式
+``` shell
 # token24小时过期处理
 kubeadm token create --print-join-command
 
