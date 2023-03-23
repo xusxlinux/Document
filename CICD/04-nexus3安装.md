@@ -31,3 +31,42 @@ cat /data/sonatype-work/nexus3/admin.password
 #### 私服nexus的使用
 [使用教程 一](https://www.toobug.cn/post/4118.html)  
 [使用教程 二](https://www.xncoding.com/2017/09/02/tool/nexus.html)
+
+#### 把maven的包迁移到nexus上
+``` shell
+cat upload_m2.sh
+#!usr//bin/env bash
+
+# Maven仓库路径
+REPOSITORY_PATH=~/.m2/repository
+
+# Nexus3仓库URL
+NEXUS_URL=http://10.4.7.11:8081/repository/maven-releases/
+
+# 遍历Maven仓库中的所有文件
+for file in $(find $REPOSITORY_PATH -type f -name "*.pom"); do
+  # 提取相对路径
+  path=${file/$REPOSITORY_PATH/}
+
+  # 上传pom文件
+  curl -v -u admin:123456 --upload-file "$file" "$NEXUS_URL$path"
+
+  # 上传对应的jar文件
+  jar=${file/.pom/.jar}
+  if [ -f "$jar" ]; then
+    curl -v -u admin:123456 --upload-file "$jar" "$NEXUS_URL$path"
+  fi
+
+  # 上传对应的源码文件
+  sources=${file/.pom/-sources.jar}
+  if [ -f "$sources" ]; then
+    curl -v -u admin:123456 --upload-file "$sources" "$NEXUS_URL$path"
+  fi
+
+  # 上传对应的文档文件
+  javadoc=${file/.pom/-javadoc.jar}
+  if [ -f "$javadoc" ]; then
+    curl -v -u admin:123456 --upload-file "$javadoc" "$NEXUS_URL$path"
+  fi
+done
+```
