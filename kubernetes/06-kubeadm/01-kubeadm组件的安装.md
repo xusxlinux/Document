@@ -1,6 +1,31 @@
 #### 集群初始化配置文件
+[kubernetes源](https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)  
+``` shell
+cat > /etc/yum.repos.d/kubernetes.repo << EOF
+[kubernetes]
+name=Kubernetes
+baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/
+enabled=1
+gpgcheck=1
+exclude=kubelet kubeadm kubectl
+EOF
+```
+
+- 安装插件
+``` shell
+yum install yum-utils device-mapper-persistent-data lvm2 psmisc ipset ipvsadm -y
+
+# --disableexcludes=kubernetes防止包冲突  (所有的节点都需要安装)
+yum install kubeadm-1.18.18-0.x86_64 kubelet-1.18.18-0.x86_64 kubectl-1.18.18-0.x86_64 --disableexcludes=kubernetes -y
+
+# 所有节点都需要设置开启自启动
+systemctl enable --now kubelet
+```
+
 - etcd是pod状态
 ``` yaml
+[root@hdss7-11 yaml]# vim kubeadm-config.yaml
+
 使用pod创建etcd
 apiVersion: kubeproxy.config.k8s.io/v1alpha1
 kind: KubeProxyConfiguration
@@ -35,7 +60,9 @@ imageRepository: registry.aliyuncs.com/google_containers
 ```
 - etcd是外部集群状态
 ``` yaml
-外部的etcd
+[root@hdss7-11 yaml]# vim kubeadm-config.yaml
+
+# 外部的etcd
 apiVersion: kubeproxy.config.k8s.io/v1alpha1
 kind: KubeProxyConfiguration
 mode: "ipvs"
