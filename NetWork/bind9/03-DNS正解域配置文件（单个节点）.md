@@ -20,6 +20,12 @@
 [root@hdss7-11 ~]# named-checkconf /etc/named.conf
 ```
 
+#### 启动named服务
+``` shell
+[root@hdss7-11 ~]# systemctl start named
+[root@hdss7-11 ~]# systemctl enable named
+```
+
 #### 验证是否启动成功
 ``` shell
 # 查看53端口是否启动成功
