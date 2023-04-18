@@ -5,11 +5,11 @@
 ``` shell
 因为要认证 从官网下载到本地后上传服务器
 tar xf jdk-8u202-linux-x64.tar.gz
-mv jdk1.8.0_202 /usr/local/java
+mv jdk1.8.0_202 /usr/local/jdk
 
 设置环境变量
 vim /etc/profile
-export JAVA_HOME=/usr/local/java/jdk  
+export JAVA_HOME=/usr/local/jdk  
 export PATH=$JAVA_HOME/bin:$PATH  
 export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar  
 
@@ -33,6 +33,15 @@ export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-1.1.al7.x86_64
 export PATH=$JAVA_HOME/bin:$PATH
 export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 ```
+
+#### 删除openjdk
+``` shell
+yum list installed | grep java
+yum -y remove tzdata-java.noarch
+yum -y remove javapackages-tools.noarch
+yum -y remove python-javapackages.noarch
+```
+
 #### tomcat的systemctl管理脚本
 ``` shell
 vim /etc/systemd/system/tomcat.service
