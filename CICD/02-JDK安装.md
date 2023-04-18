@@ -37,6 +37,8 @@ export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/li
 #### 删除openjdk
 ``` shell
 yum list installed | grep java
+
+yum -y remove java-1.8.0*
 yum -y remove tzdata-java.noarch
 yum -y remove javapackages-tools.noarch
 yum -y remove python-javapackages.noarch
