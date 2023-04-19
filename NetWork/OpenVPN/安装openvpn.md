@@ -31,6 +31,7 @@ export PKCS11_PIN=1234
 
 #### 生成证书
 ``` shell
+# 不需要设置密码
 [root@hz-186 2.0]# ./build-ca 
 
 
@@ -49,9 +50,19 @@ export PKCS11_PIN=1234
 [root@hz-186 openvpn]# cp ~/easy-rsa-old-master/easy-rsa/2.0/keys/server.key /etc/openvpn/keys/
 [root@hz-186 openvpn]# cp ~/easy-rsa-old-master/easy-rsa/2.0/keys/ca.crt /etc/openvpn/keys/
 [root@hz-186 openvpn]# cp ~/easy-rsa-old-master/easy-rsa/2.0/keys/dh2048.pem /etc/openvpn/keys/
+```
 
-# 模板配置文件
+#### server服务端 模板配置文件
+``` shell
 [root@hz-186 openvpn]# cp /usr/share/doc/openvpn-2.4.12/sample/sample-config-files/server.conf /etc/openvpn/
+
+[root@hz-186 ~]# vim /etc/openvpn/server.conf
+78 ca ./keys/ca.crt
+79 cert ./keys/server.crt
+80 key ./keys/server.key
+85 dh ./keys/dh2048.pem
+43 push "route 172.16.199.0 255.255.255.0"
+253 cipher AES-256-GCM
 ```
 
 #### 防止ddoc攻击
@@ -62,17 +73,34 @@ export PKCS11_PIN=1234
 
 #### 启动OpenVPN
 ``` shell
-[root@hz-186 ~]# openvpn --daemon --config /etc/openvpn/server.conf 
+[root@hz-186 ~]# openvpn --daemon --config /etc/openvpn/server.conf
 ```
 
 ## 配置客户端
+#### 创建win10客户端使用的配置文件
 ``` shell
 [root@hz-186 ~]# mkdir -pv client
 
 [root@hz-186 ~]# cp /usr/share/doc/openvpn-2.4.12/sample/sample-config-files/client.conf ~/client/client.ovpn
+42 remote 47.97.20.241 1194
+116 cipher AES-256-GCM
+```
 
+``` shell
 [root@hz-186 ~]# cp easy-rsa-old-master/easy-rsa/2.0/keys/ca.crt ~/client/
 [root@hz-186 ~]# cp easy-rsa-old-master/easy-rsa/2.0/keys/client.crt ~/client/
 [root@hz-186 ~]# cp easy-rsa-old-master/easy-rsa/2.0/keys/client.key ~/client/
 [root@hz-186 ~]# cp /etc/openvpn/keys/ta.key ~/client/
+```
+
+#### 额外配置,访问局域网的服务器
+``` shell
+# 列表为空
+[root@hz-186 ~]# iptables -t nat -L
+
+# 设置iptables规则, 放开拨号网段, 访问局域网的服务器
+[root@hz-186 ~]# iptables -t nat -A POSTROUTING -s 10.8.0.1/24 -j MASQUERADE
+[root@hz-186 ~]# iptables -t nat -L
+
+# 设置云服务器的安全组: 放开UDP端口1194
 ```
