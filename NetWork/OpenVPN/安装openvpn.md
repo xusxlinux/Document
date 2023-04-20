@@ -15,7 +15,6 @@ export KEY_PROVINCE="BeiJing"
 export KEY_CITY="BeiJing"
 export KEY_ORG="WM"
 export KEY_EMAIL="shaoxin.xu@wm-motor.com"
-export KEY_EMAIL=mail@host.domain
 export KEY_CN=xusx
 export KEY_NAME=xusx
 export KEY_OU=xusx
@@ -62,6 +61,7 @@ export PKCS11_PIN=1234
 80 key ./keys/server.key
 85 dh ./keys/dh2048.pem
 43 push "route 172.16.199.0 255.255.255.0"
+244 tls-auth keys/ta.key 0 # This file is secret
 253 cipher AES-256-GCM
 ```
 
@@ -74,6 +74,7 @@ export PKCS11_PIN=1234
 #### 启动OpenVPN
 ``` shell
 [root@hz-186 ~]# openvpn --daemon --config /etc/openvpn/server.conf
+[root@hz-186 ~]# netstat -lntup | grep 1194
 ```
 
 ## 配置客户端
