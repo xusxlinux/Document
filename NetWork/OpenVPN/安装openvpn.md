@@ -83,6 +83,8 @@ export PKCS11_PIN=1234
 [root@hz-186 ~]# mkdir -pv client
 
 [root@hz-186 ~]# cp /usr/share/doc/openvpn-2.4.12/sample/sample-config-files/client.conf ~/client/client.ovpn
+
+[root@hz-186 ~]# vim ~/client/client.ovpn
 42 remote 47.97.20.241 1194
 116 cipher AES-256-GCM
 ```
