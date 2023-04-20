@@ -14,7 +14,7 @@ export KEY_COUNTRY="CN"
 export KEY_PROVINCE="BeiJing"
 export KEY_CITY="BeiJing"
 export KEY_ORG="WM"
-export KEY_EMAIL="shaoxin.xu@wm-motor.com"
+export KEY_EMAIL="xusxlinux@gmail.com"
 export KEY_CN=xusx
 export KEY_NAME=xusx
 export KEY_OU=xusx
@@ -110,4 +110,5 @@ export PKCS11_PIN=1234
 [root@hz-186 ~]# sysctl -p
 
 # 设置云服务器的安全组: 放开UDP端口1194
+# 如果配置了公网NAT需要添加 DNAT 条目 UDP端口1194
 ```
