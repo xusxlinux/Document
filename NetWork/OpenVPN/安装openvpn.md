@@ -101,9 +101,13 @@ export PKCS11_PIN=1234
 # 列表为空
 [root@hz-186 ~]# iptables -t nat -L
 
-# 设置iptables规则, 放开拨号网段, 访问局域网的服务器
+# 设置iptables规则, 放开拨号网段, 访问局域网的服务器(允许数据包在不同的网络接口之间转发)
 [root@hz-186 ~]# iptables -t nat -A POSTROUTING -s 10.8.0.1/24 -j MASQUERADE
 [root@hz-186 ~]# iptables -t nat -L
+
+# 开启内核转发
+[root@hz-186 ~]# echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
+[root@hz-186 ~]# sysctl -p
 
 # 设置云服务器的安全组: 放开UDP端口1194
 ```
