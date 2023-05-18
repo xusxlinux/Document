@@ -15,6 +15,7 @@
 32:elasticsearch.hosts: ["http://linux-node-04.host.com:9200","http://linux-node-02.host.com:9200","http://linux-node-03.host.com:9200"]
 45:elasticsearch.username: "kibana_system"
 46:elasticsearch.password: "XCnh15Df0lVhOo9OoqhO"
+# 显示登陆页面
 115:xpack.monitoring.ui.container.elasticsearch.enabled: true
 116:i18n.locale: "zh-CH"
 
