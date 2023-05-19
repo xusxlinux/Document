@@ -41,6 +41,10 @@
   xpack.security.transport.ssl.keystore.path: elastic-certificates.p12
   xpack.security.transport.ssl.truststore.path: elastic-certificates.p12
   ```
+- 配置完成后重启`所有es节点`
+  ``` shell
+  systemctl restart elasticsearch.service
+  ```
 #### 神坑  证书权限
 ``` shell
 [root@linux-node-01 ~]# chmod 777 elastic-certificates.p12
