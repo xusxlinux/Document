@@ -14,7 +14,7 @@
 46:elasticsearch.password: "XCnh15Df0lVhOo9OoqhO"
 # 显示登陆页面
 115:xpack.monitoring.ui.container.elasticsearch.enabled: true
-116:i18n.locale: "zh-CN"
+116:i18n.locale: zh-CN
 
 ```
 
