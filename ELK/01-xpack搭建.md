@@ -1,5 +1,6 @@
 ## xpack认证
-
+[先 -- 参考官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/security-basic-setup.html)  
+[后 -- 参考官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/security-minimal-setup.html)
 #### 添加认证参数
 - 开启`所有es节点`的配置  
   ``` shell
