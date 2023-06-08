@@ -35,7 +35,9 @@ ln -vs /mysql/4131/conf/my.cnf /etc/my.cnf
 # 需要注意MySQL文件夹的权限
 chown mysql.mysql -R /mysql
 ```
-
+  - [MySQL 8.0单库](https://github.com/xusxlinux/Document/blob/master/MySQL%208.0/my.cnf/01-MySQL%208.0%E5%8D%95%E5%BA%93%E9%85%8D%E7%BD%AE.md)  
+  - [MySQL 8.0主库](https://github.com/xusxlinux/Document/blob/master/MySQL%208.0/my.cnf/02-MySQL%208.0%E4%B8%BB%E5%BA%93%E9%85%8D%E7%BD%AE.md)  
+  - [MySQL 8.0从库](https://github.com/xusxlinux/Document/blob/master/MySQL%208.0/my.cnf/03-MySQL%208.0%E4%BB%8E%E5%BA%93%E9%85%8D%E7%BD%AE.md)  
 ## 环境变量和初始化MySQL 8.0
 ``` shell
 # 设置环境变量
