@@ -2,13 +2,13 @@
 ``` shell
 [root@hdss7-11 ~]# cat /etc/resolv.conf
 # search作用：短域名
-search host.com chain.com
+search localhost host.com chain.com
 nameserver 10.4.7.12
 nameserver 10.4.7.11
 
 [root@hdss7-12 ~]# cat /etc/resolv.conf
 # search作用：短域名
-search host.com chain.com
+search localhost host.com chain.com
 nameserver 10.4.7.12
 nameserver 10.4.7.11
 ```
