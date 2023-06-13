@@ -1,7 +1,7 @@
 ## 下载MySQL 8.0 二进制安装包
 [MySQL 8.0.27下载地址](https://downloads.mysql.com/archives/get/p/23/file/mysql-8.0.27-linux-glibc2.12-x86_64.tar)
 
-## 删除系统自带的MySQL软件包,MySQL8.X和mariadb有冲突,需要卸载干净
+#### 删除系统自带的MySQL软件包,MySQL8.X和mariadb有冲突,需要卸载干净
 ``` shell
 rpm -qa | grep mysql
 
@@ -9,7 +9,8 @@ rpm -qa | grep mariadb
 rpm -e --nodeps mariadb-libs-5.5.68-1.el7.x86_64
 ```
 
-## 准备工作
+## 安装MySQL 8.0
+#### 准备工作
 ``` shell
 # 创建用户和MySQL所需要的目录
 useradd mysql -s /sbin/nologin -M
@@ -38,7 +39,8 @@ chown mysql.mysql -R /mysql
   - [MySQL 8.0单库](https://github.com/xusxlinux/Document/blob/master/MySQL%208.0/my.cnf/01-MySQL%208.0%E5%8D%95%E5%BA%93%E9%85%8D%E7%BD%AE.md)  
   - [MySQL 8.0主库](https://github.com/xusxlinux/Document/blob/master/MySQL%208.0/my.cnf/02-MySQL%208.0%E4%B8%BB%E5%BA%93%E9%85%8D%E7%BD%AE.md)  
   - [MySQL 8.0从库](https://github.com/xusxlinux/Document/blob/master/MySQL%208.0/my.cnf/03-MySQL%208.0%E4%BB%8E%E5%BA%93%E9%85%8D%E7%BD%AE.md)  
-## 环境变量和初始化MySQL 8.0
+
+#### 环境变量和初始化MySQL 8.0
 ``` shell
 # 设置环境变量
 vim /etc/profile
@@ -49,7 +51,7 @@ source /etc/profile
 mysqld --initialize --user=mysql --basedir=/mysql/4131/app/mysql --datadir=/mysql/4131/data
 ```
 
-## 守护进程
+#### 守护进程
 ``` shell
 vim /usr/lib/systemd/system/mysqld.service
 
@@ -67,4 +69,33 @@ Group=mysql
 ExecStart=/mysql/4131/app/mysql/bin/mysqld --defaults-file=/mysql/4131/conf/my.cnf
 LimitNOFILE = 65535
 LimitNPROC = 65535
+```
+
+#### 初始化后启动MySQL 8.0 并修改密码
+``` shell
+# 启动
+systemctl start mysqld.service
+systemctl enable mysqld.service
+systemctl status mysqld.service
+```
+
+#### 首次登录修改密码
+``` shell
+mysql -uroot -p
+
+set password='123456';
+flush privileges;
+# 或者
+Alter USER 'root'@'localhost' IDENTIFIED with mysql_native_password BY '123456';
+flush privileges;
+
+# 重启MySQL
+systemctl restart mysqld.service
+```
+
+#### 创建root用户
+``` shell
+create user 'root'@'%' IDENTIFIED with mysql_native_password BY '123456';
+grant all privileges on *.* to 'root'@'%' with grant option;
+flush privileges;
 ```
