@@ -1,9 +1,11 @@
 #### MySQL 8.0主库初始化配置
  - vim /mysql/4131/conf/my.cnf
 ``` shell
-[client]
-default-character-set                               = utf8mb4
+# MySQL_version 8.0.27 innodb engine
+# Version 1.1
+# Date    2023-06-13
 
+# The MySQL server
 [mysql]
 default-character-set                               = utf8mb4
 socket                                              = /mysql/4131/tmp/mysql.sock
