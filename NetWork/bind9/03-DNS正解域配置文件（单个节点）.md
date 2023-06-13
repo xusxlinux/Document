@@ -98,6 +98,9 @@ HDSS7-200            IN  A    10.4.7.200
 
 # 检查主机域配置文件是否正确
 [root@hdss7-11 ~]# named-checkzone host.com /var/named/host.com.zone
+
+# 配置完成后 重启一下服务
+[root@hdss7-11 ~]# systemctl restart named.service 
 ```
 
 #### 验证主机名能否解析出 IP地址
