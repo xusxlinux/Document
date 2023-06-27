@@ -115,10 +115,7 @@ listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
 21:38:02.894953 00:0c:29:a2:02:e0 > 00:0c:29:13:e4:ad, ethertype IPv4 (0x0800), length 98: 192.168.80.123 > 192.168.10.123: ICMP echo reply, id 29072, seq 2, length 64
 ```
 - 使用扩展参数禁ping  
-``` shell
-# 使用扩展参数 禁止其他服务器 ping 本机Linux.  本机服务器可以ping通 其他服务器
-iptables -t filter -I INPUT -p icmp -m icmp --icmp-type echo-request -j DROP
-```
+
 
 
 
