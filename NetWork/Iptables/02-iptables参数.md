@@ -114,39 +114,12 @@ listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
 21:38:02.893393 00:0c:29:13:e4:ad > 00:0c:29:a2:02:e0, ethertype IPv4 (0x0800), length 98: 192.168.10.123 > 192.168.80.123: ICMP echo request, id 29072, seq 2, length 64
 21:38:02.894953 00:0c:29:a2:02:e0 > 00:0c:29:13:e4:ad, ethertype IPv4 (0x0800), length 98: 192.168.80.123 > 192.168.10.123: ICMP echo reply, id 29072, seq 2, length 64
 ```
-- 使用扩展参数禁ping
+- 使用扩展参数禁ping  
 ``` shell
 # 使用扩展参数 禁止其他服务器 ping 本机Linux.  本机服务器可以ping通 其他服务器
 iptables -t filter -I INPUT -p icmp -m icmp --icmp-type echo-request -j DROP
 ```
 
-#### 实验 五  使用多端口和ip范围做限制
-参数 -m multiport  
-  - 指定多端口号  -m multiport
-        -- sport  
-        -- dport  
-        -- ports  
-``` shell
-# 拒绝 192.168.80.0/24 访问 192.168.10.0/24 1-1024 3389 端口
-[root@route-01 ~]# iptables -t filter -I FORWARD -p tcp -s 192.168.80.0/24 -d 192.168.10.0/24 -m multiport --dports 1:1024,3389 -j DROP
-
-
-# 测试结果
-[root@node80-123 ~]# ssh 192.168.10.123
-ssh: connect to host 192.168.10.123 port 22: Connection timed out
-```
-  - 指定 IP 段 -m iprange  
-        -src-range ip-ip  
-        -dst-range ip-ip  
-``` shell
-# 禁止 192.168.80-100地址段 访问192.168.10.0/24网端
-[root@route-01 ~]# iptables -t filter -I FORWARD -m iprange --src-range 192.168.80.1-192.168.80.100 -d 192.168.10.123/32 -j DROP
-
-
-# 测试结果 192.168.80.23无法ping通 ping 192.168.10.123
-[root@node80-123 ~]# ping 192.168.10.123
-PING 192.168.10.123 (192.168.10.123) 56(84) bytes of data.
-```
 
 
 
