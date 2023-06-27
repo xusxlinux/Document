@@ -285,7 +285,7 @@ recent 这个模块很有趣, 善加利用可以充分保证您服务器的安�
 [root@route-01 ~]# iptables -t filter -I INPUT -p tcp -s 0.0.0.0/0 -m multiport  --dports 80,443 -j ACCEPT
 ```
 
-#### 实验 十二  保护服务器安全
+#### 实验 十二  保护服务器安全-为开放的端口添加密钥
 ``` shell
 # 没啥用
 ```
