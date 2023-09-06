@@ -1,18 +1,31 @@
 ## 1.1 系统优化
 #### 1.1 设置主机名
 ``` shell
-
+xusx@localhost:~$ sudo hostnamectl set-hostname xusx.host.com
 ```
-#### 1.2 修改时区(上海时区)
+#### 1.2 设置历史命令
+``` shell
+echo 'export HISTTIMEFORMAT="%y-%m-%d %H:%M:%S "' >> ~/.bashrc
+```
+#### 1.3 修改时区(上海时区)
 ``` shell
 # 修改时区
 xusx@localhost:~$ sudo timedatectl set-timezone Asia/Shanghai
+```
+#### 1.4 更新源
+``` shell
+
+```
+#### 1.5常用安装包依赖
+``` shell
+
 ```
 
 ## 2.权限设置
 #### 2.1 新建用户
 ```
 # 创建用户
+adduser test
 ```
 
 ## 3.服务器加固
@@ -24,6 +37,7 @@ xusx@localhost:~$ sudo timedatectl set-timezone Asia/Shanghai
 ## 4. 磁盘维护
 ``` shell
 # 查看磁盘
+xusx@localhost:~$ sudo -i
 root@localhost:~# fdisk -l
 root@localhost:~# fdisk /dev/sdc
 
@@ -43,9 +57,11 @@ xusx@localhost:~$ sudo blkid /dev/sdc1
 
 xusx@localhost:~$ sudo vim /etc/fstab
 /dev/disk/by-uuid/aa8f75ff-3ee4-4fe0-9556-e62367e4d864 /home/xusx/data xfs defaults 0 1
+
+xusx@localhost:~$ sudo mount -a
 ```
 
 ## 5.安全设置(安全组)
 ``` shell
-# 设置安全断开
+# 设置安全组
 ```
