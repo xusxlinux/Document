@@ -16,6 +16,16 @@ xusx@localhost:~$ sudo timedatectl set-timezone Asia/Shanghai
 ``` shell
 
 ```
+#### 1.5 修改网卡名称
+``` shell
+xusx@xusx:~$ sudo vim /etc/default/grub
+GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"
+
+xusx@xusx:~$ sudo update-grub
+
+# 将文件中的ens33和ens34分别改为eth0和eth1
+xusx@xusx:~$ sudo vim /etc/netplan/00-installer-config.yaml
+```
 #### 1.5常用安装包依赖
 ``` shell
 
