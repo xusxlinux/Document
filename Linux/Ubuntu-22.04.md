@@ -17,7 +17,9 @@ xusx@localhost:~$ sudo timedatectl set-timezone Asia/Shanghai
 xusx@localhost:~$ sudo apt update
 xusx@localhost:~$ sudo apt install -y build-essential
 
-xusx@localhost:~$ sudo apt-get upgrade
+xusx@localhost:~$ sudo apt upgrade
+
+xusx@localhost:~$ sudo apt list --upgradable
 ```
 #### 1.5 修改网卡名称
 ``` shell
