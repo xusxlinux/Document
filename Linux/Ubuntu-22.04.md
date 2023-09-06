@@ -14,12 +14,18 @@ xusx@localhost:~$ sudo timedatectl set-timezone Asia/Shanghai
 ```
 #### 1.4 更新源
 ``` shell
+# 更新本地存储库索引
 xusx@localhost:~$ sudo apt update
-xusx@localhost:~$ sudo apt install -y build-essential
 
+# 升级系统中已安装的软件包到它们的最新可用版本
 xusx@localhost:~$ sudo apt upgrade
 
+# 列出系统中已安装的软件包中可升级的软件包列表
 xusx@localhost:~$ sudo apt list --upgradable
+
+# 列出所有已安装的软件包
+xusx@localhost:~$ sudo dpkg -l
+xusx@localhost:~$ apt list --installed
 ```
 #### 1.5 修改网卡名称
 ``` shell
@@ -33,6 +39,7 @@ xusx@xusx:~$ sudo vim /etc/netplan/00-installer-config.yaml
 ```
 #### 1.5常用安装包依赖
 ``` shell
+xusx@localhost:~$ sudo apt install -y build-essential
 
 ```
 
