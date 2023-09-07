@@ -52,13 +52,18 @@ xusx@localhost:~$ sudo chgrp -R dev data
 
 # 创建用户, 并加入组
 xusx@localhost:~$ sudo useradd -m -g dev test
+# 设置密码
 xusx@localhost:~$ sudo passwd test
+# 让用户可以使用sudo以 root身份执行命令
+xusx@localhost:~$ sudo usermod -aG sudo test
+# 添加用户的环境变量, 使用bash命令
+xusx@localhost:~$ sudo usermod -s /bin/bash test
+
+# 高级的、交互式的方式来创建用户
+xusx@localhost:~$ sudo adduser test
 
 # 删除用户,删除用户家目录
 xusx@localhost:~$ sudo userdel -r test
-
-# 高级的、交互式的方式来创建用户
-adduser test
 ```
 
 ## 3.服务器加固
