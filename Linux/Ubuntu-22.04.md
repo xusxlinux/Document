@@ -46,7 +46,18 @@ xusx@localhost:~$ sudo apt install -y build-essential
 ## 2.权限设置
 #### 2.1 新建用户
 ```
-# 创建用户
+# 创建组并更改权限
+xusx@localhost:~$ sudo groupadd dev
+xusx@localhost:~$ sudo chgrp -R dev data
+
+# 创建用户, 并加入组
+xusx@localhost:~$ sudo useradd -m -g dev test
+xusx@localhost:~$ sudo passwd test
+
+# 删除用户,删除用户家目录
+xusx@localhost:~$ sudo userdel -r test
+
+# 高级的、交互式的方式来创建用户
 adduser test
 ```
 
