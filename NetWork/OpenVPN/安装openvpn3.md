@@ -62,12 +62,12 @@ set_var EASYRSA_NS_SUPPORT      "yes"
 [root@linux-node-01 ~]# cd /etc/openvpn
 [root@linux-node-01 openvpn]# openvpn --genkey --secret ta.key
 ```
-## 7丶查看openvpn3 安装路径
+## 查看openvpn3 安装路径
 ``` shell
 [root@linux-node-01 openvpn]# rpm -ql openvpn
 [root@linux-node-01 openvpn]# cp /usr/share/doc/openvpn/sample/sample-config-files/server.conf /etc/openvpn/
 ```
-#### 拷贝server证书和私钥
+#### 7丶拷贝server证书和私钥
 ``` shell
 [root@linux-node-01 openvpn]# cp /data/openvpn/pki/dh.pem /etc/openvpn/
 [root@linux-node-01 openvpn]# cp /data/openvpn/pki/ca.crt /etc/openvpn/
