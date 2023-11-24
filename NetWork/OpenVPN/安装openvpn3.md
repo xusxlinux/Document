@@ -11,7 +11,7 @@
 [root@linux-node-01 openvpn]# cp -a /usr/share/doc/easy-rsa/vars.example ./vars
 
 ```
-#### 配置签发
+#### 1丶配置ca颁发机构
 ``` shell
 [root@linux-node-01 openvpn]# vim /data/openvpn/vars
 
@@ -31,38 +31,38 @@ set_var EASYRSA_REQ_ORG         "wm"
 set_var EASYRSA_REQ_EMAIL       "xusxlinux@163.com"
 set_var EASYRSA_NS_SUPPORT      "yes"
 ```
-#### 证书初始化
+#### 2丶证书初始化
 ``` shell
 # 初始化PKI, 在当前目录创建PKI目录, 用于存储证书
 [root@linux-node-01 openvpn]# ./easyrsa init-pki
 # 创建CA机构, 主要对后续创建的 server,client 证书进行签名; 会提示密码, 其他默认
 [root@linux-node-01 openvpn]# ./easyrsa build-ca
 ```
-#### 签发服务端证书
+#### 3丶签发服务端证书
 ``` shell
 # 创建 server 端的证书, nopass表示不加密私钥文件, 其他可默认
 [root@linux-node-01 openvpn]# ./easyrsa gen-req server nopass
 # 给server端证书签名, 首先是对信息的确认, 输入yes,然后输入创建ca根证书时设置的密码. 第一个server是类型, 第二个server是req请求文件名称
 [root@linux-node-01 openvpn]# ./easyrsa sign server server
 ```
-#### 签发客户端证书
+#### 4丶签发客户端证书
 ``` shell
 # 创建 client 端的证书, nopass表示不加密私钥文件, 其他可默认
 [root@linux-node-01 openvpn]# ./easyrsa gen-req client nopass
 # 给client端证书签名, 首先是对信息的确认, 输入yes,然后输入创建ca根证书时设置的密码. 第一个client是类型, 第二个client是req请求文件名称
 [root@linux-node-01 openvpn]# ./easyrsa sign client client
 ```
-#### 创建DH密钥
+#### 5丶创建DH密钥
 ``` shell
 # Diffie-Hellman是一种安全协议; 让双方在完全没有对方信息下通过不安全信道建立一个密钥; 称为 "对称加密", 被双方在后续传输中使用.
 [root@linux-node-01 openvpn]# ./easyrsa gen-dh
 ```
-#### 防止ddoc攻击
+#### 6丶防止ddoc攻击
 ``` shell
 [root@linux-node-01 ~]# cd /etc/openvpn
 [root@linux-node-01 openvpn]# openvpn --genkey --secret ta.key
 ```
-## 查看openvpn3 安装路径
+## 7丶查看openvpn3 安装路径
 ``` shell
 [root@linux-node-01 openvpn]# rpm -ql openvpn
 [root@linux-node-01 openvpn]# cp /usr/share/doc/openvpn/sample/sample-config-files/server.conf /etc/openvpn/
@@ -74,14 +74,7 @@ set_var EASYRSA_NS_SUPPORT      "yes"
 [root@linux-node-01 openvpn]# cp /data/openvpn/pki/issued/server.crt /etc/openvpn/
 [root@linux-node-01 openvpn]# cp /data/openvpn/pki/private/server.key /etc/openvpn/
 ```
-#### 启动服务
-``` shell
-# 使用这个方式启动, 需要把配置文件中的证书和私钥拷贝到server目录中
-[root@linux-node-01 openvpn]# systemctl start openvpn-server@server
-# 使用命令后台启动则不需要重新拷贝
-[root@linux-node-01 openvpn]# openvpn --daemon --config /etc/openvpn/server.conf
-```
-#### 修改server端配置文件
+#### 8丶修改server端配置文件
 ``` shell
 [root@linux-node-01 ~]# vim /etc/openvpn/server.conf
 
@@ -105,6 +98,13 @@ persist-tun                                     ;检测超时后，重新启动V
 status openvpn-status.log                       ;日志记录位置
 verb 3                                          ;openvpn版本
 ```
+#### 9丶启动服务
+``` shell
+# 使用这个方式启动, 需要把配置文件中的证书和私钥拷贝到server目录中
+[root@linux-node-01 openvpn]# systemctl start openvpn-server@server
+# 使用命令后台启动则不需要重新拷贝
+[root@linux-node-01 openvpn]# openvpn --daemon --config /etc/openvpn/server.conf
+```
 #### 开启`内核转发`, `配置安全组`, `DNAT`, `自定义路由条目`
 ``` shell
 [root@linux-node-01 ~]# echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
@@ -112,7 +112,7 @@ verb 3                                          ;openvpn版本
 [root@linux-node-01 ~]# iptables -t nat -A POSTROUTING -s 10.8.0.1/24 -j MASQUERADE
 [root@linux-node-01 ~]# iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -j SNAT --to 192.168.10.1
 ```
-#### 拷贝client证书和私钥到win/mac
+#### 11丶拷贝client证书和私钥到win/mac
 ``` shell
 [root@linux-node-01 client]# cp /data/openvpn/pki/ca.crt .
 [root@linux-node-01 client]# cp /data/openvpn/pki/private/client.key .
