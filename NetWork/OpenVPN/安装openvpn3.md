@@ -65,18 +65,18 @@ set_var EASYRSA_NS_SUPPORT      "yes"
 ## 查看openvpn3 安装路径
 ``` shell
 [root@linux-node-01 openvpn]# rpm -ql openvpn
-[root@linux-node-01 openvpn]# cp /usr/share/doc/openvpn/sample/sample-config-files/server.conf /etc/openvpn/
+[root@linux-node-01 openvpn]# cp /usr/share/doc/openvpn/sample/sample-config-files/server.conf /etc/openvpn/server/
 ```
 #### 7丶拷贝server证书和私钥
 ``` shell
-[root@linux-node-01 openvpn]# cp /data/openvpn/pki/dh.pem /etc/openvpn/
-[root@linux-node-01 openvpn]# cp /data/openvpn/pki/ca.crt /etc/openvpn/
-[root@linux-node-01 openvpn]# cp /data/openvpn/pki/issued/server.crt /etc/openvpn/
-[root@linux-node-01 openvpn]# cp /data/openvpn/pki/private/server.key /etc/openvpn/
+[root@linux-node-01 openvpn]# cp /data/openvpn/pki/dh.pem /etc/openvpn/server/
+[root@linux-node-01 openvpn]# cp /data/openvpn/pki/ca.crt /etc/openvpn/server/
+[root@linux-node-01 openvpn]# cp /data/openvpn/pki/issued/server.crt /etc/openvpn/server/
+[root@linux-node-01 openvpn]# cp /data/openvpn/pki/private/server.key /etc/openvpn/server/
 ```
 #### 8丶修改server端配置文件
 ``` shell
-[root@linux-node-01 ~]# vim /etc/openvpn/server.conf
+[root@linux-node-01 ~]# vim /etc/openvpn/server/server.conf
 
 port 1194                                       ;端⼝
 proto udp                                       ;TCP/UDP协议
@@ -97,8 +97,52 @@ persist-key                                     ;通过keepalive检测超时后�
 persist-tun                                     ;检测超时后，重新启动VPN，一直保持tun是linkup的。否则网络会先linkdown然后再linkup
 status openvpn-status.log                       ;日志记录位置
 verb 3                                          ;openvpn版本
+#以下参数为用户认证使用
+script-security 3
+auth-user-pass-verify /etc/openvpn/server/checkpsw.sh via-env
+username-as-common-name
+verify-client-cert none
+# 表示只使⽤⽤户名密码⽅式验证，不加该参数，则代表需要证书、⽤户名、密码多重验证登录
+# client-cert-not-required
 ```
-#### 9丶启动服务
+#### 9丶编写用户认证脚本文件 (脚本是由openvpn官网提供)
+``` shell
+[root@linux-node-01 ~]# vim /etc/openvpn/server/checkpsw.sh
+
+#!/usr/bin/env bash
+PASSFILE="/etc/openvpn/server/psw-file"
+LOG_FILE="/etc/openvpn/server/openvpn-password.log"
+TIME_STAMP=`date "+%Y-%m-%d %T"`
+
+if [ ! -r "${PASSFILE}" ]; then
+  echo "${TIME_STAMP}: Could not open password file \"${PASSFILE}\" for reading." >>${LOG_FILE}
+  exit 1
+fi
+
+CORRECT_PASSWORD=`awk '!/^;/&&!/^#/&&$1=="'${username}'"{print $2;exit}' ${PASSFILE}`
+
+if [ "${CORRECT_PASSWORD}" = "" ]; then 
+  echo "${TIME_STAMP}: User does not exist: username=\"${username}\", password=\"${password}\"." >> ${LOG_FILE}
+  exit 1
+fi
+
+if [ "${password}" = "${CORRECT_PASSWORD}" ]; then 
+  echo "${TIME_STAMP}: Successful authentication: username=\"${username}\"." >> ${LOG_FILE}
+  exit 0
+fi
+
+echo "${TIME_STAMP}: Incorrect password: username=\"${username}\",     password=\"${password}\"." >> ${LOG_FILE}
+exit 1
+
+# 增加执行权限
+[root@linux-node-01 ~]# chmod +x /etc/openvpn/server/checkpsw.sh
+```
+#### 创建用户密码文件
+``` shell
+[root@linux-node-01 ~]# vim /etc/openvpn/server/openvpnfile
+xusx 123456
+```
+#### 10丶启动服务
 ``` shell
 # 使用这个方式启动, 需要把配置文件中的证书和私钥拷贝到server目录中
 [root@linux-node-01 openvpn]# systemctl start openvpn-server@server
@@ -138,10 +182,21 @@ key client.key                 ;指定当前客户端的私钥的件路径
 remote-cert-tls server         ;
 tls-auth ta.key 1              ;防御DDOC, 淹没等恶意攻击行为
 verb 3                         ;指定日志文件的记录详细级别，可选0-9，等级越高志内容越详细
+auth-user-pass                 ;⽤户密码认证
 ```
-#### 12丶创建工作人员账号
-``` shell
-[root@linux-node-01 openvpn]# systemctl start openvpn-client@.service
 
+## 二 在Linux上安装VPN
+``` shell
+[root@bj-172-5 ~]# cd /etc/openvpn/client/
+# 上传客户端配置和证书
+[root@bj-172-5 client]# ls
+ca.crt  client.crt  client.key  client.ovpn  ta.key
+
+# 修改openvpn守护进程
+[root@bj-172-5 client]# vim /usr/lib/systemd/system/openvpn-client@.service
+13 ExecStart=/usr/sbin/openvpn --suppress-timestamps --nobind --config client.ovpn
+
+# 设置开机启动.  启动openvpn-client
+[root@bj-172-5 client]# systemctl enable openvpn-client@server.service
+[root@bj-172-5 client]# systemctl start openvpn-client@server.service
 ```
-## 二 对等连接(不同地域的机房通过VPN连接)
