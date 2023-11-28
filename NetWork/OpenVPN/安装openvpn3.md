@@ -139,7 +139,7 @@ exit 1
 ```
 #### 创建用户密码文件
 ``` shell
-[root@linux-node-01 ~]# vim /etc/openvpn/server/openvpnfile
+[root@linux-node-01 ~]# vim /etc/openvpn/server/psw-file
 xusx 123456
 ```
 #### 10丶启动服务
