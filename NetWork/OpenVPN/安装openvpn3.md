@@ -102,7 +102,7 @@ script-security 3
 auth-user-pass-verify /etc/openvpn/server/checkpsw.sh via-env
 username-as-common-name
 verify-client-cert none
-# 表示只使⽤⽤户名密码⽅式验证，不加该参数，则代表需要证书、⽤户名、密码多重验证登录
+# 表示只使用用户名密码⽅式验证，不加该参数，则代表需要证书、⽤户名、密码多重验证登录
 # client-cert-not-required
 ```
 #### 9丶编写用户认证脚本文件 (脚本是由openvpn官网提供)
@@ -182,7 +182,7 @@ key client.key                 ;指定当前客户端的私钥的件路径
 remote-cert-tls server         ;
 tls-auth ta.key 1              ;防御DDOC, 淹没等恶意攻击行为
 verb 3                         ;指定日志文件的记录详细级别，可选0-9，等级越高志内容越详细
-auth-user-pass                 ;⽤户密码认证
+auth-user-pass                 ;用户密码认证
 ```
 
 ## 二 在Linux上安装VPN
