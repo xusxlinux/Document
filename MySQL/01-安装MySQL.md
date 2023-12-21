@@ -25,7 +25,7 @@ tail -1 /mysql/3306/logs/hdss7-200.host.com-error.err
 mysql -uroot -p
 Alter USER 'root'@'localhost' IDENTIFIED BY '123456';
 set password='123456';
-flush privileges
+flush privileges;
 
 # 手动启动和停止
 nohup mysqld_safe --defaults-file=/etc/my.cnf &
@@ -91,7 +91,7 @@ log-error                              = /mysql/3306/logs/linux-node-01.host.com
 ``` shell
 [Unit]
 Description=MySQL Server
-Documentation=man:mysqld(8)
+Documentation=man:mysqld(5.7.30)
 Documentation=http://dev.mysql.com/doc/refman/en/using-systemd.html
 After=network.target
 After=syslog.target
