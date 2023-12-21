@@ -16,7 +16,7 @@ vim /mysql/3306/conf/my.cnf
 ln -vs /mysql/3306/conf/my.cnf /etc/my.cnf
 
 # 初始化MySQL
-mysqld --initialize --user=mysql --basedir=/mysql/3306/app/mysql --datadir=/mysql/3306/data
+mysqld --defaults-file=/mysql/3306/conf/my.cnf --initialize --user=mysql --basedir=/mysql/3306/app/mysql --datadir=/mysql/3306/data
 
 # 密码文件
 tail -1 /mysql/3306/logs/hdss7-200.host.com-error.err
