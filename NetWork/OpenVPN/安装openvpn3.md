@@ -78,7 +78,7 @@ set_var EASYRSA_NS_SUPPORT      "yes"
 ``` shell
 [root@linux-node-01 ~]# vim /etc/openvpn/server/server.conf
 
-port 1194                                       ;端⼝
+port 1194                                       ;端口
 proto udp                                       ;TCP/UDP协议
 dev tun                                         ;采用路由隧道模式tun
 ca ca.crt                                       ;ca证书件位置
@@ -173,13 +173,13 @@ dev tun                        ;使用tun隧道传输协议
 proto udp                      ;使用udp协议传输数据
 remote openvpn.3bgm.cn 1194    ;openvpn服务器IP地址端口
 resolv-retry infinite          ;断线自动重新连接，在网络不稳定的情况下非常有用
-nobind                         ;不绑定本地特定的端⼝号
+nobind                         ;不绑定本地特定的端口号
 persist-key                    ;通过keepalive检测超时后，重新启动VPN，不重新读取keys，保留第一次使用的keys
 persist-tun                    ;检测超时后，重新启动VPN，一直保持tun是linkup的。否则网络会先linkdown然后再linkup
 ca ca.crt                      ;指定CA证书的文件路径
 cert client.crt                ;指定当前客户端的证书的件路径
 key client.key                 ;指定当前客户端的私钥的件路径
-remote-cert-tls server         ;
+remote-cert-tls server         ;指定远程服务器所使用的证书
 tls-auth ta.key 1              ;防御DDOC, 淹没等恶意攻击行为
 verb 3                         ;指定日志文件的记录详细级别，可选0-9，等级越高志内容越详细
 auth-user-pass                 ;用户密码认证
