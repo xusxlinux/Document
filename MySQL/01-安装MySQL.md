@@ -15,24 +15,32 @@ export PATH="$PATH:/mysql/3306/app/mysql/bin"
 vim /mysql/3306/conf/my.cnf
 ln -vs /mysql/3306/conf/my.cnf /etc/my.cnf
 
-# 初始化MySQL
+## 第一种方法 mysqld初始化MySQL(存在BUG, 第一条命令不行的时候选择第二条)
 mysqld --defaults-file=/mysql/3306/conf/my.cnf --initialize --user=mysql --basedir=/mysql/3306/app/mysql --datadir=/mysql/3306/data
-
+mysqld --initialize --defaults-file=/mysql/3306/conf/my.cnf --user=mysql --basedir=/mysql/3306/app/mysql --datadir=/mysql/3306/data
 # 密码文件
 tail -1 /mysql/3306/logs/hdss7-200.host.com-error.err
-
 # 修改密码
 mysql -uroot -p
 Alter USER 'root'@'localhost' IDENTIFIED BY '123456';
+update user set authentication_string=password('123456') where user='root' and host='localhost';
 set password='123456';
 flush privileges;
+
+
+## 第二种方法 mysqld初始化MySQL(insecure 采用非安全模式初始化数据库, 密码为空, 土建此方法, 后续更改密码)
+mysqld --defaults-file=/mysql/3306/conf/my.cnf --initialize-insecure --user=mysql --basedir=/mysql/3306/app/mysql --datadir=/mysql/3306/data
+# 修改密码
+mysqladmin -uroot -p password 123456
 
 # 手动启动和停止
 nohup mysqld_safe --defaults-file=/etc/my.cnf &
 mysqladmin -uroot -p 123456 shutdown -S /mysql/3306/tmp/mysql.sock
 
 # 创建CentOS Linux启停脚本
-systemctl start mysqld.service 
+systemctl start mysqld.service
+systemctl enable mysqld.service
+systemctl is-enable mysqld.service 
 
 # 卸载MySQL数据库
 systemctl stop mysqld.service 
