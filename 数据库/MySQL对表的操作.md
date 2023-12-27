@@ -1,5 +1,25 @@
 ## MySQL数据库的操作
 
+| 对象 | create | drop   | alter  | show   |
+| :--- | ------ | ------ | ------ | ------ |
+| 数据 | insert | delete | update | select |
+
+**DDL (data Definition Language 数据定义语言)**
+
+操作数据库对象: 数据库, 表, 视图, 函数, 存储过程等. DDL操作是数据库对象, 不对具体的数据进行操作;
+
+**DML (data Manipulation Language 数据操控语言)**
+
+操作数据库对象中的数据;
+
+**DQL (data Query Language 据库查询语言)**
+
+查询数据库中的数据
+
+**DCL (data Control Language 数据控制语言)**
+
+用来授予或回收访问数据库的某种特权, 并控制数据库操纵事务等;
+
 #### 一 操作库
 
 #### 1.1 数据库的`增删改查`
@@ -11,22 +31,25 @@ drop database if exists demo;
 -- 创建库
 create database if not exists demo default charset utf8mb4 collate utf8mb4_general_ci;
 
--- 修改库的名称
-
+-- 修改库的名称 5.7.1x后移除命令
+rename database demo 同demo1;
+-- 修改数据库编码
+alter database demo character set utf8 collate utf8_general_ci;
 ```
 
-#### 二 操作表
+#### 二 表操作
 
 #### 2.1 数据库中表的`增删改查`
 
+`create`   `drop`   `alter`   `show`
+
 ```sql
 -- 创建表
-create table city(
+create table city1(
   name varchar(50) NOT NULL COMMENT "城市名称",
   population int(11) NOT NULL COMMENT "人口数量",
   zip varchar(10) DEFAULT NULL COMMENT "城市编码"
 )engine = InnoDB default charset=utf8mb4 collate utf8mb4_general_ci COMMENT "城市表";
-
 ```
 
 ``` sql
@@ -48,9 +71,14 @@ alter table city change column zip code varchar(10) null comment "城市邮编";
 
 -- 删除列
 alter table city drop column province;
+
+-- 删除表
+drop table city;
 ```
 
-#### 三 数据操作
+#### 三 表数据操作
+
+`insert`  `delete`  `update`  `select`
 
 #### 3.1 数据的`增删改查`
 
