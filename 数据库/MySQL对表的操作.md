@@ -1,8 +1,8 @@
-## 一 创建数据库
+## MySQL数据库的操作
 
+#### 一 操作库
 
-
-#### 1.1 创建表
+#### 1.1 数据库的`增删改查`
 
 ``` sql
 -- 删库 
@@ -11,44 +11,50 @@ drop database if exists demo;
 -- 创建库
 create database if not exists demo default charset utf8mb4 collate utf8mb4_general_ci;
 
+-- 修改库的名称
+
+```
+
+#### 二 操作表
+
+#### 2.1 数据库中表的`增删改查`
+
+```sql
 -- 创建表
 create table city(
   name varchar(50) NOT NULL COMMENT "城市名称",
   population int(11) NOT NULL COMMENT "人口数量",
   zip varchar(10) DEFAULT NULL COMMENT "城市编码"
 )engine = InnoDB default charset=utf8mb4 collate utf8mb4_general_ci COMMENT "城市表";
-```
 
-#### 1.2 操作表
-
-```sql
--- 查看表
-desc city
-show full columns from city;
 ```
 
 ``` sql
+-- 查看表信息
+desc city
+show full columns from city;
+
+-- 修改表名
+alter table city rename to city_new;
+
 -- 插入字段
 alter table city add column create_time datetime null comment "创建日期";
 alter table city add column province varchar(50) null comment "省份" after zip;
 alter table city add column id int not null auto_increment primary key comment "自增id" first;
-```
 
-``` sql
 -- 修改表属性
 alter table city modify zip varchar(15) null comment "城市邮编";
 alter table city change column zip code varchar(10) null comment "城市邮编";
 
 -- 删除列
 alter table city drop column province;
-
--- 修改表名
-alter table city rename to city_new;
 ```
 
+#### 三 数据操作
 
+#### 3.1 数据的`增删改查`
 
-#### 2.1 增
+###### 3.1.1 插入数据
 
 ``` sql
 # 语法一 insert into ... values...
@@ -64,7 +70,7 @@ insert into city(id,name,population,code,province,create_time) select 3, '重庆
 insert into city set id=4, name='深圳', population='23000000';
 ```
 
-#### 2.2 删
+###### 3.1.2 删除数据
 
 ``` sql
 # 删除数据 增加条件删除
@@ -75,7 +81,7 @@ drop from city;
 truncate table city;
 ```
 
-#### 2.3 改
+###### 3.1.3 修改数据
 
 ``` sql
 # 修改数据
@@ -92,7 +98,7 @@ update city set code='8888' where 1=1;
 update city set name='北京市_new' where name='北京市';  
 ```
 
-#### 2.4 查
+###### 3.1.4 查询数据
 
 ``` sql
 # 无条件查询
