@@ -54,11 +54,11 @@ create table city1(
 
 ``` sql
 -- 查看表信息
-desc city
-show full columns from city;
+desc city1;
+show full columns from city1;
 
 -- 修改表名
-alter table city rename to city_new;
+alter table city1 rename to city;
 
 -- 插入字段
 alter table city add column create_time datetime null comment "创建日期";
