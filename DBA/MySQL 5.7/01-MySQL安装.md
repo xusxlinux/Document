@@ -1,6 +1,7 @@
 #### 简单安装MySQL
 - [MySQL 二进制包 下载地址](https://downloads.mysql.com/archives/community/)
 ``` shell
+rpm -qa | grep libaio
 mkdir -pv /mysql/3306/{app,conf,data,logs,tmp,binlog,redo}
 tar -xf mysql-5.7.30-linux-glibc2.12-x86_64.tar.gz -C /mysql/3306/app/
 
@@ -35,7 +36,7 @@ mysqladmin -uroot -p password 123456
 
 # 手动启动和停止
 nohup mysqld_safe --defaults-file=/etc/my.cnf &
-mysqladmin -uroot -p 123456 shutdown -S /mysql/3306/tmp/mysql.sock
+mysqladmin -uroot -p123456 shutdown -S /mysql/3306/tmp/mysql.sock
 
 # 创建CentOS Linux启停脚本
 systemctl start mysqld.service
