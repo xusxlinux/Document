@@ -35,7 +35,7 @@ mysqld --defaults-file=/mysql/3306/conf/my.cnf --initialize-insecure --user=mysq
 mysqladmin -uroot -p password 123456
 
 # 手动启动和停止
-nohup mysqld_safe --defaults-file=/etc/my.cnf &
+nohup mysqld_safe --defaults-file=/mysql/3306/conf/my.cnf &
 mysqladmin -uroot -p123456 shutdown -S /mysql/3306/tmp/mysql.sock
 
 # 创建CentOS Linux启停脚本
@@ -59,27 +59,31 @@ select host,user from user where user='root';
   - vim /mysql/3306/conf/my.cnf
 ``` cnf
 [client]
-default-character-set                  = utf8
+default-character-set                  = utf8mb4
+socket                                 = /mysql/3306/tmp/mysql.sock
 
 [mysql]
-default-character-set                  = utf8
+default-character-set                  = utf8mb4
 socket                                 = /mysql/3306/tmp/mysql.sock
 
 [mysqld]
 #skip-name-resolve
 #skip-grant-tables
 port                                   = 3306
+user                                   = mysql
 socket                                 = /mysql/3306/tmp/mysql.sock
 basedir                                = /mysql/3306/app/mysql
 datadir                                = /mysql/3306/data
 tmpdir                                 = /mysql/3306/tmp
 pid-file                               = /mysql/3306/tmp/mysql.pid
-server-id                              = 1
-log-bin                                = /mysql/3306/binlog/mysql-bin
-log_bin_index                          = /mysql/3306/binlog/mysql-bin.index
-binlog_format                          = ROW
-character-set-server                   = utf8
-collation-server                       = utf8_general_ci
+server-id                              = 4711
+
+character-set-server                   = utf8mb4
+collation-server                       = utf8mb4_general_ci
+
+transaction_isolation                  = read-committed
+sql-mode                               = "ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+
 default-storage-engine                 = INNODB
 innodb_buffer_pool_size                = 200M
 innodb_data_file_path                  = ibdata1:10M:autoextend
@@ -87,13 +91,18 @@ innodb_log_group_home_dir              = /mysql/3306/redo
 innodb_file_per_table                  = 1
 max_allowed_packet                     = 16M
 explicit_defaults_for_timestamp        = 1
+
 log-output                             = FILE
+log-bin                                = /mysql/3306/binlog/mysql-bin
+log_bin_index                          = /mysql/3306/binlog/mysql-bin.index
+binlog_format                          = ROW
+
 general_log                            = ON
-general_log_file                       = /mysql/3306/logs/linux-node-01.host.com-general.err
+general_log_file                       = /mysql/3306/logs/node-01.host.com-general.err
 slow_query_log                         = ON
-slow_query_log_file                    = /mysql/3306/logs/linux-node-01.host.com-slow.err
+slow_query_log_file                    = /mysql/3306/logs/node-01.host.com-slow.err
 long_query_time                        = 10
-log-error                              = /mysql/3306/logs/linux-node-01.host.com-error.err
+log-error                              = /mysql/3306/logs/node-01.host.com-error.err
 ```
 - CentOS Linux 系统的启停配置文件
   - vim /usr/lib/systemd/system/mysqld.service 
