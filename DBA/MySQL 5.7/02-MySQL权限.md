@@ -69,12 +69,12 @@ drop user xusx@'localhost';
 
 #### 创建数据库
 ``` sql
-create database hdss7_200 DEFAULT charset utf8;
+create database if not exists xusx default charset utf8mb4 collate utf8mb4_general_ci;
 ```
 
 #### 创建表
 ``` sql
-create table test_01(
+create table if not exists test_01(
   id int auto_increment primary key, 
   name varchar(15)
 )engine = InnoDB;
@@ -87,5 +87,7 @@ insert into test_01 values(1,'3bgm.com');
 
 #### 查看表结构
 ``` sql
-desc hdss7_200;
-``` 
+desc xusx;
+
+show full columns from test_01;
+```
