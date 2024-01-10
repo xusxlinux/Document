@@ -8,12 +8,12 @@ create USER 'xusx'@'10.4.7.%' IDENTIFIED BY '123456';
 - 权限处理逻辑与授予、回收
 ``` sql
 # 给全部权限
-grant all privileges on hdss7_200.* to 'xusx'@'10.4.7.%' identified by '123456';
+grant all privileges on hdss7.* to 'xusx'@'10.4.7.%' identified by '123456';
 
-# 授select权限
-grant select on hdss7_200.test_01 to 'xusx'@'10.4.7.%';
+# 授select权限  给hdss7 这个库中的test_01表 授select权限
+grant select on hdss7.test_01 to 'xusx'@'10.4.7.%';
 # 回收select权限
-revoke select on hdss7_200.test_01 from 'work'@'10.4.7.%';
+revoke select on hdss7.test_01 from 'work'@'10.4.7.%';
 # 查看用户权限
 show grants for xusx@'10.4.7.%';
 
@@ -69,12 +69,12 @@ drop user xusx@'localhost';
 
 #### 创建数据库
 ``` sql
-create database hdss7_200 DEFAULT charset utf8;
+create database if not existe xusx DEFAULT charset utf8;
 ```
 
 #### 创建表
 ``` sql
-create table test_01(
+create table if not existe test_01(
   id int auto_increment primary key, 
   name varchar(15)
 )engine = InnoDB;
@@ -87,5 +87,6 @@ insert into test_01 values(1,'3bgm.com');
 
 #### 查看表结构
 ``` sql
-desc hdss7_200;
-``` 
+desc xusx;
+show full columns from xusx;
+```
