@@ -47,6 +47,9 @@
             &ensp; &ensp; commit or rollback; //事务结束  
 
 #### InnoDB体系结构
+
+![image-20240111161954479](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20240111161954479.png)
+
   - 内存结构
     - `Buffer Pool`  
       &ensp; &ensp; InnoDB专用缓存，用来缓存表对象的数据和索引信息的。大小由`innodb_buffer_pool_size`变量指定，默认为`128MB`。在独立的数据库服务器中，该缓存大小可以设置为物理内存的`80%`  
@@ -69,7 +72,11 @@
       &ensp; &ensp; 在MySQL5.5之前的版本中，由于只支持缓存insert操作，最初叫做insert buffer，只是后来的版本中支持了更多的操作类型缓存，才改叫 Change Buffer  
       
     - `Log Buffer`  
-      &ensp; &ensp; 存储要写入日志文件的数据的内存区域。 Log Buffer的大小由 innodb_log_buffer_size变量自定义。默认大小为`16MB`。Log Buffer的内容会定期刷到磁盘上
+      &ensp; &ensp; 存储要写入日志文件的数据的内存区域。 Log Buffer的大小由 `innodb_log_buffer_size`变量自定义。默认大小为`16MB`。Log Buffer的内容会定期刷到磁盘上
+    
+      ``` sql
+      show variables like 'innodb_log_buffer_size';
+      ```
     
       __知识加油站__  
         1. InnoDB中 主键(聚簇索引)以外的索引都是二级索引  
