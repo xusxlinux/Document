@@ -50,11 +50,19 @@
   - 内存结构
     - `Buffer Pool`  
       &ensp; &ensp; InnoDB专用缓存，用来缓存表对象的数据和索引信息的。大小由`innodb_buffer_pool_size`变量指定，默认为`128MB`。在独立的数据库服务器中，该缓存大小可以设置为物理内存的`80%`  
-      &ensp; &ensp; 对二级索引的更改不直接更改数据文件当中的，而是将他缓存到 change buffer中更改
+      
+      ``` sql
+      show variables like 'innodb_buffer_pool_size';
+      show engine innodb status\G
+      ```
+      
+    - &ensp; &ensp; 对二级索引的更改不直接更改数据文件当中的，而是将他缓存到 change buffer中更改
+    
     - `Change Buffer`  
       &ensp; &ensp; Change Buffer的主要目的是将对二级索引的操作(insert, delete, update)缓存下来，而不是直接读入索引页进行更新；再择机将Change Buffer中的记录合并到真正的二级索引中，以此减少二级索引的随机IO  
       &ensp; &ensp; innodb_chang_buffer_max_size：表示change buffer在buffer pool中的最大占比，默认`25%`，最大`50%`  
       &ensp; &ensp; 在MySQL5.5之前的版本中，由于只支持缓存insert操作，最初叫做insert buffer，只是后来的版本中支持了更多的操作类型缓存，才改叫 Change Buffer  
+      
     - `Log Buffer`  
       &ensp; &ensp; 存储要写入日志文件的数据的内存区域。 Log Buffer的大小由 innodb_log_buffer_size变量自定义。默认大小为`16MB`。Log Buffer的内容会定期刷到磁盘上
       
@@ -63,7 +71,7 @@
         2. InnoDB中 索引和数据(行记录)在同一个文件中存储  
         3. InnoDB中 二级索引在文件中有自己单独的数据页  
         4. 对行记录的(insert, delete, update)操作时，二级索引可能也会被执行相应的(insert, delete, update)操作，很可能会产生大量的物理读(物理读二级索引数据页)    
-
+    
 - 物理存储结构
   - 系统表空间  
     &ensp; &ensp; 默认情况下InnoDB引擎只对应一个表空间，即系统表空间，所有InnoDB引擎表的数据(含索引)都存储再该表空间中，注意仅仅是保存数据和索引，表对象的结构信息仍然保存再`.frm`文件中  
@@ -119,7 +127,7 @@
   - 区：每个区固定`1MB`大小，由`64`个`16KB`的页组成
   - 段：Segment由无数个Extent组成。段本身有很多种，比如数据段、索引段、回滚段。
   - 表空间：逻辑存储单元最高粒度
-  &ensp; &ensp; 对于需要扩展表空间，InnoDB第一次是分配32个pages，之后，每次扩展会分配一个完整的Extent给Segment，最大能够同时向Segment中增加4个Extent，以确保数据的连续性  
+    &ensp; &ensp; 对于需要扩展表空间，InnoDB第一次是分配32个pages，之后，每次扩展会分配一个完整的Extent给Segment，最大能够同时向Segment中增加4个Extent，以确保数据的连续性  
 #### 什么是聚簇索引
   - 聚簇索引：
     - 使用记录主键值的大小进行记录和页的排序，包括三个方面的含义
@@ -129,7 +137,7 @@
     - B+树的叶子节点存储的是完整的用户记录  
 
  &ensp; &ensp; __具有这两种特性的B+树称为`聚簇索引`，用户记录都存放在这个聚簇索引的`叶子节点处`。这种聚簇索引并不需要我们在MySQL语句中显示的去创建，InnoDB存储引擎会自动的为我们创建聚簇索引，在InnoDB存储引擎中，聚簇索引就是数据的存储方式(所有的用户记录都存储在叶子节点)，也就是所谓的`索引即数据`__  
- 
+
   - 二级索引：  
     &ensp; &ensp; 上边介绍的聚簇索引只能在搜索条件是主键时才能发挥作用，因为B+树种的数据都按照主键进行排序的。  
     &ensp; &ensp; 如果我们向以别的列作为搜索条件？可以多建几颗B+树，不同的数据采用不同的排序规则，例如使用c2列值的大小作为数据页中记录的排序规则，再建一棵B+树  
