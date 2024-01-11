@@ -61,11 +61,16 @@
     - `Change Buffer`  
       &ensp; &ensp; Change Buffer的主要目的是将对二级索引的操作(insert, delete, update)缓存下来，而不是直接读入索引页进行更新；再择机将Change Buffer中的记录合并到真正的二级索引中，以此减少二级索引的随机IO  
       &ensp; &ensp; innodb_chang_buffer_max_size：表示change buffer在buffer pool中的最大占比，默认`25%`，最大`50%`  
+      
+      ```
+      show variables like 'innodb_change_buffer_max_size';
+      ```
+      
       &ensp; &ensp; 在MySQL5.5之前的版本中，由于只支持缓存insert操作，最初叫做insert buffer，只是后来的版本中支持了更多的操作类型缓存，才改叫 Change Buffer  
       
     - `Log Buffer`  
       &ensp; &ensp; 存储要写入日志文件的数据的内存区域。 Log Buffer的大小由 innodb_log_buffer_size变量自定义。默认大小为`16MB`。Log Buffer的内容会定期刷到磁盘上
-      
+    
       __知识加油站__  
         1. InnoDB中 主键(聚簇索引)以外的索引都是二级索引  
         2. InnoDB中 索引和数据(行记录)在同一个文件中存储  
