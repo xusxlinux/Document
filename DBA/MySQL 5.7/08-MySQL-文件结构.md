@@ -51,8 +51,8 @@ __提示：__
 1. MySQL命令行中查看`系统`变量：`show global variables like '变量名';`
 2. MySQL命令行中查看`状态`变量：`show global status like '变量名';`  
 
-`binlog_format`：  
-二进制日志记录事件的格式又3种：  
+`binlog_format`：二进制日志记录事件的格式又3种：  
+
 1. 基于语句记录(statement)：记录的是日志逻辑SQL语句
 2. 基于行格式记录(ROW)：记录表的行更改情况
 3. 混合模式记录：以上两种模式的混合
