@@ -96,6 +96,9 @@
     &ensp; &ensp; MySQL5.7中 autoextend默认一次扩展64M的空间，可通过innodb_autoextend_increament系统变量指定  
     &ensp; &ensp; 默认情况下InnoDB数据文件会保存在MySQL的data目录中。如果要变更文件的保存路径，可以通过系统变量`innodb_data_home_dir`设置  
     &ensp; &ensp; &ensp; &ensp; 例如`innodb_data_home_dir=/mysql/3306/data`
+    
+    ---
+    
   - 独立表空间  
     &ensp; &ensp; 默认的情况下，InnoDB引擎的表和索引都保存在系统表空间对应的数据文件中，当数据量很大的时候，管理成本就会上升。系统表空间的数据文件扩展后无法回缩，即使表被`DROP`或者`TRUNCATE`，甚至该表空间内实际已经没有任何数据，已分配的空间仍然仅是相对于InnoDB数据可用，而不能被操作系统再分配给其他文件使用。  
     &ensp; &ensp; 针对这种情况，可以考虑应用InnoDB数据存储的另一项设定，InnoDB将其定义为多重表空间(multiple tablespaces)，就是每个表对象拥有一个独享的`.ibd`为扩展名的数据文件，这个文件就是一个独立的表空间。  
@@ -103,12 +106,15 @@
     __独立表空间的优点__  
     a. 各表对象的数据独立存储至不同的文件，可以更灵活地分散I/O、执行备份及恢复操作  
     b. 当执行`DROP`或者`TRUNCATE`删除表对象时，空间可以即时释放回操作系统层
+    
+    ---
+    
   - Redo日志  
     &ensp; &ensp; redo日志仅针对InnoDB引擎，MySQl数据库的其他引擎是用不到的。默认情况下，InnoDB引擎会创建两组大小均为5MB的日志文件，分别命名为`ib_logfile0`和`ib_logfile1`,日志文件保存在datadir变量指定的路径下。不过可以通过InnoDB的专用参数修改日志路径、日志大小以及日志文件组的数量：  
     - innodb_log_group_home_dir
     - innodb_log_file_size
     - innodb_log_file_in_group  
-
+  
     __redo 在事务中的应用__  
       redo的作用：  
       &ensp; &ensp; redo来实现事务持久性，redo对于AC也有相应的作用  
@@ -117,13 +123,16 @@
       &ensp; &ensp; 重做日志文件(redo log file)，是持久的  
       持久性远离：  
       &ensp; &ensp; 当事务提交 `commit` 时，会刷新当前事务的`redo buffer`到重做日志文件中进行持久化，待事务的commit完成才算完成(`会将此日志打上commit标记`)。还会顺便将一部分`redo buffer`中没有提交的事务日志也刷新到redo日志文件中。  
+    
+    ---
+    
   - Undo日志  
     &ensp; &ensp; 对于事务操作来说，有提交就必然会有回滚，提交就是确定保存写入的数据。  
     &ensp; &ensp; 有两个步骤：  
     &ensp; &ensp; &ensp; &ensp; `撤销刚刚做的修改`，`将数据恢复至修改前的状态`。  
     &ensp; &ensp; 怎么回滚？  
     &ensp; &ensp; &ensp; &ensp; 修改前将旧数据保存下来，保存下的这部分数据就是`UNDO`日志，存储在系统分配好的回滚段中。  
-
+  
       __回滚段中的UNDO日志分为两种__  
         1. insert UNDO：仅在事务回滚时需要，事务提交后即可被废弃  
         2. update UNDO：用于构造一致性读，当没有任何事务需要用到行记录的之前版本时才会被废弃  
