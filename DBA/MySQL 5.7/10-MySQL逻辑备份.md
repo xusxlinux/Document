@@ -52,7 +52,7 @@
     ``` sql
     # 使用这个sql备份,会过滤不需要的库, 并且关闭gtid复制的id
     #!/usr/bin/env bash
-    pass='YyQLj7I8fyuxNExV'
+    pass='123456'
     mysql -h 10.60.0.15  -uroot -p$pass -e "show databases;" | egrep -v "Database|_schema|sys|mysql" | xargs -I {} mysqldump -h 10.60.0.15 -uroot -p$pass -B {} -R --triggers --master-data=2 --single-transaction --set-gtid-purged=OFF > /data/software/$(date "+%Y%m%d_%H%M%S").sql
     ```
     
