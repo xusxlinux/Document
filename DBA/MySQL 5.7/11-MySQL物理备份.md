@@ -68,24 +68,43 @@
 - 使用XtraBackup恢复  
 
   1、__准备阶段__：按顺序逐一将各个增量备份集合并到全备份集中  
-    `参数说明`   
-      --apply-log：此选项作用是通过回滚未提交的事务及同步已提交的事务至数据文件（前滚）使数据文件处于一致性状态`[包含前滚和回滚两个操作]`  
-      --redo-only：最后一次恢复之前的增量恢复，只需redo（前滚）不需rollback（回滚），强制在恢复时只redo（前滚）而跳过rollback（回滚）`[只做前滚操作  跳过回滚操作]`  
+  
+    __恢复的隐含动作:__
+  
+  ​      前滚(redo)：将redolog日志中已提交的数据同步到数据文件中（redo日志中有两部分数据, 一部分是`有提交标识`. 一部分是`没有提交表示`.） 
+  
+  ​      回滚(rollback)：将redolog日志中没有提交标识的数据回滚取消掉, 不向数据文件去同步了.
+  
+  ​      __增量备份(full + inc01)代表了不存在未提交的数据.  当最后一个增量备份合并到全备份集中, 我既要做前滚操作, 也需要回滚操作.(只需要--apply-log 这个参数)__
+  
+    __`参数说明`:__   
+      --apply-log：这个参数表示我要做`前滚`和`回滚`操作.(存在可能未提交的数据要用这个参数)
+  
+  ​	此选项作用是通过回滚未提交的事务及同步已提交的事务到数据文件（前滚）使数据文件处于一致性状态`[包含前滚和回滚两个操作]`  
+  ​    --redo-only：这个参数表示跳过`回滚`操作, 只做`前滚`操作
+  
+  ​	最后一次恢复(full + inc01 +inc02)之前的增量恢复(full + inc01)，只需redo（前滚）不需rollback（回滚），强制在恢复时只redo（前滚）而跳过rollback（回滚）`[只做前滚操作  跳过回滚操作]`  
+  
     ``` sql
-  ##对全量备份做准备
+  ##对全量备份做准备(--apply-log --redo-only 这两个参数一块使用的时候,只做前滚操作, 不做回滚操作)
   innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log --redo-only /mysql/backup-200/3306_full
   
   ##合并inc1到full中
   innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log --redo-only /mysql/backup-200/3306_full --incremental-dir=/mysql/backup-200/3306_inc01
   
-  ##合并inc2到full中
+  ##合并inc2到full中(inc2可能存在未提交的数据, 所有只需要--apply-log这个参数)
   innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log             /mysql/backup-200/3306_full --incremental-dir=/mysql/backup-200/3306_inc02
     ```
+  ---
+  
   2、__恢复阶段__：将准备好的备份集恢复到指定的路径下  
-    `参数说明`  
+    __`参数说明` __
       --defaults-file：指定初始化选项文件  
-      --copy-back：指明接下来要做的操作是从备份路径中，将文件复制会初始化选项指定的路劲下  
+      --copy-back：指明接下来要做的操作是从备份路径中，将文件复制会初始化选项指定的路径下  
       [backup_dir]：指定备份文件所在路径
+  
     ``` sql
     innobackupex --defaults-file=/mysql/3306/conf/my.cnf --copy-back /mysql/backup-200/3306_full
     ```
+
+​	
