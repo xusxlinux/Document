@@ -49,10 +49,10 @@
     - 创建增量备份策略
       ![image](https://github.com/xusxlinux/Document/assets/37207302/cfdfde5d-8aea-46e6-9904-fcf6c25d59e5)
      - 创建增量备份  
-      __参数说明__  
-      `--incremental`：告诉xtrabackup这次创建的时增量备份  
-      `--incremental-basedir`：指定为前一次全备或者增量备份的目录  
-      __创建增量备份__  
+        __参数说明__  
+        `--incremental`：告诉xtrabackup这次创建的时增量备份  
+        `--incremental-basedir`：指定为前一次全备或者增量备份的目录  
+        __创建增量备份__  
       ``` sql
       ## 增量备份
       
@@ -72,14 +72,14 @@
       --apply-log：此选项作用是通过回滚未提交的事务及同步已提交的事务至数据文件（前滚）使数据文件处于一致性状态`[包含前滚和回滚两个操作]`  
       --redo-only：最后一次恢复之前的增量恢复，只需redo（前滚）不需rollback（回滚），强制在恢复时只redo（前滚）而跳过rollback（回滚）`[只做前滚操作  跳过回滚操作]`  
     ``` sql
-    ##对全量备份做准备
-    innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log --redo-only /mysql/backup-200/3306_full
+  ##对全量备份做准备
+  innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log --redo-only /mysql/backup-200/3306_full
   
-    ##合并inc1到full中
-    innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log --redo-only /mysql/backup-200/3306_full --incremental-dir=/mysql/backup-200/3306_inc1
+  ##合并inc1到full中
+  innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log --redo-only /mysql/backup-200/3306_full --incremental-dir=/mysql/backup-200/3306_inc01
   
-    ##合并inc2到full中
-    innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log  /mysql/backup-200/3306_full --incremental-dir=/mysql/backup-200/3306_inc2
+  ##合并inc2到full中
+  innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log             /mysql/backup-200/3306_full --incremental-dir=/mysql/backup-200/3306_inc02
     ```
   2、__恢复阶段__：将准备好的备份集恢复到指定的路径下  
     `参数说明`  
