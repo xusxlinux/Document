@@ -48,7 +48,7 @@
 
 #### InnoDB体系结构
 
-![image-20240111161954479](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20240111161954479.png)
+![image](https://github.com/xusxlinux/Document/assets/37207302/84d5aee9-026f-448c-b292-b9cc80eca35c)
 
   - 内存结构
     - `Buffer Pool`  
