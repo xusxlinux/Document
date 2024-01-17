@@ -98,13 +98,16 @@
   ---
   
   2、__恢复阶段__：将准备好的备份集恢复到指定的路径下  
-    __`参数说明` __
+    __`参数说明`__
       --defaults-file：指定初始化选项文件  
       --copy-back：指明接下来要做的操作是从备份路径中，将文件复制会初始化选项指定的路径下  
       [backup_dir]：指定备份文件所在路径
   
-    ``` sql
+    ``` shell
     innobackupex --defaults-file=/mysql/3306/conf/my.cnf --copy-back /mysql/backup-200/3306_full
     ```
+  3、从binlog中提取部分未备份的数据
+    ``` shell
 
+    ```
 ​	
