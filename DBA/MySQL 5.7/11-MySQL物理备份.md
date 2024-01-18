@@ -16,8 +16,10 @@
     ``` shell
     ## 下载二进制包安装XtraBackup
     wget https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.22/binary/tarball/percona-xtrabackup-2.4.22-Linux-x86_64.glibc2.12.tar.gz
-    tar -xf percona-xtrabackup-2.4.22-Linux-x86_64.glibc2.12.tar.gz -C /usr/local/
+    
+    tar -xf percona-xtrabackup-2.4.22-Linux-x86_64.glibc2.12.tar.gz -C /usr/local/ && cd /usr/local/
     mv percona-xtrabackup-2.4.22-Linux-x86_64.glibc2.12 xtrabackup
+    
     chown -R mysql.mysql /usr/local/xtrabackup
     echo 'export PATH="$PATH:/usr/local/xtrabackup/bin"' >> /etc/profile
     
@@ -27,12 +29,13 @@
     ```
   - InnoBackupex创建全备  
     __基本参数__  
+    
     - --user：连接使用的用户名
     - --password：连接使用的用户密码
     - --defaults-file：MySQL的参数文件
     - --no-timestamp：禁用生成日期子目录
     - [backup_dir]：指定备份集的存储路径
-    ``` sql
+    ``` shell
     ## 全备
     innobackupex --defaults-file=/mysql/3306/conf/my.cnf --host=0.0.0.0 --user=xtrabk --password='123456' /mysql/backup-200/3306_full
     ```
@@ -53,39 +56,39 @@
         `--incremental`：告诉xtrabackup这次创建的时增量备份  
         `--incremental-basedir`：指定为前一次全备或者增量备份的目录  
         __创建增量备份__  
-      ``` sql
+      ``` shell
       ## 增量备份
       
       #方式一 （第一天到第二天备份，第一天到第三天备份，第一天到第四天备份，第一天到第五天备份）
       innobackupex --defaults-file=/mysql/3306/conf/my.cnf --host=0.0.0.0 --user=xtrabk --password='123456' --no-timestamp \
-      --incremental --incremental-basedir=/mysql/backup-200/3306_full /mysql/backup-200/3306_inc1
+      --incremental --incremental-basedir=/mysql/backup-200/3306_full /mysql/backup-200/3306_inc01
       
       
       #方式二 （每天备份一个新的）
       innobackupex --defaults-file=/mysql/3306/conf/my.cnf --host=0.0.0.0 --user=xtrabk --password='123456' --no-timestamp \
-      --incremental --incremental-basedir=/mysql/backup-200/3306_inc1 /mysql/backup-200/3306_inc2
+      --incremental --incremental-basedir=/mysql/backup-200/3306_inc1 /mysql/backup-200/3306_inc02
       ```
 - 使用XtraBackup恢复  
 
-  1、__准备阶段__：按顺序逐一将各个增量备份集合并到全备份集中  
+  1、__准备阶段__：按顺序逐一将各个增量备份集合并到全备份集中    
   
     __恢复的隐含动作:__
   
-  ​      前滚(redo)：将redolog日志中已提交的数据同步到数据文件中（redo日志中有两部分数据, 一部分是`有提交标识`. 一部分是`没有提交表示`.） 
+  ​      前滚(redo)：将redolog日志中已提交的数据同步到数据文件中（redo日志中有两部分数据, 一部分是`有提交标识`. 一部分是`没有提交表示`.）  
   
-  ​      回滚(rollback)：将redolog日志中没有提交标识的数据回滚取消掉, 不向数据文件去同步了.
+  ​      回滚(rollback)：将redolog日志中没有提交标识的数据回滚取消掉, 不向数据文件去同步了.  
   
-  ​      __增量备份(full + inc01)代表了不存在未提交的数据.  当最后一个增量备份合并到全备份集中, 我既要做前滚操作, 也需要回滚操作.(只需要--apply-log 这个参数)__
+  ​      __增量备份(full + inc01)代表了不存在未提交的数据.  当最后一个增量备份合并到全备份集中, 我既要做前滚操作, 也需要回滚操作.(只需要--apply-log 这个参数)__  
   
     __`参数说明`:__   
-      --apply-log：这个参数表示我要做`前滚`和`回滚`操作.(存在可能未提交的数据要用这个参数)
+      --apply-log：这个参数表示我要做`前滚`和`回滚`操作.(存在可能未提交的数据要用这个参数)  
   
   ​	此选项作用是通过回滚未提交的事务及同步已提交的事务到数据文件（前滚）使数据文件处于一致性状态`[包含前滚和回滚两个操作]`  
-  ​    --redo-only：这个参数表示跳过`回滚`操作, 只做`前滚`操作
+  ​    --redo-only：这个参数表示跳过`回滚`操作, 只做`前滚`操作  
   
   ​	最后一次恢复(full + inc01 +inc02)之前的增量恢复(full + inc01)，只需redo（前滚）不需rollback（回滚），强制在恢复时只redo（前滚）而跳过rollback（回滚）`[只做前滚操作  跳过回滚操作]`  
   
-    ``` sql
+    ``` shell
   ##对全量备份做准备(--apply-log --redo-only 这两个参数一块使用的时候,只做前滚操作, 不做回滚操作)
   innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log --redo-only /mysql/backup-200/3306_full
   
@@ -106,7 +109,7 @@
     ``` shell
     innobackupex --defaults-file=/mysql/3306/conf/my.cnf --copy-back /mysql/backup-200/3306_full
     ```
-  3、从binlog中提取部分未备份的数据
+  3、需要根据备库的全量数据加上主库的binlog来恢复数据。
     ``` shell
 
     ```
