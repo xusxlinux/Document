@@ -127,7 +127,7 @@
       ``` shell
       ## 增量备份
       
-      #方式一 （第一天到第二天备份，第一天到第三天备份，第一天到第四天备份，第一天到第五天备份）  图一的逻辑
+      #方式一 （每天备份一个新的）  图一的逻辑
       innobackupex --defaults-file=/mysql/3306/conf/my.cnf --host=0.0.0.0 --user=xtrabk --password='123456' --no-timestamp \
       --incremental --incremental-basedir=/mysql/backup-200/3306_full /mysql/backup-200/3306_inc01
       
@@ -135,10 +135,29 @@
       --incremental --incremental-basedir=/mysql/backup-200/3306_inc1 /mysql/backup-200/3306_inc02
       
       
-      #方式二 （每天备份一个新的） 图二的逻辑
+      #方式二 （第一天到第二天备份，第一天到第三天备份，第一天到第四天备份，第一天到第五天备份）   图二的逻辑
       innobackupex --defaults-file=/mysql/3306/conf/my.cnf --host=0.0.0.0 --user=xtrabk --password='123456' --no-timestamp \
       --incremental --incremental-basedir=/mysql/backup-200/3306_full /mysql/backup-200/3306_inc02
       ```
+    
+    
+    
+    ``` shell
+    # 使用crontab 弄了一个定时任务
+    [root@node-01 ~]$ crontab -l
+    0 1 * * * ~/mysql/mysqlxtrabk.sh
+    
+    [root@node-01 ~]$ cat ~/mysql/mysqlxtrabk.sh 
+    #!/usr/bin/env bash
+    #auto: xusx
+    #date: 2024-01-18
+    
+    today_time=`date '+%Y-%m-%d'`
+    yesterday_time=`date -d "yesterday" '+%Y-%m-%d'`
+    
+    innobackupex --defaults-file=~/mysql/3306/conf/my.cnf --host=0.0.0.0 --user=xtrabk --password='123456' --no-timestamp \
+    --incremental --incremental-basedir=~/mysql/backup/3306_full ~/mysql/backup/3306_inc_$today_time
+    ```
   
 - 使用XtraBackup恢复  
 
