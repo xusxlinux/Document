@@ -95,8 +95,8 @@ explicit_defaults_for_timestamp        = 1
 log-output                             = FILE
 log-bin                                = /mysql/3306/binlog/mysql-bin
 log_bin_index                          = /mysql/3306/binlog/mysql-bin.index
-relay-log                              = relay-bin
-relay-log-index                        = relay-bin
+relay-log                              = /mysql/3306/relaylog/relay-bin
+relay-log-index                        = /mysql/3306/relaylog/relay-bin
 binlog_format                          = ROW
 
 general_log                            = ON
