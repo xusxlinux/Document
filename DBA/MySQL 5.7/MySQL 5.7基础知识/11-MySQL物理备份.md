@@ -184,24 +184,26 @@
   innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log --redo-only /mysql/backup-200/3306_full
   
   ##合并inc1到full中
-  innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log --redo-only /mysql/backup-200/3306_full --incremental-dir=/mysql/backup-200/3306_inc01
+  innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log --redo-only /mysql/backup-200/3306_full \
+  --incremental-dir=/mysql/backup-200/3306_inc01
   
   ##合并inc2到full中(inc2可能存在未提交的数据, 所有只需要--apply-log这个参数)
-  innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log             /mysql/backup-200/3306_full --incremental-dir=/mysql/backup-200/3306_inc02
+  innobackupex --defaults-file=/mysql/3306/conf/my.cnf --apply-log             /mysql/backup-200/3306_full \
+  --incremental-dir=/mysql/backup-200/3306_inc02
     ```
   ---
-
+  
   2、__恢复阶段__：将准备好的备份集恢复到指定的路径下  
     __`参数说明`__
       --defaults-file：指定初始化选项文件  
       --copy-back：指明接下来要做的操作是从备份路径中，将文件复制会初始化选项指定的路径下  
       [backup_dir]：指定备份文件所在路径
-
+  
     ``` shell
     innobackupex --defaults-file=/mysql/3306/conf/my.cnf --copy-back /mysql/backup-200/3306_full
     ```
   3、需要根据备库的全量数据加上主库的binlog来恢复数据。
-
+  
     ``` shell
   
     ```
