@@ -90,27 +90,21 @@
     
       ``` shell
       [root@node-01 ~]# more /mysql/backup/2024-01-18_17-15-08/xtrabackup_info 
-      uuid = 144e241c-b5e2-11ee-805f-000c29154ec0		            # 服务的唯一标识
+      uuid = 144e241c-b5e2-11ee-805f-000c29154ec0                 # 服务的唯一标识
       name = 
       tool_name = innobackupex                                    # 备份时候的命令
       tool_command = --defaults-file=/mysql/3306/conf/my.cnf = ... 
-      tool_version = 2.4.22			                            # 版本
+      tool_version = 2.4.22                                       # 版本
       ibbackup_version = 2.4.22
       server_version = 5.7.30-log
       start_time = 2024-01-18 17:15:08	                        # 备份的开始时间
       end_time = 2024-01-18 17:15:10		                        # 备份的结束时间
-      lock_time = 0						                        # 锁的时间
+      lock_time = 0                                               # 锁的时间
       binlog_pos = filename 'mysql-bin.000053', position '812'	# 备份结束时对应的二进制文件的位置
-      innodb_from_lsn = 0											# 日志的起始序列号
-      innodb_to_lsn = 107159101923								# 日志的结束序列号
-      partial = Y
-      incremental = N
-      format = file
-      compact = N
-      compressed = N
-      encrypted = N
+      innodb_from_lsn = 0                                         # 日志的起始序列号
+      innodb_to_lsn = 107159101923                                # 日志的结束序列号
       ```
-    
+      
     - xtrabackup_logfile：备份日志文件，里面记录备份操作过程中数据库的变更
     
   - InnoBackupex创建增量全备
