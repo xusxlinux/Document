@@ -84,17 +84,19 @@
 - 复制原理
 
   - 第一阶段:
-    - 启动(slave I/O Thread --> master.info; slave SQL Thread --> relay-log.info;)
-    - 建立连接
+    - 启动(`slave I/O Thread --> master.info`   `slave SQL Thread --> relay-log.info`)
+    - 建立连接((`slave I/O Thread --> master.info`   `Master Log Dump Thread`)
 
   - 第二阶段:
-    - 获取更新日志
-    - 传递更新日志
-    - 保存更新日志
+    - 获取更新日志(`Master Log Dump Thread`    `binlog`)
+    - 传递更新日志(`Master Log Dump Thread`    `binlog`    `Slave I/O Thread`)
+    - 保存更新日志(`Slave I/O Thread`    `Slave Relay Log`)
 
   - 第三阶段
-    - 应用中继日志
+    - 应用中继日志(`Slave SQL Thread`    `relay-log.info`    `Slave Relay Log`)
 
+
+  ![image-20240125215057172](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20240125215057172.png)
 
 #### 搭建环境
 
