@@ -96,8 +96,7 @@
     - 应用中继日志(`Slave SQL Thread`    `relay-log.info`    `Slave Relay Log`)
 
 
-![image](https://github.com/xusxlinux/Document/assets/37207302/a303ec22-b173-42fd-8e92-d63d05632761)
-
+  ![image](https://github.com/xusxlinux/Document/assets/37207302/a303ec22-b173-42fd-8e92-d63d05632761)
 #### 搭建环境
 
 - 搭建复制环境(一主一从)
