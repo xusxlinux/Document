@@ -95,9 +95,7 @@
   - 第三阶段
     - 应用中继日志(`Slave SQL Thread`    `relay-log.info`    `Slave Relay Log`)
 
-
-  ![image-20240125215057172](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20240125215057172.png)
-
+  ![image](https://github.com/xusxlinux/Document/assets/37207302/a303ec22-b173-42fd-8e92-d63d05632761)
 #### 搭建环境
 
 - 搭建复制环境(一主一从)
