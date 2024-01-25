@@ -54,7 +54,7 @@
   relay-log                              = /mysql/3306/relaylog/relay-bin
   ```
 
-  slaves节点会在满足下列条件时, 触发创建心的中继日志文件:
+  slaves节点会在满足下列条件时, 触发创建新的中继日志文件:
 
   - 启动slaves节点IO线程时. (IO线程创建中继日志, SQL线程删除中继日志)
   - 执行日志刷新命令: flush logs
@@ -96,7 +96,7 @@
     - 应用中继日志(`Slave SQL Thread`    `relay-log.info`    `Slave Relay Log`)
 
 
-  ![image-20240125215057172](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20240125215057172.png)
+![image](https://github.com/xusxlinux/Document/assets/37207302/a303ec22-b173-42fd-8e92-d63d05632761)
 
 #### 搭建环境
 
