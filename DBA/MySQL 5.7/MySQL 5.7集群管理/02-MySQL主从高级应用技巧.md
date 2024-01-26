@@ -92,24 +92,3 @@
   mysql> change replication filter replicate_ignore_table=();
   ```
 
-  
-
-  - 
-
-
-
-### 半同步机制
-
-
-
-
-
-
-
-### 手动主从切换
-
-
-
-
-
-### 主从延时分析及解决
