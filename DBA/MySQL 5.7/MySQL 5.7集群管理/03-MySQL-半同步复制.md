@@ -24,17 +24,18 @@
 
   master将每个事务写入binlog (sync_binlog=1), 传递到slave刷新到磁盘(sync_relay=1), 同时主库提交事务. master等待slave反馈收到relay log, 只有收到ACK后 master才将commit OK结果反馈给客户端.
 
-  ![image-20240126150909450](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20240126150909450.png)
+  ![image](https://github.com/xusxlinux/Document/assets/37207302/652cd963-db08-4d5a-bcf1-a5adc43ebc97)
 
   在使用after_commit的模式下, 客户端事务在存储引擎层提交后, 在得到从库确认的过程中, 主机宕机. 此时, 即主库在等待 salve ACK的时候, 虽然没有返回当前客户端, 但是事务以及提交, 其他客户端会读取到已提交事务. 如果slave端还没有读到该事务的events, 同时主库发生了crash, 然后切换到备库. 那么之前读到的事务就不见了, 出现了幻读.
 
-  ![image-20240126151402184](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20240126151402184.png)
+  ![image](https://github.com/xusxlinux/Document/assets/37207302/8dfa577a-1e24-4951-8541-4139829344d7)
+
 
 - AFTER_SYNC(5.7默认值, 但5.6中无此参数)
 
   master将每个事务写入binlog,  传递到slave刷新到磁盘(relay log).  master等待slave反馈收到relay log的ack之后,  在提交事务并且返回commit OK给客户端.
 
-  ![image-20240126153259529](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20240126153259529.png)
+  ![image](https://github.com/xusxlinux/Document/assets/37207302/02b4d1cc-8adc-4de4-8dc4-5d5b4e870e9f)
 
 - 半同步复制与无损复制的对比
 
@@ -196,28 +197,3 @@ mysql> show slave status\G
 -- 主库上卸载插件
 mysql> uninstall plugin rpl_semi_sync_master;
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### 半同步复制机制的改进
-
-
-
-
-
-
-
-
-
-
-
