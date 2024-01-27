@@ -5,20 +5,22 @@ rpm -qa | grep libaio
 mkdir -pv /mysql/3306/{app,conf,data,logs,tmp,binlog,relaylog,redo,backup}
 tar -xf mysql-5.7.30-linux-glibc2.12-x86_64.tar.gz -C /mysql/3306/app/
 
+# 创建MySQL配置文件
+vim /mysql/3306/conf/my.cnf
+ln -vs /mysql/3306/conf/my.cnf /etc/my.cnf
+
 # 需要注意MySQL文件夹的权限
 useradd mysql -s /sbin/nologin -M
 chown mysql.mysql -R /mysql
 
 # 添加环境变量
 export PATH="$PATH:/mysql/3306/app/mysql/bin"
-
-# 创建MySQL配置文件
-vim /mysql/3306/conf/my.cnf
-ln -vs /mysql/3306/conf/my.cnf /etc/my.cnf
+source /etc/profile
 
 ## 第一种方法 mysqld初始化MySQL(存在BUG, 第一条命令不行的时候选择第二条)
 mysqld --defaults-file=/mysql/3306/conf/my.cnf --initialize --user=mysql --basedir=/mysql/3306/app/mysql --datadir=/mysql/3306/data
-mysqld --initialize --defaults-file=/mysql/3306/conf/my.cnf --user=mysql --basedir=/mysql/3306/app/mysql --datadir=/mysql/3306/data
+# 复制my.cnf到家目录下
+cp /mysql/3306/conf/my.cnf ~/.my.cnf
 # 密码文件
 tail -1 /mysql/3306/logs/hdss7-200.host.com-error.err
 # 修改密码
