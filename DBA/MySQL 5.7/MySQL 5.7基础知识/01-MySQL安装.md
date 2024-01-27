@@ -15,6 +15,7 @@ chown mysql.mysql -R /mysql
 
 # 添加环境变量
 export PATH="$PATH:/mysql/3306/app/mysql/bin"
+export MYSQL_PS1="\u@\d> "
 source /etc/profile
 
 ## 第一种方法 mysqld初始化MySQL(存在BUG, 第一条命令不行的时候选择第二条)
