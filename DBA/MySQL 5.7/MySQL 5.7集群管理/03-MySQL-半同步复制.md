@@ -26,7 +26,7 @@
 
   ![image](https://github.com/xusxlinux/Document/assets/37207302/652cd963-db08-4d5a-bcf1-a5adc43ebc97)
 
-  在使用after_commit的模式下, 客户端事务在存储引擎层提交后, 在得到从库确认的过程中, 主机宕机. 此时, 即主库在等待 salve ACK的时候, 虽然没有返回当前客户端, 但是事务以及提交, 其他客户端会读取到已提交事务. 如果slave端还没有读到该事务的events, 同时主库发生了crash, 然后切换到备库. 那么之前读到的事务就不见了, 出现了幻读.
+  在使用after_commit的模式下, 客户端事务在存储引擎层提交后, 在得到从库确认的过程中, 主机宕机. 此时, 即主库在等待 salve ACK的时候, 虽然没有返回当前客户端, 但是事务已经提交, 其他客户端会读取到已提交事务. 如果slave端还没有读到该事务的events, 同时主库发生了crash, 然后切换到备库. 那么之前读到的事务就不见了, 出现了幻读.
 
   ![image](https://github.com/xusxlinux/Document/assets/37207302/8dfa577a-1e24-4951-8541-4139829344d7)
 
