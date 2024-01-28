@@ -1,13 +1,21 @@
-
-
 ## GTID介绍
 
-###### GTID和Binlog之间的关系
+###### **1.1 GTID概念:**
 
+- 全局事务标识: global transaction identifiers
+- GTID与事务一一对应,  并且全局唯一ID
+- 一个GTID在一个服务器上只执行一次
+- MySQL 5.65开始支持GTID
+- GTID组成: GTID=server_uuid:transaction_id
+
+###### **1.2 GTID和Binlog之间的关系**
+
+- previous_gtid_log_event
+  - 用于表示当前binlog文件之前已经执行过的GTID集合,  记录在binlog文件头
 - 假设有4个binlog: `bin.001` `bin.002` `bin.003` `bin.004`
   - bin.001: Previous-GTIDs=empty; binlog_events有: 1-40
-  - bin.002: Previous-GTIDs=1-40; binlog_events有: 41-80
-  - bin.003: Previous-GTIDs=1-80; binlog_events有: 81-120
+  - bin.002: Previous-GTIDs=1-40;  binlog_events有: 41-80
+  - bin.003: Previous-GTIDs=1-80;  binlog_events有: 81-120
   - bin.004: Previous-GTIDs=1-120; binlog_events有: 121-160
 - 如何找到GTID=?对应的binlog文件:
   - 假设现在我们要找GTID=$A, 那么MySQL的扫描顺序为: 从最后一个binlog开始扫描(即: bin.004)
@@ -20,15 +28,13 @@
 
 ![image-20240124173209050](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20240124173209050.png)
 
-###### 传统复制与GTID对比
+###### **1.3 传统复制与GTID对比**
 
 ![image-20240124173310062](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20240124173310062.png)
 
 此时, master服务器宕机, 需要将业务切换到Slave1上, 同时, 我们又需要将Slave2的复制源改成Slave1.
 
 而这种方式的难点在于, 由于同一个事务在每台机器上所在的binlog名字和位置都不一样, 那么怎么找到Slave2当前同步停止点对应Slave1上 master_log_file和master_log_pos的位置就成为了难题
-
-
 
 ![image-20240124174133080](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20240124174133080.png)
 
@@ -44,16 +50,12 @@
 - 创建复制专用账户
 - 使用 change master 更新主从配置
 
-
-
 #### 传统复制升级为GTID复制
 
 - 配置主从my.cnf文件
 - 所有服务器设置 read_only模式, 等待主从服务器同步完毕
 - 依次重启主从服务器
 - 使用 change master 更新主从配置
-
-
 
 #### GTID相关参数
 
@@ -91,6 +93,7 @@
 - 主库日志被purged
 
   ``` shell
+  
   ```
 
   
