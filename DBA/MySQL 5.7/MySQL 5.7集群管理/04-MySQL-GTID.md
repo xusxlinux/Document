@@ -156,7 +156,7 @@
 
 - 主库对象可删除, 从库无对应的对象可删除
 
-  - 模拟故障:  从库找不到对应的被删除的记录(Errno: 132)
+  - 模拟故障1:  从库找不到对应的被删除的记录(Errno: 132)
 
     - 主库
 
@@ -210,8 +210,106 @@
 
 - 主库日志被purged
 
-  ``` shell
+  - 模拟故障2:  主库binglog被purge的情形(Erron: 1236)
   
-  ```
+    - 从库
 
+      ``` sql
+      # 首先停止从库, 模拟从库被意外宕机:
+      root@demo> stop slave;
+      ```
+  
+    - 主库
+  
+      ``` sql
+      # 主库, 制造数据生成binlog:
+      root@demo> insert into t_delete(c1)values('a');
+      root@demo> flush logs;
+      
+      root@demo> delete from t_delete;
+      root@demo> flush logs;
+      
+      root@demo> insert into t_delete(c1)values('a');
+      root@demo> insert into t_delete(c1)values('a');
+      root@demo> insert into t_delete(c1)values('a');
+      root@demo> flush logs;
+      
+      root@demo> insert into t_delete(c1)values('a');
+      root@demo> flush logs;
+      root@demo> delete from t_delete;
+      
+      root@demo> insert into t_delete(c1)values('a');
+      root@demo> flush logs;
+      ```
+  
+      ``` sql
+      # 主库清理binlog
+      root@demo> show binary logs;
+      +------------------+-----------+
+      | Log_name         | File_size |
+      +------------------+-----------+
+      | mysql-bin.000010 |    982251 |
+      | mysql-bin.000011 |      1252 |
+      | mysql-bin.000012 |       505 |
+      | mysql-bin.000013 |      1033 |
+      | mysql-bin.000014 |       505 |
+      | mysql-bin.000015 |       790 |
+      | mysql-bin.000016 |       194 |
+      +------------------+-----------+
+      
+      
+      root@demo> purge binary logs to 'mysql-bin.000016';
+      
+      
+      root@demo> show binary logs;
+      +------------------+-----------+
+      | Log_name         | File_size |
+      +------------------+-----------+
+      | mysql-bin.000016 |       194 |
+      +------------------+-----------+
+      
+      
+      root@demo> show variables like '%gtid_purged%';
+      +---------------+-------------------------------------------+
+      | Variable_name | Value                                     |
+      +---------------+-------------------------------------------+
+      | gtid_purged   | 716ae165-bcf7-11ee-b723-000c29154ec0:1-14 |
+      +---------------+-------------------------------------------+
+      ```
+  
+      ``` sql
+      # 启动从库:
+      root@demo> start slave;
+      
+      root@demo> show slave status\G
+      Last_IO_Error: Got fatal error 1236 from master when reading data from binary log: 'The slave is connecting using CHANGE MASTER TO MASTER_AUTO_POSITION = 1, but the master has purged binary logs containing GTIDs that the slave requires. Replicate the missing transactions from elsewhere, or provision a new slave from backup. Consider increasing the master's binary log expiration period. The GTID set sent by the slave is '716ae165-bcf7-11ee-b723-000c29154ec0:1-6,
+      c04ee7a9-bcfc-11ee-b6d5-000c299b1d87:1', and the missing transactions are '716ae165-bcf7-11ee-b723-000c29154ec0:7-14'.'
+      
+      
+      root@demo> show variables like '%gtid_purged%';  
+      +---------------+-------+
+      | Variable_name | Value |
+      +---------------+-------+
+      | gtid_purged   |       |
+      +---------------+-------+
+      ```
+  
+    - 解决办法:
+  
+      ``` sql
+      # 从库尝试使用gtid_purged跳过事务, 这个1-14是从库中通过show slave status\G查看的Last_IO_Error:信息
+      root@demo> set global gtid_purged='716ae165-bcf7-11ee-b723-000c29154ec0:1-14';
+      ERROR 1840 (HY000): @@GLOBAL.GTID_PURGED can only be set when @@GLOBAL.GTID_EXECUTED is empty.
+      
+      root@demo> show global variables like '%gtid_executed%';
+      
+      root@demo> reset master; # 在从库上 清空从库binlog以及gtid_executed
+      root@demo> set global gtid_purged='716ae165-bcf7-11ee-b723-000c29154ec0:1-14';
+      
+      root@demo> start slave;
+      ```
+  
+    - 这个案例,  是演示使用gtid_purged方式来达到跳过事务的目的. 仅仅是让主从恢复正常.  `但是主从的数据是不一致的`,  还可能会遇到`1032`,  `1062`等错误,  还需要根据时间的需要考虑是否进行相应的修复. `考虑使用上一步方式修复`
+  
+  
   
