@@ -52,10 +52,32 @@ rm -rf /mysql*
 ```
 - 检验一下
 ``` sql
-use mysql
-select host,user from user where user='root';
-create USER 'root'@'10.4.7.%' IDENTIFIED BY '123456';
-select host,user from user where user='root';
+# 查看所有数据库容量大小
+SELECT
+	table_schema as '数据库',
+	sum( table_rows ) as '记录数',
+	sum(TRUNCATE (data_length/1024/1024,2)) AS '数据容量(MB)',
+	sum(TRUNCATE (index_length/1024/1024,2)) AS '索引容量(MB)'
+FROM
+	information_schema.TABLES
+GROUP BY
+	table_schema 
+ORDER BY
+	sum( data_length )DESC,
+	sum( index_length )DESC;
+	
+# 查看指定库demo数据库各表容量大小	
+SELECT
+	table_schema as '数据库',
+	table_name as '表名',
+	table_rows as '记录表',
+	TRUNCATE ( data_length / 1024 / 1024,2 ) AS '数据容量(MB)',
+	TRUNCATE ( index_length / 1024 / 1024,2 ) AS '索引容量(MB)'
+FROM
+	information_schema.TABLES WHERE table_schema='demo'
+ORDER BY
+	data_length DESC,
+	index_length DESC;	
 ```
 
 - MySQL配置文件
