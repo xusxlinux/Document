@@ -26,7 +26,7 @@
   - 主服务器将所有其他GTID发送给从服务器.
   - 同样的GTID不能被执行两次, 如果有同样的GTID, 会自动被skip掉.
 
-![image-20240124173209050](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20240124173209050.png)
+![image](https://github.com/xusxlinux/Document/assets/37207302/323388b6-890e-4d5a-a0fe-f8bc6e4974f1)
 
 ###### **1.3 传统复制与GTID对比**
 
@@ -34,15 +34,11 @@
 
 - 而这种方式的难点在于, 由于同一个事务在每台机器上所在的binlog名字和位置都不一样, 那么怎么找到Slave2当前同步停止点对应Slave1上 master_log_file和master_log_pos的位置就成为了难题
 
-  ![image-20240124173310062](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20240124173310062.png)
+  ![image](https://github.com/xusxlinux/Document/assets/37207302/f91f4a93-5ba0-4a19-86be-b5751eddfda1)
 
 - 由于同一事务的GTID在所有节点上的值一致, 那么根据slave2 当前停止点的GTID就能定位到slave1上的GTID. 直接使用 `CHANGE MASTER TO MASTER_HOST='xxxx', MASTER_AUTO_POSITION=1` 命令就可以直接完成failover的工作.
 
-  ![image-20240124174133080](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20240124174133080.png)
-
-
-
-
+  ![image](https://github.com/xusxlinux/Document/assets/37207302/85e9b1b5-6639-4c23-83c4-c1b2c59004a4)
 
 ## 二 GTID配置
 
@@ -311,4 +307,9 @@
   
     - 这个案例,  是演示使用gtid_purged方式来达到跳过事务的目的. 仅仅是让主从恢复正常.  `但是主从的数据是不一致的`,  还可能会遇到`1032`,  `1062`等错误,  还需要根据时间的需要考虑是否进行相应的修复. `考虑使用上一步方式修复`
   
+<<<<<<< HEAD
   
+=======
+  
+  
+>>>>>>> 94a27b192e7d0f251e1f3eb18a1b108ea40dbd9b
