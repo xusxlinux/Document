@@ -2,7 +2,7 @@
 - [MySQL 二进制包 下载地址](https://downloads.mysql.com/archives/community/)
 ``` shell
 rpm -qa | grep libaio
-mkdir -pv /mysql/3306/{app,conf,data,logs,tmp,binlog,relaylog,redo,backup}
+mkdir -pv /mysql/{backup,3306/{app,conf,data,logs,tmp,binlog,relaylog,redo}}
 tar -xf mysql-5.7.30-linux-glibc2.12-x86_64.tar.gz -C /mysql/3306/app/
 
 # 创建MySQL配置文件
