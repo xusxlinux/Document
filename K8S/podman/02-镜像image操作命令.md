@@ -2,17 +2,17 @@
 ## 1. podman pull
 **从镜像仓库下载镜像**
 ``` bash
-podman pull docker.io/library/nginx:latest
+podman pull docker.io/library/alpine:latest
 ```
-**常用参数**
-
-  参数                                                               含义
+**常用参数**  
+参数                                                               含义
 ---
   --all-tags                                                        下载所有 Tag
   --arch                                                            指定 CPU 架构
   --os                                                              指定操作系统
   --tls-verify=false                                                不验证 HTTPS
-----
+---
+
 ## 2. podman push
 **推送镜像到镜像仓库**
 ``` bash
@@ -20,12 +20,14 @@ podman push alpine:v1 docker.io/user/alpine:v1
 ```
 **常用参数**
 ---
+
 ## 3. podman search
 **在镜像仓库中搜索镜像**
 ``` bash
 podman search nginx
 ```
 ---
+
 ## 4. podman images
 **列出本地所有镜像**
 ``` bash
