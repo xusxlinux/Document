@@ -182,8 +182,8 @@ jenkins            A    10.4.7.10
 
 
 
-![Image text](https://github.com/xusxlinux/Document/blob/master/K8S/kubernetes/100-images/jenkins-01.png)  
-![Image text](https://github.com/xusxlinux/Document/blob/master/K8S/kubernetes/100-images/jenkins-02.png)  
+![Image text](https://github.com/xusxlinux/Document/blob/master/K8S/kubernetes-1.15/100-images/jenkins-01.png)  
+![Image text](https://github.com/xusxlinux/Document/blob/master/K8S/kubernetes-1.15/100-images/jenkins-02.png)  
 
 
 ```
@@ -196,4 +196,4 @@ $ sed -i 's/http:\/\/updates.jenkins-ci.org\/download/https:\/\/mirrors.tuna.tsi
 
 ```
 
-![Image text](https://github.com/xusxlinux/Document/blob/master/K8S/kubernetes/100-images/jenkins-03.png)
+![Image text](https://github.com/xusxlinux/Document/blob/master/K8S/kubernetes-1.15/100-images/jenkins-03.png)
