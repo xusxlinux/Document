@@ -1,10 +1,16 @@
+
 #### git常用命令 - 初始化
 ``` md
 初始化:
-echo "# ccc" >> README.md
 git init
+git config --global credential.helper stroe
+git config --global credential.helper user.email "xusxlinux@163.com"
+git config --global credential.helper user.name "xusx"
+
+echo "# ccc" >> README.md
 git add README.md
 git commit -m "first commit"
+
 git branch -M main
 git remote add origin git@github.com:xusxlinux/django.git
 git push -u origin main
