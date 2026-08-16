@@ -62,9 +62,9 @@ git fetch origin dev:dev2
 
 # 查看本地分支:
 git branch
-#查看远程分支:
+# 查看远程分支:
 git branch -r
-#查看所有分支:
+# 查看所有分支:
 git branch -a
 ```
 
