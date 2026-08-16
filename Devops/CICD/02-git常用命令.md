@@ -8,8 +8,8 @@ git init
 git config --global credential.helper store
 
 # 配置 Git 提交时使者用的邮箱和提交者名称
-git config --global user.name "root"
-git config --global user.email "root@od.com"
+git config --global user.name "xusx"
+git config --global user.email "xusxlinux@163.com"
 
 # 切换到gitlab上的当前分支
 git branch -M main
@@ -17,8 +17,11 @@ git branch -M main
 # 添加远端仓库地址
 git remote add origin git@gitlab.od.com:test/pyweb.git
 
-# 查看有没有远程仓库origin
+# 添加远端仓库地址, 查看有没有远程仓库origin
 git remote
+
+# 把远端的origin这个仓库下载到本地
+git pull origin main
 
 # 把当前main这个分支推送到远端的origin这个仓库
 git push origin main
@@ -33,11 +36,11 @@ git rm -rf --cached Python/
 git commit -m '删除python'
 git push -u origin master
 
-删除本地分支:
-git checkout dev
+# 删除本地分支, 需要切换到其他分支:
+git checkout feature
 git branch -d dev
 
-删除远程分支:
+# 删除远程分支:
 git push origin --delete dev
 ```
 
@@ -51,19 +54,17 @@ git branch dev
 # 然后切换到dev分支
 git checkout dev
 
-拉取远程分支到本地:
+# 拉取远程分支到本地:
 git fetch origin dev
 
-拉取远程分支并创建本地分支:
+# 拉取远程分支并创建本地分支:
 git fetch origin dev:dev2
 
-查看本地分支:
+# 查看本地分支:
 git branch
-
-查看远程分支:
+#查看远程分支:
 git branch -r
-
-查看所有分支:
+#查看所有分支:
 git branch -a
 ```
 
