@@ -39,7 +39,17 @@ RHEL提供了一套容器工具:
 ```
 #  Rootless Podman + systemd 生产环境流程
 
-## 1. 新增一个python3容器
+## 1. 安装podman工具
+
+- 其中包含了Podman、Buildah、Skopeo等全套容器工具集
+
+```
+dnf install container-tools -y
+```
+
+
+
+## 2. 新增一个python3容器
 
 ① 创建Container
 
